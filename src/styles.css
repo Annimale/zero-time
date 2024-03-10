@@ -1,3 +1,33 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+    font-family: "Lato-Regular";
+    src: url(/src/assets/fonts/lato/Lato-Regular.ttf);
+}
+
+@font-face {
+    font-family: "Lato-Thin";
+    src: url(/src/assets/fonts/lato/Lato-Thin.ttf);
+}
+
+@font-face {
+    font-family: "Lato-Bold";
+    src: url(/src/assets/fonts/lato/Lato-Bold.ttf);
+}
+
+@font-face {
+    font-family: "Lato-Black";
+    src: url(/src/assets/fonts/lato/Lato-Black.ttf);
+}
+
+@font-face {
+    font-family: "Prata-Regular";
+    src: url(/src/assets/fonts/prata/Prata-Regular.ttf);
+}
+
+@font-face {
+    font-family: "TTCommonsPro-Regular";
+    src: url(/src/assets/fonts/tt-commons-pro/Fontspring-DEMO-tt_commons_pro_condensed_regular.otf);
+}
