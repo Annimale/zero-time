@@ -1,0 +1,23 @@
+
+
+#mobile-menu-btn {
+    cursor: pointer;
+}
+
+#mobile-menu-btn img {
+    display: block;
+    margin: auto;
+}
+
+#mobile-menu {
+    background-color: #333; /* Ajusta el color de fondo según tus preferencias */
+}
+
+#mobile-menu button {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 10px;
+    color: white;
+    border: none;
+    background-color: #333; /* Ajusta el color de fondo según tus preferencias *

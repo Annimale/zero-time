@@ -1,14 +1,17 @@
 import { Component } from '@angular/core';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [],
+  imports: [NgClass],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
-  // toggleMenu() {
-  //   this.menuVisible = !this.menuVisible;
-  // }
+  mobileMenuVisible = false;
+
+  toggleMobileMenu() {
+    this.mobileMenuVisible = !this.mobileMenuVisible;
+  }
 }

@@ -5,9 +5,17 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        lato: ["Lato-Regular", "Lato-Thin", "Lato-Bold", "Lato-Black", "sans-serif"],
+        latoRegular: ["Lato-Regular",  "sans-serif"],
+        latoThin:["Lato-Thin","sans-serif"],
+        latoBold:["Lato-Bold","sans-serif"],
+        latoBlack:["Lato-Black","sans-serif"],
+
         prata: ["Prata-Regular", "sans-serif"], 
-        ttCommons: ["TTCommonsPro-Regular", "sans-serif"], 
+
+        ttCommonsRegular: ["TTCommonsPro-Regular", "sans-serif"], 
+        ttCommonsThin: ["TTCommonsPro-Thin", "sans-serif"], 
+        ttCommonsExpandedRegular: ["TTCommonsPro-Expanded-Regular", "sans-serif"], 
+        ttCommonsExpandedThin: ["TTCommonsPro-Expanded-Thin", "sans-serif"], 
       },
     },
   },
