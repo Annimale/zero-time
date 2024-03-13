@@ -1,241 +1,128 @@
-<nav class="bg-white dark:bg-gray-400">
-  <div class="px-6 py-4 mx-auto">
-    <div class="lg:flex lg:items-center">
-      <div class="flex items-center justify-between">
-        <a href="#">
-          <img
-            class="w-auto h-6 sm:h-7"
-            src="../../assets/images/navbar/zero-time.svg"
-            alt="texto-navbar"
-          />
-        </a>
+<header>
 
-        <!-- Mobile menu button -->
-        <div class="flex lg:hidden">
-          <button
-            (click)="toggleMenu()"
-            type="button"
-            class="text-gray-500 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400 focus:outline-none focus:text-gray-600 dark:focus:text-gray-400"
-            aria-label="toggle menu"
-          >
-            <svg
-              *ngIf="!isOpen"
-              xmlns="http://www.w3.org/2000/svg"
-              class="w-6 h-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M4 8h16M4 16h16"
-              />
-            </svg>
+  <nav class="bg-white dark:bg-gray-400">
+    <div class="px-6 py-4 mx-auto">
+      <div class="lg:flex lg:items-center">
+        <div class="flex items-center justify-between">
+          <a routerLink="/home">
+            <img class="w-auto h-6 sm:h-7" src="../../assets/images/navbar/zero-time.svg" alt="texto-navbar" />
+          </a>
 
-            <svg
-              *ngIf="isOpen"
-              xmlns="http://www.w3.org/2000/svg"
-              class="w-6 h-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
-          </button>
-        </div>
-      </div>
-
-      <div
-        [ngClass]="{
-          'translate-x-0 opacity-100': isOpen,
-          'opacity-0 -translate-x-full': !isOpen
-        }"
-        class="absolute inset-x-0 z-20 flex-1 w-full px-6 py-4 transition-all duration-300 ease-in-out items-center justify-center bg-white dark:bg-gray-400 lg:mt-0 lg:p-0 lg:top-0 lg:relative lg:bg-transparent lg:w-auto lg:opacity-100 lg:translate-x-0 lg:flex lg:items-center lg:justify-between lg"
-      >
-        <div
-          class="flex flex-col font-ttCommonsExpandedRegular text-gray-500 dark:text-gray-600 lg:flex lg:mx-16 lg:flex-row lg:items-center"
-        >
-          <a
-            href="#"
-            class="mt-2 transition-colors duration-300 transform lg:mt-0 lg:mx-4 hover:text-neutral-950 dark:hover:text-neutral-950"
-            >Inicio</a
-          >
-          <a
-            href="#"
-            class="mt-2 transition-colors duration-300 transform lg:mt-0 lg:mx-4 hover:text-neutral-950 dark:hover:text-neutral-950"
-            >Noticias</a
-          >
-          <a
-            href="#"
-            class="mt-2 transition-colors duration-300 transform lg:mt-0 lg:mx-4 hover:text-neutral-950 dark:hover:text-neutral-950"
-            >Marcas</a
-          >
-          <a
-            href="#"
-            class="mt-2 transition-colors duration-300 transform lg:mt-0 lg:mx-4 hover:text-neutral-950 dark:hover:text-neutral-950"
-            >Tienda</a
-          >
-          <a
-            href="#"
-            class="mt-2 transition-colors duration-300 transform lg:mt-0 lg:mx-4 whitespace-nowrap hover:text-neutral-950 dark:hover:text-gray-600"
-            >Vende tu reloj</a
-          >
-          <a
-            href="#"
-            class="mt-2 transition-colors duration-300 transform lg:mt-0 lg:mx-4 whitespace-nowrap hover:text-neutral-950 dark:hover:text-gray-200"
-            >Seguro ZT</a
-          >
-
-          <div class="relative mt-4 lg:mt-0 lg:mx-4">
-            <span class="absolute inset-y-0 left-0 flex items-center pl-3">
-              <svg
-                class="w-4 h-4 text-gray-600 dark:text-gray-300"
-                viewBox="0 0 24 24"
-                fill="none"
-              >
-                <path
-                  d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                ></path>
+          <!-- Mobile menu button -->
+          <div class="flex lg:hidden">
+            <button (click)="toggleMenu()" type="button"
+              class="text-gray-500 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400 focus:outline-none focus:text-gray-600 dark:focus:text-gray-400"
+              aria-label="toggle menu">
+              <svg *ngIf="!isOpen" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4 8h16M4 16h16" />
               </svg>
-            </span>
 
-            <input
-              type="text"
-              class="w-full py-1 pl-10 pr-4 text-gray-700 placeholder-gray-600 bg-white border-b border-gray-600 dark:placeholder-gray-300 dark:focus:border-gray-300 lg:w-56 lg:border-transparent dark:bg-gray-400 dark:text-gray-300 focus:outline-none focus:border-gray-600"
-              placeholder="Search"
-            />
+              <svg *ngIf="isOpen" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
           </div>
         </div>
 
-        <div
-          class="flex justify-center mt-6 lg:flex lg:mt-0 lg:-ml-24 sm:-ml-16 pr-10"
-        >
-          <a
-            href="#"
-            class="mx-2 text-gray-600 transition-colors duration-300 transform dark:text-gray-300 hover:text-gray-500 dark:hover:text-gray-300"
-            aria-label="Reddit"
-          >
-            <svg
-              class="w-10 h-10 fill-current"
-              viewBox="-2 -2 24.00 24.00"
-              version="1.1"
-              xmlns="http://www.w3.org/2000/svg"
-              xmlns:xlink="http://www.w3.org/1999/xlink"
-              fill="#000000"
-            >
-              <g
-                id="SVGRepo_bgCarrier"
-                stroke-width="0"
-                transform="translate(0,0), scale(1)"
-              >
-                <path
-                  transform="translate(-2, -2), scale(0.75)"
-                  d="M16,25.072734510820162C19.33729783738038,25.76899802104854,22.21528609917856,30.27218712559896,25.27077591512223,28.760128358313835C28.130698686025404,27.344849119961353,26.228237307581388,22.674638483187067,27.06719946150346,19.59595108718069C27.84411969047276,16.744935096234883,30.58905921496673,14.34841522773198,29.986385615503327,11.45554783441437C29.371837332609562,8.505681288433948,26.790285136855402,6.1454843915760335,24.01873645960795,4.963156111972593C21.49309850663294,3.885732070909832,18.71041118037628,5.049300155071213,16,5.489028329127713C13.780938384073103,5.849041569758948,11.680701578010831,6.280632306586814,9.672304252609482,7.2906739750493585C7.276801733413903,8.495394440812285,4.492541674053222,9.47142416393844,3.302967310787839,11.874483995561901C2.053109990735261,14.399321461657195,2.200736748050124,17.534791206434516,3.3217612126590357,20.119409495551075C4.393165478245508,22.58962414946442,6.661854770379309,24.421125581397924,9.169797990459417,25.400966559097533C11.346134263128878,26.251250347080365,13.712708477214735,24.59553478152655,16,25.072734510820162"
-                  fill="#abada6"
-                  strokewidth="0"
-                ></path>
-              </g>
-              <g
-                id="SVGRepo_tracerCarrier"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke="#b52626"
-                stroke-width="0.04"
-              ></g>
-              <g id="SVGRepo_iconCarrier">
-                <title>profile_round [#1342]</title>
-                <desc>Created with Sketch.</desc>
-                <defs></defs>
-                <g
-                  id="Page-1"
-                  stroke-width="0.0002"
-                  fill="none"
-                  fill-rule="evenodd"
-                >
-                  <g
-                    id="Dribbble-Light-Preview"
-                    transform="translate(-140.000000, -2159.000000)"
-                    fill="#000000"
-                  >
-                    <g id="icons" transform="translate(56.000000, 160.000000)">
-                      <path
-                        d="M100.562548,2016.99998 L87.4381713,2016.99998 C86.7317804,2016.99998 86.2101535,2016.30298 86.4765813,2015.66198 C87.7127655,2012.69798 90.6169306,2010.99998 93.9998492,2010.99998 C97.3837885,2010.99998 100.287954,2012.69798 101.524138,2015.66198 C101.790566,2016.30298 101.268939,2016.99998 100.562548,2016.99998 M89.9166645,2004.99998 C89.9166645,2002.79398 91.7489936,2000.99998 93.9998492,2000.99998 C96.2517256,2000.99998 98.0830339,2002.79398 98.0830339,2004.99998 C98.0830339,2007.20598 96.2517256,2008.99998 93.9998492,2008.99998 C91.7489936,2008.99998 89.9166645,2007.20598 89.9166645,2004.99998 M103.955674,2016.63598 C103.213556,2013.27698 100.892265,2010.79798 97.837022,2009.67298 C99.4560048,2008.39598 100.400241,2006.33098 100.053171,2004.06998 C99.6509769,2001.44698 97.4235996,1999.34798 94.7348224,1999.04198 C91.0232075,1998.61898 87.8750721,2001.44898 87.8750721,2004.99998 C87.8750721,2006.88998 88.7692896,2008.57398 90.1636971,2009.67298 C87.1074334,2010.79798 84.7871636,2013.27698 84.044024,2016.63598 C83.7745338,2017.85698 84.7789973,2018.99998 86.0539717,2018.99998 L101.945727,2018.99998 C103.221722,2018.99998 104.226185,2017.85698 103.955674,2016.63598"
-                        id="profile_round-[#1342]"
-                      ></path>
-                    </g>
-                  </g>
-                </g>
-              </g>
-            </svg>
-          </a>
+        <div [ngClass]="{
+          'translate-x-0 opacity-100': isOpen,
+          'opacity-0 -translate-x-full': !isOpen
+        }"
+          class="absolute inset-x-0 z-20 flex-1 w-full px-6 py-4 transition-all duration-300 ease-in-out items-center justify-center bg-white dark:bg-gray-400 lg:mt-0 lg:p-0 lg:top-0 lg:relative lg:bg-transparent lg:w-auto lg:opacity-100 lg:translate-x-0 lg:flex lg:items-center lg:justify-between lg">
+          <div
+            class="flex flex-col font-ttCommonsExpandedRegular text-gray-500 dark:text-gray-600 lg:flex lg:mx-16 lg:flex-row lg:items-center">
+            <a href="#"
+              class="mt-2 transition-colors duration-300 transform lg:mt-0 lg:mx-4 hover:text-neutral-950 dark:hover:text-neutral-950">Inicio</a>
+            <a href="#"
+              class="mt-2 transition-colors duration-300 transform lg:mt-0 lg:mx-4 hover:text-neutral-950 dark:hover:text-neutral-950">Noticias</a>
+            <a href="#"
+              class="mt-2 transition-colors duration-300 transform lg:mt-0 lg:mx-4 hover:text-neutral-950 dark:hover:text-neutral-950">Marcas</a>
+            <a href="#"
+              class="mt-2 transition-colors duration-300 transform lg:mt-0 lg:mx-4 hover:text-neutral-950 dark:hover:text-neutral-950">Tienda</a>
+            <a href="#"
+              class="mt-2 transition-colors duration-300 transform lg:mt-0 lg:mx-4 whitespace-nowrap hover:text-neutral-950 dark:hover:text-gray-600">Vende
+              tu reloj</a>
+            <a href="#"
+              class="mt-2 transition-colors duration-300 transform lg:mt-0 lg:mx-4 whitespace-nowrap hover:text-neutral-950 dark:hover:text-gray-200">Seguro
+              ZT</a>
 
-          <a
-            href="#"
-            class="mx-2 text-gray-600 transition-colors duration-300 transform dark:text-gray-300 hover:text-gray-500 dark:hover:text-gray-300"
-            aria-label="Facebook"
-          >
-            <svg
-              class="w-10 h-10 fill-current"
-              viewBox="-2 -2 24.00 24.00"
-              version="1.1"
-              xmlns="http://www.w3.org/2000/svg"
-              xmlns:xlink="http://www.w3.org/1999/xlink"
-              fill="#000000"
-            >
-              <g id="SVGRepo_bgCarrier" stroke-width="0">
-                <path
-                  transform="translate(-2, -2), scale(0.75)"
-                  d="M16,29.80828126706183C18.733082461128035,29.42810092234531,18.31026889390473,24.69420431057821,20.5663270091186,23.105343519126645C22.657095990465496,21.632889934689477,26.40537875527317,23.511106273339582,27.893962085588605,21.431790481933373C29.29422489354953,19.475844510071,27.28625452152365,16.800233757050787,26.760650471306278,14.45285203295938C26.28021985386686,12.307217784888348,26.56058659695973,9.740060207678322,24.94267064133704,8.251131779173424C23.335001342673042,6.771633098109926,20.603492085664318,7.957887977845512,18.646789100735717,6.9858641355932125C16.018359545282102,5.680149259467158,14.739026153630562,1.8955519020969958,11.809001296375378,1.7267691968642165C8.950331759456805,1.5620968813331964,5.611092046779592,3.477031167010185,4.667822540506304,6.180612334895393C3.6647755410224327,9.055526620020892,7.19348367340285,11.700433974659159,7.267193692265952,14.744412007285456C7.322006713335316,17.008007032907557,4.307381656128115,18.864345739937416,5.026946286040248,21.01122572043919C5.732108728345242,23.11513559517996,8.805831548657034,23.112490526917497,10.53709849265439,24.500440670003094C12.558996807736696,26.12138888105338,13.433276630247079,30.165320540257365,16,29.80828126706183"
-                  fill="#abada6"
-                  strokewidth="0"
-                ></path>
-              </g>
-              <g
-                id="SVGRepo_tracerCarrier"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              ></g>
-              <g id="SVGRepo_iconCarrier">
-                <title>shopping_bag [#1142]</title>
-                <desc>Created with Sketch.</desc>
-                <defs></defs>
-                <g
-                  id="Page-1"
-                  stroke="none"
-                  stroke-width="1"
-                  fill="none"
-                  fill-rule="evenodd"
-                >
-                  <g
-                    id="Dribbble-Light-Preview"
-                    transform="translate(-340.000000, -3079.000000)"
-                    fill="#000000"
-                  >
-                    <g id="icons" transform="translate(56.000000, 160.000000)">
-                      <path
-                        d="M302,2936.00957 C302,2936.55981 301.552,2937.00638 301,2937.00638 L287,2937.00638 C286.448,2937.00638 286,2936.55981 286,2936.00957 L286,2928.03509 C286,2927.48485 286.448,2927.03828 287,2927.03828 L301,2927.03828 C301.552,2927.03828 302,2927.48485 302,2928.03509 L302,2936.00957 Z M294,2920.98465 C296.259,2920.98465 298.221,2923.05104 298.813,2925.04466 L289.096,2925.04466 C289.543,2923.05104 291.604,2920.98465 294,2920.98465 L294,2920.98465 Z M302,2925.04466 L300.876,2925.04466 C300.265,2922.05423 297.367,2919 294,2919 C290.53,2919 287.56,2922.05423 287.077,2925.04466 L286,2925.04466 C284.895,2925.04466 284,2926.00159 284,2927.10207 L284,2937.07018 C284,2938.17165 284.895,2939 286,2939 L302,2939 C303.105,2939 304,2938.17165 304,2937.07018 L304,2927.10207 C304,2926.00159 303.105,2925.04466 302,2925.04466 L302,2925.04466 Z"
-                        id="shopping_bag-[#1142]"
-                      ></path>
+            <div class="relative mt-4 lg:mt-0 lg:mx-4">
+              <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+                <svg class="w-4 h-4 text-gray-600 dark:text-gray-300" viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+              </span>
+
+              <input type="text"
+                class="w-full py-1 pl-10 pr-4 text-gray-700 placeholder-gray-600 bg-white border-b border-gray-600 dark:placeholder-gray-300 dark:focus:border-gray-300 lg:w-56 lg:border-transparent dark:bg-gray-400 dark:text-gray-300 focus:outline-none focus:border-gray-600"
+                placeholder="Search" />
+            </div>
+          </div>
+
+          <div class="flex justify-center mt-6 lg:flex lg:mt-0 lg:-ml-24 sm:-ml-16 pr-10">
+            <a href="#"
+              class="mx-2 text-gray-600 transition-colors duration-300 transform dark:text-gray-300 hover:text-gray-500 dark:hover:text-gray-300"
+              aria-label="Reddit">
+              <svg class="w-10 h-10 fill-current" viewBox="-2 -2 24.00 24.00" version="1.1"
+                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000">
+                <g id="SVGRepo_bgCarrier" stroke-width="0" transform="translate(0,0), scale(1)">
+                  <path transform="translate(-2, -2), scale(0.75)"
+                    d="M16,25.072734510820162C19.33729783738038,25.76899802104854,22.21528609917856,30.27218712559896,25.27077591512223,28.760128358313835C28.130698686025404,27.344849119961353,26.228237307581388,22.674638483187067,27.06719946150346,19.59595108718069C27.84411969047276,16.744935096234883,30.58905921496673,14.34841522773198,29.986385615503327,11.45554783441437C29.371837332609562,8.505681288433948,26.790285136855402,6.1454843915760335,24.01873645960795,4.963156111972593C21.49309850663294,3.885732070909832,18.71041118037628,5.049300155071213,16,5.489028329127713C13.780938384073103,5.849041569758948,11.680701578010831,6.280632306586814,9.672304252609482,7.2906739750493585C7.276801733413903,8.495394440812285,4.492541674053222,9.47142416393844,3.302967310787839,11.874483995561901C2.053109990735261,14.399321461657195,2.200736748050124,17.534791206434516,3.3217612126590357,20.119409495551075C4.393165478245508,22.58962414946442,6.661854770379309,24.421125581397924,9.169797990459417,25.400966559097533C11.346134263128878,26.251250347080365,13.712708477214735,24.59553478152655,16,25.072734510820162"
+                    fill="#abada6" strokewidth="0"></path>
+                </g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#b52626"
+                  stroke-width="0.04"></g>
+                <g id="SVGRepo_iconCarrier">
+                  <title>profile_round [#1342]</title>
+                  <desc>Created with Sketch.</desc>
+                  <defs></defs>
+                  <g id="Page-1" stroke-width="0.0002" fill="none" fill-rule="evenodd">
+                    <g id="Dribbble-Light-Preview" transform="translate(-140.000000, -2159.000000)" fill="#000000">
+                      <g id="icons" transform="translate(56.000000, 160.000000)">
+                        <path
+                          d="M100.562548,2016.99998 L87.4381713,2016.99998 C86.7317804,2016.99998 86.2101535,2016.30298 86.4765813,2015.66198 C87.7127655,2012.69798 90.6169306,2010.99998 93.9998492,2010.99998 C97.3837885,2010.99998 100.287954,2012.69798 101.524138,2015.66198 C101.790566,2016.30298 101.268939,2016.99998 100.562548,2016.99998 M89.9166645,2004.99998 C89.9166645,2002.79398 91.7489936,2000.99998 93.9998492,2000.99998 C96.2517256,2000.99998 98.0830339,2002.79398 98.0830339,2004.99998 C98.0830339,2007.20598 96.2517256,2008.99998 93.9998492,2008.99998 C91.7489936,2008.99998 89.9166645,2007.20598 89.9166645,2004.99998 M103.955674,2016.63598 C103.213556,2013.27698 100.892265,2010.79798 97.837022,2009.67298 C99.4560048,2008.39598 100.400241,2006.33098 100.053171,2004.06998 C99.6509769,2001.44698 97.4235996,1999.34798 94.7348224,1999.04198 C91.0232075,1998.61898 87.8750721,2001.44898 87.8750721,2004.99998 C87.8750721,2006.88998 88.7692896,2008.57398 90.1636971,2009.67298 C87.1074334,2010.79798 84.7871636,2013.27698 84.044024,2016.63598 C83.7745338,2017.85698 84.7789973,2018.99998 86.0539717,2018.99998 L101.945727,2018.99998 C103.221722,2018.99998 104.226185,2017.85698 103.955674,2016.63598"
+                          id="profile_round-[#1342]"></path>
+                      </g>
                     </g>
                   </g>
                 </g>
-              </g>
-            </svg>
-          </a>
+              </svg>
+            </a>
+
+            <a href="#"
+              class="mx-2 text-gray-600 transition-colors duration-300 transform dark:text-gray-300 hover:text-gray-500 dark:hover:text-gray-300"
+              aria-label="Facebook">
+              <svg class="w-10 h-10 fill-current" viewBox="-2 -2 24.00 24.00" version="1.1"
+                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000">
+                <g id="SVGRepo_bgCarrier" stroke-width="0">
+                  <path transform="translate(-2, -2), scale(0.75)"
+                    d="M16,29.80828126706183C18.733082461128035,29.42810092234531,18.31026889390473,24.69420431057821,20.5663270091186,23.105343519126645C22.657095990465496,21.632889934689477,26.40537875527317,23.511106273339582,27.893962085588605,21.431790481933373C29.29422489354953,19.475844510071,27.28625452152365,16.800233757050787,26.760650471306278,14.45285203295938C26.28021985386686,12.307217784888348,26.56058659695973,9.740060207678322,24.94267064133704,8.251131779173424C23.335001342673042,6.771633098109926,20.603492085664318,7.957887977845512,18.646789100735717,6.9858641355932125C16.018359545282102,5.680149259467158,14.739026153630562,1.8955519020969958,11.809001296375378,1.7267691968642165C8.950331759456805,1.5620968813331964,5.611092046779592,3.477031167010185,4.667822540506304,6.180612334895393C3.6647755410224327,9.055526620020892,7.19348367340285,11.700433974659159,7.267193692265952,14.744412007285456C7.322006713335316,17.008007032907557,4.307381656128115,18.864345739937416,5.026946286040248,21.01122572043919C5.732108728345242,23.11513559517996,8.805831548657034,23.112490526917497,10.53709849265439,24.500440670003094C12.558996807736696,26.12138888105338,13.433276630247079,30.165320540257365,16,29.80828126706183"
+                    fill="#abada6" strokewidth="0"></path>
+                </g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                <g id="SVGRepo_iconCarrier">
+                  <title>shopping_bag [#1142]</title>
+                  <desc>Created with Sketch.</desc>
+                  <defs></defs>
+                  <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g id="Dribbble-Light-Preview" transform="translate(-340.000000, -3079.000000)" fill="#000000">
+                      <g id="icons" transform="translate(56.000000, 160.000000)">
+                        <path
+                          d="M302,2936.00957 C302,2936.55981 301.552,2937.00638 301,2937.00638 L287,2937.00638 C286.448,2937.00638 286,2936.55981 286,2936.00957 L286,2928.03509 C286,2927.48485 286.448,2927.03828 287,2927.03828 L301,2927.03828 C301.552,2927.03828 302,2927.48485 302,2928.03509 L302,2936.00957 Z M294,2920.98465 C296.259,2920.98465 298.221,2923.05104 298.813,2925.04466 L289.096,2925.04466 C289.543,2923.05104 291.604,2920.98465 294,2920.98465 L294,2920.98465 Z M302,2925.04466 L300.876,2925.04466 C300.265,2922.05423 297.367,2919 294,2919 C290.53,2919 287.56,2922.05423 287.077,2925.04466 L286,2925.04466 C284.895,2925.04466 284,2926.00159 284,2927.10207 L284,2937.07018 C284,2938.17165 284.895,2939 286,2939 L302,2939 C303.105,2939 304,2938.17165 304,2937.07018 L304,2927.10207 C304,2926.00159 303.105,2925.04466 302,2925.04466 L302,2925.04466 Z"
+                          id="shopping_bag-[#1142]"></path>
+                      </g>
+                    </g>
+                  </g>
+                </g>
+              </svg>
+            </a>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</nav>
+  </nav>
+</header>
