@@ -15,7 +15,7 @@ import { AboutUsComponent } from './about-us/about-us.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { TermsConditionsComponent } from './terms-conditions/terms-conditions.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
-import { CookiePolicyComponent } from './cookie-policy/cookie-policy.component';
+import { PolicyCookiesComponent } from './policy-cookies/policy-cookies.component';
 
 export const routes: Routes = [
     // NAVBAR
@@ -37,7 +37,7 @@ export const routes: Routes = [
     { path: 'privacy-policy', component: PrivacyPolicyComponent },
     { path: 'terms-conditions', component: TermsConditionsComponent },
     { path: 'contact-us', component: ContactUsComponent },
-    { path: 'cookie-policy', component: CookiePolicyComponent },
+    { path: 'policy-cookies', component: PolicyCookiesComponent },
 
 
     // OTHERS
