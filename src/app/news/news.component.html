@@ -2,23 +2,28 @@
     <div class="ARTICLE  border-b border-gray-200  ">
         <div class="grid grid-cols-5 gap-2 p-10">
             <div class=" col-span-2">
-                <div class="capitalize text-3xl font-latoRegular mb-6">
-                    <span class=" CATEGORY+TITLE font-prata text-5xl pr-4 ">Hands-On </span>
-                    Spending some quality time with the Longines Conquest Heritage Central
-                    Power Reserve
+                    <a routerLink="/news-detail">
+                    <div class="capitalize text-3xl font-latoRegular mb-6">
+                        <span class=" CATEGORY+TITLE font-prata text-5xl pr-4 ">Hands-On </span>
+                        Spending some quality time with the Longines Conquest Heritage Central
+                        Power Reserve
+                    </div>
+                    <div class="SUBTITLE font-latoRegular opacity-75">A faithful reimangining of a 1959 heritage design,
+                        outfitted in a
+                        throughly modern color palette of warm gey and rose gold.</div>
+                    </a>
                 </div>
-                <div class="SUBTITLE font-latoRegular opacity-75">A faithful reimangining of a 1959 heritage design,
-                    outfitted in a
-                    throughly modern color palette of warm gey and rose gold.</div>
+                <div class=" col-span-3">
+                    <a routerLink="/news-detail">
+                    <img class="h-72 object-cover w-full"
+                        src="https://hodinkee.imgix.net/uploads/images/09273d1b-5b61-4260-bf4c-431ccfe5ea41/20240220_LonginesConquest_014.jpg?ixlib=rails-1.1.0&fm=jpg&q=55&auto=format&usm=12&fit=crop&ch=Width%2CDPR%2CSave-Dat"
+                        alt="cover-img" />
+                    </a>
+                    </div>
+                <div class="AUTHOR capitalize">By Aivan Towers - {{ currentDate | date:'dd/MM/yyyy'}} </div>
             </div>
-            <div class=" col-span-3">
-                <img class="h-72 object-cover w-full"
-                    src="https://hodinkee.imgix.net/uploads/images/09273d1b-5b61-4260-bf4c-431ccfe5ea41/20240220_LonginesConquest_014.jpg?ixlib=rails-1.1.0&fm=jpg&q=55&auto=format&usm=12&fit=crop&ch=Width%2CDPR%2CSave-Dat"
-                    alt="cover-img" />
-            </div>
-            <div class="AUTHOR capitalize">By Aivan Towers - {{ currentDate | date:'dd/MM/yyyy'}} </div>
         </div>
-    </div>
+    <a routerLink="/news-detail">
     <div class="ARTICLE  border-b border-gray-200">
         <div class="grid grid-cols-5 gap-2 p-10">
             <div class=" col-span-2">
@@ -41,6 +46,7 @@
 
         </div>
     </div>
+    </a>
     <div class="ARTICLE  border-b border-gray-200 ">
         <div class="grid grid-cols-5 gap-2 p-10">
             <div class=" col-span-2">
@@ -94,7 +100,7 @@
             </div>
             <div class=" col-span-3">
                 <img class="h-72 object-cover w-full"
-                src="https://hodinkee.imgix.net/uploads/images/39950a49-84ca-4beb-9224-13158e6af5de/20240213_BalticPrismic_338.jpg?ixlib=rails-1.1.0&fm=jpg&q=55&auto=format&usm=12&fit=crop&ch=Width%2CDPR%2CSave-Data&alt=&ar=16%3A9&w=1200"
+                    src="https://hodinkee.imgix.net/uploads/images/39950a49-84ca-4beb-9224-13158e6af5de/20240213_BalticPrismic_338.jpg?ixlib=rails-1.1.0&fm=jpg&q=55&auto=format&usm=12&fit=crop&ch=Width%2CDPR%2CSave-Data&alt=&ar=16%3A9&w=1200"
                     alt="cover-img" />
             </div>
             <div class="AUTHOR capitalize">By Aivan Towers - {{ currentDate | date:'dd/MM/yyyy'}} </div>
