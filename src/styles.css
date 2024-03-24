@@ -31,15 +31,28 @@
     font-family: "TTCommonsPro-Regular";
     src: url(./assets/fonts/tt-commons-pro/Fontspring-DEMO-tt_commons_pro_regular.otf);
 }
+
 @font-face {
     font-family: "TTCommonsPro-Thin";
     src: url(./assets/fonts/tt-commons-pro/Fontspring-DEMO-tt_commons_pro_thin.otf);
 }
+
 @font-face {
     font-family: "TTCommonsPro-Expanded-Regular";
     src: url(./assets/fonts/tt-commons-pro/Fontspring-DEMO-tt_commons_pro_expanded_regular.otf);
 }
+
 @font-face {
     font-family: "TTCommonsPro-Expanded-Thin";
     src: url(./assets/fonts/tt-commons-pro/Fontspring-DEMO-tt_commons_pro_expanded_thin.otf);
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background: #c2c9d2;
 }

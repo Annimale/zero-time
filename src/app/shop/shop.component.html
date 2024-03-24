@@ -1,1 +1,198 @@
-<p>shop works!</p>
+<div class="container bg-red-200 h-full mx-auto">
+
+    <h2 class="text-2xl">800 Modelos</h2><!-- Aqui meteré la variable de count de los relojes totales -->
+    <div class="flex flex-row py-14">
+        <div class="bg-blue-500 pr-12">
+            <div class="bg-gray-100 p-4 w-64">
+                <!-- Search Input -->
+                <div class="mb-6">
+                    <h2 class="font-bold">Search</h2>
+                    <input type="text" placeholder="Brand, model, reference ..."
+                        class="w-full p-2 border border-gray-300 rounded" />
+                </div>
+
+                <!-- Brand Filters -->
+                <div class="mb-6  ">
+                    <div class="flex justify-between items-center mb-2">
+                        <h2 class="font-bold">Brand</h2>
+                        <button class="text-xs text-gray-500">Clear</button>
+                    </div>
+                    <div class="h-56 overflow-y-auto  ">
+
+
+                        <div class="space-y-2 pr-3">
+                            <!-- Each Brand Option -->
+                            <div class="flex items-center justify-between">
+                                <label class="cursor-pointer">Grand Seiko</label>
+                                <input type="checkbox" class="form-checkbox h-5 w-5 text-gray-600" />
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <label class="cursor-pointer">Grand Seiko</label>
+                                <input type="checkbox" class="form-checkbox h-5 w-5 text-gray-600" />
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <label class="cursor-pointer">Grand Seiko</label>
+                                <input type="checkbox" class="form-checkbox h-5 w-5 text-gray-600" />
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <label class="cursor-pointer">Grand Seiko</label>
+                                <input type="checkbox" class="form-checkbox h-5 w-5 text-gray-600" />
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <label class="cursor-pointer">Grand Seiko</label>
+                                <input type="checkbox" class="form-checkbox h-5 w-5 text-gray-600" />
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <label class="cursor-pointer">Grand Seiko</label>
+                                <input type="checkbox" class="form-checkbox h-5 w-5 text-gray-600" />
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <label class="cursor-pointer">Grand Seiko</label>
+                                <input type="checkbox" class="form-checkbox h-5 w-5 text-gray-600" />
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <label class="cursor-pointer">Grand Seiko</label>
+                                <input type="checkbox" class="form-checkbox h-5 w-5 text-gray-600" />
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <label class="cursor-pointer">Grand Seiko</label>
+                                <input type="checkbox" class="form-checkbox h-5 w-5 text-gray-600" />
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <label class="cursor-pointer">Grand Seiko</label>
+                                <input type="checkbox" class="form-checkbox h-5 w-5 text-gray-600" />
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <label class="cursor-pointer">Grand Seiko</label>
+                                <input type="checkbox" class="form-checkbox h-5 w-5 text-gray-600" />
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <label class="cursor-pointer">Grand Seiko</label>
+                                <input type="checkbox" class="form-checkbox h-5 w-5 text-gray-600" />
+                            </div>
+                    </div>
+
+                        <!-- Repeat for other brands -->
+                    </div>
+                </div>
+
+                <!-- Price Range -->
+                <div class="mb-6">
+                    <div class="flex justify-between items-center mb-2">
+                        <h2 class="font-bold">Price</h2>
+                        <button class="text-xs text-gray-500">Clear</button>
+                    </div>
+                    <div class="flex">
+                        <input type="range" min="0" max="100000" class="w-full" />
+                    </div>
+                    <div class="flex justify-between text-xs mt-2">
+                        <span>0 €</span>
+                        <span>100,000 €</span>
+                    </div>
+                </div>
+
+                <!-- Case Size -->
+                <div class="mb-6">
+                    <h2 class="font-bold mb-2">Case size (mm)</h2>
+                    <div class="flex justify-between flex-wrap">
+                        <!-- Size Options -->
+                        <button class="border border-gray-300 rounded px-3 py-1 text-sm m-1">28</button>
+                        <button class="border border-gray-300 rounded px-3 py-1 text-sm m-1">28</button>
+                        <button class="border border-gray-300 rounded px-3 py-1 text-sm m-1">28</button>
+                        <button class="border border-gray-300 rounded px-3 py-1 text-sm m-1">28</button>
+                        <button class="border border-gray-300 rounded px-3 py-1 text-sm m-1">28</button>
+                        <button class="border border-gray-300 rounded px-3 py-1 text-sm m-1">28</button>
+                        <button class="border border-gray-300 rounded px-3 py-1 text-sm m-1">28</button>
+                        <button class="border border-gray-300 rounded px-3 py-1 text-sm m-1">28</button>
+                        <button class="border border-gray-300 rounded px-3 py-1 text-sm m-1">28</button>
+                        <button class="border border-gray-300 rounded px-3 py-1 text-sm m-1">28</button>
+                        <button class="border border-gray-300 rounded px-3 py-1 text-sm m-1">28</button>
+                        <button class="border border-gray-300 rounded px-3 py-1 text-sm m-1">28</button>
+
+                        <!-- Repeat for other sizes -->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="bg-blue-300 w-full grid grid-cols-3 gap-14">
+            <div class="RELOJ CARD bg-yellow-500  flex flex-col w-full">
+                <div class=" w-full">
+                    <img class=" object-cover" alt="r1"
+                        src="https://hodinkee-shopify.imgix.net/s/files/1/0146/0732/files/GA-700HD-8A_front_SQ_KM.jpg?v=1710896141&auto=format&ar=4%3A5&fit=crop&fm=jpg&q=65&usm=8&ixlib=react-9.7.0&w=380"
+                        alt="">
+                </div>
+                <div class="MARCA bg-green-300">
+                    G-SHOCK
+                </div>
+                <div class="MODELO bg-green-500">GAB2100FC-1A 'Multi-Color' In Black GAB2100FC-1A 'Multi-Color' In Black
+                    GAB2100FC-1A 'Multi-Color' In Black GAB2100FC-1A 'Multi-Color' In Black</div>
+                <div class="PRECIO bg-green-700">160 €</div>
+            </div>
+            <div class="RELOJ CARD bg-yellow-500">
+                <div class="">
+                    <img class="w-auto h-auto object-cover" alt="r1"
+                        src="https://hodinkee-shopify.imgix.net/s/files/1/0146/0732/files/GA-700HD-8A_front_SQ_KM.jpg?v=1710896141&auto=format&ar=4%3A5&fit=crop&fm=jpg&q=65&usm=8&ixlib=react-9.7.0&w=380"
+                        alt="">
+                </div>
+                <div class="MARCA bg-green-300">
+                    G-SHOCK
+                </div>
+                <div class="MODELO bg-green-500">GAB2100FC-1A 'Multi-Color' In Black</div>
+                <div class="PRECIO bg-green-700">160 €</div>
+            </div>
+            <div class="RELOJ CARD bg-yellow-500">
+                <div class="">
+                    <img class="w-auto h-auto object-cover" alt="r1"
+                        src="https://hodinkee-shopify.imgix.net/s/files/1/0146/0732/files/GA-700HD-8A_front_SQ_KM.jpg?v=1710896141&auto=format&ar=4%3A5&fit=crop&fm=jpg&q=65&usm=8&ixlib=react-9.7.0&w=380"
+                        alt="">
+                </div>
+                <div class="MARCA bg-green-300">
+                    G-SHOCK
+                </div>
+                <div class="MODELO bg-green-500">GAB2100FC-1A 'Multi-Color' In Black</div>
+                <div class="PRECIO bg-green-700">160 €</div>
+            </div>
+            <div class="RELOJ CARD bg-yellow-500">
+                <div class="">
+                    <img class="w-auto h-auto object-cover" alt="r1"
+                        src="https://hodinkee-shopify.imgix.net/s/files/1/0146/0732/files/GA-700HD-8A_front_SQ_KM.jpg?v=1710896141&auto=format&ar=4%3A5&fit=crop&fm=jpg&q=65&usm=8&ixlib=react-9.7.0&w=380"
+                        alt="">
+                </div>
+                <div class="MARCA bg-green-300">
+                    G-SHOCK
+                </div>
+                <div class="MODELO bg-green-500">GAB2100FC-1A 'Multi-Color' In Black</div>
+                <div class="PRECIO bg-green-700">160 €</div>
+            </div>
+            <div class="RELOJ CARD bg-yellow-500">
+                <div class="">
+                    <img class="w-auto h-auto object-cover" alt="r1"
+                        src="https://hodinkee-shopify.imgix.net/s/files/1/0146/0732/files/GA-700HD-8A_front_SQ_KM.jpg?v=1710896141&auto=format&ar=4%3A5&fit=crop&fm=jpg&q=65&usm=8&ixlib=react-9.7.0&w=380"
+                        alt="">
+                </div>
+                <div class="MARCA bg-green-300">
+                    G-SHOCK
+                </div>
+                <div class="MODELO bg-green-500">GAB2100FC-1A 'Multi-Color' In Black</div>
+                <div class="PRECIO bg-green-700">160 €</div>
+            </div>
+            <div class="RELOJ CARD bg-yellow-500">
+                <div class="">
+                    <img class="w-auto h-auto object-cover" alt="r1"
+                        src="https://hodinkee-shopify.imgix.net/s/files/1/0146/0732/files/GA-700HD-8A_front_SQ_KM.jpg?v=1710896141&auto=format&ar=4%3A5&fit=crop&fm=jpg&q=65&usm=8&ixlib=react-9.7.0&w=380"
+                        alt="">
+                </div>
+                <div class="MARCA bg-green-300">
+                    G-SHOCK
+                </div>
+                <div class="MODELO bg-green-500">GAB2100FC-1A 'Multi-Color' In Black</div>
+                <div class="PRECIO bg-green-700">160 €</div>
+            </div>
+
+
+
+        </div>
+
+    </div>
+</div>
