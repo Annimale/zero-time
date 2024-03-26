@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
+import { EuropeNumberPipe } from '../europe-number.pipe';
 
 @Component({
   selector: 'app-brands',
   standalone: true,
-  imports: [],
+  imports: [EuropeNumberPipe],
   templateUrl: './brands.component.html',
   styleUrl: './brands.component.css'
 })
