@@ -1,1 +1,108 @@
-<p>sell-your-watch works!</p>
+<div class="container mx-auto">
+    <div class="SELLYOURWATCH  text-center py-12">
+        <h1 class="font-prata text-6xl pb-4">¿Interesado en vender un reloj con nosotros? </h1>
+        <h2 class="font-latoRegular text-2xl text-gray-500">Rellena el siguiente formulario</h2>
+    </div>
+    <form action="" class=" mx-auto   p-12 pb-60">
+        <div class="FORM  grid grid-cols-5 w-full gap-7 gap-x-10">
+            <div class="relative z-0 w-full mb-5 group">
+                <input type="text" name="floating_brand" id="floating_brand"
+                    class="block text-sm py-2.5 px-0 w-full border-0 bg-transparent border-b-2 border-gray-300 appearance-none peer focus:outline-none focus:ring-0"
+                    placeholder="" required />
+                <label for="floating_brand"
+                    class=" peer-focus:font-medium absolute duration-300 text-gray-500 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Marca</label>
+            </div>
+            <div class="relative z-0 w-full mb-5 group col-span-3">
+                <input type="text" name="floating_model" id="floating_model"
+                    class="block text-sm py-2.5 px-0 w-full border-0 bg-transparent border-b-2 border-gray-300 appearance-none peer focus:outline-none focus:ring-0"
+                    placeholder="" required />
+                <label for="floating_model"
+                    class=" peer-focus:font-medium absolute duration-300 text-gray-500 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Modelo</label>
+            </div>
+            <div class="relative z-0 w-full mb-5 group">
+                <input type="text" name="floating_ref" id="floating_ref"
+                    class="block text-sm py-2.5 px-0 w-full border-0 bg-transparent border-b-2 border-gray-300 appearance-none peer focus:outline-none focus:ring-0"
+                    placeholder="" required />
+                <label for="floating_ref"
+                    class=" peer-focus:font-medium absolute duration-300 text-gray-500 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Nº
+                    Referencia</label>
+            </div>
+            <div class="relative z-0 w-full mb-5 group col-span-4">
+                <input type="text" name="floating_comment" id="floating_comment"
+                    class="block text-sm py-2.5 px-0 w-full border-0 bg-transparent border-b-2 border-gray-300 appearance-none peer focus:outline-none focus:ring-0"
+                    placeholder="" />
+                <label for="floating_comment"
+                    class=" peer-focus:font-medium absolute duration-300 text-gray-500 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Anotaciones
+                    (opcional)</label>
+            </div>
+
+            <div class="relative z-0 w-full mb-5 group">
+                <input type="number" name="floating_case_size" id="floating_case_size"
+                    class="block text-sm py-2.5 px-0 w-full border-0 bg-transparent border-b-2 border-gray-300 appearance-none peer focus:outline-none focus:ring-0"
+                    placeholder="" required />
+                <label for="floating_case_size"
+                    class=" peer-focus:font-medium absolute duration-300 text-gray-500 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Tamaño
+                    caja (mm)</label>
+            </div>
+            <div class="PAPERS+BOX flex items-center space-x-8">
+                <div class="PAPERS">
+                    <input id="papers-checkbox" type="checkbox" value=""
+                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                    <label for="papers-checkbox"
+                        class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Papeles</label>
+                </div>
+                <div class="BOX">
+
+                    <input id="box-checkbox" type="checkbox" value=""
+                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                    <label for="box-checkbox"
+                        class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Caja</label>
+                </div>
+            </div>
+
+            <div class=" CATEGORY flex items-center">
+                <label for="underline_select" class="sr-only">Underline select</label>
+                <select id="underline_select"
+                    class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
+                    <option selected>Condición</option>
+                    <option value="new">Nuevo</option>
+                    <option value="semi-used">Semi-usado</option>
+                    <option value="used">Usado</option>
+                    <option value="worn">Desgastado</option>
+                </select>
+            </div>
+
+            <div class="UPLOADFILES flex items-center col-span-2">
+                <div class="w-full items-center pb-6">
+
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                        for="multiple_files">Sube tus
+                        fotos</label>
+                    <input
+                        class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                        id="multiple_files" type="file" multiple>
+                </div>
+            </div>
+
+            <div class="relative z-0 w-full mb-5 group mt-6">
+                <input type="number" name="floating_year" id="floating_year"
+                    class="block text-sm py-2.5 px-0 w-full border-0 bg-transparent border-b-2 border-gray-300 appearance-none peer focus:outline-none focus:ring-0"
+                    placeholder="" required />
+                <label for="floating_year"
+                    class=" peer-focus:font-medium absolute duration-300 text-gray-500 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Año
+                    de compra</label>
+            </div>
+
+            <div class="TERMS flex items-center col-span-5 text-center justify-center">
+                <input id="link-checkbox" type="checkbox" value=""
+                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                <label for="link-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Acepto los
+                    <a routerLink="/terms-conditions" class="text-blue-600 dark:text-blue-500 hover:underline">términos
+                        y condiciones</a>.</label>
+            </div>
+        </div>
+
+    </form>
+
+
+</div>
