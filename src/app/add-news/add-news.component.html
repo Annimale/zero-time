@@ -1,1 +1,84 @@
-<p>add-news works!</p>
+<div class="container mx-auto">
+    <div class="SELLYOURWATCH  text-center py-10">
+        <h1 class="font-prata text-6xl pb-4">Añadir nueva noticia </h1>
+        <h2 class="font-latoRegular text-2xl text-gray-500">Rellena el siguiente formulario</h2>
+    </div>
+    <form action="" class=" mx-auto   p-12 pb-36">
+        <div class="FORM  grid grid-cols-4 w-full gap-7 gap-x-10">
+            <div class="relative z-0 w-full mb-5 group col-span-2">
+                <input type="text" name="floating_title" id="floating_title"
+                    class="block text-sm py-2.5 px-0 w-full border-0 bg-transparent border-b-2 border-gray-300 appearance-none peer focus:outline-none focus:ring-0"
+                    placeholder="" required />
+                <label for="floating_title"
+                    class=" peer-focus:font-latoRegular absolute duration-300 text-gray-500 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Título</label>
+            </div>
+            <div class="relative z-0 w-full mb-5 group col-span-3">
+                <input type="text" name="floating_subtitle" id="floating_subtitle"
+                    class="block text-sm py-2.5 px-0 w-full border-0 bg-transparent border-b-2 border-gray-300 appearance-none peer focus:outline-none focus:ring-0"
+                    placeholder="" required />
+                <label for="floating_subtitle"
+                    class=" peer-focus:font-latoRegular absolute duration-300 text-gray-500 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Subtítulo</label>
+            </div>
+            <div class="relative z-0 w-full mb-5 group col-span-5">
+                <textarea name="floating_body" id="floating_body"
+                    class="block text-sm py-2.5 px-0 w-full border-0 bg-transparent border-b-2 border-gray-300 appearance-none peer focus:outline-none focus:ring-0"
+                    placeholder="" required></textarea>
+                <label for="floating_body"
+                    class=" peer-focus:font-latoRegular absolute duration-300 text-gray-500 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Cuerpo</label>
+            </div>
+
+            <div class="flex items-center pt-5">
+
+                <div class="relative z-0 w-full mb-5 group">
+                    <input type="number" name="floating_autho" id="floating_autho"
+                        class="block text-sm py-2.5 px-0 w-full border-0 bg-transparent border-b-2 border-gray-300 appearance-none peer focus:outline-none focus:ring-0"
+                        placeholder="" required />
+                    <label for="floating_autho"
+                        class=" peer-focus:font-latoRegular absolute duration-300 text-gray-500 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Autor</label>
+                </div>
+            </div>
+
+
+            <div class=" CATEGORY flex items-center">
+                <label for="underline_select" class="sr-only">Underline select</label>
+                <select id="underline_select"
+                    class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
+                    <option selected>Categoría</option>
+                    <option value="in-depth">En profundidad</option>
+                    <option value="hands-on">Probando </option>
+                    <option value="introducing">Presentando</option>
+                    <option value="one-to-watch">A tener en cuenta</option>
+                </select>
+            </div>
+
+            <div class="UPLOADFILES flex items-center col-span">
+                <div class="w-full items-center pb-6">
+
+                    <label class="block mb-2 text-sm font-latoRegular text-gray-900 dark:text-white"
+                        for="cover_photo">Foto portada
+                    </label>
+                    <input
+                        class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                        id="cover_photo" type="file" multiple>
+                </div>
+            </div>
+            <div class="UPLOADFILES flex items-center c">
+                <div class="w-full items-center pb-6">
+
+                    <label class="block mb-2 text-sm font-latoRegular text-gray-900 dark:text-white"
+                        for="body_photo">Foto cuerpo noticia</label>
+                    <input
+                        class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                        id="body_photo" type="file" multiple>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="SUBMITBUTTON col-span-3 items-center justify-center flex pt-10">
+            <button type="submit"
+                class="text-gray-900 hover:text-white border w-1/4 border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-latoRegular rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800">Añadir noticia</button>
+
+        </div>
+    </form>
+</div>
