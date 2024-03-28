@@ -22,7 +22,7 @@ export const routes: Routes = [
     { path: 'home', component: HomeComponent },
     { path: 'news', component: NewsComponent },
     { path: 'news-detail', component: NewsDetailComponent },//El title lo sacamos de la DB de la news, DE MOMENTO PROVISIONAL LO DE NEWS-DETAIL
-    // { path: 'news/:title', component: NewsDetailComponent },//El title lo sacamos de la DB de la news, DE MOMENTO PROVISIONAL LO DE NEWS-DETAIL
+  //{ path: 'news/:title', component: NewsDetailComponent },//El title lo sacamos de la DB de la news, DE MOMENTO PROVISIONAL LO DE NEWS-DETAIL
     { path: 'brands', component: BrandsComponent },
     { path: 'shop', component: ShopComponent },
     { path: 'shop/:model', component: ShopComponent },//El model lo sacamos de la DB del watch
