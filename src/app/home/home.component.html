@@ -94,22 +94,22 @@
             <h1
                 class="mb-4 text-4xl font-latoBold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
                 We invest in the world’s potential</h1>
-            <p class="mb-8 text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400">Here at Flowbite we focus on
-                markets where technology, innovation, and capital can unlock long-term value and drive economic growth.
+            <p class="mb-8 text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400">Disfruta de noticias
+                actualizadas, información sobre cada marca, reloj, posibilidad de vender tu reloj con nosotros...
             </p>
             <div class="flex flex-col space-y-4 sm:flex-row sm:space-y-0">
-                <a href="#"
-                    class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
-                    Get started
+                <a routerLink="/sign-up"
+                    class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-gray-700 hover:bg-gray-800 ">
+                    Regístrate
                     <svg class="w-3.5 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                         fill="none" viewBox="0 0 14 10">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M1 5h12m0 0L9 1m4 4L9 9" />
                     </svg>
                 </a>
-                <a href="#"
-                    class="py-3 px-5 sm:ms-4 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
-                    Learn more
+                <a routerLink="/shop"
+                    class="py-3 px-5 sm:ms-4 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-gray-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+                    Tienda
                 </a>
             </div>
         </div>
@@ -124,32 +124,134 @@
     </div>
 
 </div>
-<div class="bg-gray-100">
-    <div class="bg-gray-200 mx-auto w-full  p-8  px-20 pt-40">
-        <div class="bg-gray-500 text-6xl font-latoRegular mx-auto">
+<div class="border-t border-gray-300 mx-10">
+    <div class=" mx-auto w-full  p-8  px-20 pt-10">
+        <div class=" text-6xl font-latoRegular mx-auto">
             <h2>Últimas adquisiciones</h2>
         </div>
-        <div class="bg-purple-200 grid grid-cols-4 gap-4 mt-20">
-            <div class="bg-red-200">
-                <div class="bg-red-400 ">
-                    <img src="../../assets/images/watches/r1.webp" class="w-auto h-[525px] object-cover" alt="r1">
+        <div class=" grid grid-cols-4  mt-20 font-latoRegular gap-y-16 gap-20">
+            <div class="WATCHCARD">
+                <div class="IMG pb-6">
+                    <img src="https://hodinkee-shopify.imgix.net/s/files/1/0146/0732/files/U4S-C-H01.png?v=1690292044&auto=format&ar=4%3A5&fit=crop&fm=jpg&q=65&usm=8&ixlib=react-9.7.0&w=380"
+                        class="w-auto h-[525px] object-cover" alt="r1">
 
                 </div>
-                <div class="bg-red-100">
-                    <h3>NOMOS GLASHUTTE</h3>
-                    <p class="capitalize">club campus endless blue with sapphire caseback and big black dial with diamond bessels</p>
+                <div class=" TEXT ">
+                    <h3 class="font-latoBold uppercase">NOMOS GLASHUTTE</h3>
+                    <p class="capitalize">club campus endless blue with sapphire caseback and big black dial with
+                        diamond bessels</p>
                 </div>
-                <div class="bg-yellow-200">
-                   {{ 5500 | europeNumber}}
+                <div class=" PRICE font-latoBold pt-3">
+                    {{ 5500 | europeNumber}}
                 </div>
             </div>
-            <div class="bg-red-200">B</div>
-            <div class="bg-red-200">C</div>
-            <div class="bg-red-200">D</div>
-            <div class="bg-red-200">E</div>
-            <div class="bg-red-200">F</div>
-            <div class="bg-red-200">G</div>
-            <div class="bg-red-200">H</div>
+            <div class="WATCHCARD">
+                <div class="IMG pb-6">
+                    <img src="https://hodinkee-shopify.imgix.net/s/files/1/0146/0732/files/U4S-C-H01.png?v=1690292044&auto=format&ar=4%3A5&fit=crop&fm=jpg&q=65&usm=8&ixlib=react-9.7.0&w=380"
+                        class="w-auto h-[525px] object-cover" alt="r1">
+
+                </div>
+                <div class=" TEXT ">
+                    <h3 class="font-latoBold uppercase">NOMOS GLASHUTTE</h3>
+                    <p class="capitalize">club campus endless blue with sapphire caseback and big black dial with
+                        diamond bessels</p>
+                </div>
+                <div class=" PRICE font-latoBold pt-3">
+                    {{ 5500 | europeNumber}}
+                </div>
+            </div>
+            <div class="WATCHCARD">
+                <div class="IMG pb-6">
+                    <img src="https://hodinkee-shopify.imgix.net/s/files/1/0146/0732/files/U4S-C-H01.png?v=1690292044&auto=format&ar=4%3A5&fit=crop&fm=jpg&q=65&usm=8&ixlib=react-9.7.0&w=380"
+                        class="w-auto h-[525px] object-cover" alt="r1">
+
+                </div>
+                <div class=" TEXT ">
+                    <h3 class="font-latoBold uppercase">NOMOS GLASHUTTE</h3>
+                    <p class="capitalize">club campus endless blue with sapphire caseback and big black dial with
+                        diamond bessels</p>
+                </div>
+                <div class=" PRICE font-latoBold pt-3">
+                    {{ 5500 | europeNumber}}
+                </div>
+            </div>
+            <div class="WATCHCARD">
+                <div class="IMG pb-6">
+                    <img src="https://hodinkee-shopify.imgix.net/s/files/1/0146/0732/files/U4S-C-H01.png?v=1690292044&auto=format&ar=4%3A5&fit=crop&fm=jpg&q=65&usm=8&ixlib=react-9.7.0&w=380"
+                        class="w-auto h-[525px] object-cover" alt="r1">
+
+                </div>
+                <div class=" TEXT ">
+                    <h3 class="font-latoBold uppercase">NOMOS GLASHUTTE</h3>
+                    <p class="capitalize">club campus endless blue with sapphire caseback and big black dial with
+                        diamond bessels</p>
+                </div>
+                <div class=" PRICE font-latoBold pt-3">
+                    {{ 5500 | europeNumber}}
+                </div>
+            </div>
+            <div class="WATCHCARD">
+                <div class="IMG pb-6">
+                    <img src="https://hodinkee-shopify.imgix.net/s/files/1/0146/0732/files/U4S-C-H01.png?v=1690292044&auto=format&ar=4%3A5&fit=crop&fm=jpg&q=65&usm=8&ixlib=react-9.7.0&w=380"
+                        class="w-auto h-[525px] object-cover" alt="r1">
+
+                </div>
+                <div class=" TEXT ">
+                    <h3 class="font-latoBold uppercase">NOMOS GLASHUTTE</h3>
+                    <p class="capitalize">club campus endless blue with sapphire caseback and big black dial with
+                        diamond bessels</p>
+                </div>
+                <div class=" PRICE font-latoBold pt-3">
+                    {{ 5500 | europeNumber}}
+                </div>
+            </div>
+            <div class="WATCHCARD">
+                <div class="IMG pb-6">
+                    <img src="https://hodinkee-shopify.imgix.net/s/files/1/0146/0732/files/U4S-C-H01.png?v=1690292044&auto=format&ar=4%3A5&fit=crop&fm=jpg&q=65&usm=8&ixlib=react-9.7.0&w=380"
+                        class="w-auto h-[525px] object-cover" alt="r1">
+
+                </div>
+                <div class=" TEXT ">
+                    <h3 class="font-latoBold uppercase">NOMOS GLASHUTTE</h3>
+                    <p class="capitalize">club campus endless blue with sapphire caseback and big black dial with
+                        diamond bessels</p>
+                </div>
+                <div class=" PRICE font-latoBold pt-3">
+                    {{ 5500 | europeNumber}}
+                </div>
+            </div>
+            <div class="WATCHCARD">
+                <div class="IMG pb-6">
+                    <img src="https://hodinkee-shopify.imgix.net/s/files/1/0146/0732/files/U4S-C-H01.png?v=1690292044&auto=format&ar=4%3A5&fit=crop&fm=jpg&q=65&usm=8&ixlib=react-9.7.0&w=380"
+                        class="w-auto h-[525px] object-cover" alt="r1">
+
+                </div>
+                <div class=" TEXT ">
+                    <h3 class="font-latoBold uppercase">NOMOS GLASHUTTE</h3>
+                    <p class="capitalize">club campus endless blue with sapphire caseback and big black dial with
+                        diamond bessels</p>
+                </div>
+                <div class=" PRICE font-latoBold pt-3">
+                    {{ 5500 | europeNumber}}
+                </div>
+            </div>
+            <div class="WATCHCARD">
+                <div class="IMG pb-6">
+                    <img src="https://hodinkee-shopify.imgix.net/s/files/1/0146/0732/files/U4S-C-H01.png?v=1690292044&auto=format&ar=4%3A5&fit=crop&fm=jpg&q=65&usm=8&ixlib=react-9.7.0&w=380"
+                        class="w-auto h-[525px] object-cover" alt="r1">
+
+                </div>
+                <div class=" TEXT ">
+                    <h3 class="font-latoBold uppercase">NOMOS GLASHUTTE</h3>
+                    <p class="capitalize">club campus endless blue with sapphire caseback and big black dial with
+                        diamond bessels</p>
+                </div>
+                <div class=" PRICE font-latoBold pt-3">
+                    {{ 5500 | europeNumber}}
+                </div>
+            </div>
+            
+
         </div>
     </div>
 </div>

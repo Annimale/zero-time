@@ -1,0 +1,83 @@
+<div class="container mx-auto pb-20">
+    <div class="TITLE font-prata text-7xl  text-center pb-24">
+        <h1>
+            Regístrate
+        </h1>
+    </div>
+    <form action="" class="pb-18">
+        <div class="grid grid-cols-4 font-latoRegular mx-32">
+            <div class="VIDEO col-span-1"><video height="546px" width="307px"
+                    src="../../assets/images/watches/signuppp-video.mp4" autoplay loop></video></div>
+            <div class="FORM grid grid-cols-2 col-span-3 pl-12 gap-x-10">
+                <div class="NAME">
+                    <div class="relative z-0 w-full mb-5 group mt-6">
+                        <input type="text" name="floating_signUp_name" id="floating_signUp_name"
+                            class="block text-sm py-2.5 px-0 w-full border-0 bg-transparent border-b-2 border-gray-300 appearance-none peer  focus:border-gray-600 focus:ring-0"
+                            placeholder="" required />
+                        <label for="floating_signUp_name"
+                            class=" peer-focus:font-latoRegular absolute duration-300 text-gray-500 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Nombre</label>
+                    </div>
+                </div>
+                <div class="LASTNAME">
+                    <div class="relative z-0 w-full mb-5 group mt-6">
+                        <input type="text" name="floating_signUp_lastName" id="floating_signUp_lastName"
+                            class="block text-sm py-2.5 px-0 w-full border-0 bg-transparent border-b-2 border-gray-300 appearance-none peer  focus:border-gray-600 focus:ring-0"
+                            placeholder="" required />
+                        <label for="floating_signUp_lastName"
+                            class=" peer-focus:font-latoRegular absolute duration-300 text-gray-500 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Apellidos</label>
+                    </div>
+                </div>
+                <div class="EMAIL col-span-2">
+                    <div class="relative z-0 w-full mb-5 group mt-6">
+                        <input type="email" name="floating_signUp_email" id="floating_signUp_email"
+                            class="block text-sm py-2.5 px-0 w-full border-0 bg-transparent border-b-2 border-gray-300 appearance-none peer  focus:border-gray-600 focus:ring-0"
+                            placeholder="" required />
+                        <label for="floating_signUp_email"
+                            class=" peer-focus:font-latoRegular absolute duration-300 text-gray-500 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Correo
+                            electrónico</label>
+                    </div>
+                </div>
+                <div class="REGISTERPASSWORD">
+                    <div class="relative z-0 w-full mb-5 group mt-6">
+                        <input type="password" name="floating_signUp_password" id="floating_signUp_password"
+                            class="block text-sm py-2.5 px-0 w-full border-0 bg-transparent border-b-2 border-gray-300 appearance-none peer  focus:border-gray-600 focus:ring-0"
+                            placeholder="" required />
+                        <label for="floating_signUp_password"
+                            class=" peer-focus:font-latoRegular absolute duration-300 text-gray-500 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Contraseña</label>
+                    </div>
+                </div>
+                <div class="REGISTERPASSWORD2">
+                    <div class="relative z-0 w-full mb-5 group mt-6">
+                        <input type="password" name="floating_signUp_password2" id="floating_signUp_password2"
+                            class="block text-sm py-2.5 px-0 w-full border-0 bg-transparent border-b-2 border-gray-300 appearance-none peer   focus:border-gray-600 focus:ring-0"
+                            placeholder="" required />
+                        <label for="floating_signUp_password2"
+                            class=" peer-focus:font-latoRegular absolute duration-300 text-gray-500 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Confirmar
+                            contraseña</label>
+                    </div>
+                </div>
+                <div class="ACCEPTTERMS pt-4">
+                    <label class="inline-flex items-center mb-5 cursor-pointer">
+                        <input type="checkbox" value="" class="sr-only peer">
+                        <div
+                            class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none   rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:w-5 after:h-5 after:transition-all dark:border-gray-600 peer-checked:bg-gray-600">
+                        </div>
+                        <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">Acepto los <a
+                                routerLink="/terms-conditions"
+                                class="underline font-latoBold hover:text-gray-600">términos y condiciones</a> de
+                            registro </span>
+                    </label>
+                </div>
+                <div class="LOGINBUTTON  ">
+                    <button type="submit"
+                        class="text-gray-900 text-lg hover:text-white border  border-gray-800 w-full hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-latoRegular rounded-lg  px-5 py-2.5 text-center me-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800">Registrarse</button>
+                </div>
+                <div class="NOLOGIN pt-5 flex items-center flex-col col-span-2">
+                    <h3>¿Ya tienes cuenta? <a routerLink="/login"
+                            class="underline font-latoBold hover:text-gray-600">Inicia sesión</a></h3>
+                </div>
+            </div>
+
+        </div>
+    </form>
+</div>

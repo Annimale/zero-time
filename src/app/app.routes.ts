@@ -16,6 +16,8 @@ import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.componen
 import { TermsConditionsComponent } from './terms-conditions/terms-conditions.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { PolicyCookiesComponent } from './policy-cookies/policy-cookies.component';
+import { LoginComponent } from './login/login.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
 
 export const routes: Routes = [
     // NAVBAR
@@ -32,6 +34,9 @@ export const routes: Routes = [
     { path: 'shopping-bag', component: ShoppingBagComponent },
     { path: 'insurance', component: InsuranceComponent },
     { path: 'sell-your-watch', component: SellYourWatchComponent },
+    { path: 'login', component: LoginComponent },
+    { path: 'sign-up', component: SignUpComponent },
+
 
     // FOOTER
     { path: 'about-us', component: AboutUsComponent },

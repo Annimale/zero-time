@@ -62,9 +62,10 @@
                 placeholder="Search" />
             </div>
           </div>
-
+          <!-- No va a haber enlace de registro, se incluirá en el form de login y en la home donde tendrá un botçon para registrarse -->
           <div class="flex justify-center mt-6 lg:flex lg:mt-0 lg:-ml-24 sm:-ml-16 pr-10">
-            <a href="#"
+            <!-- Si está logueado que le lleve al perfil, sino está logueado que le lleve a login -->
+            <a routerLink="/login" 
               class="mx-2 text-gray-600 transition-colors duration-300 transform dark:text-gray-300 hover:text-gray-500 dark:hover:text-gray-300"
               aria-label="Reddit">
               <svg class="w-10 h-10 fill-current" viewBox="-2 -2 24.00 24.00" version="1.1"
