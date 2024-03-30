@@ -10,7 +10,6 @@ import { SellYourWatchComponent } from './sell-your-watch/sell-your-watch.compon
 import { AddNewsComponent } from './add-news/add-news.component';
 import { AddWatchComponent } from './add-watch/add-watch.component';
 import { ProfileComponent } from './profile/profile.component';
-import { ShoppingBagComponent } from './shopping-bag/shopping-bag.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { TermsConditionsComponent } from './terms-conditions/terms-conditions.component';
@@ -18,6 +17,7 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
 import { PolicyCookiesComponent } from './policy-cookies/policy-cookies.component';
 import { LoginComponent } from './login/login.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { CartComponent } from './cart/cart.component';
 
 export const routes: Routes = [
     // NAVBAR
@@ -31,7 +31,7 @@ export const routes: Routes = [
     { path: 'add-news', component: AddNewsComponent },
     { path: 'add-watch', component: AddWatchComponent },
     { path: 'profile', component: ProfileComponent },
-    { path: 'shopping-bag', component: ShoppingBagComponent },
+    { path: 'cart', component: CartComponent },
     { path: 'insurance', component: InsuranceComponent },
     { path: 'sell-your-watch', component: SellYourWatchComponent },
     { path: 'login', component: LoginComponent },
