@@ -1,1 +1,129 @@
-<p>profile works!</p>
+<div class="container mx-auto font-latoRegular">
+  <div class="grid grid-cols-4 font-latoRegular mx-auto space-x-12 pb-32">
+    <div class="EDIT col-span-2">
+        <h1 class="font-prata text-5xl">Editar perfil</h1>
+      <form action="" class="pb-18">
+        <div class="FORM grid grid-cols-2 col-span-2  gap-x-10 gap-y-6 ">
+            <div class="NAME ">
+                <div class="relative z-0 w-full mb-5 group mt-6">
+                  <input
+                    type="text"
+                    name="floating_edit_name"
+                    id="floating_edit_name"
+                    class="block text-sm py-2.5 px-0 w-full  border-0 bg-transparent border-b-2 border-gray-300 appearance-none peer focus:border-gray-600 focus:ring-0"
+                    placeholder=""
+                    required
+                  />
+                  <label
+                    for="floating_edit_name"
+                    class="peer-focus:font-latoRegular absolute duration-300 text-gray-500 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                    >Nombre</label
+                  >
+                </div>
+            </div>
+            <div class="LASTNAME">
+              <div class="relative z-0 w-full mb-5 group mt-6">
+                <input
+                  type="text"
+                  name="floating_edit_lastName"
+                  id="floating_edit_lastName"
+                  class="block text-sm py-2.5 px-0 w-full border-0 bg-transparent border-b-2 border-gray-300 appearance-none peer focus:border-gray-600 focus:ring-0"
+                  placeholder=""
+                  required
+                />
+                <label
+                  for="floating_edit_lastName"
+                  class="peer-focus:font-latoRegular absolute duration-300 text-gray-500 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                  >Apellidos</label
+                >
+              </div>
+            </div>
+            <div class="EMAIL col-span-2">
+              <div class="relative z-0 w-full mb-5 group mt-6">
+                <input
+                  type="email"
+                  name="floating_edit_email"
+                  id="floating_edit_email"
+                  class="block text-sm py-2.5 px-0 w-full border-0 bg-transparent border-b-2 border-gray-300 appearance-none peer focus:border-gray-600 focus:ring-0"
+                  placeholder=""
+                  required
+                />
+                <label
+                  for="floating_edit_email"
+                  class="peer-focus:font-latoRegular absolute duration-300 text-gray-500 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                  >Correo electrónico</label
+                >
+              </div>
+            </div>
+            <div class="EDITOLDPASSWORD">
+              <div class="relative z-0 w-full mb-5 group mt-6">
+                <input
+                  type="password"
+                  name="floating_edit_old_password"
+                  id="floating_edit_old_password"
+                  class="block text-sm py-2.5 px-0 w-full border-0 bg-transparent border-b-2 border-gray-300 appearance-none peer focus:border-gray-600 focus:ring-0"
+                  placeholder=""
+                  required
+                />
+                <label
+                  for="floating_edit_old_password"
+                  class="peer-focus:font-latoRegular absolute duration-300 text-gray-500 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                  >Antigua contraseña</label
+                >
+              </div>
+            </div>
+            <div class="EDITNEWPASSWORD">
+              <div class="relative z-0 w-full mb-5 group mt-6">
+                <input
+                  type="password"
+                  name="floating_edit_new_password"
+                  id="floating_edit_new_password"
+                  class="block text-sm py-2.5 px-0 w-full border-0 bg-transparent border-b-2 border-gray-300 appearance-none peer focus:border-gray-600 focus:ring-0"
+                  placeholder=""
+                  required
+                />
+                <label
+                  for="floating_edit_new_password"
+                  class="peer-focus:font-latoRegular absolute duration-300 text-gray-500 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                  >Nueva contraseña</label
+                >
+              </div>
+            </div>
+            
+            <div class="EDITBUTTON col-span-2 pt-10">
+              <button
+                type="submit"
+                class="text-gray-900 text-lg hover:text-white border border-gray-800 w-full hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-latoRegular rounded-lg px-5 py-2.5 text-center me-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800"
+              >
+                Guardar cambios
+              </button>
+            </div>
+            
+          </div>
+      </form>
+    </div>
+    <div class="border-l border-gray-300 NOTIFICATIONS col-span-2">
+        <div class="ml-10 INFO">
+            <h1 class="font-prata text-5xl">Notificaciones</h1>
+            <div class="CONTENT pt-20 space-y-4">
+                <div class="ACCMODIFIED border-b pb-10 border-gray-300">
+                    <h2>Su cuenta ha sido modificada</h2>
+                    <h2 class="text-red-600 text-right hover:font-latoBlack cursor-pointer ">Eliminar</h2>
+                </div>
+                <div class="ACCMODIFIED border-b pb-10 border-gray-300">
+                    <h2>Su cuenta ha sido modificada</h2>
+                    <h2 class="text-red-600 text-right hover:font-latoBlack cursor-pointer ">Eliminar</h2>
+                </div>
+                <div class="ACCMODIFIED border-b pb-10 border-gray-300">
+                    <h2>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Rem laudantium quasi illum provident expedita inventore unde asperiores reprehenderit, qui cumque fugit, obcaecati alias, consectetur velit necessitatibus placeat. Vel, odio? Architecto.</h2>
+                    <h2 class="text-red-600 text-right hover:font-latoBlack cursor-pointer ">Eliminar</h2>
+                </div>
+                <div class="ACCMODIFIED border-b pb-10 border-gray-300">
+                    <h2>Su cuenta ha sido modificada</h2>
+                    <h2 class="text-red-600 text-right hover:font-latoBlack cursor-pointer ">Eliminar</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
