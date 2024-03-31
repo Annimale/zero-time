@@ -18,6 +18,7 @@ import { PolicyCookiesComponent } from './policy-cookies/policy-cookies.componen
 import { LoginComponent } from './login/login.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { CartComponent } from './cart/cart.component';
+import { AdminProfileComponent } from './admin-profile/admin-profile.component';
 
 export const routes: Routes = [
     // NAVBAR
@@ -36,6 +37,7 @@ export const routes: Routes = [
     { path: 'sell-your-watch', component: SellYourWatchComponent },
     { path: 'login', component: LoginComponent },
     { path: 'sign-up', component: SignUpComponent },
+    { path: 'profile-admin', component: AdminProfileComponent },
 
 
     // FOOTER

@@ -56,3 +56,5 @@
     border-radius: 8px;
     background: #c2c9d2;
 }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
