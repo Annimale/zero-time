@@ -19,6 +19,8 @@ import { LoginComponent } from './login/login.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { CartComponent } from './cart/cart.component';
 import { AdminProfileComponent } from './admin-profile/admin-profile.component';
+import { FaqComponent } from './faq/faq.component';
+import { ShopDetailComponent } from './shop-detail/shop-detail.component';
 
 export const routes: Routes = [
     // NAVBAR
@@ -28,7 +30,8 @@ export const routes: Routes = [
   //{ path: 'news/:title', component: NewsDetailComponent },//El title lo sacamos de la DB de la news, DE MOMENTO PROVISIONAL LO DE NEWS-DETAIL
     { path: 'brands', component: BrandsComponent },
     { path: 'shop', component: ShopComponent },
-    { path: 'shop/:model', component: ShopComponent },//El model lo sacamos de la DB del watch
+    { path: 'shop-detail', component: ShopDetailComponent }, //Igual que con NEWS cogeremos la REF o ID a modo de route
+    // { path: 'shop/:model', component: ShopDetailComponent },//El model lo sacamos de la DB del watch
     { path: 'add-news', component: AddNewsComponent },
     { path: 'add-watch', component: AddWatchComponent },
     { path: 'profile', component: ProfileComponent },
@@ -38,6 +41,8 @@ export const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'sign-up', component: SignUpComponent },
     { path: 'profile-admin', component: AdminProfileComponent },
+    { path: 'faq', component: FaqComponent },
+
 
 
     // FOOTER

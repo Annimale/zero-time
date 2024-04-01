@@ -1,78 +1,116 @@
-<div
-  class="container mx-auto px-4 py-8 font-latoRegular text-pretty grid grid-cols-1 md:grid-cols-2 gap-8"
->
-  <div>
-    <h2 class="text-xl font-latoBold mb-2">Contact Us</h2>
-    <p class="text-gray-700 mb-4 text-lg">
-      Si tiene alguna pregunta o consulta, no dude en ponerse en contacto con
-      nosotros:
-    </p>
-    <p class="text-gray-700 mb-4 text-lg">
-      <strong>Correo Electrónico:</strong>
-      <a
-        href="mailto:zerotimeoclock@gmail.com"
-        class="font-latoBold hover:font-latoBlack hover:underline"
-        >zerotimeoclock&#64;gmail.com</a
-      >
-    </p>
-    <p class="text-gray-700 mb-4 text-lg">
-      <strong>Número de Teléfono:</strong> 963726328
-    </p>
-    <p class="text-gray-700 mb-4 text-lg">
-      <strong>Dirección:</strong> Calle de la Piruleta, Springfield, Estados
-      Unidos
-    </p>
-    <p class="text-gray-700 mb-4 text-lg">
-      <strong>Horario de Atención al Cliente:</strong><br />
-      Lunes a Viernes: 9:00 - 14:00 y 16:00 - 20:00
-    </p>
+<div class="container mx-auto font-latoRegular pb-60">
+  <div class="TEXT pb-32 space-y-4">
+    <h1 class="text-5xl font-prata text-center">Contáctanos</h1>
+    <h2 class="text-2xl text-gray-500 text-center">
+      Si tienes alguna consulta general revisa nuestro
+      <a routerLink="/faq" class="underline hover:font-latoBold">F.A.Q</a>
+    </h2>
   </div>
-  <div>
-    <!-- Formulario de contacto -->
-    <h2 class="text-xl font-latoBold mb-4">Contact Form</h2>
-    <form>
-      <div class="mb-4">
-        <label for="name" class="block text-gray-700 font-bold mb-2"
-          >Name:</label
-        >
-        <input
-          type="text"
-          id="name"
-          name="name"
-          class="border border-gray-400 p-2 w-full"
-          required
-        />
+  <form action="" class="mx-64">
+    <div class="grid grid-cols-2 gap-x-8">
+      <div class="NAME">
+        <div class="relative z-0 w-full mb-5 group mt-6">
+          <input
+            type="text"
+            name="floating_contactUs_name"
+            id="floating_contactUs_name"
+            class="block py-2.5 px-0 w-full border-0 bg-transparent border-b-2 focus:border-gray-800 border-gray-300 appearance-none peer focus:outline-none focus:ring-0"
+            placeholder=""
+            required
+          />
+          <label
+            for="floating_contactUs_name"
+            class="absolute duration-300 text-gray-500 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+            >Nombre</label
+          >
+        </div>
       </div>
-      <div class="mb-4">
-        <label for="email" class="block text-gray-700 font-bold mb-2"
-          >Email:</label
-        >
-        <input
-          type="email"
-          id="email"
-          name="email"
-          class="border border-gray-400 p-2 w-full"
-          required
-        />
+      <div class="LASTNAME">
+        <div class="relative z-0 w-full mb-5 group mt-6">
+          <input
+            type="text"
+            name="floating_contactUs_lastName"
+            id="floating_contactUs_lastName"
+            class="block py-2.5 px-0 w-full border-0 bg-transparent border-b-2 focus:border-gray-800 border-gray-300 appearance-none peer focus:outline-none focus:ring-0"
+            placeholder=""
+            required
+          />
+          <label
+            for="floating_contactUs_lastName"
+            class="absolute duration-300 text-gray-500 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+            >Apellidos</label
+          >
+        </div>
       </div>
-      <div class="mb-4">
-        <label for="message" class="block text-gray-700 font-bold mb-2"
-          >Message:</label
+      <div class="EMAIL">
+        <div class="relative z-0 w-full mb-5 group mt-6">
+          <input
+            type="email"
+            name="floating_contactUs_email"
+            id="floating_contactUs_email"
+            class="block py-2.5 px-0 w-full border-0 bg-transparent border-b-2 focus:border-gray-800 border-gray-300 appearance-none peer focus:outline-none focus:ring-0"
+            placeholder=""
+            required
+          />
+          <label
+            for="floating_contactUs_email"
+            class="absolute duration-300 text-gray-500 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+            >Correo electrónico</label
+          >
+        </div>
+      </div>
+      <div class="PHONE">
+        <div class="relative z-0 w-full mb-5 group mt-6">
+          <input
+            type="number"
+            name="floating_contactUs_phone"
+            id="floating_contactUs_phone"
+            class="block py-2.5 px-0 w-full border-0 bg-transparent border-b-2 focus:border-gray-800 border-gray-300 appearance-none peer focus:outline-none focus:ring-0"
+            placeholder=""
+            required
+          />
+          <label
+            for="floating_contactUs_phone"
+            class="absolute duration-300 text-gray-500 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+            >Año de compra</label
+          >
+        </div>
+      </div>
+      <div class="HOWCANWE">
+        <label for="underline_select" class="sr-only">Underline select</label>
+        <select
+          id="underline_select"
+          class="block py-2.5 px-0 w-full text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer"
         >
+          <option selected>¿Cómo podemos ayudarte?</option>
+          <option value="product">Información de producto</option>
+          <option value="sale">Venta</option>
+          <option value="warranty">Garantía</option>
+          <option value="more">Otro asunto</option>
+        </select>
+      </div>
+      <div class="relative z-0 w-full mb-5 group">
         <textarea
-          id="message"
-          name="message"
-          class="border border-gray-400 p-2 w-full"
-          rows="5"
+          name="floating_body"
+          id="floating_body"
+          class="block py-2.5 px-0 w-full border-0 bg-transparent border-b-2 border-gray-300 focus:border-gray-600 appearance-none peer focus:outline-none focus:ring-0"
+          placeholder=""
           required
         ></textarea>
+        <label
+          for="floating_body"
+          class="peer-focus:font-latoRegular absolute duration-300 text-gray-500 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+          >Cuerpo</label
+        >
       </div>
+    </div>
+    <div class="BUTTON flex flex-col items-center">
       <button
         type="submit"
-        class="bg-blue-500 text-white font-bold py-2 px-4 rounded"
+        class="text-gray-900 w-1/2 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-latoBold uppercase rounded-lg px-5 py-2.5 text-center me-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800"
       >
-        Enviar Mensaje
+        Envíar mensaje
       </button>
-    </form>
-  </div>
+    </div>
+  </form>
 </div>
