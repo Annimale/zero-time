@@ -4,14 +4,14 @@
             Regístrate
         </h1>
     </div>
-    <form action="" class="pb-18">
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()"  class="pb-18">
         <div class="grid grid-cols-4 font-latoRegular mx-32">
             <div class="VIDEO col-span-1"><video height="546px" width="307px"
                     src="../../assets/images/watches/signuppp-video.mp4" autoplay loop></video></div>
             <div class="FORM grid grid-cols-2 col-span-3 pl-12 gap-x-10">
                 <div class="NAME">
                     <div class="relative z-0 w-full mb-5 group mt-6">
-                        <input type="text" name="floating_signUp_name" id="floating_signUp_name"
+                        <input formControlName="name" type="text" name="floating_signUp_name" id="floating_signUp_name"
                             class="block  py-2.5 px-0 w-full border-0 bg-transparent border-b-2 border-gray-300 appearance-none peer  focus:border-gray-600 focus:ring-0"
                             placeholder="" required />
                         <label for="floating_signUp_name"
@@ -20,7 +20,7 @@
                 </div>
                 <div class="LASTNAME">
                     <div class="relative z-0 w-full mb-5 group mt-6">
-                        <input type="text" name="floating_signUp_lastName" id="floating_signUp_lastName"
+                        <input formControlName="lastName" type="text" name="floating_signUp_lastName" id="floating_signUp_lastName"
                             class="block  py-2.5 px-0 w-full border-0 bg-transparent border-b-2 border-gray-300 appearance-none peer  focus:border-gray-600 focus:ring-0"
                             placeholder="" required />
                         <label for="floating_signUp_lastName"
@@ -29,7 +29,7 @@
                 </div>
                 <div class="EMAIL col-span-2">
                     <div class="relative z-0 w-full mb-5 group mt-6">
-                        <input type="email" name="floating_signUp_email" id="floating_signUp_email"
+                        <input formControlName="email" type="email" name="floating_signUp_email" id="floating_signUp_email"
                             class="block  py-2.5 px-0 w-full border-0 bg-transparent border-b-2 border-gray-300 appearance-none peer  focus:border-gray-600 focus:ring-0"
                             placeholder="" required />
                         <label for="floating_signUp_email"
@@ -39,7 +39,7 @@
                 </div>
                 <div class="REGISTERPASSWORD">
                     <div class="relative z-0 w-full mb-5 group mt-6">
-                        <input type="password" name="floating_signUp_password" id="floating_signUp_password"
+                        <input formControlName="password" type="password" name="floating_signUp_password" id="floating_signUp_password"
                             class="block  py-2.5 px-0 w-full border-0 bg-transparent border-b-2 border-gray-300 appearance-none peer  focus:border-gray-600 focus:ring-0"
                             placeholder="" required />
                         <label for="floating_signUp_password"
@@ -48,7 +48,7 @@
                 </div>
                 <div class="REGISTERPASSWORD2">
                     <div class="relative z-0 w-full mb-5 group mt-6">
-                        <input type="password" name="floating_signUp_password2" id="floating_signUp_password2"
+                        <input formControlName="confirmPassword" type="password" name="floating_signUp_password2" id="floating_signUp_password2"
                             class="block  py-2.5 px-0 w-full border-0 bg-transparent border-b-2 border-gray-300 appearance-none peer   focus:border-gray-600 focus:ring-0"
                             placeholder="" required />
                         <label for="floating_signUp_password2"
