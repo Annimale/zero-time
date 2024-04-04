@@ -14,6 +14,7 @@ import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angula
 export class SignUpComponent implements OnInit {
   registerForm!: FormGroup;
   passwordsMatch: boolean = true;
+  errorMessage: any;
 
   constructor(private authService: AuthService) { }
   checkPasswords() {
@@ -57,8 +58,13 @@ export class SignUpComponent implements OnInit {
         // Redirigir al usuario o mostrar un mensaje de éxito
       },
       error: (error) => {
-        console.error('REGISTRO FALLIDO', error);
-        // Mostrar al usuario el mensaje de error
+        if (error.status === 409) {
+          this.errorMessage = error.error.message; //El email ya está en uso
+        } else {
+          // Mostrar  el mensaje de error
+          console.error('REGISTRO FALLIDO', error);
+
+        }
       }
     });
   }

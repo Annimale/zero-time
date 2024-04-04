@@ -54,6 +54,9 @@
                     <div class="text-red-400" *ngIf="registerForm.get('email')?.errors?.['email'] && registerForm.get('email')?.touched">
                         El correo electrónico debe tener un formato adecuado.
                     </div>
+                    <div *ngIf="errorMessage" class="text-red-400">
+                        {{ errorMessage }}
+                      </div>
                 </div>
                 <div class="REGISTERPASSWORD">
                     <div class="relative z-0 w-full mb-5 group mt-6">

@@ -33,7 +33,7 @@ router.post("/sign-up", async (req, res) => {
 
     // Aquí puedes manejar errores específicos, por ejemplo, errores de validación o duplicados
     if (error.name === "SequelizeUniqueConstraintError") {
-      return res.status(400).json({ message: "El email ya está registrado" });
+      return res.status(409).json({ message: "El email ya está registrado" });
     }
 
     return res.status(500).json({ message: "Error al registrar el usuario" });
