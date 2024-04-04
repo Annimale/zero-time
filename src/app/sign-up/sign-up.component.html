@@ -17,6 +17,12 @@
                         <label for="floating_signUp_name"
                             class=" peer-focus:font-latoRegular absolute duration-300 text-gray-500 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Nombre</label>
                     </div>
+                    <div class="text-red-400" *ngIf="registerForm.get('name')?.errors?.['required'] && registerForm.get('name')?.touched">
+                        El nombre es requerido.
+                    </div>
+                    <div class="text-red-400" *ngIf="registerForm.get('name')?.errors?.['minlength'] && registerForm.get('name')?.touched">
+                        El nombre debe contener al menos 3 carácteres.
+                    </div>
                 </div>
                 <div class="LASTNAME">
                     <div class="relative z-0 w-full mb-5 group mt-6">
@@ -25,6 +31,12 @@
                             placeholder="" required />
                         <label for="floating_signUp_lastName"
                             class=" peer-focus:font-latoRegular absolute duration-300 text-gray-500 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Apellidos</label>
+                    </div>
+                    <div class="text-red-400" *ngIf="registerForm.get('lastName')?.errors?.['required'] && registerForm.get('lastName')?.touched">
+                        El apellido es requerido.
+                    </div>
+                    <div class="text-red-400" *ngIf="registerForm.get('lastName')?.errors?.['minlength'] && registerForm.get('lastName')?.touched">
+                        El apellido debe contener al menos 3 carácteres.
                     </div>
                 </div>
                 <div class="EMAIL col-span-2">
@@ -36,6 +48,12 @@
                             class=" peer-focus:font-latoRegular absolute duration-300 text-gray-500 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Correo
                             electrónico</label>
                     </div>
+                    <div class="text-red-400" *ngIf="registerForm.get('email')?.errors?.['required'] && registerForm.get('email')?.touched">
+                        El correo electrónico es requerido.
+                    </div>
+                    <div class="text-red-400" *ngIf="registerForm.get('email')?.errors?.['email'] && registerForm.get('email')?.touched">
+                        El correo electrónico debe tener un formato adecuado.
+                    </div>
                 </div>
                 <div class="REGISTERPASSWORD">
                     <div class="relative z-0 w-full mb-5 group mt-6">
@@ -44,6 +62,15 @@
                             placeholder="" required />
                         <label for="floating_signUp_password"
                             class=" peer-focus:font-latoRegular absolute duration-300 text-gray-500 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Contraseña</label>
+                    </div>
+                    <div class="text-red-400" *ngIf="registerForm.get('password')?.errors?.['required'] && registerForm.get('password')?.touched">
+                        La contraseña es requerida.
+                    </div>
+                    <div class="text-red-400" *ngIf="registerForm.get('password')?.errors?.['minlength'] && registerForm.get('password')?.touched">
+                        La contraseña debe contener al menos 6 carácteres.
+                    </div>
+                    <div class="text-red-400" *ngIf="!passwordsMatch">
+                        Las contraseñas no coinciden.
                     </div>
                 </div>
                 <div class="REGISTERPASSWORD2">
@@ -54,6 +81,9 @@
                         <label for="floating_signUp_password2"
                             class=" peer-focus:font-latoRegular absolute duration-300 text-gray-500 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Confirmar
                             contraseña</label>
+                    </div>
+                    <div class="text-red-400" *ngIf="!passwordsMatch">
+                        Las contraseñas no coinciden.
                     </div>
                 </div>
                 <div class="ACCEPTTERMS pt-4">

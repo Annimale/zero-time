@@ -1,19 +1,32 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { AuthService } from '../auth.service';
-import { FormGroup, FormControl, Validators,ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-sign-up',
   standalone: true,
-  imports: [RouterLink,ReactiveFormsModule],
+  imports: [RouterLink, CommonModule, ReactiveFormsModule],
   templateUrl: './sign-up.component.html',
   styleUrl: './sign-up.component.css'
 })
 export class SignUpComponent implements OnInit {
   registerForm!: FormGroup;
+  passwordsMatch: boolean = true;
 
   constructor(private authService: AuthService) { }
+  checkPasswords() {
+    // Comprobar si las contraseñas coinciden y actualizar la propiedad passwordsMatch
+    // Solo si ambos campos han sido tocados
+    if (this.registerForm.get('password')?.touched && this.registerForm.get('confirmPassword')?.touched) {
+      const password = this.registerForm.get('password')?.value;
+      const confirmPassword = this.registerForm.get('confirmPassword')?.value;
+      this.passwordsMatch = password === confirmPassword;
+    }
+  }
+
+
 
   ngOnInit(): void {
     this.registerForm = new FormGroup({
@@ -23,12 +36,18 @@ export class SignUpComponent implements OnInit {
       password: new FormControl('', [Validators.required, Validators.minLength(6)]),
       confirmPassword: new FormControl('', Validators.required),
     })
+    // Suscribirse a los cambios de los campos de contraseña
+    this.registerForm.get('password')?.valueChanges.subscribe(() => {
+      this.checkPasswords();
+    });
+    this.registerForm.get('confirmPassword')?.valueChanges.subscribe(() => {
+      this.checkPasswords();
+    });
 
   }
   onSubmit() {
     // Verificar si las contraseñas coinciden
-    if (this.registerForm.value.password !== this.registerForm.value.confirmPassword) {
-      // Manejar el error de contraseña no coincidente
+    if (this.registerForm.invalid || !this.passwordsMatch) {
       return;
     }
     // Llamar al servicio de autenticación para registrar al usuario
