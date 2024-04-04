@@ -1,3 +1,4 @@
+<script src="https://accounts.google.com/gsi/client" async defer></script>
 <div class="container mx-auto pb-36">
   <div class="TITLE font-prata text-7xl text-center pb-28">
     <h1>Inicia sesión</h1>
@@ -7,11 +8,11 @@
       <div class="LOGINEMAIL col-span-2">
         <div class="relative z-0 w-full mb-5 group mt-6">
           <input
-          formControlName="email"
+            formControlName="email"
             type="email"
             name="floating_login_email"
             id="floating_login_email"
-            class="block  py-2.5 px-0 w-full border-0 bg-transparent border-b-2 border-gray-300 appearance-none peer focus:outline-none focus:ring-0 focus:border-gray-600"
+            class="block py-2.5 px-0 w-full border-0 bg-transparent border-b-2 border-gray-300 appearance-none peer focus:outline-none focus:ring-0 focus:border-gray-600"
             placeholder=""
             required
           />
@@ -25,11 +26,11 @@
       <div class="LOGINPASSWORD col-span-2">
         <div class="relative z-0 w-full mb-5 group mt-6">
           <input
-          formControlName="password"
+            formControlName="password"
             type="password"
             name="floating_login_password"
             id="floating_login_password"
-            class="block  py-2.5 px-0 w-full border-0 bg-transparent border-b-2 border-gray-300 appearance-none peer focus:outline-none focus:ring-0 focus:border-gray-600"
+            class="block py-2.5 px-0 w-full border-0 bg-transparent border-b-2 border-gray-300 appearance-none peer focus:outline-none focus:ring-0 focus:border-gray-600"
             placeholder=""
             required
           />
@@ -46,8 +47,7 @@
           <div
             class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:w-5 after:h-5 after:transition-all dark:border-gray-600 peer-checked:bg-gray-600"
           ></div>
-          <span
-            class="ms-3  font-medium text-gray-900 dark:text-gray-300"
+          <span class="ms-3 font-medium text-gray-900 dark:text-gray-300"
             >Recuérdame</span
           >
         </label>
@@ -63,11 +63,43 @@
       <div class="GOOGLETEXT col-span-2 text-center py-4">
         <h3 class="font-latoBold text-lg">O inicia sesión con</h3>
       </div>
+      <div
+        id="g_id_onload"
+        data-client_id="603153535129-plb0i5pqros03qgdcqbbvm799qf8gsl6.apps.googleusercontent.com"
+        data-login_uri="http://localhost:3000/api/auth/login-with-google"
+        data-auto_prompt="false"
+      ></div>
+      <div
+        class="g_id_signin"
+        data-type="standard"
+        data-size="large"
+        data-theme="outline"
+        data-text="sign_in_with"
+        data-shape="rectangular"
+        data-logo_alignment="left"
+      ></div>
       <div class="GOOGLELOGIN col-span-2">
         <a
+          (click)="signInWithGoogle()"
           href="#"
           class="flex items-center justify-center mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg dark:border-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600"
         >
+          <div
+            id="g_id_onload"
+            data-client_id="603153535129-plb0i5pqros03qgdcqbbvm799qf8gsl6.apps.googleusercontent.com"
+            data-login_uri="http://localhost:3000/api/auth/login-with-google"
+            data-auto_prompt="false"
+          ></div>
+          <div
+            class="g_id_signin"
+            data-type="standard"
+            data-size="large"
+            data-theme="outline"
+            data-text="sign_in_with"
+            data-shape="rectangular"
+            data-logo_alignment="left"
+          ></div>
+
           <div class="px-4 py-2">
             <svg class="w-6 h-6" viewBox="0 0 40 40">
               <path
@@ -107,5 +139,4 @@
     </div>
   </form>
   <div *ngIf="errorMessage">{{ errorMessage }}</div>
-
 </div>

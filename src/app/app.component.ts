@@ -5,6 +5,7 @@ import { FooterComponent } from "./footer/footer.component";
 import { HttpClientModule } from '@angular/common/http';
 import { withFetch } from '@angular/common/http';
 import Swal from 'sweetalert2'
+import { SocialLoginModule, SocialAuthServiceConfig, GoogleLoginProvider } from '@abacritt/angularx-social-login';
 
 // or via CommonJS
 
@@ -15,7 +16,7 @@ import Swal from 'sweetalert2'
   standalone: true,
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
-  imports: [RouterOutlet, NavbarComponent, FooterComponent,HttpClientModule]
+  imports: [RouterOutlet, NavbarComponent, FooterComponent,HttpClientModule,SocialLoginModule]
 })
 export class AppComponent {
   title = 'zero-time';

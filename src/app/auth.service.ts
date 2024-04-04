@@ -18,6 +18,10 @@ export class AuthService {
     return this.http.post<any>(`${this.apiUrl}/login`, userData);
   }
 
+  loginWithGoogle(token: string) {
+    return this.http.post<any>(`${this.apiUrl}/login-with-google`, { token });
+  }
+
   logout(){
     localStorage.removeItem('token')
   }

@@ -4,6 +4,10 @@ const express = require("express");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../models/user"); // Asegúrate de ajustar la ruta según tu estructura de proyecto
+const { OAuth2Client } = require('google-auth-library');
+const CLIENT_ID = '603153535129-plb0i5pqros03qgdcqbbvm799qf8gsl6.apps.googleusercontent.com';
+const client = new OAuth2Client(CLIENT_ID);
+
 
 const router = express.Router();
 
@@ -58,5 +62,37 @@ router.post("/login", async (req, res) => {
     res.status(500).json({ message: "Error al iniciar sesión" });
   }
 });
+
+router.post('/login-with-google', async (req, res) => {
+  try {
+    const { token } = req.body;
+    const ticket = await client.verifyIdToken({
+      idToken: token,
+      audience: CLIENT_ID, // Asegúrate de reemplazar esto con tu Client ID real
+    });
+    const payload = ticket.getPayload();
+
+    let user = await User.findOne({ where: { email: payload.email } });
+
+    // Si el usuario no existe, créalo sin una contraseña específica
+    if (!user) {
+      user = await User.create({
+        name: payload.given_name, // Asumiendo que quieres el nombre dado
+        lastName: payload.family_name, // Asumiendo que quieres el apellido
+        email: payload.email,
+        password: '', // Podrías optar por no establecer una contraseña o usar un valor placeholder
+        // Considera añadir lógica para manejar roles si es necesario
+      });
+    }
+
+    const userToken = jwt.sign({ id: user.id }, "tu_secreto", { expiresIn: "1h" });
+
+    res.json({ token: userToken });
+  } catch (error) {
+    console.error('Error al verificar el token de Google:', error);
+    res.status(500).json({ message: "Error al iniciar sesión con Google" });
+  }
+});
+
 
 module.exports = router;

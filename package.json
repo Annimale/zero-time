@@ -13,6 +13,7 @@
   },
   "private": true,
   "dependencies": {
+    "@abacritt/angularx-social-login": "^2.2.0",
     "@angular/animations": "^17.2.0",
     "@angular/cdk": "^17.3.2",
     "@angular/common": "^17.2.0",
@@ -31,6 +32,7 @@
     "cors": "^2.8.5",
     "express": "^4.19.2",
     "flowbite": "^2.3.0",
+    "google-auth-library": "^9.7.0",
     "helmet": "^7.1.0",
     "jsonwebtoken": "^9.0.2",
     "mysql2": "^3.9.2",
