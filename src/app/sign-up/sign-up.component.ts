@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { RouterLink,Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-sign-up',
@@ -16,7 +17,7 @@ export class SignUpComponent implements OnInit {
   passwordsMatch: boolean = true;
   errorMessage: any;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService,private router:Router) { }
   checkPasswords() {
     // Comprobar si las contraseñas coinciden y actualizar la propiedad passwordsMatch
     // Solo si ambos campos han sido tocados
@@ -56,6 +57,22 @@ export class SignUpComponent implements OnInit {
       next: (response) => {
         console.log('REGISTRO CON ÉXITO', response);
         // Redirigir al usuario o mostrar un mensaje de éxito
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+          }
+        });
+        Toast.fire({
+          icon: "success",
+          title: "Usuario creado exitosamente"
+        });
+        this.router.navigate(['/login']);
       },
       error: (error) => {
         if (error.status === 409) {

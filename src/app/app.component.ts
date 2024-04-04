@@ -4,7 +4,9 @@ import { NavbarComponent } from "./navbar/navbar.component";
 import { FooterComponent } from "./footer/footer.component";
 import { HttpClientModule } from '@angular/common/http';
 import { withFetch } from '@angular/common/http';
+import Swal from 'sweetalert2'
 
+// or via CommonJS
 
 
 
