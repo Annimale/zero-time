@@ -62,7 +62,9 @@
                 placeholder="Search" />
             </div>
           </div>
-          <!-- No va a haber enlace de registro, se incluirá en el form de login y en la home donde tendrá un botçon para registrarse -->
+          <button (click)="logout()">Cerrar sesión</button>
+
+          <!-- No va a haber enlace de registro, se incluirá en el form de login y en la home donde tendrá un boton para registrarse -->
           <div class="flex justify-center mt-6 lg:flex lg:mt-0 lg:-ml-24 sm:-ml-16 pr-10">
             <!-- Si está logueado que le lleve al perfil, sino está logueado que le lleve a login -->
             <a routerLink="/login"
