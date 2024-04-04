@@ -2,11 +2,12 @@
   <div class="TITLE font-prata text-7xl text-center pb-28">
     <h1>Inicia sesión</h1>
   </div>
-  <form action="">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <div class="grid grid-cols-2 mx-[30%] font-latoRegular">
       <div class="LOGINEMAIL col-span-2">
         <div class="relative z-0 w-full mb-5 group mt-6">
           <input
+          formControlName="email"
             type="email"
             name="floating_login_email"
             id="floating_login_email"
@@ -24,6 +25,7 @@
       <div class="LOGINPASSWORD col-span-2">
         <div class="relative z-0 w-full mb-5 group mt-6">
           <input
+          formControlName="password"
             type="password"
             name="floating_login_password"
             id="floating_login_password"
@@ -104,4 +106,6 @@
       </div>
     </div>
   </form>
+  <div *ngIf="errorMessage">{{ errorMessage }}</div>
+
 </div>
