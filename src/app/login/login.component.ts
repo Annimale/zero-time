@@ -31,11 +31,7 @@ export class LoginComponent {
       password: new FormControl('', [Validators.required, Validators.minLength(6)])
     })
 
-    // gapi.load('auth2', () => {
-    //   gapi.auth2.init({
-    //     client_id: '603153535129-plb0i5pqros03qgdcqbbvm799qf8gsl6.apps.googleusercontent.com', // Reemplaza con tu Client ID
-    //   });
-    // });
+    
   }
 
 
@@ -66,24 +62,25 @@ export class LoginComponent {
       console.log(userData);
       // Aquí puedes enviar el token de Google a tu servidor para validar la sesión y crear una sesión de usuario en tu aplicación.
     });
-    // signInWithGoogle() {
-    //   const GoogleAuth = gapi.auth2.getAuthInstance();
-    //   GoogleAuth.signIn().then((googleUser:any) => {
-    //     const id_token = googleUser.getAuthResponse().id_token;
-    //     // Envía este token a tu servidor para verificarlo y autenticar al usuario
-    //     this.authService.loginWithGoogle(id_token).subscribe({
-    //       next: (response) => {
-    //         console.log('Inicio de sesión exitoso', response);
-    //         localStorage.setItem('token', response.token);
-    //         this.router.navigate(['/']);
-    //       },
-    //       error: (error) => {
-    //         console.error('Error de inicio de sesión', error);
-    //         this.errorMessage = error.error.message;
-    //       }
-    //     });
-    //   });
-    // }
-
+    
   }
 }
+
+  // signInWithGoogle() {
+  //   const GoogleAuth = gapi.auth2.getAuthInstance();
+  //   GoogleAuth.signIn().then((googleUser:any) => {
+  //     const id_token = googleUser.getAuthResponse().id_token;
+  //     // Envía este token a tu servidor para verificarlo y autenticar al usuario
+  //     this.authService.loginWithGoogle(id_token).subscribe({
+  //       next: (response) => {
+  //         console.log('Inicio de sesión exitoso', response);
+  //         localStorage.setItem('token', response.token);
+  //         this.router.navigate(['/']);
+  //       },
+  //       error: (error) => {
+  //         console.error('Error de inicio de sesión', error);
+  //         this.errorMessage = error.error.message;
+  //       }
+  //     });
+  //   });
+  // }
