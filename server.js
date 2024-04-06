@@ -13,12 +13,10 @@ app.use(
     // Permite el acceso desde cualquier origen o especifica tu dominio, como 'http://localhost:4200'
     origin: "http://localhost:4200", // Asegúrate de cambiar esto al dominio de tu frontend Angular
     methods: ["GET", "POST", "DELETE", "UPDATE", "PUT", "PATCH"],
-    allowedHeaders: ['Content-Type', 'Authorization']
-
-
+    allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
-
+//F
 // Rutas
 app.get("/", (req, res) => {
   res.send("Servidor Express funcionando!");
