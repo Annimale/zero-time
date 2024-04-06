@@ -46,7 +46,17 @@ export class LoginComponent {
   }
 
 
-
+  onGoogleCredentialResponse(event: any) {
+    const token = event.detail.credential;
+    if (token) {
+      localStorage.setItem('token', token); // Guarda el token en el localStorage
+      console.log('Token guardado en localStorage:', token);
+      this.router.navigate(['/home']); // Redirige al usuario a la página de dashboard después del login exitoso
+    } else {
+      console.error('No se recibió ningún token de Google');
+      // Manejo de errores, por ejemplo, mostrar un mensaje al usuario
+    }
+  }
   ngOnInit(): void {
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
