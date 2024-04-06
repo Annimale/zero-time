@@ -21,7 +21,29 @@ export class LoginComponent {
   loginForm!: FormGroup;
   errorMessage: string = '';
 
-  constructor(private authService: AuthService, private router: Router, private googleAuthService: SocialAuthService) { }
+  constructor(private authService: AuthService, private router: Router, private googleAuthService: SocialAuthService) {
+    console.log('HIIIIIIII');
+    this.googleAuthService.authState.subscribe((user) => {
+      console.log('Estamos dentro de googleAuth');
+      if (user) {
+      console.log('Estamos dentro de user');
+
+        // Usuario autenticado con Google, envía el token a tu servidor
+        this.authService.loginWithGoogle({ token: user.idToken }).subscribe({
+          next: (response: any) => {
+            // Asumiendo que la respuesta del servidor incluye un token JWT
+            // Guarda el token de sesión
+            localStorage.setItem('token', response.credential);
+            // Redirige al usuario a la página de inicio
+            this.router.navigate(['/home']);
+          },
+          error: (error) => {
+            console.error('Error al iniciar sesión con Google', error);
+          }
+        });
+      }
+    });
+  }
 
 
 
@@ -33,8 +55,6 @@ export class LoginComponent {
 
 
   }
-
-
 
   onSubmit() {
     if (this.loginForm.invalid) {
@@ -55,51 +75,27 @@ export class LoginComponent {
 
     });
   }
+  signInWithGoogle(): void {
+    this.googleAuthService.signIn(GoogleLoginProvider.PROVIDER_ID).then(userData => {
+      if (userData.idToken) {
+        this.authService.loginWithGoogle({ token: userData.idToken }).subscribe({
+          next: (response) => {
+            console.log('Inicio de sesión con Google exitoso', response);
+            localStorage.setItem('token', response.credential); // Asegúrate de que estás accediendo a la propiedad correcta aquí
+            this.router.navigate(['/home']); // Redirige al usuario a la ruta home
+          },
+          error: (error) => {
+            console.error('Error de inicio de sesión con Google', error);
+            this.errorMessage = error.error.message;
+          }
+        });
+      } else {
+        console.error('No se pudo obtener el idToken de Google');
+      }
+    }).catch(error => {
+      console.error('Error al iniciar sesión con Google:', error);
+    });
+  }
 
-  // signInWithGoogle(): void {
-  //   this.googleAuthService.signIn(GoogleLoginProvider.PROVIDER_ID).then((userData) => {
-  //     // Aquí obtienes el token de Google
-  //     const googleToken = userData.idToken; // Asegúrate de que este es el token correcto
-  //     // Luego llamas a loginWithGoogle
-  //     this.authService.loginWithGoogle({ token: googleToken }).subscribe({
-  //       next: (response) => {
-  //         // Manejo de la respuesta exitosa
-  //       },
-  //       error: (error) => {
-  //         // Manejo del error
-  //       }
-  //     });
-  //   });
-  // }
-  
-
-  // signInWithGoogle(): void {
-  //   console.log('Intentando iniciar sesión con Google'); // Añade esto para depurar
-
-  //   this.googleAuthService.signIn(GoogleLoginProvider.PROVIDER_ID).then((userData: SocialUser) => {
-  //     console.log(userData);
-      
-  //     // Verifica que realmente tienes un idToken en userData
-  //     if (userData.idToken) {
-  //       this.authService.loginWithGoogle({ token: userData.idToken }).subscribe({
-  //         next: (response) => {
-  //           console.log('Inicio de sesión con Google exitoso', response);
-  //           localStorage.setItem('token', response.token);
-  //           this.router.navigate(['/']);
-  //         },
-  //         error: (error) => {
-  //           console.error('Error de inicio de sesión con Google', error);
-  //           this.errorMessage = error.error.message;
-  //         }
-  //       });
-  //     } else {
-  //       console.error('No se pudo obtener el idToken de Google');
-  //     }
-  //   }).catch((error) => {
-  //     console.error('Error al iniciar sesión con Google:', error);
-  //   });
-  // }
 
 }
-
-

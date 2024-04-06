@@ -110,7 +110,7 @@ router.post("/login-with-google", async (req, res) => {
     const userToken = jwt.sign({ id: user.id }, "tu_secreto", {
       expiresIn: "1h",
     });
-
+    
     res.json({ credential: userToken });
   } catch (error) {
     console.error("Error al verificar el credential de Google:", error);

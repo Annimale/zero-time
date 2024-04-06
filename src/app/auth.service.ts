@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 
 @Injectable({
@@ -20,12 +21,12 @@ export class AuthService {
 
 
 
-  loginWithGoogle(googleToken: { token: string }) {
-    console.log("Enviando token al servidor:", googleToken); // Añadir para depuración
-    return this.http.post(`${this.apiUrl}/login-with-google`, googleToken, { headers: { 'Content-Type': 'application/json' } });
-
-
+  loginWithGoogle(googleToken: { token: string }): Observable<{ credential: string }> {
+    return this.http.post<{ credential: string }>(`${this.apiUrl}/login-with-google`, googleToken, {
+      headers: { 'Content-Type': 'application/json' }
+    });
   }
+  
 
 
 
