@@ -6,23 +6,31 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl='http://localhost:3000/api/auth'
+  private apiUrl = 'http://localhost:3000/api/auth'
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  register (userData:any){
-    return this.http.post(`${this.apiUrl}/sign-up`,userData)
+  register(userData: any) {
+    return this.http.post(`${this.apiUrl}/sign-up`, userData)
   }
 
   login(userData: any) {
     return this.http.post<any>(`${this.apiUrl}/login`, userData);
   }
 
-  loginWithGoogle(token: string) {
-    return this.http.post<any>(`${this.apiUrl}/login-with-google`, { token });
+
+
+  loginWithGoogle(googleToken: { token: string }) {
+    console.log("Enviando token al servidor:", googleToken); // Añadir para depuración
+    return this.http.post(`${this.apiUrl}/login-with-google`, googleToken, { headers: { 'Content-Type': 'application/json' } });
+
+
   }
 
-  logout(){
+
+
+
+  logout() {
     localStorage.removeItem('token')
   }
 }
