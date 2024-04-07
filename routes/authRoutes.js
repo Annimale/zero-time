@@ -117,6 +117,7 @@ router.post("/login-with-google", async (req, res) => {
     console.log("userToken recibido:", userToken);
 
     res.cookie('token', userToken, { httpOnly: true, secure: true });
+    
 
     res.redirect(`http://localhost:4200/home`);
 
@@ -128,6 +129,11 @@ router.post("/login-with-google", async (req, res) => {
     console.error("Error al verificar el credential de Google:", error);
     res.status(500).json({ message: "Error al iniciar sesión con Google" });
   }
+});
+
+router.post('/logout', (req, res) => {
+  res.clearCookie('token');
+  res.status(200).json({ message: 'Logout successful' });
 });
 
 module.exports = router;
