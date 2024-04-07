@@ -78,7 +78,7 @@ router.post("/login-with-google", async (req, res) => {
     console.log("credential recibido:", credential);
 
     if (!credential) {
-      console.log(error)
+      console.log(error);
       return res.status(400).send("credential no proporcionado");
     }
     const ticket = await client.verifyIdToken({
@@ -90,9 +90,9 @@ router.post("/login-with-google", async (req, res) => {
     console.log("Payload recibido:", payload);
 
     if (!payload.email) {
-      return res
-        .status(400)
-        .json({ message: "No se pudo obtener el email del credential de Google" });
+      return res.status(400).json({
+        message: "No se pudo obtener el email del credential de Google",
+      });
     }
     let user = await User.findOne({ where: { email: payload.email } });
 
@@ -107,11 +107,23 @@ router.post("/login-with-google", async (req, res) => {
       });
     }
 
-    const userToken = jwt.sign({ id: user.id }, "tu_secreto", {
-      expiresIn: "1h",
-    });
-    
-    res.json({ credential: userToken });
+    const userToken = jwt.sign(
+      { id: user.id },
+      "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",
+      {
+        expiresIn: "1h",
+      }
+    );
+    console.log("userToken recibido:", userToken);
+
+    res.cookie('token', userToken, { httpOnly: true, secure: true });
+
+    res.redirect(`http://localhost:4200/home`);
+
+    // res.redirect("http://localhost:4200/home"); //CON ESTO PODEMOS REDIRIGIR 
+    //res.json({ credential: userToken });//CON ESTO ENVIAMOS EL TOKEN AL CLIENTE
+    // res.redirect(`http://localhost:4200/home?token=${userToken}`);
+
   } catch (error) {
     console.error("Error al verificar el credential de Google:", error);
     res.status(500).json({ message: "Error al iniciar sesión con Google" });
