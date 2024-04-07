@@ -31,22 +31,7 @@ export class LoginComponent {
       password: new FormControl('', [Validators.required, Validators.minLength(6)])
     })
   }
-  // onGoogleLogin() {
-  //   // Realizar la solicitud al servidor para iniciar sesión con Google
-  //   this.http.get<any>('/login-with-google')
-  //     .subscribe(
-  //       data => {
-  //         const userToken = data.userToken;
-  //         localStorage.setItem('userToken', userToken);
-  //         // Redirigir al usuario a otra página si es necesario
-  //         window.location.href = '/home';
-  //       },
-  //       error => {
-  //         console.error('Error al obtener el token:', error);
-  //       }
-  //     );
-  // }
-
+  
   onSubmit() {
     if (this.loginForm.invalid) {
       return;

@@ -4,7 +4,12 @@ import { NavbarComponent } from "./navbar/navbar.component";
 import { FooterComponent } from "./footer/footer.component";
 import { HttpClientModule } from '@angular/common/http';
 import { withFetch } from '@angular/common/http';
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
+import { CookieService } from 'ngx-cookie-service';
+
+
+
+
 import { SocialLoginModule, SocialAuthServiceConfig, GoogleLoginProvider } from '@abacritt/angularx-social-login';
 
 // or via CommonJS

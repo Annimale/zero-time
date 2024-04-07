@@ -35,8 +35,11 @@ export class NavbarComponent {
       icon: "info",
       title: "Sesión cerrada con éxito"
     });
-    this.authService.logout();
-    this.router.navigate(['/']);
+    this.authService.logout().subscribe(() => {
+    
+      this.authService.logout();
+      this.router.navigate(['/']);
+    });
   }
 
   toggleMenu() {

@@ -22,6 +22,13 @@ app.get("/", (req, res) => {
   res.send("Servidor Express funcionando!");
 });
 
+app.get('/logout', (req, res) => {
+  // Esto establecerá la cookie 'token' con una fecha de expiración en el pasado, eliminándola
+  res.cookie('token', '', { expires: new Date(0), httpOnly: true, secure: true });
+});
+
+
+
 // Monta las rutas de autenticación en '/api/auth'
 app.use("/api/auth", authRoutes);
 

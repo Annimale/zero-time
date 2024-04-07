@@ -37,6 +37,8 @@
     "jsonwebtoken": "^9.0.2",
     "jwt-decode": "^4.0.0",
     "mysql2": "^3.9.2",
+    "ngx-cookie-service": "^17.1.0",
+    "ngx-cookie-service-ssr": "^17.1.0",
     "rxjs": "~7.8.0",
     "sequelize": "^6.37.2",
     "sequelize-cli": "^6.6.2",
