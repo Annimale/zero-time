@@ -6,6 +6,8 @@ import { AuthService } from '../auth.service';
 import { SocialAuthService, GoogleLoginProvider, SocialUser } from '@abacritt/angularx-social-login';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
+import { HttpService } from '../http.service';
+import { subscribe } from 'diagnostics_channel';
 
 
 
@@ -21,8 +23,9 @@ import { HttpClient } from '@angular/common/http';
 export class LoginComponent {
   loginForm!: FormGroup;
   errorMessage: string = '';
+  userInfo!:any;
 
-  constructor(private authService: AuthService, private router: Router, private googleAuthService: SocialAuthService, private http: HttpClient) { }
+  constructor(private authService: AuthService, private router: Router, private googleAuthService: SocialAuthService, private http:HttpService) { }
 
 
   ngOnInit(): void {
@@ -32,6 +35,8 @@ export class LoginComponent {
     })
   }
   
+
+
   onSubmit() {
     if (this.loginForm.invalid) {
       return;
@@ -54,25 +59,3 @@ export class LoginComponent {
 
   }
 }
-// }
-// signInWithGoogle(): void {
-//   this.googleAuthService.signIn(GoogleLoginProvider.PROVIDER_ID).then(userData => {
-//     if (userData.idToken) {
-//       this.authService.loginWithGoogle({ token: userData.idToken }).subscribe({
-//         next: (response) => {
-//           console.log('Inicio de sesión con Google exitoso', response);
-//           localStorage.setItem('token', response.credential); // Asegúrate de que estás accediendo a la propiedad correcta aquí
-//           this.router.navigate(['/home']); // Redirige al usuario a la ruta home
-//         },
-//         error: (error) => {
-//           console.error('Error de inicio de sesión con Google', error);
-//           this.errorMessage = error.error.message;
-//         }
-//       });
-//     } else {
-//       console.error('No se pudo obtener el idToken de Google');
-//     }
-//   }).catch(error => {
-//     console.error('Error al iniciar sesión con Google:', error);
-//   });
-// }

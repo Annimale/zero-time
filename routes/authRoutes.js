@@ -116,11 +116,11 @@ router.post("/login-with-google", async (req, res) => {
     );
     console.log("userToken recibido:", userToken);
 
-    res.cookie("token", userToken, { httpOnly: true, secure: true });
-    // res.json({name:user.given_name})
-    console.log({ name: user.given_name });
+    res.cookie("token", userToken, { httpOnly: true, secure: false });
+    // res.json(payload);
     res.redirect(`http://localhost:4200/home`);
 
+    // res.json({name:user.given_name})
     // res.redirect("http://localhost:4200/home"); //CON ESTO PODEMOS REDIRIGIR
     //res.json({ credential: userToken });//CON ESTO ENVIAMOS EL TOKEN AL CLIENTE
     // res.redirect(`http://localhost:4200/home?token=${userToken}`);
@@ -133,6 +133,11 @@ router.post("/login-with-google", async (req, res) => {
 router.post("/logout", (req, res) => {
   res.clearCookie("token");
   res.status(200).json({ message: "Logout successful" });
+});
+
+router.get("/getUserName", (req, res) => {
+  res.send("GUCCI");
+  return payload.given_name;
 });
 
 module.exports = router;
