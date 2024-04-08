@@ -2,9 +2,10 @@
 const express = require("express");
 const cors = require("cors");
 const authRoutes = require("./routes/authRoutes");
+const { User } = require("./models/user"); // Asumiendo que tienes un modelo 'User'
 
 const app = express();
-const cookieParser = require('cookie-parser');
+const cookieParser = require("cookie-parser");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
@@ -16,13 +17,29 @@ app.use(
     methods: ["GET", "POST", "DELETE", "UPDATE", "PUT", "PATCH"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true, // Permite el envío de cookies
-
   })
 );
-//F
+
 // Rutas
 app.get("/", (req, res) => {
   res.send("Servidor Express funcionando!");
+});
+
+app.get("/user/:id", async (req, res) => {
+  try {
+    const userId = req.params.id;
+    console.log('Este es el userId:',userId);
+    const foundUser = await User.findByPk(userId); // Usar directamente User, que es tu modelo importado
+    console.log(foundUser);
+
+    if (!foundUser) {
+      return res.status(404).send({ message: "Usuario no encontrado" });
+    }
+
+    res.send({ name: foundUser.name }); // Envía el nombre del usuario como respuesta
+  } catch (error) {
+    res.status(500).send({ message: "Error al obtener datos del usuario" });
+  }
 });
 
 app.get("/logout", (req, res) => {
@@ -35,7 +52,6 @@ app.get("/logout", (req, res) => {
 
   res.redirect(`http://localhost:4200/home`);
 });
-
 
 app.get("/user", (req, res) => {
   // Leer el token desde la cookie
@@ -50,7 +66,6 @@ app.get("/user", (req, res) => {
     const datosUsuario = token; // Asumiendo una función que verifica el token
     // Envía solo la información necesaria y segura al cliente
     res.json({ user: datosUsuario });
-
   } catch (error) {
     res.status(403).json({ message: "Token inválido o expirado" });
   }

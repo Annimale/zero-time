@@ -6,6 +6,7 @@ import { AuthService } from '../auth.service';
 import Swal from 'sweetalert2';
 import {jwtDecode} from 'jwt-decode'
 import { HttpService } from '../http.service';
+import { HttpClient } from '@angular/common/http';
 
 
 
@@ -24,8 +25,9 @@ export class NavbarComponent {
   isOpen: boolean = false;
   cookie!: string;
   userInfo:any;
+  userName!:any;
 
-  constructor(private authService: AuthService, private router: Router, private http: HttpService) { }
+  constructor(private authService: AuthService, private router: Router, private http: HttpService,private http2:HttpClient) { }
   ngOnInit(): void {}
 
     
@@ -34,7 +36,14 @@ getPayload(){
     next:(res)=>{
       console.log('Datos del usuario:', res.user);
       this.userInfo=jwtDecode(res.user)
-      console.log(this.userInfo);
+      console.log(this.userInfo.id);
+
+      this.http2.get<any>(`http://localhost:3000/user/${this.userInfo.id}`).subscribe({
+        next:(userRes)=>{
+          console.log(userRes);
+          this.userName=userRes.name;
+        }
+      })
     },
     error:(error)=>{
       console.error('Error al obtener datos del usuario',error)
