@@ -62,29 +62,22 @@
                 placeholder="Search" />
             </div>
           </div>
-          <div class="NOMBRE">
-          </div>
-          <!-- Este botón es temporal -->
-          <button (click)="logout()">Cerrar sesión</button>
-          <button (click)="getPayload()">Cerrar sesión</button>
-
+        
 
           <!-- No va a haber enlace de registro, se incluirá en el form de login y en la home donde tendrá un boton para registrarse -->
-          <div class="flex justify-center mt-6 lg:flex lg:mt-0 lg:-ml-24 sm:-ml-16 pr-10">
+          <div class="flex justify-center mt-6 lg:flex lg:mt-0 lg:-ml-24 sm:-ml-16 pr-10 ">
             <!-- Si está logueado que le lleve al perfil, sino está logueado que le lleve a login -->
-            <a routerLink="/login"
-              class="mx-2 text-gray-600 transition-colors duration-300 transform dark:text-gray-300 hover:text-gray-500 dark:hover:text-gray-300"
-              aria-label="Reddit">
-              <svg class="w-10 h-10 fill-current" viewBox="-2 -2 24.00 24.00" version="1.1"
+            
+              <svg  class="cursor-pointer" id="dropdownInformationButton" data-dropdown-toggle="dropdownInformation" class="w-10 h-10 fill-current" viewBox="-2 -2 24.00 24.00" version="1.1"
                 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000">
-                <g id="SVGRepo_bgCarrier" stroke-width="0" transform="translate(0,0), scale(1)">
+                <g  class="cursor-pointer" id="SVGRepo_bgCarrier" stroke-width="0" transform="translate(0,0), scale(1)">
                   <path transform="translate(-2, -2), scale(0.75)"
                     d="M16,25.072734510820162C19.33729783738038,25.76899802104854,22.21528609917856,30.27218712559896,25.27077591512223,28.760128358313835C28.130698686025404,27.344849119961353,26.228237307581388,22.674638483187067,27.06719946150346,19.59595108718069C27.84411969047276,16.744935096234883,30.58905921496673,14.34841522773198,29.986385615503327,11.45554783441437C29.371837332609562,8.505681288433948,26.790285136855402,6.1454843915760335,24.01873645960795,4.963156111972593C21.49309850663294,3.885732070909832,18.71041118037628,5.049300155071213,16,5.489028329127713C13.780938384073103,5.849041569758948,11.680701578010831,6.280632306586814,9.672304252609482,7.2906739750493585C7.276801733413903,8.495394440812285,4.492541674053222,9.47142416393844,3.302967310787839,11.874483995561901C2.053109990735261,14.399321461657195,2.200736748050124,17.534791206434516,3.3217612126590357,20.119409495551075C4.393165478245508,22.58962414946442,6.661854770379309,24.421125581397924,9.169797990459417,25.400966559097533C11.346134263128878,26.251250347080365,13.712708477214735,24.59553478152655,16,25.072734510820162"
                     fill="#abada6" strokewidth="0"></path>
                 </g>
                 <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#b52626"
                   stroke-width="0.04"></g>
-                <g id="SVGRepo_iconCarrier">
+                <g id="SVGRepo_iconCarrier" class="cursor-pointer">
                   <title>profile_round [#1342]</title>
                   <desc>Created with Sketch.</desc>
                   <defs></defs>
@@ -99,7 +92,30 @@
                   </g>
                 </g>
               </svg>
-            </a>
+              <div id="dropdownInformation" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+                <div *ngIf="isAuthenticated" class="px-4 py-3 text-sm text-gray-900 dark:text-white">
+                  <div class="NOMBRE" >
+                    <h3 class="font-latoRegular"> Bienvenido, <span class="font-latoBold">{{userName}}</span></h3>
+                  </div>
+                </div>
+                <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownInformationButton">
+                 
+                  <li *ngIf="isAuthenticated">
+                    <a routerLink="/profile" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Cuenta</a>
+                  </li>
+                  <li *ngIf="!isAuthenticated">
+                    <a routerLink="/login" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Iniciar sesión</a>
+                  </li>
+                  <li *ngIf="!isAuthenticated">
+                    <a routerLink="/sign-up" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Regístrate</a>
+                  </li>
+                 
+                </ul>
+                <div *ngIf="isAuthenticated" class="py-2">
+                  <a  (click)="logout()" class="cursor-pointer block px-4 py-2 text-sm text-red-400 hover:text-red-600 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Cerrar sesión</a>
+                </div>
+            </div>
+            
 
             <a routerLink="/cart"
               class="mx-2 text-gray-600 transition-colors duration-300 transform dark:text-gray-300 hover:text-gray-500 dark:hover:text-gray-300"

@@ -4,7 +4,7 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import Swal from 'sweetalert2';
-import {jwtDecode} from 'jwt-decode'
+import { jwtDecode } from 'jwt-decode'
 import { HttpService } from '../http.service';
 import { HttpClient } from '@angular/common/http';
 
@@ -24,32 +24,35 @@ import { HttpClient } from '@angular/common/http';
 export class NavbarComponent {
   isOpen: boolean = false;
   cookie!: string;
-  userInfo:any;
-  userName!:any;
+  userInfo: any;
+  userName: string = '';
+  isAuthenticated: boolean = false; 
 
-  constructor(private authService: AuthService, private router: Router, private http: HttpService,private http2:HttpClient) { }
-  ngOnInit(): void {}
 
-    
-getPayload(){
-  this.http.getPayload().subscribe({
-    next:(res)=>{
-      console.log('Datos del usuario:', res.user);
-      this.userInfo=jwtDecode(res.user)
-      console.log(this.userInfo.id);
+  constructor(private authService: AuthService, private router: Router, private http: HttpService, private http2: HttpClient) { }
+  ngOnInit(): void { this.getPayload() }
 
-      this.http2.get<any>(`http://localhost:3000/user/${this.userInfo.id}`).subscribe({
-        next:(userRes)=>{
-          console.log(userRes);
-          this.userName=userRes.name;
-        }
-      })
-    },
-    error:(error)=>{
-      console.error('Error al obtener datos del usuario',error)
-    }
-  })
-}
+
+  getPayload() {
+    this.http.getPayload().subscribe({
+      next: (res) => {
+        console.log('Datos del usuario:', res.user);
+        this.userInfo = jwtDecode(res.user)
+        console.log(this.userInfo.id);
+        this.isAuthenticated=true;
+
+        this.http2.get<any>(`http://localhost:3000/user/${this.userInfo.id}`).subscribe({
+          next: (userRes) => {
+            console.log(userRes);
+            this.userName = userRes.name;
+          }
+        })
+      },
+      error: (error) => {
+        console.error('Error al obtener datos del usuario', error)
+      }
+    })
+  }
 
   logout() {
     const Toast = Swal.mixin({
@@ -78,5 +81,5 @@ getPayload(){
 
     this.isOpen = !this.isOpen;
   }
-  
+
 }

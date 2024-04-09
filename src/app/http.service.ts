@@ -12,7 +12,7 @@ export class HttpService {
 
   getPayload(): Observable<any> {
     return this.http.get('http://localhost:3000/user', { withCredentials: true })
-    // return this.http.get('http://localhost:3000/api/auth/login-with-google')
+    
   }
 
 }
