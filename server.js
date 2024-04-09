@@ -2,7 +2,11 @@
 const express = require("express");
 const cors = require("cors");
 const authRoutes = require("./routes/authRoutes");
-const { User } = require("./models/user"); // Asumiendo que tienes un modelo 'User'
+const  sequelize  = require("sequelize");
+const  User  = require("./models/user");
+const  Brand  = require("./models/brand");
+console.log("User model:", User);
+console.log("Brand model:", Brand);
 
 const app = express();
 const cookieParser = require("cookie-parser");
@@ -20,6 +24,7 @@ app.use(
   })
 );
 
+
 // Rutas
 app.get("/", (req, res) => {
   res.send("Servidor Express funcionando!");
@@ -28,8 +33,8 @@ app.get("/", (req, res) => {
 app.get("/user/:id", async (req, res) => {
   try {
     const userId = req.params.id;
-    console.log('Este es el userId:',userId);
-    const foundUser = await User.findByPk(userId); // Usar directamente User, que es tu modelo importado
+    console.log("Este es el userId:", userId);
+    const foundUser = await User.findByPk(userId);
     console.log(foundUser);
 
     if (!foundUser) {
@@ -38,6 +43,7 @@ app.get("/user/:id", async (req, res) => {
 
     res.send({ name: foundUser.name }); // Envía el nombre del usuario como respuesta
   } catch (error) {
+    console.error(error);
     res.status(500).send({ message: "Error al obtener datos del usuario" });
   }
 });

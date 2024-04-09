@@ -1,6 +1,5 @@
-const { Sequelize,Model, DataTypes } = require("sequelize");
+const { Sequelize, Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/database");
-
 
 const User = sequelize.define("User", {
   // Define los atributos del modelo
@@ -27,8 +26,8 @@ const User = sequelize.define("User", {
     allowNull: false,
   },
   role: {
-    type: DataTypes.ENUM('admin', 'user'),
-    defaultValue: 'user' // Valor por defecto es 'user'
+    type: DataTypes.ENUM("admin", "user"),
+    defaultValue: "user", // Valor por defecto es 'user'
   },
   // Continúa definiendo el resto de los campos...
 });
