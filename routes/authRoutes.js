@@ -59,12 +59,12 @@ router.post("/login", async (req, res) => {
     if (!isMatch) {
       return res.status(400).json({ message: "Contraseña incorrecta" });
     }
-    const token = jwt.sign(
+    const localToken = jwt.sign(
       { id: user.id },
       "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",
       { expiresIn: "1h" }
     );
-    res.json({ token });
+    res.json({ localToken });
   } catch (error) {
     res.status(500).json({ message: "Error al iniciar sesión" });
   }
@@ -115,8 +115,7 @@ router.post("/login-with-google", async (req, res) => {
       }
     );
     console.log("userToken recibido:", userToken);
-
-    res.cookie("token", userToken, { httpOnly: true, secure: false });
+    res.cookie("token", userToken, { httpOnly: false, secure: false });
     // res.json(payload);
     res.redirect(`http://localhost:4200/home`);
 

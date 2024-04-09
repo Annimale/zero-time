@@ -32,6 +32,7 @@
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "express": "^4.19.2",
+    "express-jwt": "^8.4.1",
     "flowbite": "^2.3.0",
     "google-auth-library": "^9.7.0",
     "helmet": "^7.1.0",

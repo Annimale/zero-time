@@ -26,11 +26,17 @@ export class NavbarComponent {
   cookie!: string;
   userInfo: any;
   userName: string = '';
-  isAuthenticated: boolean = false; 
+  isAuthenticated: boolean = false;
+  localToken: any;
 
 
   constructor(private authService: AuthService, private router: Router, private http: HttpService, private http2: HttpClient) { }
-  ngOnInit(): void { this.getPayload() }
+  ngOnInit(): void { this.isAuthenticated=this.authService.tokenExists()
+    if(this.isAuthenticated){
+      this.getPayload()
+    }
+  }
+
 
 
   getPayload() {
@@ -39,7 +45,7 @@ export class NavbarComponent {
         console.log('Datos del usuario:', res.user);
         this.userInfo = jwtDecode(res.user)
         console.log(this.userInfo.id);
-        this.isAuthenticated=true;
+        this.isAuthenticated = true;
 
         this.http2.get<any>(`http://localhost:3000/user/${this.userInfo.id}`).subscribe({
           next: (userRes) => {

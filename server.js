@@ -2,11 +2,12 @@
 const express = require("express");
 const cors = require("cors");
 const authRoutes = require("./routes/authRoutes");
-const  sequelize  = require("sequelize");
-const  User  = require("./models/user");
-const  Brand  = require("./models/brand");
+const sequelize = require("sequelize");
+const User = require("./models/user");
+const Brand = require("./models/brand");
 console.log("User model:", User);
 console.log("Brand model:", Brand);
+
 
 const app = express();
 const cookieParser = require("cookie-parser");
@@ -24,11 +25,11 @@ app.use(
   })
 );
 
-
 // Rutas
 app.get("/", (req, res) => {
   res.send("Servidor Express funcionando!");
 });
+
 
 app.get("/user/:id", async (req, res) => {
   try {

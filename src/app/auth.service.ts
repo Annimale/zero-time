@@ -26,8 +26,9 @@ export class AuthService {
       headers: { 'Content-Type': 'application/json' }
     });
   }
-
- 
+  tokenExists(): boolean {
+    return this.cookieService.check('token'); // Reemplaza 'nombreDeTuCookie' con el nombre real de tu cookie
+  }
 
   logout() {
     localStorage.removeItem('token')//
