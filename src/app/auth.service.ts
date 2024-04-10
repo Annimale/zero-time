@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
+import { BehaviorSubject } from 'rxjs';
+
 
 
 
@@ -10,6 +12,9 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class AuthService {
   private apiUrl = 'http://localhost:3000/api/auth'
+
+  private isAuthenticatedSubject = new BehaviorSubject<boolean>(this.tokenExists());
+  isAuthenticated = this.isAuthenticatedSubject.asObservable();
 
   constructor(private http: HttpClient, private cookieService: CookieService, ) { }
 
@@ -29,9 +34,16 @@ export class AuthService {
   tokenExists(): boolean {
     return this.cookieService.check('token'); // Reemplaza 'nombreDeTuCookie' con el nombre real de tu cookie
   }
-
+  
   logout() {
     localStorage.removeItem('token')//
     window.location.href = 'http://localhost:3000/logout'
+  }
+  localTokenExists(): boolean{
+    return !!localStorage.getItem('token');
+
+  }
+  updateAuthenticationStatus(status: boolean): void {
+    this.isAuthenticatedSubject.next(status);
   }
 }

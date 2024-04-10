@@ -8,7 +8,6 @@ const Brand = require("./models/brand");
 console.log("User model:", User);
 console.log("Brand model:", Brand);
 
-
 const app = express();
 const cookieParser = require("cookie-parser");
 app.use(express.json());
@@ -29,7 +28,6 @@ app.use(
 app.get("/", (req, res) => {
   res.send("Servidor Express funcionando!");
 });
-
 
 app.get("/user/:id", async (req, res) => {
   try {
@@ -75,6 +73,18 @@ app.get("/user", (req, res) => {
     res.json({ user: datosUsuario });
   } catch (error) {
     res.status(403).json({ message: "Token inválido o expirado" });
+  }
+});
+
+app.get("/localUser/:id", async (req, res) => {
+  try {
+    const user = await User.findByPk(req.params.id);
+    if (!user) {
+      return res.status(404).send("Usuario no encontrado");
+    }
+    res.json(user);
+  } catch (error) {
+    res.status(500).send("Error al buscar el usuario", error);
   }
 });
 

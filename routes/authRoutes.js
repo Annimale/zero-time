@@ -59,12 +59,12 @@ router.post("/login", async (req, res) => {
     if (!isMatch) {
       return res.status(400).json({ message: "Contraseña incorrecta" });
     }
-    const localToken = jwt.sign(
+    const token = jwt.sign(
       { id: user.id },
       "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",
       { expiresIn: "1h" }
     );
-    res.json({ localToken });
+    res.json({ token });
   } catch (error) {
     res.status(500).json({ message: "Error al iniciar sesión" });
   }

@@ -2,16 +2,18 @@
   <div class="grid grid-cols-4 font-latoRegular mx-auto space-x-12 pb-32">
     <div class="EDIT col-span-2">
       <h1 class="font-prata text-5xl mb-12">Editar perfil</h1>
-      <form action="" class="pb-18">
+      <form [formGroup]="editForm" (ngSubmit)="onSubmit()" class="pb-18">
         <div class="FORM grid grid-cols-2 col-span-2 gap-x-10 gap-y-6">
           <div class="NAME">
             <div class="relative z-0 w-full mb-5 group mt-6">
               <input
+                formControlName="name"
                 type="text"
                 name="floating_edit_name"
                 id="floating_edit_name"
-                class="block text-sm py-2.5 px-0 w-full border-0 bg-transparent border-b-2 border-gray-300 appearance-none peer focus:border-gray-600 focus:ring-0"
+                class="block py-2.5 px-0 w-full border-0 bg-transparent border-b-2 border-gray-300 appearance-none peer focus:border-gray-600 focus:ring-0"
                 placeholder=""
+                value="{{ userLocalInfo.name }}"
                 required
               />
               <label
@@ -24,12 +26,14 @@
           <div class="LASTNAME">
             <div class="relative z-0 w-full mb-5 group mt-6">
               <input
+                formControlName="lastName"
                 type="text"
                 name="floating_edit_lastName"
                 id="floating_edit_lastName"
-                class="block text-sm py-2.5 px-0 w-full border-0 bg-transparent border-b-2 border-gray-300 appearance-none peer focus:border-gray-600 focus:ring-0"
+                class="block py-2.5 px-0 w-full border-0 bg-transparent border-b-2 border-gray-300 appearance-none peer focus:border-gray-600 focus:ring-0"
                 placeholder=""
                 required
+                value="{{ userLocalInfo.lastName }}"
               />
               <label
                 for="floating_edit_lastName"
@@ -41,12 +45,14 @@
           <div class="EMAIL col-span-2">
             <div class="relative z-0 w-full mb-5 group mt-6">
               <input
+                formControlName="email"
                 type="email"
                 name="floating_edit_email"
                 id="floating_edit_email"
-                class="block text-sm py-2.5 px-0 w-full border-0 bg-transparent border-b-2 border-gray-300 appearance-none peer focus:border-gray-600 focus:ring-0"
+                class="block py-2.5 px-0 w-full border-0 bg-transparent border-b-2 border-gray-300 appearance-none peer focus:border-gray-600 focus:ring-0"
                 placeholder=""
                 required
+                value="{{ userLocalInfo.email }}"
               />
               <label
                 for="floating_edit_email"
@@ -58,10 +64,11 @@
           <div class="EDITOLDPASSWORD">
             <div class="relative z-0 w-full mb-5 group mt-6">
               <input
+                formControlName="oldPassword"
                 type="password"
                 name="floating_edit_old_password"
                 id="floating_edit_old_password"
-                class="block text-sm py-2.5 px-0 w-full border-0 bg-transparent border-b-2 border-gray-300 appearance-none peer focus:border-gray-600 focus:ring-0"
+                class="block py-2.5 px-0 w-full border-0 bg-transparent border-b-2 border-gray-300 appearance-none peer focus:border-gray-600 focus:ring-0"
                 placeholder=""
                 required
               />
@@ -75,10 +82,11 @@
           <div class="EDITNEWPASSWORD">
             <div class="relative z-0 w-full mb-5 group mt-6">
               <input
+                formControlName="newPassword"
                 type="password"
                 name="floating_edit_new_password"
                 id="floating_edit_new_password"
-                class="block text-sm py-2.5 px-0 w-full border-0 bg-transparent border-b-2 border-gray-300 appearance-none peer focus:border-gray-600 focus:ring-0"
+                class="block py-2.5 px-0 w-full border-0 bg-transparent border-b-2 border-gray-300 appearance-none peer focus:border-gray-600 focus:ring-0"
                 placeholder=""
                 required
               />

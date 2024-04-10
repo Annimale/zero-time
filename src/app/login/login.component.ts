@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
@@ -7,7 +7,8 @@ import { SocialAuthService, GoogleLoginProvider, SocialUser } from '@abacritt/an
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { HttpService } from '../http.service';
-import { subscribe } from 'diagnostics_channel';
+import { Location } from '@angular/common';
+
 
 
 
@@ -16,7 +17,7 @@ import { subscribe } from 'diagnostics_channel';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [RouterLink, CommonModule, ReactiveFormsModule,],
+  imports: [RouterLink, CommonModule, ReactiveFormsModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -25,7 +26,7 @@ export class LoginComponent {
   errorMessage: string = '';
   userInfo!:any;
 
-  constructor(private authService: AuthService, private router: Router, private googleAuthService: SocialAuthService, private http:HttpService) { }
+  constructor(private authService: AuthService, private router: Router, private googleAuthService: SocialAuthService, private http:HttpService,private location:Location) { }
 
 
   ngOnInit(): void {
@@ -46,7 +47,10 @@ export class LoginComponent {
         console.log('Inicio de sesión exitoso', response);
         // Aquí puedes guardar el token en el localStorage y redirigir al usuario
         localStorage.setItem('token', response.token);
-        this.router.navigate(['/home']);
+        this.router.navigateByUrl('/home').then(() => {
+          // Una vez completada la redirección, recarga la página
+          window.location.reload();
+        });
       },
       error: (error) => {
         console.error('Error de inicio de sesión', error);

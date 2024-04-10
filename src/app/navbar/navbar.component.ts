@@ -10,6 +10,14 @@ import { HttpClient } from '@angular/common/http';
 
 
 
+interface CustomJwtPayload{
+  id:number,
+  iat:number,
+  exp:number,
+
+}
+
+
 
 
 
@@ -28,15 +36,46 @@ export class NavbarComponent {
   userName: string = '';
   isAuthenticated: boolean = false;
   localToken: any;
+  localName:string='';
 
 
   constructor(private authService: AuthService, private router: Router, private http: HttpService, private http2: HttpClient) { }
-  ngOnInit(): void { this.isAuthenticated=this.authService.tokenExists()
-    if(this.isAuthenticated){
+  ngOnInit(): void {
+    this.isAuthenticated = this.authService.tokenExists()
+    if (this.isAuthenticated) {
       this.getPayload()
     }
+    this.getLocalTokenInfo()
   }
 
+  getLocalUserData(id:any){
+    this.http.getLocalUser(id).subscribe({
+      next:(response)=>{
+        console.log('Datos del usuario:',response);
+        this.localName=response.name;
+      },
+      error:(error)=>{
+        console.log('Error en getLocalUserData:', error);
+      }
+    })
+  }
+
+  getLocalTokenInfo() {
+    if (typeof window!=='undefined'&& localStorage.getItem('token')) {//Esto lo hacemos para comprobar que existe localStorage en el entorno
+      this.isAuthenticated=true;
+      this.localToken=localStorage.getItem('token');
+      const localInfo= jwtDecode(this.localToken)as CustomJwtPayload
+      console.log(localInfo.id);
+
+      if(localInfo && localInfo.id){
+        this.getLocalUserData(localInfo.id)
+      }
+      
+
+    } else {
+      console.log('De momento no hay localToken');
+    }
+  }
 
 
   getPayload() {

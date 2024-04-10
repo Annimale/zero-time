@@ -14,5 +14,8 @@ export class HttpService {
     return this.http.get('http://localhost:3000/user', { withCredentials: true })
     
   }
+  getLocalUser(id:any): Observable<any>{
+    return this.http.get(`http://localhost:3000/localUser/${id}`)
+  }
 
 }
