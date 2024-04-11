@@ -69,8 +69,9 @@ export class SignUpComponent implements OnInit {
           }
         });
         Toast.fire({
-          icon: "success",
-          title: "Usuario creado exitosamente"
+          icon: "info",
+          title: "Usuario creado exitosamente",
+          text:"Revisa el correo introducido para activar la cuenta."
         });
         this.router.navigate(['/login']);
       },

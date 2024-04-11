@@ -25,6 +25,13 @@ const User = sequelize.define("User", {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  verificationToken: {
+    type: DataTypes.STRING,
+  },
+  isVerified: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+  },
   role: {
     type: DataTypes.ENUM("admin", "user"),
     defaultValue: "user", // Valor por defecto es 'user'

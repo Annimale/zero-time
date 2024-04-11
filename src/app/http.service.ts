@@ -17,5 +17,12 @@ export class HttpService {
   getLocalUser(id:any): Observable<any>{
     return this.http.get(`http://localhost:3000/localUser/${id}`)
   }
+  updateUserProfile(userId: number, updateData: any): Observable<any> {
+    return this.http.put(`http://localhost:3000/updateUser/${userId}`, updateData);
+  }
+  verifyPassword(userId: number, password: string): Observable<any> {
+    return this.http.post(`http://localhost:3000/verify-password`, { userId, password });
+  }
+  
 
 }

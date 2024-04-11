@@ -10,10 +10,10 @@ import { jwtDecode } from 'jwt-decode'
 import { HttpService } from '../http.service';
 import { HttpClient } from '@angular/common/http';
 
-interface CustomJwtPayload{
-  id:number,
-  iat:number,
-  exp:number,
+interface CustomJwtPayload {
+  id: number,
+  iat: number,
+  exp: number,
 
 }
 
@@ -32,16 +32,16 @@ export class ProfileComponent {
   userName: string = '';
   isAuthenticated: boolean = false;
   localToken: any;
-  userLocalInfo:any={};
+  userLocalInfo: any = {};
 
-  constructor(private authService: AuthService, private router: Router, private http: HttpService, private http2: HttpClient){}
+  constructor(private authService: AuthService, private router: Router, private http: HttpService, private http2: HttpClient) { }
 
 
   //Inicializamos el form
   ngOnInit(): void {
     this.editForm = new FormGroup({
-      name: new FormControl('', [Validators.required,Validators.minLength(3)]),
-      lastName: new FormControl('',[Validators.required, Validators.minLength(3)]),
+      name: new FormControl('', [Validators.required, Validators.minLength(3)]),
+      lastName: new FormControl('', [Validators.required, Validators.minLength(3)]),
       email: new FormControl({ value: '', disabled: true }, [Validators.required, Validators.email]),
       oldPassword: new FormControl('', [Validators.required, Validators.minLength(6)]),
       newPassword: new FormControl('', [Validators.required, Validators.minLength(6)])
@@ -54,29 +54,29 @@ export class ProfileComponent {
 
   }
 
-  getLocalUserData(id:any){
+  getLocalUserData(id: any) {
     this.http.getLocalUser(id).subscribe({
-      next:(response)=>{
-        console.log('Datos del usuario:',response);
-        this.userLocalInfo=response;
+      next: (response) => {
+        console.log('Datos del usuario:', response);
+        this.userLocalInfo = response;
       },
-      error:(error)=>{
+      error: (error) => {
         console.log('Error en getLocalUserData:', error);
       }
     })
   }
 
   getLocalTokenInfo() {
-    if (typeof window!=='undefined'&& localStorage.getItem('token')) {//Esto lo hacemos para comprobar que existe localStorage en el entorno
-      this.isAuthenticated=true;
-      this.localToken=localStorage.getItem('token');
-      const localInfo= jwtDecode(this.localToken)as CustomJwtPayload
+    if (typeof window !== 'undefined' && localStorage.getItem('token')) {//Esto lo hacemos para comprobar que existe localStorage en el entorno
+      this.isAuthenticated = true;
+      this.localToken = localStorage.getItem('token');
+      const localInfo = jwtDecode(this.localToken) as CustomJwtPayload
       console.log(localInfo.id);
 
-      if(localInfo && localInfo.id){
+      if (localInfo && localInfo.id) {
         this.getLocalUserData(localInfo.id)
       }
-      
+
 
     } else {
       console.log('De momento no hay localToken');
@@ -104,12 +104,40 @@ export class ProfileComponent {
     })
   }
 
-  onSubmit(){
-    if (this.editForm.valid) {
-      const formData = this.editForm.value;
-      // Llama a tu servicio y envía `formData`
-      // Recuerda excluir el campo de email si no debe ser enviado
-    }
+  onSubmit() {
+
+    console.log('Whtas poppin');
+    const formData = this.editForm.value;
+    // Verificar la contraseña actual
+    this.http.verifyPassword(this.userLocalInfo.id, formData.oldPassword).subscribe({
+      next: (result) => {
+        if (result.isValid) {
+          const updateData = {
+            name: formData.name,
+            lastName: formData.lastName,
+
+            newPassword: formData.newPassword // Asegúrate de hashear esto en el servidor
+          };
+          this.http.updateUserProfile(this.userLocalInfo.id, updateData).subscribe({
+            next: (response) => {
+              console.log('Perfil actualizado con éxito', response);
+              Swal.fire('Éxito', 'Tu perfil ha sido actualizado correctamente.', 'success');
+            },
+            error: (error) => {
+              console.error('Error actualizando el perfil', error);
+              Swal.fire('Error', 'Hubo un problema actualizando tu perfil.', 'error');
+            }
+          });
+        } else {
+          Swal.fire('Error', 'La contraseña actual es incorrecta.', 'error');
+        }
+      },
+      error: (error) => {
+        console.error('Error verificando la contraseña', error);
+        Swal.fire('Error', 'Hubo un problema verificando tu contraseña.', 'error');
+      }
+    });
   }
+
 
 }

@@ -3,6 +3,7 @@ const express = require("express");
 const cors = require("cors");
 const authRoutes = require("./routes/authRoutes");
 const sequelize = require("sequelize");
+const bcrypt = require('bcryptjs');
 const User = require("./models/user");
 const Brand = require("./models/brand");
 console.log("User model:", User);
@@ -13,7 +14,7 @@ const cookieParser = require("cookie-parser");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-// Aquí es donde configurarás CORS
+// Aquí es donde configuramos CORS
 app.use(
   cors({
     // Permite el acceso desde cualquier origen o especifica tu dominio, como 'http://localhost:4200'
@@ -58,6 +59,8 @@ app.get("/logout", (req, res) => {
   res.redirect(`http://localhost:4200/home`);
 });
 
+
+//USER GOOGLE
 app.get("/user", (req, res) => {
   // Leer el token desde la cookie
 
@@ -76,6 +79,8 @@ app.get("/user", (req, res) => {
   }
 });
 
+
+//USER SESION NORMAL
 app.get("/localUser/:id", async (req, res) => {
   try {
     const user = await User.findByPk(req.params.id);
@@ -87,6 +92,63 @@ app.get("/localUser/:id", async (req, res) => {
     res.status(500).send("Error al buscar el usuario", error);
   }
 });
+
+app.post('/verify-password', async (req, res) => {
+  const { userId, password } = req.body;
+  try {
+    const user = await User.findByPk(userId);
+
+    if (!user) {
+      return res.status(404).send({ message: "Usuario no encontrado" });
+    }
+
+    // Verificar la contraseña hasheada
+    bcrypt.compare(password, user.password, (err, isMatch) => {
+      if (err) {
+        return res.status(500).send({ message: "Error al verificar la contraseña" });
+      }
+
+      if (isMatch) {
+        res.send({ isValid: true });
+      } else {
+        res.send({ isValid: false });
+      }
+    });
+  } catch (error) {
+    res.status(500).send({ message: "Error en el servidor" });
+  }
+});
+
+
+app.put("/updateUser/:id", async (req, res) => {
+  const userId = req.params.id;
+  const { name, lastName, newPassword } = req.body;
+
+  try {
+    const user = await User.findByPk(userId);
+    if (!user) {
+      return res.status(404).send({ message: "Usuario no encontrado" });
+    }
+
+    // Actualizar los campos del usuario
+    user.name = name || user.name;
+    user.lastName = lastName || user.lastName;
+
+    // Si hay una nueva contraseña, asegúrate de hashearla antes de guardarla
+    if (newPassword) {
+      const salt = bcrypt.genSaltSync(10);
+      user.password = bcrypt.hashSync(newPassword, salt);
+    }
+
+    await user.save();
+    res.json({ message: "Perfil actualizado con éxito", user: user });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({ message: "Error al actualizar el perfil", error: error });
+  }
+});
+
+
 
 // Monta las rutas de autenticación en '/api/auth'
 app.use("/api/auth", authRoutes);
