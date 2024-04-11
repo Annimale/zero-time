@@ -129,7 +129,7 @@ export class ProfileComponent {
             }
           });
         } else {
-          Swal.fire('Error', 'La contraseña actual es incorrecta.', 'error');
+          Swal.fire('Error', 'La contraseña antigua es incorrecta.', 'error');
         }
       },
       error: (error) => {
