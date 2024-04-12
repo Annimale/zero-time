@@ -11,6 +11,7 @@ console.log("Brand model:", Brand);
 
 const app = express();
 const cookieParser = require("cookie-parser");
+const { error } = require("console");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
@@ -41,7 +42,7 @@ app.get("/user/:id", async (req, res) => {
       return res.status(404).send({ message: "Usuario no encontrado" });
     }
 
-    res.send({ name: foundUser.name }); // Envía el nombre del usuario como respuesta
+    res.send(  foundUser ); // Envía el nombre del usuario como respuesta
   } catch (error) {
     console.error(error);
     res.status(500).send({ message: "Error al obtener datos del usuario" });
@@ -66,7 +67,7 @@ app.get("/user", (req, res) => {
 
   const token = req.cookies["token"];
   if (!token) {
-    return res.status(403).json({ message: "No autorizado" });
+    return res.status(403).json({ message: "No autorizado",error });
   }
 
   try {

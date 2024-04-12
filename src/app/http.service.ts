@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable,of } from 'rxjs';
+import { catchError, tap,map } from 'rxjs/operators';
+
 
 
 @Injectable({
@@ -12,8 +14,8 @@ export class HttpService {
 
   getPayload(): Observable<any> {
     return this.http.get('http://localhost:3000/user', { withCredentials: true })
-    
   }
+
   getLocalUser(id:any): Observable<any>{
     return this.http.get(`http://localhost:3000/localUser/${id}`)
   }

@@ -37,6 +37,7 @@ export class NavbarComponent {
   isAuthenticated: boolean = false;
   localToken: any;
   localName:string='';
+  userGoogle:any={};
 
 
   constructor(private authService: AuthService, private router: Router, private http: HttpService, private http2: HttpClient) { }
@@ -89,7 +90,7 @@ export class NavbarComponent {
         this.http2.get<any>(`http://localhost:3000/user/${this.userInfo.id}`).subscribe({
           next: (userRes) => {
             console.log(userRes);
-            this.userName = userRes.name;
+            this.userGoogle = userRes;
           }
         })
       },

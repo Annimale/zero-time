@@ -29,10 +29,13 @@ export class ProfileComponent {
   editForm!: FormGroup;
   cookie!: string;
   userInfo: any;
-  userName: string = '';
+  
   isAuthenticated: boolean = false;
   localToken: any;
   userLocalInfo: any = {};
+  disabledFields: boolean = false;
+  userGoogle:any={};
+  submitButton:boolean=true;
 
   constructor(private authService: AuthService, private router: Router, private http: HttpService, private http2: HttpClient) { }
 
@@ -50,7 +53,8 @@ export class ProfileComponent {
     if (this.isAuthenticated) {
       this.getPayload()
     }
-    this.getLocalTokenInfo()
+    this.getLocalTokenInfo();
+    this.checkCookieGoogle();
 
   }
 
@@ -83,6 +87,30 @@ export class ProfileComponent {
     }
   }
 
+  checkCookieGoogle() {
+    this.http.getPayload().subscribe(
+      res => {
+        // Aquí manejas la respuesta. Asumimos que si res existe, entonces hay una cookie.
+        if (res) {
+          console.log('Hay cookie de google');
+          this.editForm.get('name')?.disable();
+          this.editForm.get('lastName')?.disable();
+          this.editForm.get('oldPassword')?.disable();
+          this.editForm.get('newPassword')?.disable();
+          this.submitButton=false;//Hiddeamos el boton
+
+        } else {
+          console.log('No hay cookie de google');
+        }
+      },
+      err => {
+        // Aquí manejas el caso de error, por ejemplo, si la solicitud falló
+        console.log('No hay cookie de google', err);
+      }
+    );
+  }
+
+
   getPayload() {
     this.http.getPayload().subscribe({
       next: (res) => {
@@ -94,7 +122,7 @@ export class ProfileComponent {
         this.http2.get<any>(`http://localhost:3000/user/${this.userInfo.id}`).subscribe({
           next: (userRes) => {
             console.log(userRes);
-            this.userName = userRes.name;
+            this.userGoogle = userRes;
           }
         })
       },
