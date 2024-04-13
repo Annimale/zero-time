@@ -25,6 +25,7 @@ const User = sequelize.define("User", {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  //Migración 20240411155613{
   verificationToken: {
     type: DataTypes.STRING,
   },
@@ -32,11 +33,28 @@ const User = sequelize.define("User", {
     type: DataTypes.BOOLEAN,
     defaultValue: false,
   },
+  //}Migración 20240411155613
   role: {
     type: DataTypes.ENUM("admin", "user"),
     defaultValue: "user", // Valor por defecto es 'user'
   },
   // Continúa definiendo el resto de los campos...
 });
+//Migración 20240413133703{
+  User.associate = function(models) {
+    User.hasMany(models.Watch, {
+      foreignKey: 'userID',
+      as: 'watches'
+    });
+    User.hasMany(models.Sale, {
+      foreignKey: 'userID',
+      as: 'sales'
+    });
+    User.hasMany(models.Comment, {
+      foreignKey: 'userID',
+      as: 'comments'
+    });
+  };
+
 
 module.exports = User;
