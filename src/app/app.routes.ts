@@ -28,7 +28,7 @@ export const routes: Routes = [
     { path: 'news', component: NewsComponent },
     { path: 'news-detail', component: NewsDetailComponent },//El title lo sacamos de la DB de la news, DE MOMENTO PROVISIONAL LO DE NEWS-DETAIL
   //{ path: 'news/:title', component: NewsDetailComponent },//El title lo sacamos de la DB de la news, DE MOMENTO PROVISIONAL LO DE NEWS-DETAIL
-    { path: 'brands', component: BrandsComponent },
+    { path: 'brands/:brandName', component: BrandsComponent },
     { path: 'shop', component: ShopComponent },
     { path: 'shop-detail', component: ShopDetailComponent }, //Igual que con NEWS cogeremos la REF o ID a modo de route
     // { path: 'shop/:model', component: ShopDetailComponent },//El model lo sacamos de la DB del watch

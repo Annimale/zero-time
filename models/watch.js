@@ -1,4 +1,7 @@
-module.exports = (sequelize, DataTypes) => {
+const { Sequelize, Model, DataTypes } = require("sequelize");
+const sequelize = require("../config/database");
+
+
   const Watch = sequelize.define(
     "Watch",
     {
@@ -78,5 +81,4 @@ module.exports = (sequelize, DataTypes) => {
     });
   };
 
-  return Watch;
-};
+module.exports=Watch;

@@ -2,10 +2,12 @@
 const express = require("express");
 const cors = require("cors");
 const authRoutes = require("./routes/authRoutes");
+const brandRoutes=require ("./routes/brandRoutes");
 const sequelize = require("sequelize");
 const bcrypt = require('bcryptjs');
 const User = require("./models/user");
 const Brand = require("./models/brand");
+
 console.log("User model:", User);
 console.log("Brand model:", Brand);
 
@@ -25,6 +27,7 @@ app.use(
     credentials: true, // Permite el envío de cookies
   })
 );
+
 
 // Rutas
 app.get("/", (req, res) => {
@@ -149,10 +152,11 @@ app.put("/updateUser/:id", async (req, res) => {
   }
 });
 
-
+//? BRAND
 
 // Monta las rutas de autenticación en '/api/auth'
 app.use("/api/auth", authRoutes);
+app.use("/brands",brandRoutes)
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

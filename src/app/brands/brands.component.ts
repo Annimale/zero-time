@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { EuropeNumberPipe } from '../europe-number.pipe';
+import { ActivatedRoute,Router } from '@angular/router';
+import { BrandService } from '../brand.service';
 
 @Component({
   selector: 'app-brands',
@@ -9,5 +11,30 @@ import { EuropeNumberPipe } from '../europe-number.pipe';
   styleUrl: './brands.component.css'
 })
 export class BrandsComponent {
+  brand:string="";
 
-}
+  constructor(
+    private route: ActivatedRoute,
+    private brandService: BrandService,
+    private router: Router,
+
+  ) {}
+
+  ngOnInit(): void {
+    this.route.paramMap.subscribe(params => {
+      const brandName = params.get('brandName');
+      if (brandName) { 
+        this.brandService.getBrandByName(brandName).subscribe(data => {
+          this.brand = data;
+        }, error => {
+          this.router.navigate(['/not-found']);
+        });
+      } else {
+        console.error('Brand name is null');
+        this.router.navigate(['/not-found']);
+
+      }
+    });
+  }
+  }
+
