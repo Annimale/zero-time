@@ -38,7 +38,7 @@ const User = sequelize.define("User", {
     type: DataTypes.ENUM("admin", "user"),
     defaultValue: "user", // Valor por defecto es 'user'
   },
-  // Continúa definiendo el resto de los campos...
+
 });
 //Migración 20240413133703{
   User.associate = function(models) {
