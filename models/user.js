@@ -25,7 +25,6 @@ const User = sequelize.define("User", {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  //Migración 20240411155613{
   verificationToken: {
     type: DataTypes.STRING,
   },
@@ -33,28 +32,28 @@ const User = sequelize.define("User", {
     type: DataTypes.BOOLEAN,
     defaultValue: false,
   },
-  //}Migración 20240411155613
   role: {
     type: DataTypes.ENUM("admin", "user"),
     defaultValue: "user", // Valor por defecto es 'user'
   },
-
 });
-//Migración 20240413133703{
-  User.associate = function(models) {
-    User.hasMany(models.Watch, {
-      foreignKey: 'userID',
-      as: 'watches'
-    });
-    User.hasMany(models.Sale, {
-      foreignKey: 'userID',
-      as: 'sales'
-    });
-    User.hasMany(models.Comment, {
-      foreignKey: 'userID',
-      as: 'comments'
-    });
-  };
+//? AUNQUE NO ESTÉ AQUI EN PHPMYADMIN SI QUE HEMOS AÑADIDO EL createdAt y el updatedAt
+//? si lo hubiesemos hecho mediante aqui tendríamos que haber modificado el modelo y la migración
+//? por 48384589 vez :D
 
+User.associate = function (models) {
+  User.hasMany(models.Watch, {
+    foreignKey: "userID",
+    as: "watches",
+  });
+  User.hasMany(models.Sale, {
+    foreignKey: "userID",
+    as: "sales",
+  });
+  User.hasMany(models.Comment, {
+    foreignKey: "userID",
+    as: "comments",
+  });
+};
 
 module.exports = User;
