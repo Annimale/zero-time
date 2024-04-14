@@ -11,7 +11,7 @@ import { BrandService } from '../brand.service';
   styleUrl: './brands.component.css'
 })
 export class BrandsComponent {
-  brand:string="";
+  brandInfo:any={};
 
   constructor(
     private route: ActivatedRoute,
@@ -25,7 +25,8 @@ export class BrandsComponent {
       const brandName = params.get('brandName');
       if (brandName) { 
         this.brandService.getBrandByName(brandName).subscribe(data => {
-          this.brand = data;
+          this.brandInfo = data;
+          console.log(this.brandInfo);
         }, error => {
           this.router.navigate(['/not-found']);
         });

@@ -4,7 +4,7 @@ const router = express.Router();
 const sequelize = require("sequelize");
 const Brand = require("../models/brand");
 
-//! Endpoint para buscar una marca por nombre
+//! Endpoint para devolver toda la info de una brand
 router.get("/api/brands/:brandName", async (req, res) => {
   try {
     const brandName = req.params.brandName;
