@@ -9,7 +9,7 @@ router.get("/api/brands/:brandName", async (req, res) => {
   try {
     const brandName = req.params.brandName;
     const brand = await Brand.findOne({ where: { name: brandName } });
-      
+
     if (brand) {
       res.json(brand);
     } else {
@@ -20,4 +20,15 @@ router.get("/api/brands/:brandName", async (req, res) => {
   }
 });
 
+//! Endpoint para devolver todas lasr marcas que tenga
+router.get("/api/brands", async (req, res) => {
+  try {
+    console.log('Cogiendo brands');
+    const brands = await Brand.findAll();
+    console.log(brands);
+    res.json(brands);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+});
 module.exports = router;

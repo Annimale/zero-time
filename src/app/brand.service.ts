@@ -11,4 +11,7 @@ export class BrandService {
   getBrandByName(brandName: string): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/api/brands/${brandName}`);
   }
+  getAllBrands():Observable<any[]>{
+    return this.http.get<any>(`${this.apiUrl}/api/brands`)
+  }
 }
