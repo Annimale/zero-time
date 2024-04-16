@@ -157,6 +157,7 @@ app.put("/updateUser/:id", async (req, res) => {
 // Monta las rutas de autenticación en '/api/auth'
 app.use("/api/auth", authRoutes);
 app.use("/brands",brandRoutes)
+app.use("/watches",watchRoutes)
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
