@@ -3,6 +3,18 @@ import { RouterLink } from '@angular/router';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { WatchService } from '../watch.service';
 
+
+interface WatchFormValues {
+  brand: string;
+  model: string;
+  description: string;
+  movement: string;
+  condition: string;
+  caseSize: number;
+  caseThickness: number;
+}
+
+
 @Component({
   selector: 'app-add-watch',
   standalone: true,
@@ -11,7 +23,7 @@ import { WatchService } from '../watch.service';
   styleUrl: './add-watch.component.css'
 })
 export class AddWatchComponent {
-  images: File[] = [];
+
 
   watchForm = new FormGroup({
     brand: new FormControl('', Validators.required),
@@ -23,15 +35,41 @@ export class AddWatchComponent {
     caseThickness: new FormControl('', [Validators.required, Validators.min(1)]),
   })
   constructor(private watchService: WatchService) { }
-
   onSubmit(): void {
     if (this.watchForm.valid) {
-      this.watchService.addWatch(this.watchForm.value).subscribe({
-        next: (response) => console.log('Watch added successfully', response),
-        error: (error) => console.error('Error adding watch', error)
+      const formData = new FormData();
+      const formValues: WatchFormValues = {
+        brand: this.watchForm.get('brand')?.value || '',
+        model: this.watchForm.get('model')?.value || '',
+        description: this.watchForm.get('description')?.value || '',
+        movement: this.watchForm.get('movement')?.value || '',
+        condition: this.watchForm.get('condition')?.value || '',
+        caseSize: Number(this.watchForm.get('caseSize')?.value) || 0,
+        caseThickness: Number(this.watchForm.get('caseThickness')?.value) || 0,
+      };
+
+      Object.keys(formValues).forEach(key => {
+        const value = formValues[key as keyof WatchFormValues];
+        formData.append(key, value.toString());
+      });
+
+      const files = (document.getElementById('dropzone-file') as HTMLInputElement).files;
+      if (files) {
+        Array.from(files).forEach(file => {
+          formData.append('images', file);
+        });
+      }
+
+      this.watchService.addWatch(formData).subscribe({
+        next: (watch) => {
+          console.log('Reloj añadido con imágenes:', watch);
+        },
+        error: (error) => {
+          console.error('Error al añadir el reloj:', error);
+        }
       });
     } else {
-      console.log('Form is not valid');
+      console.error('El formulario no es válido');
     }
   }
 }

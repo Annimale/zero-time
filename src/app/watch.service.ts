@@ -11,6 +11,10 @@ export class WatchService {
   constructor(private http:HttpClient) { }
 
   addWatch(watchData:any):Observable<any>{
-    return this.http.post(`${this.baseUrl}/api/watches`,watchData)
+    return this.http.post(`${this.baseUrl}/api/watches`,watchData,{
+      reportProgress: true,
+      observe: 'events'
+    
+    })
   }
 }

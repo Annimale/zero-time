@@ -3,6 +3,7 @@ const express = require("express");
 const cors = require("cors");
 const authRoutes = require("./routes/authRoutes");
 const brandRoutes=require ("./routes/brandRoutes");
+const watchRoutes=require("./routes/watchRoutes");
 const sequelize = require("sequelize");
 const bcrypt = require('bcryptjs');
 const User = require("./models/user");
