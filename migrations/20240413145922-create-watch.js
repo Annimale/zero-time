@@ -61,10 +61,6 @@ module.exports = {
           key: "id",
         },
       },
-
-      purchaseDate: {
-        type: Sequelize.DATE,
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

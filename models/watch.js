@@ -64,9 +64,7 @@ const Watch = sequelize.define(
         key: "id",
       },
     },
-    purchaseDate: {
-      type: DataTypes.DATE,
-    },
+   
   },
   {
     tableName: "Watches",
