@@ -41,6 +41,7 @@ const sequelize = require("../config/database");
             defaultValue:"in-depth",
         }
     }, {
+        timestamps: true,
         tableName: 'Articles'
     });
     //? AUNQUE NO ESTÉ AQUI EN PHPMYADMIN SI QUE HEMOS AÑADIDO EL createdAt y el updatedAt

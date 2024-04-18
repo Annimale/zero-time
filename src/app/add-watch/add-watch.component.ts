@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
+
 import { WatchService } from '../watch.service';
 
 
@@ -18,7 +19,7 @@ interface WatchFormValues {
 @Component({
   selector: 'app-add-watch',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink,ReactiveFormsModule],
   templateUrl: './add-watch.component.html',
   styleUrl: './add-watch.component.css'
 })

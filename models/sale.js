@@ -74,6 +74,7 @@ const Sale = sequelize.define(
     },
   },
   {
+    timestamps: true,
     tableName: "Sales",
   }
 );

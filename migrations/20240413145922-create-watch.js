@@ -17,6 +17,10 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER,
       },
+      price:{
+        allowNull:false,
+        type:Sequelize.FLOAT,
+      },
       caseWidth: {
         allowNull: false,
         type: Sequelize.INTEGER,

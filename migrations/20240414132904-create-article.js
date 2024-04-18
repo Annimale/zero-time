@@ -43,6 +43,16 @@ module.exports = {
         type: Sequelize.ENUM("in-depth","hands-on","introducing","one-to-watch"),
         defaultValue:"in-depth",
       },
+      createdAt: {
+        type: Sequelize.DATE,
+        allowNull: false,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
+      },
+      updatedAt: {
+        type: Sequelize.DATE,
+        allowNull: false,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
+      }
     });
   },
 

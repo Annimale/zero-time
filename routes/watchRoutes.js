@@ -11,6 +11,7 @@ router.post('/api/watches', upload.array('images', 5), async (req, res) => {
   try {
     console.log('Archivos recibidos:', req.files);
     const watch = await Watch.create(req.body);
+    console.log('BACKEND WATCHROUTES', watch);
     // Aquí puedes procesar las imágenes como necesites, por ejemplo, guardando sus rutas en la DB
     res.status(201).send(watch);
   } catch (error) {

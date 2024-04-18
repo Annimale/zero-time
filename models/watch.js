@@ -41,6 +41,10 @@ const Watch = sequelize.define(
       type: DataTypes.TEXT,
       allowNull: false,
     },
+    price: {
+      type: DataTypes.FLOAT,
+      allowNull: false,
+    },
     images: {
       type: DataTypes.TEXT, // O DataTypes.JSON si tu base de datos lo soporta y necesitas más estructura
       allowNull: false,
@@ -66,6 +70,7 @@ const Watch = sequelize.define(
   },
   {
     tableName: "Watches",
+    timestamps: true,
   }
 );
 //? AUNQUE NO ESTÉ AQUI EN PHPMYADMIN SI QUE HEMOS AÑADIDO EL createdAt y el updatedAt

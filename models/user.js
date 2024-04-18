@@ -36,6 +36,8 @@ const User = sequelize.define("User", {
     type: DataTypes.ENUM("admin", "user"),
     defaultValue: "user", // Valor por defecto es 'user'
   },
+},{
+  timestamps: true,
 });
 //? AUNQUE NO ESTÉ AQUI EN PHPMYADMIN SI QUE HEMOS AÑADIDO EL createdAt y el updatedAt
 //? si lo hubiesemos hecho mediante aqui tendríamos que haber modificado el modelo y la migración

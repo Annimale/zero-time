@@ -20,6 +20,7 @@ const Brand = sequelize.define(
     },
   },
   {
+    timestamps: true,
     tableName: "Brands",
   }
 );

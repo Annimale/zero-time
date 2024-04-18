@@ -28,7 +28,10 @@ const Comment = sequelize.define("Comment", {
     type: DataTypes.TEXT,
     allowNull: false,
   },
-});
+},{
+  timestamps: true,
+}
+);
 //? AUNQUE NO ESTÉ AQUI EN PHPMYADMIN SI QUE HEMOS AÑADIDO EL createdAt y el updatedAt
 //? si lo hubiesemos hecho mediante aqui tendríamos que haber modificado el modelo y la migración
 //? por 48384589 vez :D
