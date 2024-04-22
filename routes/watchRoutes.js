@@ -9,14 +9,21 @@ const upload = multer({ dest: 'uploads/' });
 //? INSERT DE UN RELOJ ADD-WATCH
 router.post('/api/watches', upload.array('images', 5), async (req, res) => {
   try {
-    console.log('Archivos recibidos:', req.files);
-    const watch = await Watch.create(req.body);
-    console.log('BACKEND WATCHROUTES', watch);
-    // Aquí puedes procesar las imágenes como necesites, por ejemplo, guardando sus rutas en la DB
+    if (!req.files || req.files.length === 0) {
+      throw new Error("Debe incluir al menos una imagen");
+    }
+    // Asumiendo que los campos están correctamente nombrados en el formulario y coinciden con el modelo Sequelize
+    const watchData = {
+      ...req.body,
+      images: req.files.map(file => file.path)  // Guarda las rutas de las imágenes
+    };
+    const watch = await Watch.create(watchData);
     res.status(201).send(watch);
   } catch (error) {
-    res.status(500).send(error.message);
+    console.error('Error al procesar la solicitud:', error);
+    res.status(500).send({ message: error.message || "Internal Server Error" });
   }
 });
+
   
   module.exports = router;

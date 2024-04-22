@@ -6,7 +6,7 @@ import { WatchService } from '../watch.service';
 
 
 interface WatchFormValues {
-  brand: string;
+  brandID: number;
   model: string;
   description: string;
   movement: string;

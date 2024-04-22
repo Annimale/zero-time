@@ -15,11 +15,11 @@ const Watch = sequelize.define(
       allowNull: false,
     },
     caseSize: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.FLOAT,
       allowNull: false,
     },
-    caseWidth: {
-      type: DataTypes.INTEGER,
+    caseThickness: {
+      type: DataTypes.FLOAT,
       allowNull: false,
     },
     movement: {
@@ -71,9 +71,7 @@ const Watch = sequelize.define(
     timestamps: true,
   }
 );
-//? AUNQUE NO ESTÉ AQUI EN PHPMYADMIN SI QUE HEMOS AÑADIDO EL createdAt y el updatedAt
-//? si lo hubiesemos hecho mediante aqui tendríamos que haber modificado el modelo y la migración
-//? por 48384589 vez :D
+
 Watch.associate = function (models) {
   Watch.belongsTo(models.Brand, {
     foreignKey: "brandID",
@@ -84,5 +82,13 @@ Watch.associate = function (models) {
     as: "user",
   });
 };
+
+Watch.sync({ force: true })  // Esto eliminará la tabla si existe y la creará de nuevo
+  .then(() => {
+    console.log('La tabla para el modelo Watch ha sido (re)creada');
+  })
+  .catch((error) => {
+    console.error('Error al sincronizar el modelo Watch:', error);
+  });
 
 module.exports = Watch;
