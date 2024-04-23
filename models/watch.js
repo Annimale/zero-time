@@ -46,7 +46,7 @@ const Watch = sequelize.define(
       allowNull: false,
     },
     images: {
-      type: DataTypes.TEXT, // O DataTypes.JSON si tu base de datos lo soporta y necesitas más estructura
+      type: DataTypes.JSON, // O DataTypes.JSON si tu base de datos lo soporta y necesitas más estructura
       allowNull: false,
     },
     brandID: {
@@ -83,12 +83,5 @@ Watch.associate = function (models) {
   });
 };
 
-Watch.sync({ force: true })  // Esto eliminará la tabla si existe y la creará de nuevo
-  .then(() => {
-    console.log('La tabla para el modelo Watch ha sido (re)creada');
-  })
-  .catch((error) => {
-    console.error('Error al sincronizar el modelo Watch:', error);
-  });
 
 module.exports = Watch;

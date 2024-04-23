@@ -4,7 +4,7 @@
 module.exports = {
   async up (queryInterface, Sequelize) {
     await queryInterface.addColumn('Watches', 'images', {
-      type: Sequelize.TEXT, // O Sequelize.JSON
+      type: Sequelize.JSON, // O Sequelize.JSON
       allowNull: false
     });
   },

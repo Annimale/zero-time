@@ -15,15 +15,15 @@ module.exports = {
       },
       caseSize: {
         allowNull: false,
-        type: Sequelize.INTEGER,
+        type: Sequelize.FLOAT,
       },
       price:{
         allowNull:false,
         type:Sequelize.FLOAT,
       },
-      caseWidth: {
+      caseThickness: {
         allowNull: false,
-        type: Sequelize.INTEGER,
+        type: Sequelize.FLOAT,
       },
       movement: {
         allowNull: false,
@@ -46,6 +46,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.TEXT,
       },
+     
       brandID: {
         allowNull: false,
         type: Sequelize.INTEGER,
