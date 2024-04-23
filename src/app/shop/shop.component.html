@@ -20,84 +20,14 @@
                     </div>
                     <div class="h-56 overflow-y-auto  ">
 
-
-                        <div class="space-y-2 pr-3">
-                            <!-- HAY QUE CORREGIR QUE SE PUEDA CLICAR EN EL LABEL SIN TENER QUE CLICAR EN EL INPUT-->
-                            <div class="flex items-center justify-between">
-                                <label class="cursor-pointer">Grand Seiko
-                                    <input type="checkbox"
-                                        class="form-checkbox h-5 w-5 focus:ring-0 ml-20 text-gray-600" />
-                                </label>
-                            </div>
-                            <div class="flex items-center justify-between">
-                                <label class="cursor-pointer">Grand Seiko
-                                    <input type="checkbox"
-                                        class="form-checkbox h-5 w-5 focus:ring-0 ml-20 text-gray-600" />
-                                </label>
-                            </div>
-                            <div class="flex items-center justify-between">
-                                <label class="cursor-pointer">Grand Seiko
-                                    <input type="checkbox"
-                                        class="form-checkbox h-5 w-5 focus:ring-0 ml-20 text-gray-600" />
-                                </label>
-                            </div>
-                            <div class="flex items-center justify-between">
-                                <label class="cursor-pointer">Grand Seiko
-                                    <input type="checkbox"
-                                        class="form-checkbox h-5 w-5 focus:ring-0 ml-20 text-gray-600" />
-                                </label>
-                            </div>
-                            <div class="flex items-center justify-between">
-                                <label class="cursor-pointer">Grand Seiko
-                                    <input type="checkbox"
-                                        class="form-checkbox h-5 w-5 focus:ring-0 ml-20 text-gray-600" />
-                                </label>
-                            </div>
-                            <div class="flex items-center justify-between">
-                                <label class="cursor-pointer">Grand Seiko
-                                    <input type="checkbox"
-                                        class="form-checkbox h-5 w-5 focus:ring-0 ml-20  text-gray-600" />
-                                </label>
-                            </div>
-                            <div class="flex items-center justify-between">
-                                <label class="cursor-pointer">Grand Seiko
-                                    <input type="checkbox"
-                                        class="form-checkbox h-5 w-5 focus:ring-0 ml-20 text-gray-600" />
-                                </label>
-                            </div>
-                            <div class="flex items-center justify-between">
-                                <label class="cursor-pointer">Grand Seiko
-                                    <input type="checkbox"
-                                        class="form-checkbox h-5 w-5 focus:ring-0 ml-20 text-gray-600" />
-                                </label>
-                            </div>
-                            <div class="flex items-center justify-between">
-                                <label class="cursor-pointer">Grand Seiko
-                                    <input type="checkbox"
-                                        class="form-checkbox h-5 w-5 focus:ring-0 ml-20 text-gray-600" />
-                                </label>
-                            </div>
-                            <div class="flex items-center justify-between">
-                                <label class="cursor-pointer">Grand Seiko
-                                    <input type="checkbox"
-                                        class="form-checkbox h-5 w-5 focus:ring-0 ml-20 text-gray-600" />
-                                </label>
-                            </div>
-                            <div class="flex items-center justify-between">
-                                <label class="cursor-pointer">Grand Seiko
-                                    <input type="checkbox"
-                                        class="form-checkbox h-5 w-5 focus:ring-0 ml-20 text-gray-600" />
-                                </label>
-                            </div>
-                            <div class="flex items-center justify-between">
-                                <label class="cursor-pointer">Grand Seiko
-                                    <input type="checkbox"
-                                        class="form-checkbox h-5 w-5 focus:ring-0 ml-20 text-gray-600" />
-                                </label>
-                            </div>
+                        <div class="space-y-2 pr-3" *ngFor="let brand of brands">
+                            <label class="flex justify-between items-center cursor-pointer">
+                                <span>{{ brand.name }}</span>
+                                <input type="checkbox" class="form-checkbox h-5 w-5 focus:ring-0 text-gray-600" />
+                            </label>
                         </div>
 
-                        <!-- Repeat for other brands -->
+                        
                     </div>
                 </div>
 
