@@ -25,5 +25,17 @@ router.post('/api/watches', upload.array('images', 5), async (req, res) => {
   }
 });
 
+router.get('/api/getWatches',async (req,res)=>{
+  try{
+    console.log('Obteniendo todos los relojes de /watches/api/getWatches');
+    const watches=await Watch.findAll();
+    console.log(watches);
+    res.json(watches)
+  }catch(error){
+    console.error('Error al procesar la solicitud:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+})
+
   
   module.exports = router;

@@ -71,19 +71,18 @@
             </div>
         </div>
         <div class="GRID RELOJES  w-full grid grid-cols-3 gap-14 gap-y-16 font-latoRegular">
-            <div class="WATCHCARD   flex flex-col w-full">
+            <div class="WATCHCARD   flex flex-col w-full" *ngFor="let watch of watches">
                 <div class=" w-full pb-6">
                     <img class=" object-cover" alt="FALTA PONERLO BIENr1"
-                        src="https://hodinkee-shopify.imgix.net/s/files/1/0146/0732/files/GA-700HD-8A_front_SQ_KM.jpg?v=1710896141&auto=format&ar=4%3A5&fit=crop&fm=jpg&q=65&usm=8&ixlib=react-9.7.0&w=380"
+                        [src]="getFirstImageUrl(watch.images)"
                         alt="FALTA PONERLO BIEN">
                 </div>
                 <div class="MARCA uppercase font-latoBold">
-                    G-SHOCK
+                    {{ getBrandName(watch.brandID) }}
                 </div>
-                <div class="MODELO capitalize">GAB2100FC-1A 'Multi-Color' In Black GAB2100FC-1A 'Multi-Color' In Black
-                    GAB2100FC-1A 'Multi-Color' In Black GAB2100FC-1A 'Multi-Color' In Black</div>
+                <div class="MODELO capitalize">{{watch.model}}</div>
                 <div class=" font-latoBold pt-3">
-                    {{ 5500 | europeNumber}}
+                    {{ watch.price | europeNumber}}
                 </div>
             </div>
             <div class="WATCHCARD   flex flex-col w-full">

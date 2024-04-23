@@ -17,4 +17,8 @@ export class WatchService {
     
     })
   }
+
+  getAllWatches():Observable<any[]>{
+    return this.http.get<any>(`${this.baseUrl}/api/getWatches`)
+  }
 }
