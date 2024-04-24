@@ -70,7 +70,7 @@ export class AddWatchComponent {
         condition: this.watchForm.get('condition')?.value || '',
         caseSize: Number(this.watchForm.get('caseSize')?.value) || 0,
         caseThickness: Number(this.watchForm.get('caseThickness')?.value) || 0,
-        price: Number(this.watchForm.get('caseThickness')?.value) || 0,
+        price: Number(this.watchForm.get('price')?.value) || 0,
 
       };
 

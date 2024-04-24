@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { EuropeNumberPipe } from "../europe-number.pipe";
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-shop-detail',
@@ -9,5 +10,14 @@ import { EuropeNumberPipe } from "../europe-number.pipe";
     imports: [EuropeNumberPipe]
 })
 export class ShopDetailComponent {
+
+    constructor (private route:ActivatedRoute){}
+
+    ngOnInit(): void {
+
+        const watchId = this.route.snapshot.params['id'];
+        console.log(watchId);
+        
+    }
 
 }

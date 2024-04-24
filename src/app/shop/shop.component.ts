@@ -3,6 +3,8 @@ import { EuropeNumberPipe } from "../europe-number.pipe";
 import { BrandService } from '../brand.service';
 import { CommonModule } from '@angular/common';
 import { WatchService } from '../watch.service';
+import { Router } from '@angular/router';
+
 @Component({
     selector: 'app-shop',
     standalone: true,
@@ -17,6 +19,7 @@ export class ShopComponent {
     constructor(
         private brandService: BrandService,
         private watchService: WatchService,
+        private router:Router,
     ) { }
     ngOnInit(): void {
         this.brandService.getAllBrands().subscribe({
@@ -65,6 +68,10 @@ export class ShopComponent {
             return 'src/assets/images/watches/default-image.webp';
         }
     }
+
+    navigateToWatchDetail(watchId: number) {
+        this.router.navigate(['/shop', watchId]);
+      }
 
 
 
