@@ -12,6 +12,7 @@ const Brand = require("./models/brand");
 console.log("User model:", User);
 console.log("Brand model:", Brand);
 
+const path = require('path');
 const app = express();
 const cookieParser = require("cookie-parser");
 const { error } = require("console");
@@ -28,6 +29,7 @@ app.use(
     credentials: true, // Permite el envío de cookies
   })
 );
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 
 // Rutas

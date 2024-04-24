@@ -13,6 +13,7 @@ import { WatchService } from '../watch.service';
 export class ShopComponent {
     brands: any[] = [];
     watches: any;
+
     constructor(
         private brandService: BrandService,
         private watchService: WatchService,
@@ -46,13 +47,25 @@ export class ShopComponent {
         return brand ? brand.name : 'Unknown Brand';
     }
 
-    getFirstImageUrl(images: string[]): string {
+    getFirstImageUrl(imageJson: string): string {
+        let images;
+        try {
+            images = JSON.parse(imageJson);
+        } catch (e) {
+            console.error('Error parsing images JSON', e);
+            return 'src/assets/images/watches/default-image.webp'; // Imagen por defecto
+        }
+
         if (images && images.length > 0) {
-            const firstImage = images[0]; // Obtener la primera imagen de la lista
-            // Puedes necesitar ajustar la ruta base de la URL dependiendo de cómo esté configurado tu servidor
-            return `http://localhost:3000/uploads/` + firstImage;
+            const firstImage = images[0];
+            const imageUrl = `http://localhost:3000/${firstImage.replace(/\\\\/g, '/')}`;
+            console.log("Trying to load image:", imageUrl); // Imprime la URL intentada
+            return imageUrl;
         } else {
-            return 'src/assets/images/watches/r1.webp'; // URL de una imagen por defecto en caso de que no haya ninguna imagen
+            return 'src/assets/images/watches/default-image.webp';
         }
     }
+
+
+
 }
