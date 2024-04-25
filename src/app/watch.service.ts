@@ -21,4 +21,8 @@ export class WatchService {
   getAllWatches():Observable<any[]>{
     return this.http.get<any>(`${this.baseUrl}/api/getWatches`)
   }
+
+  getWatchById(id:number):Observable<any>{
+    return this.http.get(`${this.baseUrl}/api/getWatchById/${id}`)
+  }
 }

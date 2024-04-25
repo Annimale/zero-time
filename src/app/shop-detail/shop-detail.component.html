@@ -1,104 +1,58 @@
 <div class="container mx-auto font-latoRegular">
   <div class="grid grid-cols-2">
     <div class="IMAGES mx-auto items-center">
-      <div class="MAIN">
-        <img
-          class=""
-          width="602px"
-          height="609px"
-          src="https://hodinkee-shopify.imgix.net/s/files/1/0146/0732/files/OMEGA-Speedmaster-Professional-Moonwatch-310-30-42-50-01-001-10-10-OME-KC5DY7-ab2f28bf8199.jpg?v=1711657983&auto=format&ixlib=react-9.7.0&w=689"
-          alt=""
-        />
-      </div>
-      <div class="OTHERIMAGES grid grid-cols-4 pt-6 ">
-        <div class="items-center flex flex-col">
-          <img
-            class=""
-            height="140px"
-            width="140px"
-            src="https://hodinkee-shopify.imgix.net/s/files/1/0146/0732/files/OMEGA-Speedmaster-Professional-Moonwatch-310-30-42-50-01-001-10-10-OME-KC5DY7-514b3568ceee.jpg?v=1711657983&auto=format&ixlib=react-9.7.0&w=328"
-            alt=""
-          />
+      <div class="MAIN" *ngIf="watch.images && watch.images.length > 0">
+        <img [src]="watch.images[0]" width="602px" height="609px" alt="Main Watch Image">
+    </div>
+    <div class="OTHERIMAGES grid grid-cols-4 pt-6" *ngIf="watch.images && watch.images.length > 1">
+        <div class="items-center flex flex-col" *ngFor="let image of watch.images; let i = index" [hidden]="i === 0">
+            <img [src]="image" height="140px" width="140px" alt="Watch Image {{i + 1}}">
         </div>
-        <div class="items-center flex flex-col">
-          <img
-            class=""
-            height="140px"
-            width="140px"
-            src="https://hodinkee-shopify.imgix.net/s/files/1/0146/0732/files/OMEGA-Speedmaster-Professional-Moonwatch-310-30-42-50-01-001-10-10-OME-KC5DY7-514b3568ceee.jpg?v=1711657983&auto=format&ixlib=react-9.7.0&w=328"
-            alt=""
-          />
-        </div>
-        <div class="items-center flex flex-col">
-          <img
-            class=""
-            height="140px"
-            width="140px"
-            src="https://hodinkee-shopify.imgix.net/s/files/1/0146/0732/files/OMEGA-Speedmaster-Professional-Moonwatch-310-30-42-50-01-001-10-10-OME-KC5DY7-514b3568ceee.jpg?v=1711657983&auto=format&ixlib=react-9.7.0&w=328"
-            alt=""
-          />
-        </div>
-        <div class="items-center flex flex-col">
-          <img
-            class=""
-            height="140px"
-            width="140px"
-            src="https://hodinkee-shopify.imgix.net/s/files/1/0146/0732/files/OMEGA-Speedmaster-Professional-Moonwatch-310-30-42-50-01-001-10-10-OME-KC5DY7-514b3568ceee.jpg?v=1711657983&auto=format&ixlib=react-9.7.0&w=328"
-            alt=""
-          />
-        </div>
-      </div>
+    </div>
     </div>
     <div class="INFO">
       <div class="BRAND">
-        <h2 class="uppercase font-latoBold text-4xl pb-4">OMEGA</h2>
+        <h2 class="uppercase font-latoBold text-4xl pb-4">
+          {{ getBrandName(watch.brandID) }}
+        </h2>
       </div>
       <div class="MODEL">
         <h3 class="capitalize text-gray-500 text-2xl pb-9">
-          Speedmaster '57 Co-Axial Master Chronometer 40.5mm Burgundy Dial On
-          Strap
+          {{ watch.model }}
         </h3>
       </div>
       <div class="PRICE pb-6">
-        <h3 class="text-2xl font-latoBold">{{ 9100 | europeNumber }}</h3>
+        <h3 class="text-2xl font-latoBold">{{ watch.price | europeNumber }}</h3>
       </div>
       <div class="SPECS text-lg grid grid-cols-4 pb-12">
         <div class="CASESIZE flex flex-col space-y-2">
           <h4 class="uppercase">tamaño caja</h4>
-          <h4 class="font-latoBold">40.5mm</h4>
-        </div>
-        <div class="MOVEMENT flex flex-col space-y-2">
-          <h4 class="uppercase">movimiento</h4>
-          <h4 class="font-latoBold">Automático</h4>
-        </div>
-        <div class="CONDITION flex flex-col space-y-2">
-          <h4 class="uppercase">condición</h4>
-          <h4 class="font-latoBold">Nuevo</h4>
+          <h4 class="font-latoBold">{{ watch.caseSize }}mm</h4>
         </div>
         <div class="CASETHICKNESS flex flex-col space-y-2">
           <h4 class="uppercase">grosor caja</h4>
-          <h4 class="font-latoBold">12mm</h4>
+          <h4 class="font-latoBold">{{ watch.caseThickness }}mm</h4>
+        </div>
+        <div class="MOVEMENT flex flex-col space-y-2">
+          <h4 class="uppercase">movimiento</h4>
+          <h4 class="font-latoBold capitalize">{{ watch.movement }}</h4>
+        </div>
+        <div class="CONDITION flex flex-col space-y-2">
+          <h4 class="uppercase">condición</h4>
+          <h4 class="font-latoBold capitalize">{{ watch.condition }}</h4>
         </div>
       </div>
       <div class="DESCRIPTION text-xl pb-12">
         <p>
-            MEGA has packed the next-generation Speedmaster Moonwatch with all the
-            groundbreaking technology (hello, Master Chronometer certificate) and
-            every throwback design element that watch collectors could have wanted.
-            The caliber 3861 is an updated version of the previous caliber 1861 (and
-            before that, caliber 861, and before that, the caliber 321). It's a
-            certified Master Chronometer (which means you can expect 0/+5 seconds
-            per day accuracy and magnetism resistance up to 15,000 Gauss) and
-            features OMEGA's proprietary co-axial escapement and a silicon balance
-            spring.
-        </p> 
+          {{ watch.description }}
+        </p>
       </div>
       <div class="ADDTOCART pb-4">
         <button
           type="submit"
-          class="text-gray-900 hover:text-white border border-gray-800 w-full hover:bg-gray-900 focus:ring-0 focus:outline-none  font-latoBlack rounded-lg  px-5 py-2.5 text-center me-2 mb-2 uppercase dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800"
+          class="text-gray-900 hover:text-white border border-gray-800 w-full hover:bg-gray-900 focus:ring-0 focus:outline-none font-latoBlack rounded-lg px-5 py-2.5 text-center me-2 mb-2 uppercase dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800"
         >
-          Realizar pedido
+          Añadir al carrito
         </button>
       </div>
       <div class="ICONS flex flex-row justify-between">
