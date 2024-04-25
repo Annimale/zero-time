@@ -10,12 +10,12 @@ import { CommonModule } from '@angular/common';
     standalone: true,
     templateUrl: './shop-detail.component.html',
     styleUrl: './shop-detail.component.css',
-    imports: [EuropeNumberPipe,CommonModule]
+    imports: [EuropeNumberPipe, CommonModule]
 })
 export class ShopDetailComponent {
     watch: any = {};
     brands: any[] = [];
-    constructor(private route: ActivatedRoute, private watchService: WatchService,private brandService:BrandService) { }
+    constructor(private route: ActivatedRoute, private watchService: WatchService, private brandService: BrandService) { }
 
     ngOnInit(): void {
 
@@ -23,8 +23,10 @@ export class ShopDetailComponent {
         console.log(watchId);
         this.watchService.getWatchById(watchId).subscribe({
             next: (data) => {
+                console.log("Initial data loaded", data);
                 this.watch = data;
-                this.watch.images = this.parseImageUrls(this.watch.images); // Asegúrate de que esta línea está parseando correctamente
+                this.watch.images = this.parseImageUrls(this.watch.images);
+                console.log("Images after parsing", this.watch.images);
             },
             error: (error) => {
                 console.error('Error al obtener los detalles del reloj:', error);
@@ -48,14 +50,29 @@ export class ShopDetailComponent {
         const brand = this.brands.find(brand => brand.id === brandID);
         return brand ? brand.name : 'Unknown Brand';
     }
-    parseImageUrls(imageJson: string): string[] {
-        try {
-            // Asegúrate de que estás convirtiendo de JSON a un array correctamente
-            const images: string[] = JSON.parse(imageJson);
-            return images.map(img => `http://localhost:3000/${img.replace(/\\\\/g, '/')}`);
-        } catch (e) {
-            console.error('Error parsing images JSON', e);
-            return ['src/assets/images/watches/default-image.webp']; // Imagen por defecto
+    parseImageUrls(imageData: any): string[] {
+        // Verificar si imageData es un string
+        if (typeof imageData === 'string') {
+            if (imageData.startsWith('http')) {
+                return [imageData];
+            } else {
+                try {
+                    const images: string[] = JSON.parse(imageData);
+                    return images.map(img => `http://localhost:3000/${img.replace(/\\\\/g, '/')}`);
+                } catch (e) {
+                    console.error('Error parsing images JSON', e);
+                    return ['src/assets/images/watches/default-image.webp']; // Imagen por defecto si el parseo falla
+                }
+            }
+        } else if (Array.isArray(imageData)) {
+            //? AQUI ESTABA LA CLAVE !!!
+            // Si imageData es un array, asumir que cada elemento ya es una URL válida
+            return imageData.map(img => img.replace(/\\\\/g, '/'));
+        } else {
+            // Si imageData no es un string ni un array, registrar el error y tipo de dato
+            console.error('Expected string or array for imageData but received:', typeof imageData, imageData);
+            return ['src/assets/images/watches/default-image.webp']; // Devolver imagen por defecto
         }
     }
+    
 }
