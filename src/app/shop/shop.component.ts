@@ -4,17 +4,44 @@ import { BrandService } from '../brand.service';
 import { CommonModule } from '@angular/common';
 import { WatchService } from '../watch.service';
 import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+
+
+
+interface Watch {
+    id: number;
+    brandID: number;
+    caseSize: number;
+    caseThickness: number;
+    condition: string;
+    createdAt: string;
+    description: string;
+    images: string; // assuming this is a JSON string of an array
+    model: string;
+    movement: string;
+    price: number;
+    updatedAt: string;
+    userID: number | null; // use null if userID can be null, otherwise just number
+  }
 
 @Component({
     selector: 'app-shop',
     standalone: true,
     templateUrl: './shop.component.html',
     styleUrl: './shop.component.css',
-    imports: [EuropeNumberPipe, CommonModule]
+    imports: [EuropeNumberPipe, CommonModule,FormsModule]
 })
+
+
 export class ShopComponent {
     brands: any[] = [];
     watches: any;
+    filters = {
+        searchTerm: '',
+        selectedBrands: new Set<string>(),
+        priceRange: { min: 0, max: 100000 }
+    };
+    filteredWatches: any;
 
     constructor(
         private brandService: BrandService,
@@ -26,6 +53,8 @@ export class ShopComponent {
             next: (data) => {
                 console.log("Brands loaded:", data);
                 this.brands = data;
+                this.applyFilters();
+
             },
             error: (error) => {
                 console.error("Failed to load brands. Response:", error);
@@ -36,12 +65,16 @@ export class ShopComponent {
             next: (data) => {
                 console.log("watches loaded:", data);
                 this.watches = data;
+                this.applyFilters();
+
             },
             error: (error) => {
                 console.error("Failed to load watches. Response:", error);
                 console.error("Error details:", error.error.text || error.error);  // Attempting to capture non-JSON error message
             }
         })
+        this.filteredWatches = this.watches;
+
     }
 
     //? Método para obtener el nombre de la brand a través del brandID de cada reloj
@@ -73,6 +106,49 @@ export class ShopComponent {
         this.router.navigate(['/shop', watchId]);
       }
 
+      applyFilters(): void {
+        // Check if watches or brands are still undefined (not loaded yet).
+        if (!this.watches || !this.brands) {
+            return; // Don't do anything if the data hasn't loaded yet.
+        }
+    
+        this.filteredWatches = this.watches.filter((watch: Watch) => {
+            const searchTermLower = this.filters.searchTerm.toLowerCase();
+            const brand = this.brands.find(b => b.id === watch.brandID);
+            const brandNameLower = brand ? brand.name.toLowerCase() : '';
+    
+            const matchesSearchTerm = brandNameLower.includes(searchTermLower) ||
+                                     watch.model.toLowerCase().includes(searchTermLower) ||
+                                     watch.price.toString().includes(searchTermLower);
+    
+            const matchesBrand = this.filters.selectedBrands.size === 0 || this.filters.selectedBrands.has(watch.brandID.toString());
+    
+            const matchesPrice = watch.price >= this.filters.priceRange.min && watch.price <= this.filters.priceRange.max;
+    
+            return matchesSearchTerm && matchesBrand && matchesPrice;
+        });
+    }
+      
+      
 
+    onBrandChange(brandId: string, isChecked: boolean) {
+        if (isChecked) {
+          this.filters.selectedBrands.add(brandId);
+        } else {
+          this.filters.selectedBrands.delete(brandId);
+        }
+        this.applyFilters();
+      }
+      
 
+    onSearchChange(searchTerm: string) {
+        this.filters.searchTerm = searchTerm;
+        this.applyFilters();
+    }
+
+    onPriceChange(minPrice: number, maxPrice: number) {
+        this.filters.priceRange.min = minPrice;
+        this.filters.priceRange.max = maxPrice;
+        this.applyFilters();
+    }
 }
