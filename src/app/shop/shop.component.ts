@@ -22,14 +22,14 @@ interface Watch {
     price: number;
     updatedAt: string;
     userID: number | null; // use null if userID can be null, otherwise just number
-  }
+}
 
 @Component({
     selector: 'app-shop',
     standalone: true,
     templateUrl: './shop.component.html',
     styleUrl: './shop.component.css',
-    imports: [EuropeNumberPipe, CommonModule,FormsModule]
+    imports: [EuropeNumberPipe, CommonModule, FormsModule]
 })
 
 
@@ -39,14 +39,15 @@ export class ShopComponent {
     filters = {
         searchTerm: '',
         selectedBrands: new Set<string>(),
-        priceRange: { min: 0, max: 100000 }
+        priceRange: { min: 0, max: 100000 },
+        currentPrice:0,
     };
     filteredWatches: any;
 
     constructor(
         private brandService: BrandService,
         private watchService: WatchService,
-        private router:Router,
+        private router: Router,
     ) { }
     ngOnInit(): void {
         this.brandService.getAllBrands().subscribe({
@@ -95,7 +96,7 @@ export class ShopComponent {
         if (images && images.length > 0) {
             const firstImage = images[0];
             const imageUrl = `http://localhost:3000/${firstImage.replace(/\\\\/g, '/')}`;
-            console.log("Trying to load image:", imageUrl); // Imprime la URL intentada
+            // console.log("Trying to load image:", imageUrl); // Imprime la URL intentada
             return imageUrl;
         } else {
             return 'src/assets/images/watches/default-image.webp';
@@ -104,51 +105,57 @@ export class ShopComponent {
 
     navigateToWatchDetail(watchId: number) {
         this.router.navigate(['/shop', watchId]);
-      }
+    }
 
-      applyFilters(): void {
+    applyFilters(): void {
         // Check if watches or brands are still undefined (not loaded yet).
         if (!this.watches || !this.brands) {
             return; // Don't do anything if the data hasn't loaded yet.
         }
-    
+
         this.filteredWatches = this.watches.filter((watch: Watch) => {
             const searchTermLower = this.filters.searchTerm.toLowerCase();
             const brand = this.brands.find(b => b.id === watch.brandID);
             const brandNameLower = brand ? brand.name.toLowerCase() : '';
-    
+
             const matchesSearchTerm = brandNameLower.includes(searchTermLower) ||
-                                     watch.model.toLowerCase().includes(searchTermLower) ||
-                                     watch.price.toString().includes(searchTermLower);
-    
+                watch.model.toLowerCase().includes(searchTermLower) ||
+                watch.price.toString().includes(searchTermLower);
+
             const matchesBrand = this.filters.selectedBrands.size === 0 || this.filters.selectedBrands.has(watch.brandID.toString());
-    
-            const matchesPrice = watch.price >= this.filters.priceRange.min && watch.price <= this.filters.priceRange.max;
-    
+
+            const matchesPrice = watch.price >= this.filters.currentPrice && watch.price <= this.filters.priceRange.max;
+
             return matchesSearchTerm && matchesBrand && matchesPrice;
         });
     }
-      
-      
 
-    onBrandChange(brandId: string, isChecked: boolean) {
-        if (isChecked) {
-          this.filters.selectedBrands.add(brandId);
-        } else {
-          this.filters.selectedBrands.delete(brandId);
+
+    onBrandChange(brandId: number, event: Event): void {
+        const inputElement = event.target as HTMLInputElement;
+        if (inputElement) {
+            const isChecked = inputElement.checked;
+            if (isChecked) {
+                this.filters.selectedBrands.add(brandId.toString());
+            } else {
+                this.filters.selectedBrands.delete(brandId.toString());
+            }
+            this.applyFilters();
         }
-        this.applyFilters();
-      }
-      
+    }
+    clearBrandFilters(): void {
+        this.filters.selectedBrands.clear(); // Limpia todas las selecciones de marca
+        this.applyFilters(); // Vuelve a aplicar los filtros para actualizar la lista
+    }
+
 
     onSearchChange(searchTerm: string) {
         this.filters.searchTerm = searchTerm;
         this.applyFilters();
     }
 
-    onPriceChange(minPrice: number, maxPrice: number) {
-        this.filters.priceRange.min = minPrice;
-        this.filters.priceRange.max = maxPrice;
+    onPriceChange(newPrice: number): void {
+        this.filters.currentPrice = newPrice;
         this.applyFilters();
     }
 }

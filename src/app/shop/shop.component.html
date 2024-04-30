@@ -20,7 +20,9 @@
         <div class="mb-6">
           <div class="flex justify-between items-center mb-2">
             <h2 class="font-latoBold">Brand</h2>
-            <button class="text-xs text-gray-500">Clear</button>
+            <button class="text-xs text-gray-500" (click)="clearBrandFilters()">
+              Clear
+            </button>
           </div>
           <div class="h-56 overflow-y-auto">
             <div class="space-y-2 pr-3" *ngFor="let brand of brands">
@@ -28,8 +30,9 @@
                 <span>{{ brand.name }}</span>
                 <input
                   type="checkbox"
+                  [checked]="filters.selectedBrands.has(brand.id.toString())"
+                  (change)="onBrandChange(brand.id, $event)"
                   class="form-checkbox h-5 w-5 focus:ring-0 text-gray-600"
-                 
                 />
               </label>
             </div>
@@ -37,35 +40,21 @@
         </div>
 
         <!-- Price Range -->
+        <!-- Price Range -->
         <div class="mb-6">
           <div class="flex justify-between items-center mb-2">
             <h2 class="font-latoBold">Price</h2>
           </div>
           <div class="flex">
-            <input
-              type="range"
-              min="0"
-              max="100000"
-              class="w-full"
-              [(ngModel)]="filters.priceRange.min"
-              (ngModelChange)="
-                onPriceChange(filters.priceRange.min, filters.priceRange.max)
-              "
-            />
-            <input
-              type="range"
-              min="0"
-              max="100000"
-              [(ngModel)]="filters.priceRange.max"
-              (ngModelChange)="
-                onPriceChange(filters.priceRange.min, filters.priceRange.max)
-              "
-              class="w-full"
-            />
+            <input type="range" min="0" max="100000" step="50" [(ngModel)]="filters.currentPrice"
+               (ngModelChange)="onPriceChange($event)" class="w-full">
           </div>
           <div class="flex justify-between text-xs mt-2">
             <span>0 €</span>
             <span>100,000 €</span>
+          </div>
+          <div class="text-center">
+            {{ filters.currentPrice |europeNumber }}
           </div>
         </div>
       </div>
@@ -95,8 +84,6 @@
           {{ watch.price | europeNumber }}
         </div>
       </div>
-
-      
     </div>
   </div>
 </div>
