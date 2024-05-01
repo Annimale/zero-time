@@ -125,7 +125,7 @@ export class ShopComponent {
             const matchesBrand = this.filters.selectedBrands.size === 0 || this.filters.selectedBrands.has(watch.brandID.toString());
 
             const matchesPrice = watch.price >= this.filters.currentPrice && watch.price <= this.filters.priceRange.max;
-
+            console.log();
             return matchesSearchTerm && matchesBrand && matchesPrice;
         });
     }
