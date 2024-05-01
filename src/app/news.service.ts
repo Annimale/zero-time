@@ -9,7 +9,18 @@ export class NewsService {
 
   private baseUrl = 'http://localhost:3000/news';
   constructor(private http: HttpClient) { }
+
+
   addNews(newsData: FormData): Observable<any> {
     return this.http.post(`${this.baseUrl}/api/news`, newsData);
+  }
+
+  getAllNews():Observable<any[]>{
+    return this.http.get<any>(`${this.baseUrl}/api/getNews`)
+  }
+
+  getNewsById(id:number):Observable<any>{
+    return this.http.get(`${this.baseUrl}/api/getNewsById/${id}`)
+
   }
 }

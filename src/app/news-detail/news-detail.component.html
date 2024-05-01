@@ -2,29 +2,24 @@
     <div class=" mx-auto ">
         <div class="IMAGEN  flex justify-center items-center pb-10">
             <div class="aspect-video ">
-                <img class="object-cover"
-                    src="https://hodinkee.imgix.net/uploads/images/580f148a-3221-4f79-9508-8ea0669349c8/Untitled-1.jpg?ixlib=rails-1.1.0&fm=jpg&q=55&auto=format&usm=12&fit=crop&ch=Width%2CDPR%2CSave-Data&alt=&ar=16%3A9&w=1200"
-                    alt="img-title">
+                <img class="object-cover w-[1200px] h-[675px]"
+                [src]="getImageUrl(news.coverImage)"
+                alt="img-title">
             </div>
         </div>
         <div class="TEXTO  mx-28">
             <div class="capitalize text-5xl font-latoRegular mb-6">
-                <span class=" CATEGORY+TITLE font-prata text-7xl pr-4 ">Hands-On </span>
-                Spending some quality time with the Longines Conquest Heritage Central
-                Power Reserve
+                <span class=" CATEGORY+TITLE font-prata text-7xl pr-4 ">{{news.category}} </span>
+                {{news.title}}
             </div>
-            <div class="SUBTITLE font-latoRegular opacity-75 pb-5 text-2xl border-b border-gray-300">A faithful
-                reimangining of a 1959 heritage
-                design,
-                outfitted in a
-                throughly modern color palette of warm gey and rose gold.</div>
+            <div class="SUBTITLE font-latoRegular opacity-75 pb-5 text-2xl border-b border-gray-300">{{news.subtitle}}</div>
             <div class="container mx-auto border-b border-gray-300">
                 <div class="flex items-center justify-between py-4 ">
                     <!-- Left Side: Profile picture and name/date -->
                     <div class="flex items-center space-x-4">
                         <div>
-                            <p class="text-lg  capitalize font-latoRegular">By Aivan Towers </p>
-                            <p class="text-lg text-gray-600">{{ currentDate |
+                            <p class="text-lg  capitalize font-latoRegular"> {{news.author}} </p>
+                            <p class="text-lg text-gray-600">{{ news.date |
                                 date:'dd/MM/yyyy'}}</p>
 
                         </div>
@@ -85,26 +80,13 @@
                 class="BODY font-latoRegular text-lg flex flex-row flex-wrap justify-between py-5 border-b border-gray-300">
                 <div class="w-full md:w-1/2 ">
                     <p>
-                        It's uncommon to see micro-rotors in modern watches. Despite how beloved they are by enthusiasts
-                        (who tend to be moved by little curiosities and fun wrinkles in watchmaking history), several
-                        significant drawbacks to micro-rotor movements have prevented their widespread adoption across
-                        the industry. However, the legendary Dominique Renaud (formerly of Renaud et Papi—now Audemars
-                        Piguet Renaud & Papi or APRP) and young 30-year-old talent Julien Tixier believe they've
-                        revolutionized the idea 70 years after it was first patented. The announcement from the new
-                        brand, Renaud Tixier, has a lot to unpack. It's a deep dive into the history of the two
-                        watchmakers and the technical achievements they've accomplished. Their watch – which they call
-                        "Monday" – is a tour de force of technical and independent watchmaking, representing a long-term
-                        friendship and mentorship (both from Renaud to Tixier but in many ways Tixier to Renaud). The
-                        price (at the time of publication) is $89,750 – a lot of money no matter how you slice it – but
-                        it's not every day a brand starts out by completely reenvisioning a core component of
-                        watchmaking history. To understand what they've done here, we have to look back at the history
-                        of micro-rotors and a little bit about how they work.
+                       {{news.body}}
                     </p>
                 </div>
                 <div class="h-full md:w-1/2 pl-8 p-4">
                     <img class="h-full object-contain"
-                        src="https://hodinkee.imgix.net/uploads/images/f2198409-97a0-4905-9899-d77950d4dd7f/Renaud_Tixier_BCK_3_laurentxaviermoulin.jpg?ixlib=rails-1.1.0&fm=jpg&q=55&auto=format&usm=12&fit=crop&ch=Width%2CDPR%2CSave-Data&alt=&w=820"
-                        alt="segunda-imagen">
+                    [src]="getImageUrl(news.secondaryImage)"
+                    alt="segunda-imagen">
                 </div>
             </div>
             <div class="COMENTARIOS py-10">
