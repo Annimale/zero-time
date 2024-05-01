@@ -4,6 +4,7 @@ const cors = require("cors");
 const authRoutes = require("./routes/authRoutes");
 const brandRoutes=require ("./routes/brandRoutes");
 const watchRoutes=require("./routes/watchRoutes");
+const newsRoutes=require("./routes/newsRoutes");
 const sequelize = require("sequelize");
 const bcrypt = require('bcryptjs');
 const User = require("./models/user");
@@ -161,6 +162,7 @@ app.put("/updateUser/:id", async (req, res) => {
 app.use("/api/auth", authRoutes);
 app.use("/brands",brandRoutes)
 app.use("/watches",watchRoutes)
+app.use("/news",newsRoutes)
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
