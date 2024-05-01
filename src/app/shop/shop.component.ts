@@ -40,7 +40,7 @@ export class ShopComponent {
         searchTerm: '',
         selectedBrands: new Set<string>(),
         priceRange: { min: 0, max: 100000 },
-        currentPrice:0,
+        currentPrice: 0,
     };
     filteredWatches: any;
 
@@ -157,5 +157,35 @@ export class ShopComponent {
     onPriceChange(newPrice: number): void {
         this.filters.currentPrice = newPrice;
         this.applyFilters();
+    }
+
+    getCurrentImageUrl(watch: any): string {
+        if (!watch.currentImage && watch.images) {
+            if (typeof watch.images === 'string') {
+                watch.images = JSON.parse(watch.images);
+            }
+            watch.currentImage = watch.images[0]; // Establece la primera imagen por defecto
+            watch.currentImageIndex = 0; // Establece el índice inicial
+        }
+        const imageUrl = `http://localhost:3000/${watch.currentImage.replace(/\\\\/g, '/')}`;
+        return imageUrl;
+    }
+    
+
+    showNextImage(watch: any): void {
+        // Intenta parsear el JSON solo si es necesario
+        if (typeof watch.images === 'string') {
+            watch.images = JSON.parse(watch.images);
+        }
+    
+        const currentIndex = watch.currentImageIndex ?? 0;
+        const nextIndex = (currentIndex + 1) % watch.images.length; // Ciclar las imágenes
+        watch.currentImageIndex = nextIndex; // Guarda el índice actual para uso futuro
+        watch.currentImage = watch.images[nextIndex]; // Actualiza la imagen actual
+    }
+    
+
+    resetImage(watch: any): void {
+        watch.currentImage = null; // Reset a la imagen original
     }
 }

@@ -46,15 +46,22 @@
             <h2 class="font-latoBold">Price</h2>
           </div>
           <div class="flex">
-            <input type="range" min="0" max="100000" step="50" [(ngModel)]="filters.currentPrice"
-               (ngModelChange)="onPriceChange($event)" class="w-full">
+            <input
+              type="range"
+              min="0"
+              max="100000"
+              step="50"
+              [(ngModel)]="filters.currentPrice"
+              (ngModelChange)="onPriceChange($event)"
+              class="w-full"
+            />
           </div>
           <div class="flex justify-between text-xs mt-2">
             <span>0 €</span>
             <span>100,000 €</span>
           </div>
           <div class="text-center">
-            {{ filters.currentPrice |europeNumber }}
+            {{ filters.currentPrice | europeNumber }}
           </div>
         </div>
       </div>
@@ -70,7 +77,9 @@
         <div class="w-full pb-6">
           <img
             class="object-cover h-[467px] w-[373px]"
-            [src]="getFirstImageUrl(watch.images)"
+            [src]="getCurrentImageUrl(watch)"
+            (mouseover)="showNextImage(watch)"
+            (mouseleave)="resetImage(watch)"
             alt="watch-image"
           />
         </div>
