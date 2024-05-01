@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { EuropeNumberPipe } from "../europe-number.pipe";
 import { ActivatedRoute } from '@angular/router';
 import { WatchService } from '../watch.service';
@@ -15,6 +15,13 @@ import { CommonModule } from '@angular/common';
 export class ShopDetailComponent {
     watch: any = {};
     brands: any[] = [];
+    showModal: boolean = false;
+    selectedImage: string = '';
+    @ViewChild('zoomImage') zoomImage!: ElementRef<HTMLImageElement>;
+
+
+
+
     constructor(private route: ActivatedRoute, private watchService: WatchService, private brandService: BrandService) { }
 
     ngOnInit(): void {
@@ -74,5 +81,30 @@ export class ShopDetailComponent {
             return ['src/assets/images/watches/default-image.webp']; // Devolver imagen por defecto
         }
     }
+
+    openModal(image: string) {
+        this.selectedImage = image;
+        this.showModal = true;
+    }
+
+    toggleModal() {
+        this.showModal = !this.showModal;
+    }
+
+    adjustZoom(event: MouseEvent): void {
+        const rect = this.zoomImage.nativeElement.getBoundingClientRect();
+        const x = ((event.clientX - rect.left) / rect.width) * 100;
+        const y = ((event.clientY - rect.top) / rect.height) * 100;
+        this.zoomImage.nativeElement.style.transformOrigin = `${x}% ${y}%`;
+        this.zoomImage.nativeElement.style.transform = 'scale(2)';  // Ajusta el nivel de zoom según sea necesario
+    }
+
+    resetZoom(): void {
+        this.zoomImage.nativeElement.style.transform = 'scale(1)';
+        this.zoomImage.nativeElement.style.transformOrigin = 'center center';
+    }
     
+    closeModal(event: MouseEvent): void {
+        this.showModal = false;
+    }
 }

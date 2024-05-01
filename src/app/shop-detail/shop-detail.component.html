@@ -1,15 +1,65 @@
 <div class="container mx-auto font-latoRegular">
   <div class="grid grid-cols-2">
+    <!-- Modal Overlay -->
+    <div
+      class="fixed inset-0 bg-gray-600 bg-opacity-50 z-50 flex justify-center items-center"
+      *ngIf="showModal"
+      (click)="closeModal($event)"
+    >
+    <button
+            class="p-2 px-4 mb-2 top-8 right-[25%] absolute bg-gray-50 text-black rounded hover:bg-gray-600 hover:text-white text-xl"
+            (click)="toggleModal()"
+          >
+            X
+          </button>
+      <!-- Modal Content -->
+      <div
+        class="bg-white p-5 rounded-lg shadow-lg max-w-3xl max-h-full overflow-auto relative"
+        (click)="$event.stopPropagation()"
+      >
+        
+
+        <div class="relative overflow-hidden" style="cursor: zoom-in">
+          <img
+            #zoomImage
+            [src]="selectedImage"
+            alt="Zoomed Watch Image"
+            class="transition-transform duration-200 ease-in-out transform scale-100 object-contain w-full"
+            (mousemove)="adjustZoom($event)"
+            (mouseleave)="resetZoom()"
+          />
+        </div>
+      </div>
+    </div>
+
     <div class="IMAGES mx-auto items-center">
       <div class="MAIN" *ngIf="watch.images && watch.images.length > 0">
-        <img [src]="watch.images[0]" width="602px" height="609px" alt="Main Watch Image">
-    </div>
-    <div class="OTHERIMAGES grid grid-cols-4 pt-6" *ngIf="watch.images && watch.images.length > 1">
-        <div class="items-center flex flex-col" *ngFor="let image of watch.images; let i = index" [hidden]="i === 0">
-            <img [src]="image" height="140px" width="140px" alt="Watch Image {{i + 1}}">
+        <img
+          [src]="watch.images[0]"
+          width="602px"
+          height="609px"
+          alt="Main Watch Image"
+          (click)="openModal(watch.images[0])"
+        />
+      </div>
+      <div
+        class="OTHERIMAGES grid grid-cols-4 gap-4 pt-6"
+        *ngIf="watch.images && watch.images.length > 1"
+      >
+        <div
+          *ngFor="let image of watch.images; let i = index"
+          [hidden]="i === 0"
+        >
+          <img
+            [src]="image"
+            class="h-36 w-36 object-cover cursor-pointer"
+            alt="Watch Image {{ i + 1 }}"
+            (click)="openModal(image)"
+          />
         </div>
+      </div>
     </div>
-    </div>
+
     <div class="INFO">
       <div class="BRAND">
         <h2 class="uppercase font-latoBold text-4xl pb-4">
