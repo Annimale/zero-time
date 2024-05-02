@@ -4,48 +4,41 @@
       <div class="flex flex-col space-y-8">
         <div class="CATEGORY space-y-4">
           <h2 class="font-latoBold">Categoría</h2>
-          <div class="flex items-center justify-between">
-            <label class="cursor-pointer"
-              >Grand Seiko
-              <input
-                type="checkbox"
-                class="form-checkbox focus:ring-0 h-5 w-5 ml-20 text-gray-600"
-              />
+         
+          <div class="flex justify-between items-center">
+            <label class="cursor-pointer flex justify-between flex-grow">
+              In-Depth
+              <input type="checkbox" class="form-checkbox focus:ring-0 h-5 w-5 text-gray-600" (change)="updateCategoryFilter('in-depth', $event)" />
             </label>
           </div>
-          <div class="flex items-center justify-between">
-            <label class="cursor-pointer"
-              >Grand Seiko
-              <input
-                type="checkbox"
-                class="form-checkbox focus:ring-0 h-5 w-5 ml-20 text-gray-600"
-              />
+          <div class="flex justify-between items-center">
+            <label class="cursor-pointer flex justify-between flex-grow">
+              Hands-On
+              <input type="checkbox" class="form-checkbox focus:ring-0 h-5 w-5 text-gray-600" (change)="updateCategoryFilter('hands-on', $event)" />
             </label>
           </div>
-          <div class="flex items-center justify-between">
-            <label class="cursor-pointer"
-              >Grand Seiko
-              <input
-                type="checkbox"
-                class="form-checkbox focus:ring-0 h-5 w-5 ml-20 text-gray-600"
-              />
+          
+          <div class="flex justify-between items-center">
+            <label class="cursor-pointer flex justify-between flex-grow">
+              One-To-Watch
+              <input type="checkbox" class="form-checkbox focus:ring-0 h-5 w-5 text-gray-600"(change)="updateCategoryFilter('one-to-watch', $event)" />
             </label>
           </div>
-          <div class="flex items-center justify-between">
-            <label class="cursor-pointer"
-              >Grand Seiko
-              <input
-                type="checkbox"
-                class="form-checkbox focus:ring-0 h-5 w-5 ml-20 text-gray-600"
-              />
+          
+          <div class="flex justify-between items-center">
+            <label class="cursor-pointer flex justify-between flex-grow">
+              Introducing
+              <input type="checkbox" class="form-checkbox focus:ring-0 h-5 w-5 text-gray-600"(change)="updateCategoryFilter('introducing', $event)" />
             </label>
           </div>
+          
         </div>
         <div class="AUTOR">
           <h2 class="font-latoBold">Autor</h2>
           <input
             type="text"
-            placeholder="Brand, model, reference ..."
+            placeholder="Author"
+            [(ngModel)]="filters.author" (ngModelChange)="updateAuthorFilter($event)"
             class="w-full p-2 border focus:ring-0 focus:border-gray-800 border-gray-300 rounded"
           />
         </div>
@@ -53,20 +46,21 @@
           <h2 class="font-latoBold">Ordenar por fecha:</h2>
           <button
             class="border border-gray-600 px-4 py-2 w-full hover:bg-slate-900 hover:text-slate-100 rounded"
+            (click)="updateSortOrder('newest')"
           >
             Mas recientes
           </button>
           <button
             class="border border-gray-600 px-4 py-2 w-full hover:bg-slate-900 hover:text-slate-100 rounded"
+            (click)="updateSortOrder('oldest')"
           >
             Mas antiguos
           </button>
         </div>
       </div>
     </div>
-    <!-- ESTO HABRÍA QUE IMPLEMENTARLO COMO EN SHOP (click)="navigateToWatchDetail(watch.id) -->
     <div class="ARTICLES col-span-6">
-      <div class="ARTICLE border-b border-gray-200" *ngFor="let news of news">
+      <div class="ARTICLE border-b border-gray-200" *ngFor="let news of filteredNews">
         <div class="grid grid-cols-5 gap-2 p-10" (click)="navigateToNewsDetail(news.id)">
           <div class="col-span-2">
             <div class="capitalize text-3xl font-latoRegular mb-6">
