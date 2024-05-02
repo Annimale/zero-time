@@ -7,6 +7,7 @@ import Swal from 'sweetalert2';
 import { jwtDecode } from 'jwt-decode'
 import { HttpService } from '../http.service';
 import { HttpClient } from '@angular/common/http';
+import { BrandService } from '../brand.service';
 
 
 
@@ -31,6 +32,7 @@ interface CustomJwtPayload{
 })
 export class NavbarComponent {
   isOpen: boolean = false;
+  brands:any[]=[];
   cookie!: string;
   userInfo: any;
   userName: string = '';
@@ -40,12 +42,21 @@ export class NavbarComponent {
   userGoogle:any={};
 
 
-  constructor(private authService: AuthService, private router: Router, private http: HttpService, private http2: HttpClient) { }
+  constructor(private authService: AuthService, private router: Router, private http: HttpService, private http2: HttpClient,private brandService:BrandService) { }
   ngOnInit(): void {
     this.isAuthenticated = this.authService.tokenExists()
     if (this.isAuthenticated) {
       this.getPayload()
     }
+    this.brandService.getAllBrands().subscribe({
+      next:(data)=>{
+        this.brands=data;
+        console.log('Brands loaded:', data);
+      }, error:(error)=>{
+        console.error("Failed to load brands. Response:", error);
+
+      }
+    })
     this.getLocalTokenInfo()
   }
 

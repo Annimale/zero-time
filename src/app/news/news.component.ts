@@ -9,7 +9,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-news',
   standalone: true,
-  imports: [CommonModule, RouterLink,FormsModule],
+  imports: [CommonModule, RouterLink, FormsModule],
   templateUrl: './news.component.html',
   styleUrl: './news.component.css'
 })
@@ -29,7 +29,7 @@ export class NewsComponent {
 
   constructor(
     private newsService: NewsService,
-    private router:Router
+    private router: Router
   ) { }
 
 
@@ -55,7 +55,7 @@ export class NewsComponent {
       return categoryMatch && authorMatch;
     });
     this.sortNews();
-}
+  }
 
   sortNews() {
     if (this.filters.sortByDate === 'newest') {
@@ -65,22 +65,22 @@ export class NewsComponent {
     }
   }
 
- 
+
 
   updateCategoryFilter(category: string, event: any): void {
-  const isChecked = event.target?.checked;
-  if (isChecked) {
-    this.selectedCategories.add(category);
-  } else {
-    this.selectedCategories.delete(category);
+    const isChecked = event.target?.checked;
+    if (isChecked) {
+      this.selectedCategories.add(category);
+    } else {
+      this.selectedCategories.delete(category);
+    }
+    this.applyFilters();
   }
-  this.applyFilters();
-}
 
 
-  
-  
-  
+
+
+
   updateAuthorFilter(author: string) {
     this.filters.author = author;
     this.applyFilters();
@@ -103,6 +103,6 @@ export class NewsComponent {
   }
   navigateToNewsDetail(newsId: number) {
     this.router.navigate(['/news', newsId]);
-}
+  }
 }
 
