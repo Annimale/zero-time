@@ -4,15 +4,15 @@ const router = express.Router();
 const sequelize = require("sequelize");
 const Article = require("../models/article");
 const multer = require("multer");
-const path = require("path"); // Asegúrate de incluir esta línea
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+const path = require("path"); 
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "uploads/"); // Asegúrate de que esta carpeta exista
+    cb(null, "uploads/"); 
   },
   filename: function (req, file, cb) {
-    cb(null, Date.now() + path.extname(file.originalname)); // Usa path.extname para obtener la extensión del archivo
+    cb(null, Date.now() + path.extname(file.originalname)); 
   },
 });
 
@@ -25,7 +25,6 @@ const fileFilter = (req, file, cb) => {
 };
 
 const upload = multer({ storage: storage, fileFilter: fileFilter });
-
 
 //? INSERT DE UNA NEWS/ARTICLE
 router.post(
@@ -70,21 +69,21 @@ router.post(
   }
 );
 //?ENDPOINT PARA DEVOLVER TODOS LOS RELOJES
-router.get('/api/getNews',async (req,res)=>{
-  try{
-    console.log('Obteniendo todos los relojes de /articles/api/getNews');
-    const articles=await Article.findAll();
+router.get("/api/getNews", async (req, res) => {
+  try {
+    console.log("Obteniendo todos los relojes de /articles/api/getNews");
+    const articles = await Article.findAll();
     console.log(articles);
-    res.json(articles)
-  }catch(error){
-    console.error('Error al procesar la solicitud:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    res.json(articles);
+  } catch (error) {
+    console.error("Error al procesar la solicitud:", error);
+    res.status(500).json({ error: "Internal Server Error" });
   }
-})
+});
 
 //? ENDPOINT PARA DEVOLVER UNA NEWS POR ID
 
-router.get('/api/getNewsById/:id', async (req, res) => {
+router.get("/api/getNewsById/:id", async (req, res) => {
   try {
     // Extracción del ID del reloj de los parámetros de la ruta
     const newsId = req.params.id;
@@ -92,13 +91,13 @@ router.get('/api/getNewsById/:id', async (req, res) => {
     const news = await Article.findByPk(newsId);
     if (!news) {
       // Si el reloj no se encuentra, envía un error 404
-      return res.status(404).send({ message: 'Reloj no encontrado.' });
+      return res.status(404).send({ message: "Reloj no encontrado." });
     }
 
     // Si se encuentra el reloj, devuélvelo en la respuesta
     res.json(news);
   } catch (error) {
-    console.error('Error al procesar la solicitud:', error);
+    console.error("Error al procesar la solicitud:", error);
     res.status(500).send({ message: error.message || "Internal Server Error" });
   }
 });

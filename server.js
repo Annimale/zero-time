@@ -5,8 +5,10 @@ const authRoutes = require("./routes/authRoutes");
 const brandRoutes=require ("./routes/brandRoutes");
 const watchRoutes=require("./routes/watchRoutes");
 const newsRoutes=require("./routes/newsRoutes");
+const salesRoutes=require("./routes/salesRoutes");
 const sequelize = require("sequelize");
 const bcrypt = require('bcryptjs');
+const Sale= require("./models/sale")
 const User = require("./models/user");
 const Brand = require("./models/brand");
 
@@ -163,6 +165,7 @@ app.use("/api/auth", authRoutes);
 app.use("/brands",brandRoutes)
 app.use("/watches",watchRoutes)
 app.use("/news",newsRoutes)
+app.use("/sales",salesRoutes)
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
