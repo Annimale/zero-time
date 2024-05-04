@@ -36,6 +36,8 @@ export class ProfileComponent {
   disabledFields: boolean = false;
   userGoogle:any={};
   submitButton:boolean=true;
+  
+
 
   constructor(private authService: AuthService, private router: Router, private http: HttpService, private http2: HttpClient) { }
 
@@ -55,6 +57,8 @@ export class ProfileComponent {
     }
     this.getLocalTokenInfo();
     this.checkCookieGoogle();
+      
+
 
   }
 
@@ -123,6 +127,7 @@ export class ProfileComponent {
           next: (userRes) => {
             console.log(userRes);
             this.userGoogle = userRes;
+            console.log(this.userGoogle.role)
           }
         })
       },

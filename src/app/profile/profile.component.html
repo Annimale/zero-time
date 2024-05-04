@@ -110,7 +110,7 @@
         </div>
       </form>
     </div>
-    <div class="border-l-2 border-gray-300 NOTIFICATIONS col-span-2">
+    <div *ngIf="userInfo.role||userGoogle.role !== 'admin'"class="border-l-2 border-gray-300 NOTIFICATIONS col-span-2">
       <div class="ml-10 INFO">
         <h1 class="font-prata text-5xl">Notificaciones</h1>
         <div class="CONTENT pt-20 space-y-4">
@@ -155,5 +155,295 @@
         </div>
       </div>
     </div>
+
+    <!-- COMPONENTE PARA ADMIN -->
+    <div *ngIf="userInfo.role||userGoogle.role == 'admin'" class="border-l-2 border-gray-300 NOTIFICATIONS col-span-2">
+      <div class="ml-10 INFO">
+        <h1 class="font-prata text-5xl">Solicitudes de venta</h1>
+        <div class="CONTENT pt-20 space-y-4">
+          <div class="ACCMODIFIED border-b pb-10 border-gray-300">
+            <h2 class="text-lg font-latoBold">Pepe Torres</h2>
+            <div class="INFO mt-5 grid grid-cols-2">
+              <div class="SALE grid grid-cols-4 gap-4">
+                <div class="BRAND">
+                  <h3>Marca:</h3>
+                  <h3 class="font-latoBold">Rolex</h3>
+                </div>
+                <div class="MODEL">
+                  <h3>Modelo:</h3>
+                  <h3 class="font-latoBold">Daytona</h3>
+                </div>
+                <div class="CONDITION">
+                  <h3>Condición:</h3>
+                  <h3 class="font-latoBold">Nuevo</h3>
+                </div>
+                <div class="REF">
+                  <h3>REF:</h3>
+                  <h3 class="font-latoBold">20943534</h3>
+                </div>
+                <div class="BOX">
+                  <h3>Caja:</h3>
+                  <h3 class="font-latoBold">Si</h3>
+                </div>
+                <div class="PAPERS">
+                  <h3>Papeles:</h3>
+                  <h3 class="font-latoBold">No</h3>
+                </div>
+                <div class="CASESIZE col-span-2">
+                  <h3>Tamaño caja (mm):</h3>
+                  <h3 class="font-latoBold">38</h3>
+                </div>
+                <div class="NOTES col-span-4">
+                  <h3>Anotaciones:</h3>
+                  <h3 class="font-latoBold">
+                    El reloj tiene un pequeño raspón en la parte de atrás de la
+                    caja.
+                  </h3>
+                </div>
+              </div>
+              <div
+                class="IMAGES grid grid-cols-2 gap-2 w-52 mx-auto items-center"
+              >
+                <img src="../../assets/images/watches/r5.webp" alt="reloj-5" />
+                <img src="../../assets/images/watches/r4.webp" alt="reloj-5" />
+
+                <img src="../../assets/images/watches/r5.webp" alt="reloj-5" />
+                <img src="../../assets/images/watches/r5.webp" alt="reloj-5" />
+              </div>
+            </div>
+            <div class="OPTIONSALE mx-16 mt-8 flex-row flex justify-between">
+              <button
+                type="button"
+                class="text-green-500 font-latoBold text-base hover:text-white border border-green-500 hover:bg-green-800 focus:ring-4 focus:outline-none rounded-lg px-5 py-2.5 text-center me-2 mb-2 dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:hover:bg-green-600 dark:focus:ring-green-800"
+              >
+                Aceptar
+              </button>
+              <button
+                type="button"
+                class="text-red-500 font-latoBold hover:text-white border border-red-500 hover:bg-red-800 focus:ring-4 focus:outline-none rounded-lg text-base px-5 py-2.5 text-center me-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900"
+              >
+                Rechazar
+              </button>
+            </div>
+            <h2 class="text-right mt-10">
+              <a href="" class="w-fit text-red-600 hover:font-latoBlack">
+                Eliminar mensaje
+              </a>
+            </h2>
+          </div>
+          <div class="ACCMODIFIED border-b pb-10 border-gray-300">
+            <h2 class="text-lg font-latoBold">Pepe Torres</h2>
+            <div class="INFO mt-5 grid grid-cols-2">
+              <div class="SALE grid grid-cols-4 gap-4">
+                <div class="BRAND">
+                  <h3>Marca:</h3>
+                  <h3 class="font-latoBold">Rolex</h3>
+                </div>
+                <div class="MODEL">
+                  <h3>Modelo:</h3>
+                  <h3 class="font-latoBold">Daytona</h3>
+                </div>
+                <div class="CONDITION">
+                  <h3>Condición:</h3>
+                  <h3 class="font-latoBold">Nuevo</h3>
+                </div>
+                <div class="REF">
+                  <h3>REF:</h3>
+                  <h3 class="font-latoBold">20943534</h3>
+                </div>
+                <div class="BOX">
+                  <h3>Caja:</h3>
+                  <h3 class="font-latoBold">Si</h3>
+                </div>
+                <div class="PAPERS">
+                  <h3>Papeles:</h3>
+                  <h3 class="font-latoBold">No</h3>
+                </div>
+                <div class="CASESIZE col-span-2">
+                  <h3>Tamaño caja (mm):</h3>
+                  <h3 class="font-latoBold">38</h3>
+                </div>
+                <div class="NOTES col-span-4">
+                  <h3>Anotaciones:</h3>
+                  <h3 class="font-latoBold">
+                    El reloj tiene un pequeño raspón en la parte de atrás de la
+                    caja.
+                  </h3>
+                </div>
+              </div>
+              <div
+                class="IMAGES grid grid-cols-2 gap-2 w-52 mx-auto items-center"
+              >
+                <img src="../../assets/images/watches/r5.webp" alt="reloj-5" />
+                <img src="../../assets/images/watches/r4.webp" alt="reloj-5" />
+
+                <img src="../../assets/images/watches/r5.webp" alt="reloj-5" />
+                <img src="../../assets/images/watches/r5.webp" alt="reloj-5" />
+              </div>
+            </div>
+            <div class="OPTIONSALE mx-16 mt-8 flex-row flex justify-between">
+              <button
+                type="button"
+                class="text-green-500 font-latoBold text-base hover:text-white border border-green-500 hover:bg-green-800 focus:ring-4 focus:outline-none rounded-lg px-5 py-2.5 text-center me-2 mb-2 dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:hover:bg-green-600 dark:focus:ring-green-800"
+              >
+                Aceptar
+              </button>
+              <button
+                type="button"
+                class="text-red-500 font-latoBold hover:text-white border border-red-500 hover:bg-red-800 focus:ring-4 focus:outline-none rounded-lg text-base px-5 py-2.5 text-center me-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900"
+              >
+                Rechazar
+              </button>
+            </div>
+            <h2 class="text-right mt-10">
+              <a href="" class="w-fit text-red-600 hover:font-latoBlack">
+                Eliminar mensaje
+              </a>
+            </h2>
+          </div>
+          <div class="ACCMODIFIED border-b pb-10 border-gray-300">
+            <h2 class="text-lg font-latoBold">Pepe Torres</h2>
+            <div class="INFO mt-5 grid grid-cols-2">
+              <div class="SALE grid grid-cols-4 gap-4">
+                <div class="BRAND">
+                  <h3>Marca:</h3>
+                  <h3 class="font-latoBold">Rolex</h3>
+                </div>
+                <div class="MODEL">
+                  <h3>Modelo:</h3>
+                  <h3 class="font-latoBold">Daytona</h3>
+                </div>
+                <div class="CONDITION">
+                  <h3>Condición:</h3>
+                  <h3 class="font-latoBold">Nuevo</h3>
+                </div>
+                <div class="REF">
+                  <h3>REF:</h3>
+                  <h3 class="font-latoBold">20943534</h3>
+                </div>
+                <div class="BOX">
+                  <h3>Caja:</h3>
+                  <h3 class="font-latoBold">Si</h3>
+                </div>
+                <div class="PAPERS">
+                  <h3>Papeles:</h3>
+                  <h3 class="font-latoBold">No</h3>
+                </div>
+                <div class="CASESIZE col-span-2">
+                  <h3>Tamaño caja (mm):</h3>
+                  <h3 class="font-latoBold">38</h3>
+                </div>
+                <div class="NOTES col-span-4">
+                  <h3>Anotaciones:</h3>
+                  <h3 class="font-latoBold">
+                    El reloj tiene un pequeño raspón en la parte de atrás de la
+                    caja.
+                  </h3>
+                </div>
+              </div>
+              <div
+                class="IMAGES grid grid-cols-2 gap-2 w-52 mx-auto items-center"
+              >
+                <img src="../../assets/images/watches/r5.webp" alt="reloj-5" />
+                <img src="../../assets/images/watches/r4.webp" alt="reloj-5" />
+
+                <img src="../../assets/images/watches/r5.webp" alt="reloj-5" />
+                <img src="../../assets/images/watches/r5.webp" alt="reloj-5" />
+              </div>
+            </div>
+            <div class="OPTIONSALE mx-16 mt-8 flex-row flex justify-between">
+              <button
+                type="button"
+                class="text-green-500 font-latoBold text-base hover:text-white border border-green-500 hover:bg-green-800 focus:ring-4 focus:outline-none rounded-lg px-5 py-2.5 text-center me-2 mb-2 dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:hover:bg-green-600 dark:focus:ring-green-800"
+              >
+                Aceptar
+              </button>
+              <button
+                type="button"
+                class="text-red-500 font-latoBold hover:text-white border border-red-500 hover:bg-red-800 focus:ring-4 focus:outline-none rounded-lg text-base px-5 py-2.5 text-center me-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900"
+              >
+                Rechazar
+              </button>
+            </div>
+            <h2 class="text-right mt-10">
+              <a href="" class="w-fit text-red-600 hover:font-latoBlack">
+                Eliminar mensaje
+              </a>
+            </h2>
+          </div>
+          <div class="ACCMODIFIED border-b pb-10 border-gray-300">
+            <h2 class="text-lg font-latoBold">Pepe Torres</h2>
+            <div class="INFO mt-5 grid grid-cols-2">
+              <div class="SALE grid grid-cols-4 gap-4">
+                <div class="BRAND">
+                  <h3>Marca:</h3>
+                  <h3 class="font-latoBold">Rolex</h3>
+                </div>
+                <div class="MODEL">
+                  <h3>Modelo:</h3>
+                  <h3 class="font-latoBold">Daytona</h3>
+                </div>
+                <div class="CONDITION">
+                  <h3>Condición:</h3>
+                  <h3 class="font-latoBold">Nuevo</h3>
+                </div>
+                <div class="REF">
+                  <h3>REF:</h3>
+                  <h3 class="font-latoBold">20943534</h3>
+                </div>
+                <div class="BOX">
+                  <h3>Caja:</h3>
+                  <h3 class="font-latoBold">Si</h3>
+                </div>
+                <div class="PAPERS">
+                  <h3>Papeles:</h3>
+                  <h3 class="font-latoBold">No</h3>
+                </div>
+                <div class="CASESIZE col-span-2">
+                  <h3>Tamaño caja (mm):</h3>
+                  <h3 class="font-latoBold">38</h3>
+                </div>
+                <div class="NOTES col-span-4">
+                  <h3>Anotaciones:</h3>
+                  <h3 class="font-latoBold">
+                    El reloj tiene un pequeño raspón en la parte de atrás de la
+                    caja.
+                  </h3>
+                </div>
+              </div>
+              <div
+                class="IMAGES grid grid-cols-2 gap-2 w-52 mx-auto items-center"
+              >
+                <img src="../../assets/images/watches/r5.webp" alt="reloj-5" />
+                <img src="../../assets/images/watches/r4.webp" alt="reloj-5" />
+
+                <img src="../../assets/images/watches/r5.webp" alt="reloj-5" />
+                <img src="../../assets/images/watches/r5.webp" alt="reloj-5" />
+              </div>
+            </div>
+            <div class="OPTIONSALE mx-16 mt-8 flex-row flex justify-between">
+              <button
+                type="button"
+                class="text-green-500 font-latoBold text-base hover:text-white border border-green-500 hover:bg-green-800 focus:ring-4 focus:outline-none rounded-lg px-5 py-2.5 text-center me-2 mb-2 dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:hover:bg-green-600 dark:focus:ring-green-800"
+              >
+                Aceptar
+              </button>
+              <button
+                type="button"
+                class="text-red-500 font-latoBold hover:text-white border border-red-500 hover:bg-red-800 focus:ring-4 focus:outline-none rounded-lg text-base px-5 py-2.5 text-center me-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900"
+              >
+                Rechazar
+              </button>
+            </div>
+            <h2 class="text-right mt-10">
+              <a href="" class="w-fit text-red-600 hover:font-latoBlack">
+                Eliminar mensaje
+              </a>
+            </h2>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
