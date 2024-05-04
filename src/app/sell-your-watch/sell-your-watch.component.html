@@ -13,21 +13,18 @@
     class="mx-auto p-12 pb-36"
   >
     <div class="FORM grid grid-cols-5 w-full gap-7 gap-x-10 font-latoRegular">
-      <div class="relative z-0 w-full mb-5 group">
-        <input
-          formControlName="brand"
-          type="text"
-          name="floating_brand"
-          id="floating_brand"
-          class="block py-2.5 px-0 w-full border-0 bg-transparent border-b-2 focus:border-gray-800 border-gray-300 appearance-none peer focus:outline-none focus:ring-0"
-          placeholder=""
-          required
-        />
-        <label
-          for="floating_brand"
-          class="absolute duration-300 text-gray-500 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-          >Marca</label
+      <div class="BRAND flex mb-5 items-center">
+        <label for="underline_select" class="sr-only">Underline select</label>
+        <select
+          formControlName="brandID"
+          id="underline_select"
+          class="block py-2.5 px-0 w-full text-gray-500 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-300 peer"
         >
+          <option value="" disabled selected>Seleccione una marca</option>
+          <ng-container *ngFor="let brand of brands">
+            <option [value]="brand.id">{{ brand.name }}</option>
+          </ng-container>
+        </select>
       </div>
       <div class="relative z-0 w-full mb-5 group col-span-3">
         <input
@@ -63,7 +60,7 @@
       </div>
       <div class="relative z-0 w-full mb-5 group col-span-4">
         <input
-          formControlName="comment"
+          formControlName="notes"
           type="text"
           name="floating_comment"
           id="floating_comment"
@@ -129,7 +126,7 @@
         <select
           formControlName="condition"
           id="underline_select"
-          class="block py-2.5 px-0 w-full text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer"
+          class="block py-2.5 px-0 w-full text-gray-500 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-300 peer"
         >
           <option selected>Condición</option>
           <option value="new">Nuevo</option>

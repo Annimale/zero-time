@@ -11,8 +11,9 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       status: {
-        type: Sequelize.STRING,
-        allowNull: false,
+        allowNull:false,
+        type: Sequelize.ENUM("in-review","approved","declined"),
+        defaultValue:"in-review",
       },
       userID: {
         type: Sequelize.INTEGER,
@@ -69,16 +70,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
-      watchID: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {
-          model: "Watches",
-          key: "id",
-        },
-        onUpdate: "CASCADE",
-        onDelete: "CASCADE",
-      },
+      
       createdAt: {
         type: Sequelize.DATE,
         allowNull: false,

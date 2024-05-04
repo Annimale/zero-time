@@ -11,8 +11,9 @@ const Sale = sequelize.define(
       allowNull: false,
     },
     status: {
-      type: DataTypes.STRING,
-      allowNull: false,
+      type: DataTypes.ENUM("in-review","approved","declined"),
+      defaultValue:"in-review",
+      
     },
     userID: {
       type: DataTypes.INTEGER,
@@ -64,23 +65,14 @@ const Sale = sequelize.define(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    watchID: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: "Watches",
-        key: "id",
-      },
-    },
+  
   },
   {
     timestamps: true,
     tableName: "Sales",
   }
 );
-//? AUNQUE NO ESTÉ AQUI EN PHPMYADMIN SI QUE HEMOS AÑADIDO EL createdAt y el updatedAt
-//? si lo hubiesemos hecho mediante aqui tendríamos que haber modificado el modelo y la migración
-//? por 48384589 vez :D
+
 Sale.associate = function (models) {
   Sale.belongsTo(models.User, {
     foreignKey: "userID",
@@ -90,10 +82,7 @@ Sale.associate = function (models) {
     foreignKey: "brandID",
     as: "brand",
   });
-  Sale.belongsTo(models.Watch, {
-    foreignKey: "watchID",
-    as: "watch",
-  });
+  
 };
 
 module.exports = Sale;
