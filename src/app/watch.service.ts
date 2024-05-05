@@ -25,4 +25,12 @@ export class WatchService {
   getWatchById(id:number):Observable<any>{
     return this.http.get(`${this.baseUrl}/api/getWatchById/${id}`)
   }
+
+  updateWatch(id:number,formData: FormData):Observable<any>{
+    return this.http.patch(`${this.baseUrl}/api/editWatch/${id}`,formData)
+  }
+  
+  deleteWatch(id:number):Observable<any>{
+    return this.http.delete(`${this.baseUrl}/api/editWatch/${id}`)
+  }
 }

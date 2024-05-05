@@ -21,6 +21,8 @@ import { CartComponent } from './cart/cart.component';
 import { AdminProfileComponent } from './admin-profile/admin-profile.component';
 import { FaqComponent } from './faq/faq.component';
 import { ShopDetailComponent } from './shop-detail/shop-detail.component';
+import { EditWatchComponent } from './edit-watch/edit-watch.component';
+import { EditNewsComponent } from './edit-news/edit-news.component';
 
 export const routes: Routes = [
   // NAVBAR
@@ -32,6 +34,8 @@ export const routes: Routes = [
   { path: 'shop/:id', component: ShopDetailComponent }, //Igual que con NEWS cogeremos la REF o ID a modo de route
   { path: 'add-news', component: AddNewsComponent },
   { path: 'add-watch', component: AddWatchComponent },
+  { path: 'edit-watch/:id', component: EditWatchComponent },
+  { path: 'edit-news/:id', component: EditNewsComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'cart', component: CartComponent },
   { path: 'insurance', component: InsuranceComponent },

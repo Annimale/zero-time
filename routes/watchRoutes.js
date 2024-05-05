@@ -59,5 +59,52 @@ router.get('/api/getWatchById/:id', async (req, res) => {
   }
 });
 
+
+//? EDITAR UN RELOJ - EDITWATCH
+router.patch('/api/editWatch/:id', upload.array('images', 5), async (req, res) => {
+  const watchId = req.params.id;
+  try {
+    const watch = await Watch.findByPk(watchId);
+    if (!watch) {
+      return res.status(404).send({ message: 'Reloj no encontrado.' });
+    }
+
+    // Extraer datos del cuerpo de la petición, excluyendo imágenes ya que se manejarán aparte
+    const { images, ...updateData } = req.body;
+
+    if (req.files && req.files.length > 0) {
+      // Si hay nuevas imágenes, actualizamos el campo correspondiente
+      updateData.images = req.files.map(file => file.path);
+    }else if (!req.body.images) {
+      // Si no hay nuevas imágenes y no se especifica explícitamente mantener sin imágenes,
+      // conservamos las imágenes existentes
+      updateData.images = watch.images;
+    }
+
+    // Actualizar el reloj con los nuevos datos
+    await watch.update(updateData);
+
+    res.send({ message: 'Reloj actualizado correctamente.', watch });
+  } catch (error) {
+    console.error('Error al procesar la solicitud:', error);
+    res.status(500).send({ message: error.message || "Internal Server Error" });
+  }
+});
+
+router.delete('/api/editWatch/:id', async (req, res) => {
+  const { id } = req.params;
+  try {
+      const watch = await Watch.findByPk(id);
+      if (!watch) {
+          return res.status(404).send({ message: 'Reloj no encontrado.' });
+      }
+      await watch.destroy();
+      res.send({ message: 'Reloj eliminado correctamente.' });
+  } catch (error) {
+      console.error('Error al procesar la solicitud:', error);
+      res.status(500).send({ message: error.message || "Internal Server Error" });
+  }
+});
+
   
   module.exports = router;

@@ -5,6 +5,11 @@ import { CommonModule } from '@angular/common';
 import { WatchService } from '../watch.service';
 import { BrandService } from '../brand.service';
 import Swal from 'sweetalert2';
+import { HttpService } from '../http.service';
+import { jwtDecode } from 'jwt-decode'
+import { HttpClient } from '@angular/common/http';
+import { AuthService } from '../auth.service';
+
 
 
 
@@ -20,17 +25,31 @@ interface WatchFormValues {
   price: number;
 }
 
+interface CustomJwtPayload {
+  id: number,
+  iat: number,
+  exp: number,
+
+}
 
 @Component({
   selector: 'app-add-watch',
   standalone: true,
-  imports: [RouterLink, ReactiveFormsModule,CommonModule],
+  imports: [RouterLink, ReactiveFormsModule, CommonModule],
   templateUrl: './add-watch.component.html',
   styleUrl: './add-watch.component.css'
 })
 export class AddWatchComponent {
   brands: any[] = [];
   files: File[] = [];
+  cookie!: string;
+  userInfo: any;
+
+  isAuthenticated: boolean = false;
+  localToken: any;
+  userLocalInfo: any = {};
+  userGoogle: any = {};
+
 
 
   watchForm = new FormGroup({
@@ -44,7 +63,7 @@ export class AddWatchComponent {
     price: new FormControl('', [Validators.required, Validators.min(1)]),
 
   })
-  constructor(private watchService: WatchService, private brandService: BrandService,
+  constructor(private watchService: WatchService, private brandService: BrandService, private http: HttpService, private http2: HttpClient, private authService: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -58,6 +77,14 @@ export class AddWatchComponent {
         console.error("Error details:", error.error.text || error.error);  // Attempting to capture non-JSON error message
       }
     });
+
+    this.isAuthenticated = this.authService.tokenExists()
+    if (this.isAuthenticated) {
+      this.getPayload()
+    }
+    this.getLocalTokenInfo();
+
+
   }
   onSubmit(): void {
     if (this.watchForm.valid && this.files.length > 0) {
@@ -99,7 +126,7 @@ export class AddWatchComponent {
             }
           });
           console.log('Reloj añadido con imágenes:', watch);
-          
+
         },
         error: (error) => {
           Swal.fire({
@@ -125,4 +152,62 @@ export class AddWatchComponent {
       // Puedes añadir lógica aquí para mostrar las miniaturas de las imágenes
     }
   }
+
+  //Lógica para coger info users
+
+  //Cogemos token local
+  getLocalUserData(id: any) {
+    this.http.getLocalUser(id).subscribe({
+      next: (response) => {
+        console.log('Datos del usuario:', response);
+        this.userLocalInfo = response;
+      },
+      error: (error) => {
+        console.log('Error en getLocalUserData:', error);
+      }
+    })
+  }
+  getLocalTokenInfo() {
+    if (typeof window !== 'undefined' && localStorage.getItem('token')) {//Esto lo hacemos para comprobar que existe localStorage en el entorno
+      this.isAuthenticated = true;
+      this.localToken = localStorage.getItem('token');
+      const localInfo = jwtDecode(this.localToken) as CustomJwtPayload
+      console.log(localInfo.id);
+
+      if (localInfo && localInfo.id) {
+        this.getLocalUserData(localInfo.id)
+      }
+
+
+    } else {
+      console.log('De momento no hay localToken');
+    }
+  }
+
+
+
+
+  getPayload() {
+    this.http.getPayload().subscribe({
+      next: (res) => {
+        console.log('Datos del usuario:', res.user);
+        this.userInfo = jwtDecode(res.user)
+        console.log(this.userInfo.id);
+        this.isAuthenticated = true;
+
+        this.http2.get<any>(`http://localhost:3000/user/${this.userInfo.id}`).subscribe({
+          next: (userRes) => {
+            console.log(userRes);
+            this.userGoogle = userRes;
+            console.log(this.userGoogle.role)
+          }
+        })
+      },
+      error: (error) => {
+        console.error('Error al obtener datos del usuario', error)
+      }
+    })
+  }
+
+
 }
