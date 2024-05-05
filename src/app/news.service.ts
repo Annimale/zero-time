@@ -21,6 +21,14 @@ export class NewsService {
 
   getNewsById(id:number):Observable<any>{
     return this.http.get(`${this.baseUrl}/api/getNewsById/${id}`)
-
   }
+
+  updateNews(id:number,formData: FormData):Observable<any>{
+    return this.http.patch(`${this.baseUrl}/api/editNews/${id}`,formData)
+  }
+  
+  deleteNews(id:number):Observable<any>{
+    return this.http.delete(`${this.baseUrl}/api/editNews/${id}`)
+  }
+
 }

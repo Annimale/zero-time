@@ -134,8 +134,7 @@ export class ShopDetailComponent {
 
 
 
-    //Lógica para coger info users
-
+  //!Lógica para coger info users
   //Cogemos token local
   getLocalUserData(id: any) {
     this.http.getLocalUser(id).subscribe({

@@ -102,4 +102,57 @@ router.get("/api/getNewsById/:id", async (req, res) => {
   }
 });
 
+
+// Actualizar una noticia
+router.patch('/api/editNews/:id', upload.fields([{ name: 'coverImage', maxCount: 1 }, { name: 'secondaryImage', maxCount: 1 }]), async (req, res) => {
+  const newsId = req.params.id;
+  try {
+      const newsItem = await Article.findByPk(newsId);
+      if (!newsItem) {
+          return res.status(404).send({ message: 'Noticia no encontrada.' });
+      }
+
+      const updateData = req.body;
+
+      // Manejar la imagen de portada
+      if (req.files['coverImage'] && req.files['coverImage'].length > 0) {
+          updateData.coverImage = req.files['coverImage'][0].path;
+      } else {
+          // Conservar la imagen existente si no se sube una nueva
+          delete updateData.coverImage; // Asegúrate de no sobrescribir la imagen existente si no se envía una nueva
+      }
+
+      // Manejar la imagen secundaria
+      if (req.files['secondaryImage'] && req.files['secondaryImage'].length > 0) {
+          updateData.secondaryImage = req.files['secondaryImage'][0].path;
+      } else {
+          // Conservar la imagen existente si no se sube una nueva
+          delete updateData.secondaryImage; // Asegúrate de no sobrescribir la imagen existente si no se envía una nueva
+      }
+
+      await newsItem.update(updateData);
+      res.send({ message: 'Noticia actualizada correctamente.', news: newsItem });
+  } catch (error) {
+      console.error('Error al procesar la solicitud:', error);
+      res.status(500).send({ message: error.message || "Internal Server Error" });
+  }
+});
+
+
+// Eliminar una noticia
+router.delete('/api/editNews/:id', async (req, res) => {
+  const { id } = req.params;
+  try {
+      const newsItem = await Article.findByPk(id);
+      if (!newsItem) {
+          return res.status(404).send({ message: 'Noticia no encontrada.' });
+      }
+      await newsItem.destroy();
+      res.send({ message: 'Noticia eliminada correctamente.' });
+  } catch (error) {
+      console.error('Error al procesar la solicitud:', error);
+      res.status(500).send({ message: error.message || "Internal Server Error" });
+  }
+});
+
 module.exports = router;

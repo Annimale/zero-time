@@ -42,7 +42,7 @@ export class ShopComponent {
         priceRange: { min: 0, max: 100000 },
         currentPrice: 0,
     };
-    filteredWatches: any;
+    filteredWatches: any[]=[];
 
     constructor(
         private brandService: BrandService,
