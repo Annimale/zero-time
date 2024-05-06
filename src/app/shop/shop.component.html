@@ -1,6 +1,6 @@
 <div class="container h-full mx-auto">
   
-  <h2 class="text-2xl pt-10">{{ filteredWatches.length }} Modelos</h2>
+  <h2 *ngIf="filteredWatches" class="text-2xl pt-10">{{ filteredWatches.length }} Modelos</h2>
   <div class="flex flex-row py-8">
     <div class="pr-12">
       <div class="FILTERS  w-64">
