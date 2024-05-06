@@ -196,11 +196,33 @@
     </div>
     <div class="SUBMITBUTTON col-span-3 items-center justify-center flex pt-10">
       <button
+        data-popover-target="popover-default"
         type="submit"
         class="text-gray-900 hover:text-white border w-1/4 border-gray-800 hover:bg-gray-900 focus:ring-0 focus:outline-none font-latoBold uppercase rounded-lg px-5 py-2.5 text-center me-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800"
       >
         Enviar formulario
       </button>
+      <div
+        *ngIf="userInfo !={} ||userGoogle !={}"
+       
+        data-popover id="popover-default" role="tooltip" class="absolute z-10
+        invisible inline-block w-64 text-sm text-gray-500 transition-opacity
+        duration-300 bg-white border border-gray-200 rounded-lg shadow-sm
+        opacity-0 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800" >
+        <div
+          class="px-3 py-2 bg-gray-100 border-b border-gray-200 rounded-t-lg dark:border-gray-600 dark:bg-gray-700"
+        >
+          <h3 class="font-semibold text-gray-900 dark:text-white">
+            Acceso restringido
+          </h3>
+        </div>
+        <div class="px-3 py-2">
+          <p>Si deseas vender un reloj con nostros z</p>
+        </div>
+        <div data-popper-arrow></div>
+      </div>
     </div>
+
+    
   </form>
 </div>

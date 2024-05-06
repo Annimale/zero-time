@@ -110,7 +110,7 @@
         </div>
       </form>
     </div>
-    <div *ngIf="userInfo.role||userGoogle.role !== 'admin'"class="border-l-2 border-gray-300 NOTIFICATIONS col-span-2">
+    <div *ngIf="userInfo?.role||userGoogle?.role !== 'admin'"class="border-l-2 border-gray-300 NOTIFICATIONS col-span-2">
       <div class="ml-10 INFO">
         <h1 class="font-prata text-5xl">Notificaciones</h1>
         <div class="CONTENT pt-20 space-y-4">
@@ -157,7 +157,7 @@
     </div>
 
     <!-- COMPONENTE PARA ADMIN -->
-    <div *ngIf="userInfo.role||userGoogle.role == 'admin'" class="border-l-2 border-gray-300 NOTIFICATIONS col-span-2">
+    <div *ngIf="userInfo?.role||userGoogle?.role == 'admin'" class="border-l-2 border-gray-300 NOTIFICATIONS col-span-2">
       <div class="ml-10 INFO">
         <h1 class="font-prata text-5xl">Solicitudes de venta</h1>
         <div class="CONTENT pt-20 space-y-4">
