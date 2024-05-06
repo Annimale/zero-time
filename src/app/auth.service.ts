@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
 import { BehaviorSubject } from 'rxjs';
-
+import { jwtDecode } from 'jwt-decode';
 
 
 
@@ -32,11 +32,12 @@ export class AuthService {
     });
   }
   tokenExists(): boolean {
-    return this.cookieService.check('token'); // Reemplaza 'nombreDeTuCookie' con el nombre real de tu cookie
+    return this.cookieService.check('token')
   }
   
   logout() {
-    localStorage.removeItem('token')//
+    localStorage.removeItem('token')
+    this.cookieService.delete('token');
     window.location.href = 'http://localhost:3000/logout'
   }
   localTokenExists(): boolean{
@@ -46,4 +47,21 @@ export class AuthService {
   updateAuthenticationStatus(status: boolean): void {
     this.isAuthenticatedSubject.next(status);
   }
+
+  isAdmin(): boolean {
+    const token = this.cookieService.get('token') || localStorage.getItem('token');
+    if (!token) {
+      console.log('No ha conseguido el token');
+      return false;
+    }
+    try {
+      const decoded: any = jwtDecode(token);
+      return decoded.role && decoded.role === 'admin'; // Verifica que el role exista y sea 'admin'.
+    } catch (error) {
+      console.error('Error decoding token', error);
+      return false;
+    }
+  }
+
+
 }

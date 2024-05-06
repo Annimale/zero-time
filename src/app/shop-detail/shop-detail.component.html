@@ -65,7 +65,7 @@
             {{ getBrandName(watch.brandID) }}
             
           </h2>
-          <span *ngIf="userInfo?.role || userGoogle?.role == 'admin'" class="shrink-0 transition duration-300 ease-in-out hover:scale-110 cursor-pointer" (click)="navigateToEditWatch(watch.id)">
+          <span *ngIf="userInfo?.role=='admin' || userGoogle?.role == 'admin'" class="shrink-0 transition duration-300 ease-in-out hover:scale-110 cursor-pointer" (click)="navigateToEditWatch(watch.id)">
             <svg
               width="36px"
               height="36px"

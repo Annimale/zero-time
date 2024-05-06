@@ -39,9 +39,8 @@ const User = sequelize.define("User", {
 },{
   timestamps: true,
 });
-//? AUNQUE NO ESTÉ AQUI EN PHPMYADMIN SI QUE HEMOS AÑADIDO EL createdAt y el updatedAt
-//? si lo hubiesemos hecho mediante aqui tendríamos que haber modificado el modelo y la migración
-//? por 48384589 vez :D
+
+User.
 
 User.associate = function (models) {
   User.hasMany(models.Watch, {
