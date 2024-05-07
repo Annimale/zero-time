@@ -111,7 +111,9 @@ router.post("/login", async (req, res) => {
       return res.status(400).json({ message: "Contraseña incorrecta" });
     }
     const token = jwt.sign(
-      { id: user.id },
+      { id: user.id,
+        role:user.role
+       },
       "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",
       { expiresIn: "1h" }
     );
@@ -174,7 +176,7 @@ router.post("/login-with-google", async (req, res) => {
     }
 
     const userToken = jwt.sign(
-      { id: user.id },
+      { id: user.id, role: user.role },
       "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",
       {
         expiresIn: "1h",
@@ -206,4 +208,3 @@ router.get("/getUserName", (req, res) => {
 });
 
 module.exports = router;
-

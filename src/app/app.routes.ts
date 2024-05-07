@@ -23,39 +23,44 @@ import { FaqComponent } from './faq/faq.component';
 import { ShopDetailComponent } from './shop-detail/shop-detail.component';
 import { EditWatchComponent } from './edit-watch/edit-watch.component';
 import { EditNewsComponent } from './edit-news/edit-news.component';
+import { NoAccessComponent } from './no-access/no-access.component';
+import { AdminGuard } from './admin-guard.guard';
+import { UserGuard } from './user-guard.guard';
 
 export const routes: Routes = [
-  // NAVBAR
+  // Rutas comunes
   { path: 'home', component: HomeComponent },
   { path: 'news', component: NewsComponent },
-  { path: 'news/:id', component: NewsDetailComponent },//El title lo sacamos de la DB de la news, DE MOMENTO PROVISIONAL LO DE NEWS-DETAIL
+  { path: 'news/:id', component: NewsDetailComponent },
   { path: 'brands/:brandName', component: BrandsComponent },
   { path: 'shop', component: ShopComponent },
-  { path: 'shop/:id', component: ShopDetailComponent }, //Igual que con NEWS cogeremos la REF o ID a modo de route
-  { path: 'add-news', component: AddNewsComponent },
-  { path: 'add-watch', component: AddWatchComponent },
-  { path: 'edit-watch/:id', component: EditWatchComponent },
-  { path: 'edit-news/:id', component: EditNewsComponent },
-  { path: 'profile', component: ProfileComponent },
+  { path: 'shop/:id', component: ShopDetailComponent },
+
+  // Rutas que requieren autenticación de admin
+  { path: 'add-news', component: AddNewsComponent, canActivate: [AdminGuard] },
+  { path: 'add-watch', component: AddWatchComponent, canActivate: [AdminGuard] },
+  { path: 'edit-watch/:id', component: EditWatchComponent, canActivate: [AdminGuard] },
+  { path: 'edit-news/:id', component: EditNewsComponent, canActivate: [AdminGuard] },
+  { path: 'admin-profile', component: AdminProfileComponent, canActivate: [AdminGuard] },
+
+  // Rutas comunes
+  { path: 'profile', component: ProfileComponent, canActivate: [UserGuard] },
   { path: 'cart', component: CartComponent },
   { path: 'insurance', component: InsuranceComponent },
   { path: 'sell-your-watch', component: SellYourWatchComponent },
   { path: 'login', component: LoginComponent },
   { path: 'sign-up', component: SignUpComponent },
-  { path: 'admin-profile', component: AdminProfileComponent },
   { path: 'faq', component: FaqComponent },
+  { path: 'no-access', component: NoAccessComponent },
 
-
-
-  // FOOTER
+  // Rutas del footer
   { path: 'about-us', component: AboutUsComponent },
   { path: 'privacy-policy', component: PrivacyPolicyComponent },
   { path: 'terms-conditions', component: TermsConditionsComponent },
   { path: 'contact-us', component: ContactUsComponent },
   { path: 'policy-cookies', component: PolicyCookiesComponent },
 
-
-  // OTHERS
+  // Otras rutas
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: NotFoundComponent },
 

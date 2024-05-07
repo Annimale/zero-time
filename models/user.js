@@ -40,7 +40,6 @@ const User = sequelize.define("User", {
   timestamps: true,
 });
 
-User.
 
 User.associate = function (models) {
   User.hasMany(models.Watch, {
