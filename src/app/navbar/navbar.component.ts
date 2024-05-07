@@ -51,7 +51,6 @@ export class NavbarComponent {
     this.brandService.getAllBrands().subscribe({
       next: (data) => {
         this.brands = data;
-        console.log('Brands loaded:', data);
       },
       error: (error) => {
         console.error('Failed to load brands. Response:', error);

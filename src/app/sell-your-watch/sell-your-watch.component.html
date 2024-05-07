@@ -128,7 +128,7 @@
           id="underline_select"
           class="block py-2.5 px-0 w-full text-gray-500 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-300 peer"
         >
-          <option selected>Condición</option>
+          <option disabled value="" selected>Condición</option>
           <option value="new">Nuevo</option>
           <option value="semi-used">Semi-usado</option>
           <option value="used">Usado</option>
@@ -171,7 +171,7 @@
           >Año de compra</label
         >
       </div>
-      <!--! NO FUNCA EL CHECKBOX -->
+      
       <div
         class="TERMS flex items-center col-span-5 text-center justify-center"
       >
@@ -202,8 +202,10 @@
       >
         Enviar formulario
       </button>
+      <div>{{ isUser | json }}</div>
+
       <div
-        *ngIf="userInfo !={} ||userGoogle !={}"
+        *ngIf="this.isUser===false"
        
         data-popover id="popover-default" role="tooltip" class="absolute z-10
         invisible inline-block w-64 text-sm text-gray-500 transition-opacity
@@ -217,7 +219,7 @@
           </h3>
         </div>
         <div class="px-3 py-2">
-          <p>Si deseas vender un reloj con nostros z</p>
+          <p>Si deseas vender un reloj con nostros <a routerLink="/login" class="hover:underline font-latoBold">inicia sesión</a></p>
         </div>
         <div data-popper-arrow></div>
       </div>

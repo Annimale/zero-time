@@ -1,5 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { isPlatformBrowser } from '@angular/common';
 import { Observable } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
 import { BehaviorSubject } from 'rxjs';
@@ -16,7 +17,14 @@ export class AuthService {
   );
   isAuthenticated = this.isAuthenticatedSubject.asObservable();
 
-  constructor(private http: HttpClient, private cookieService: CookieService) {}
+  private isUserSubject = new BehaviorSubject<boolean>(this.isUser());
+  isUserObservable = this.isUserSubject.asObservable();
+
+  constructor(
+    private http: HttpClient,
+    private cookieService: CookieService,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {}
 
   register(userData: any) {
     return this.http.post(`${this.apiUrl}/sign-up`, userData);
@@ -69,16 +77,24 @@ export class AuthService {
       return false;
     }
   }
-
+  updateIsUserStatus(): void {
+    this.isUserSubject.next(this.isUser());
+  }
   isUser(): boolean {
-    const token= this.cookieService.get('token')|| localStorage.getItem('token');
-    if(!token){
-      console.log('No hay token de user');
+    if (isPlatformBrowser(this.platformId)) {
+      const token =
+        this.cookieService.get('token') || localStorage.getItem('token');
+      if (!token) {
+        console.log('No hay token de user');
+        return false;
+      } else {
+        console.log('El user no es guest por lo que tiene token');
+        return true;
+      }
+    } else {
+      // En el servidor, no podemos acceder a localStorage
+      console.log('LocalStorage no está disponible en el servidor');
       return false;
-    }else{
-      console.log('El user no es guest por lo que tiene token');
-      return true;
     }
-    
   }
 }

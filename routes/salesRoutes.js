@@ -4,7 +4,7 @@ const router = express.Router();
 const sequelize = require("sequelize");
 const multer = require("multer");
 const path = require("path");
-const Sale = require('../models/sale');  // Ajusta la ruta según tu estructura de directorios
+const Sale = require('../models/sale');  
 
 const cookieParser = require("cookie-parser");
 app.use(cookieParser());

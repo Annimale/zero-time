@@ -73,7 +73,6 @@ app.get("/logout", (req, res) => {
 //USER GOOGLE
 app.get("/user", (req, res) => {
   // Leer el token desde la cookie
-
   const token = req.cookies["token"];
   if (!token) {
     return res.status(403).json({ message: "No autorizado",error });
@@ -81,8 +80,7 @@ app.get("/user", (req, res) => {
 
   try {
     // Verificar el token y extraer la información
-    const datosUsuario = token; // Asumiendo una función que verifica el token
-    // Envía solo la información necesaria y segura al cliente
+    const datosUsuario = token; 
     res.json({ user: datosUsuario });
   } catch (error) {
     res.status(403).json({ message: "Token inválido o expirado" });
@@ -144,7 +142,6 @@ app.put("/updateUser/:id", async (req, res) => {
     user.name = name || user.name;
     user.lastName = lastName || user.lastName;
 
-    // Si hay una nueva contraseña, asegúrate de hashearla antes de guardarla
     if (newPassword) {
       const salt = bcrypt.genSaltSync(10);
       user.password = bcrypt.hashSync(newPassword, salt);
@@ -158,14 +155,14 @@ app.put("/updateUser/:id", async (req, res) => {
   }
 });
 
-//? BRAND
 
-// Monta las rutas de autenticación en '/api/auth'
-app.use("/api/auth", authRoutes);
+
+app.use("/api/auth", authRoutes)
 app.use("/brands",brandRoutes)
 app.use("/watches",watchRoutes)
 app.use("/news",newsRoutes)
 app.use("/sales",salesRoutes)
+app.use("/comments",commentsRoutes)
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
