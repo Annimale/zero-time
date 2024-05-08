@@ -2,6 +2,7 @@
 const express = require("express");
 const cors = require("cors");
 const authRoutes = require("./routes/authRoutes");
+const commentRoutes = require("./routes/commentRoutes");
 const brandRoutes=require ("./routes/brandRoutes");
 const watchRoutes=require("./routes/watchRoutes");
 const newsRoutes=require("./routes/newsRoutes");
@@ -162,7 +163,7 @@ app.use("/brands",brandRoutes)
 app.use("/watches",watchRoutes)
 app.use("/news",newsRoutes)
 app.use("/sales",salesRoutes)
-app.use("/comments",commentsRoutes)
+app.use("/comments",commentRoutes)
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

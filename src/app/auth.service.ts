@@ -17,8 +17,7 @@ export class AuthService {
   );
   isAuthenticated = this.isAuthenticatedSubject.asObservable();
 
-  private isUserSubject = new BehaviorSubject<boolean>(this.isUser());
-  isUserObservable = this.isUserSubject.asObservable();
+ 
 
   constructor(
     private http: HttpClient,
@@ -62,24 +61,28 @@ export class AuthService {
   }
 
   isAdmin(): boolean {
-    const token =
-      this.cookieService.get('token') || localStorage.getItem('token');
-    if (!token) {
-      console.log('No ha conseguido el token');
-      return false;
-    }
-    try {
-      const decoded: any = jwtDecode(token);
-      console.log('Token decoded', decoded);
-      return decoded.role && decoded.role === 'admin'; // Verifica que el role exista y sea 'admin'.
-    } catch (error) {
-      console.error('Error decoding token', error);
-      return false;
+    if (isPlatformBrowser(this.platformId)) {
+      const token =
+        this.cookieService.get('token') || localStorage.getItem('token');
+      if (!token) {
+        console.log('No ha conseguido el token');
+        return false;
+      }
+      try {
+        const decoded: any = jwtDecode(token);
+        console.log('Token decoded', decoded);
+        return decoded.role && decoded.role === 'admin'; // Verifica que el role exista y sea 'admin'.
+      } catch (error) {
+        console.error('Error decoding token', error);
+        return false;
+      }
+    }else{
+       // En el servidor, no podemos acceder a localStorage
+       console.log('LocalStorage no está disponible en el servidor');
+       return false;
     }
   }
-  updateIsUserStatus(): void {
-    this.isUserSubject.next(this.isUser());
-  }
+  
   isUser(): boolean {
     if (isPlatformBrowser(this.platformId)) {
       const token =

@@ -1,5 +1,11 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
-import { Router, RouterLink, RouterOutlet,NavigationEnd  } from '@angular/router';
+import {
+  Router,
+  RouterLink,
+  RouterOutlet,
+  NavigationEnd,
+  ActivatedRoute,
+} from '@angular/router';
 import {
   FormGroup,
   FormControl,
@@ -14,8 +20,6 @@ import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../auth.service';
 import { HttpService } from '../http.service';
 import { jwtDecode } from 'jwt-decode';
-import { filter } from 'rxjs/operators';
-
 
 interface CustomJwtPayload {
   id: number;
@@ -62,12 +66,8 @@ export class SellYourWatchComponent {
     private authService: AuthService,
     private router: Router,
     private cdr: ChangeDetectorRef,
-
-  ) {this.router.events.pipe(
-    filter(event => event instanceof NavigationEnd)
-  ).subscribe(() => {
-    this.authService.updateIsUserStatus();  // Asegúrate que este método recalcula isUser
-  });}
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     this.brandService.getAllBrands().subscribe({
@@ -82,13 +82,18 @@ export class SellYourWatchComponent {
     if (this.isAuthenticated) {
       this.getPayload();
     }
-    this.getLocalTokenInfo();
-    this.authService.isUserObservable.subscribe((status) => {
-      this.isUser = status;
-      this.cdr.detectChanges();  // Añade esta línea
 
-    });
+    
+    this.getLocalTokenInfo();
   }
+
+
+  ngDoCheck(): void {
+    //Called every time that the input properties of a component or a directive are checked. Use it to extend change detection by performing a custom check.
+    //Add 'implements DoCheck' to the class.
+    this.isUser = this.route.snapshot.data['isUser'];
+  }
+
   onSubmit(): void {
     if (this.saleForm.valid) {
       const formData = new FormData();

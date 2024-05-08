@@ -26,6 +26,7 @@ import { EditNewsComponent } from './edit-news/edit-news.component';
 import { NoAccessComponent } from './no-access/no-access.component';
 import { AdminGuard } from './admin-guard.guard';
 import { UserGuard } from './user-guard.guard';
+import { isUserResolver } from './is-user.resolver';
 
 export const routes: Routes = [
   // Rutas comunes
@@ -47,7 +48,7 @@ export const routes: Routes = [
   { path: 'profile', component: ProfileComponent, canActivate: [UserGuard] },
   { path: 'cart', component: CartComponent },
   { path: 'insurance', component: InsuranceComponent },
-  { path: 'sell-your-watch', component: SellYourWatchComponent },
+  { path: 'sell-your-watch', component: SellYourWatchComponent, resolve:{isUser:isUserResolver}},
   { path: 'login', component: LoginComponent },
   { path: 'sign-up', component: SignUpComponent },
   { path: 'faq', component: FaqComponent },
