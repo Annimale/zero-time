@@ -20,6 +20,7 @@ import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../auth.service';
 import { HttpService } from '../http.service';
 import { jwtDecode } from 'jwt-decode';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 interface CustomJwtPayload {
   id: number;
@@ -30,7 +31,13 @@ interface CustomJwtPayload {
 @Component({
   selector: 'app-sell-your-watch',
   standalone: true,
-  imports: [RouterLink, RouterOutlet, CommonModule, ReactiveFormsModule],
+  imports: [
+    RouterLink,
+    RouterOutlet,
+    CommonModule,
+    ReactiveFormsModule,
+    MatTooltipModule,
+  ],
   templateUrl: './sell-your-watch.component.html',
   styleUrl: './sell-your-watch.component.css',
 })
@@ -83,10 +90,8 @@ export class SellYourWatchComponent {
       this.getPayload();
     }
 
-    
     this.getLocalTokenInfo();
   }
-
 
   ngDoCheck(): void {
     //Called every time that the input properties of a component or a directive are checked. Use it to extend change detection by performing a custom check.

@@ -196,10 +196,9 @@
     </div>
     <div class="SUBMITBUTTON col-span-3 items-center justify-center flex pt-10">
       <button 
-     
+      [matTooltip]="isUser ? '' : 'Si deseas vender tu reloj inicia sesión.'"
+      matTooltipPosition="below"
       [disabled]="isUser === false"
-      title="Si deseas vender tu reloj inicia sesión."
-
       type="submit"
         class="text-gray-900 hover:text-white border w-1/4 border-gray-800 hover:bg-gray-900 focus:ring-0 focus:outline-none font-latoBold uppercase rounded-lg px-5 py-2.5 text-center me-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800"
       >

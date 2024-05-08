@@ -14,14 +14,15 @@ router.post("/api/createComment", async (req, res) => {
   try {
     const { body, userID, articleID } = req.body;
     if (!req.isAuthenticated || req.user.id !== userID) {
-      return res.status(403).send("No autorizado");
+      return res.status(403).json({ message: "No autorizado" });  // Send JSON response
     }
     const newComment = await Comment.create({ body, userID, articleID });
     res.status(201).json(newComment);
   } catch (error) {
-    res.status(400).send(error.message);
+    res.status(400).json({ message: error.message });  // Send JSON response
   }
 });
+
 
 //EDNPOINT PARA OBTENER TODOS LOS COMENTARIOS DE UN ARTICLE/NEWS
 router.get("/api/getComments/:articleId", async (req, res) => {

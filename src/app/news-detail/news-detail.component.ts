@@ -6,16 +6,29 @@ import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../auth.service';
 import { HttpService } from '../http.service';
 import { jwtDecode } from 'jwt-decode';
-
+import { FormControl, FormGroup,ReactiveFormsModule } from '@angular/forms';
+import { CommentService } from '../comment.service';
 interface CustomJwtPayload {
   id: number;
   iat: number;
   exp: number;
 }
+
+interface Comment {
+  id: number;
+  body: string;
+  userID: number;
+  articleID: number;
+  createdAt: string;
+  User?: {
+    name: string;
+    id: number;
+  };
+}
 @Component({
   selector: 'app-news-detail',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,ReactiveFormsModule],
   templateUrl: './news-detail.component.html',
   styleUrl: './news-detail.component.css',
 })
@@ -29,16 +42,21 @@ export class NewsDetailComponent {
   localToken: any;
   userLocalInfo: any = {};
   userGoogle: any = {};
-
+  commentText = '';
+  comments: Comment[] = []; // Now TypeScript knows what's inside comments
+  newsId: string='';
   constructor(
     private route: ActivatedRoute,
     private newsService: NewsService,
     private http: HttpService,
     private http2: HttpClient,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private commentService:CommentService
   ) {}
-
+  commentForm = new FormGroup({
+    comment: new FormControl('')
+  });
   ngOnInit(): void {
     const newsId = this.route.snapshot.params['id'];
     console.log(newsId);
@@ -57,6 +75,8 @@ export class NewsDetailComponent {
       this.getPayload();
     }
     this.getLocalTokenInfo();
+    this.loadComments();
+
   }
 
   getImageUrl(imagePath: string): string {
@@ -64,7 +84,6 @@ export class NewsDetailComponent {
       // Si no hay una ruta de imagen, devuelve una imagen por defecto
       return 'src/assets/images/default-image.webp';
     }
-    // Reemplaza las barras invertidas con barras normales si es necesario
     const imageUrl = `${this.baseUrl}${imagePath.replace(/\\/g, '/')}`;
     return imageUrl;
   }
@@ -124,5 +143,46 @@ export class NewsDetailComponent {
 
   navigateToEditNews(newsId: number) {
     this.router.navigate(['/edit-news', newsId]);
+  }
+
+
+
+  //Lógica comments
+  postComment(): void {
+    if (!this.isAuthenticated) {
+      console.error('User not authenticated');
+      return;
+    }
+    const commentBody = this.commentForm.get('comment')?.value;
+    if (typeof commentBody !== 'string' || commentBody.trim() === '') {
+      console.error('Comment body cannot be empty');
+      return; // Prevent submission of empty comments
+    }
+  
+    
+    const payload = {
+      body: commentBody,
+      userID: this.userGoogle.id||this.userInfo.id, // Assuming there's a method to get user ID
+      articleID: this.newsId
+    };
+
+  this.commentService.postComment(payload).subscribe({
+      next: response => {
+        console.log('Comment posted', response);
+        this.commentForm.reset();
+        this.loadComments();
+      },
+      error: error => console.error('Error posting comment', error)
+    });
+  }
+
+
+  loadComments() {
+    this.commentService.getComments(this.newsId).subscribe({
+      next: (comments: any) => {
+        this.comments = comments;
+      },
+      error: (error) => console.error('Error loading comments', error)
+    });
   }
 }
