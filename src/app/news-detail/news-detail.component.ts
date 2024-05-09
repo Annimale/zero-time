@@ -20,7 +20,7 @@ interface Comment {
   userID: number;
   articleID: number;
   createdAt: string;
-  User?: {
+  user?: {
     name: string;
     id: number;
   };
@@ -44,7 +44,11 @@ export class NewsDetailComponent {
   userGoogle: any = {};
   commentText = '';
   comments: Comment[] = []; // Now TypeScript knows what's inside comments
-  newsId: string='';
+  newsId: number=0;
+  isUser:boolean=false;
+  editingCommentId: number | null = null;
+
+
   constructor(
     private route: ActivatedRoute,
     private newsService: NewsService,
@@ -58,26 +62,28 @@ export class NewsDetailComponent {
     comment: new FormControl('')
   });
   ngOnInit(): void {
-    const newsId = this.route.snapshot.params['id'];
-    console.log(newsId);
-    this.newsService.getNewsById(newsId).subscribe({
+    this.newsId = +this.route.snapshot.params['id'];  // Convertir de string a number
+    console.log("Article ID: ", this.newsId); // Verifica que estás recibiendo el ID correcto
+  
+    this.newsService.getNewsById(this.newsId).subscribe({
       next: (data) => {
         console.log('Initial data loaded', data);
         this.news = data;
       },
       error: (error) => {
-        console.error('Error al obtener los detalles del reloj:', error);
+        console.error('Error al obtener los detalles del artículo:', error);
       },
     });
-
+  
     this.isAuthenticated = this.authService.tokenExists();
     if (this.isAuthenticated) {
       this.getPayload();
     }
     this.getLocalTokenInfo();
-    this.loadComments();
-
+    this.loadComments(); 
+    this.isUser=this.authService.isUser()
   }
+  
 
   getImageUrl(imagePath: string): string {
     if (!imagePath) {
@@ -148,37 +154,86 @@ export class NewsDetailComponent {
 
 
   //Lógica comments
-  postComment(): void {
+
+  startEditing(comment: Comment) {
+    this.editingCommentId = comment.id;
+    this.commentForm.setValue({ comment: comment.body });
+  }
+  // postComment(): void {
+  //   if (!this.isAuthenticated) {
+  //     console.error('User not authenticated');
+  //     return;
+  //   }
+  //   const commentBody = this.commentForm.get('comment')?.value;
+  //   if (!commentBody || commentBody.trim() === '') {
+  //     console.error('Comment body cannot be empty');
+  //     return; // Prevent submission of empty comments
+  //   }
+  
+  //   if (!this.newsId) {
+  //     console.error('Article ID is missing');
+  //     return; // Asegúrate de que el ID del artículo no esté vacío
+  //   }
+  
+  //   const payload = {
+  //     body: commentBody,
+  //     userID: this.userGoogle.id || this.userInfo.id,
+  //     articleID: this.newsId.toString()
+  //   };
+  
+  //   this.commentService.postComment(payload).subscribe({
+  //     next: response => {
+  //       console.log('Comment posted', response);
+  //       this.commentForm.reset();
+  //       this.loadComments(); // Recargar los comentarios después de postear uno nuevo
+  //     },
+  //     error: error => console.error('Error posting comment', error)
+  //   });
+  // }
+
+  submitComment(): void {
     if (!this.isAuthenticated) {
       console.error('User not authenticated');
       return;
     }
     const commentBody = this.commentForm.get('comment')?.value;
-    if (typeof commentBody !== 'string' || commentBody.trim() === '') {
+    if (!commentBody || commentBody.trim() === '') {
       console.error('Comment body cannot be empty');
       return; // Prevent submission of empty comments
     }
   
-    
-    const payload = {
-      body: commentBody,
-      userID: this.userGoogle.id||this.userInfo.id, // Assuming there's a method to get user ID
-      articleID: this.newsId
-    };
-
-  this.commentService.postComment(payload).subscribe({
-      next: response => {
-        console.log('Comment posted', response);
-        this.commentForm.reset();
-        this.loadComments();
-      },
-      error: error => console.error('Error posting comment', error)
-    });
+    if (this.editingCommentId) {
+      // Update existing comment
+      this.commentService.updateComment(this.editingCommentId, { body: commentBody }).subscribe({
+        next: response => {
+          console.log('Comment updated', response);
+          this.loadComments(); // Reload comments after updating
+        },
+        error: error => console.error('Error updating comment', error)
+      });
+    } else {
+      // Post new comment
+      const payload = {
+        body: commentBody,
+        articleID: this.newsId.toString()
+      };
+      this.commentService.postComment(payload).subscribe({
+        next: response => {
+          console.log('Comment posted', response);
+          this.loadComments(); // Reload comments after posting a new one
+        },
+        error: error => console.error('Error posting comment', error)
+      });
+    }
+  
+    this.commentForm.reset();
+    this.editingCommentId = null;
   }
+  
 
 
   loadComments() {
-    this.commentService.getComments(this.newsId).subscribe({
+    this.commentService.getComments(this.newsId.toString()).subscribe({
       next: (comments: any) => {
         this.comments = comments;
       },

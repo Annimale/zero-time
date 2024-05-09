@@ -3,6 +3,7 @@ const express = require("express");
 const cors = require("cors");
 const authRoutes = require("./routes/authRoutes");
 const commentRoutes = require("./routes/commentRoutes");
+
 const brandRoutes=require ("./routes/brandRoutes");
 const watchRoutes=require("./routes/watchRoutes");
 const newsRoutes=require("./routes/newsRoutes");
@@ -12,6 +13,7 @@ const bcrypt = require('bcryptjs');
 const Sale= require("./models/sale")
 const User = require("./models/user");
 const Brand = require("./models/brand");
+const Comment = require("./models/comment");
 
 console.log("User model:", User);
 console.log("Brand model:", Brand);

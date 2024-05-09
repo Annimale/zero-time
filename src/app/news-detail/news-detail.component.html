@@ -17,7 +17,7 @@
           </span>
           {{ news.title }}
           <span
-            *ngIf="userInfo?.role=='admin' || userGoogle?.role == 'admin'"
+            *ngIf="userInfo?.role == 'admin' || userGoogle?.role == 'admin'"
             class="shrink-0 ml-8 transition duration-300 ease-in-out hover:scale-110 cursor-pointer"
             (click)="navigateToEditNews(news.id)"
           >
@@ -180,38 +180,53 @@
       </div>
 
       <div class="pt-4">
-        <p class="text-sm mb-4">
-          Please <a href="#" class="text-blue-600">log in</a> or
+        <p class="text-sm mb-4" *ngIf="isUser === false">
+          Please <a routerLink="/login" class="text-blue-600">log in</a> or
           <a href="#" class="text-blue-600">sign up</a> to leave a comment.
         </p>
 
         <div class="space-y-6">
           <div class="flex space-x-4">
-            <div class="flex-shrink-0">
-             
-            </div>
+            <div class="flex-shrink-0"></div>
             <div class="flex-1">
               <div class="border-b pb-4" *ngFor="let comment of comments">
-                <p class="text-sm font-semibold">{{comment.userID}} · {{comment.createdAt}}</p>
+                <p class="text-sm font-semibold">
+                  {{ comment.user?.name }} ·
+                  {{ comment.createdAt | date : "short" }}
+                </p>
+                <button (click)="startEditing(comment)">Edit</button>
                 <p class="text-gray-700 text-sm">
-                  I imagine Msr. Tixier is a descendant from the watchmaking
-                  family that was working in the 19th. century...
+                  {{ comment.body }}
                 </p>
               </div>
             </div>
           </div>
-          <form class="mb-6" [formGroup]="commentForm" (ngSubmit)="postComment()">
-            <div class="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
-                <label for="comment" class="sr-only">Your comment</label>
-                <textarea id="comment" rows="6" formControlName="comment"
-                    class="px-0 w-full text-sm text-gray-900 border-0 focus:ring-0 focus:outline-none dark:text-white dark:placeholder-gray-400 dark:bg-gray-800"
-                    placeholder="Write a comment..." required></textarea>
+          <form
+            *ngIf="isUser === true"
+            class="mb-6"
+            [formGroup]="commentForm"
+            (ngSubmit)="submitComment()"
+          >
+            <div
+              class="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700"
+            >
+              <label for="comment" class="sr-only">Your comment</label>
+              <textarea
+                id="comment"
+                rows="6"
+                formControlName="comment"
+                class="px-0 w-full text-sm text-gray-900 border-0 focus:ring-0 focus:outline-none dark:text-white dark:placeholder-gray-400 dark:bg-gray-800"
+                placeholder="Write a comment..."
+                required
+              ></textarea>
             </div>
-            <button type="submit"
-                class="inline-flex items-center py-2.5 px-4  text-center text-gray-900 bg-gray-300 rounded-lg focus:ring-4  hover:bg-primary-800">
-                Post comment
+            <button
+              type="submit"
+              class="inline-flex items-center py-2.5 px-4 text-center text-gray-900 bg-gray-300 rounded-lg focus:ring-4 hover:bg-primary-800"
+            >
+              Post comment
             </button>
-        </form>
+          </form>
 
           <!-- Replicate the block above for each comment -->
         </div>

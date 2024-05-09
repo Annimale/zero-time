@@ -27,6 +27,7 @@ import { NoAccessComponent } from './no-access/no-access.component';
 import { AdminGuard } from './admin-guard.guard';
 import { UserGuard } from './user-guard.guard';
 import { isUserResolver } from './is-user.resolver';
+import { NoAuthGuard } from './noauth.service';
 
 export const routes: Routes = [
   // Rutas comunes
@@ -49,8 +50,8 @@ export const routes: Routes = [
   { path: 'cart', component: CartComponent },
   { path: 'insurance', component: InsuranceComponent },
   { path: 'sell-your-watch', component: SellYourWatchComponent, resolve:{isUser:isUserResolver}},
-  { path: 'login', component: LoginComponent },
-  { path: 'sign-up', component: SignUpComponent },
+  { path: 'login', component: LoginComponent,canActivate: [NoAuthGuard] },
+  { path: 'sign-up', component: SignUpComponent,canActivate: [NoAuthGuard] },
   { path: 'faq', component: FaqComponent },
   { path: 'no-access', component: NoAccessComponent },
 
