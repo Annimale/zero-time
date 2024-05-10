@@ -3,6 +3,7 @@ const app = express();
 const router = express.Router();
 const sequelize = require("sequelize");
 const Watch = require("../models/watch")
+const Brand = require("../models/brand")
 const multer = require('multer');
 const upload = multer({ dest: 'uploads/' }); 
 
@@ -106,5 +107,20 @@ router.delete('/api/editWatch/:id', async (req, res) => {
   }
 });
 
+//ENDPOINT PARA CONSEGUIR LOS RELOJES RELACIONADOS CON ESA BRANDID
+router.get('/api/brands/:brandId/watches', async (req, res) => {
+  try {
+    const { brandId } = req.params;
+    const watches = await Watch.findAll({
+      where: { brandID: brandId }
+    });
+    
+      res.json(watches);
+    
+  } catch (error) {
+    console.error('Error fetching watches:', error);
+    res.status(500).send('Internal Server Error');
+  }
+});
   
   module.exports = router;

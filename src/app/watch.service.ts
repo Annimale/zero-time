@@ -33,4 +33,7 @@ export class WatchService {
   deleteWatch(id:number):Observable<any>{
     return this.http.delete(`${this.baseUrl}/api/editWatch/${id}`)
   }
+  getWatchesByBrandId(brandId: number): Observable<any> {
+    return this.http.get(`${this.baseUrl}/api/brands/${brandId}/watches`);
+  }
 }
