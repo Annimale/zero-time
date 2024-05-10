@@ -118,4 +118,31 @@ router.put("/api/editComment/:commentId", authenticateToken, async (req, res) =>
   }
 });
 
+
+// ENDPOINT PARA BORRAR UN COMENTARIO
+router.delete("/api/deleteComment/:commentId", authenticateToken, async (req, res) => {
+  const { commentId } = req.params;
+  const userID = req.user.id; // ID del usuario desde el token
+
+  try {
+    const comment = await Comment.findByPk(commentId);
+    if (!comment) {
+      return res.status(404).json({ message: "Comment not found" });
+    }
+
+    // Verifica que el usuario que intenta borrar el comentario es el dueño del comentario
+    if (comment.userID !== userID) {
+      return res.status(403).json({ message: "Unauthorized to delete this comment" });
+    }
+
+    // Borrar el comentario
+    await comment.destroy();
+    res.status(200).json({ message: "Comment deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting the comment", error);
+    res.status(500).json({ message: "Error deleting the comment", error: error.message });
+  }
+});
+
+
 module.exports = router;

@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router,RouterLink } from '@angular/router';
 import { NewsService } from '../news.service';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../auth.service';
@@ -8,6 +8,7 @@ import { HttpService } from '../http.service';
 import { jwtDecode } from 'jwt-decode';
 import { FormControl, FormGroup,ReactiveFormsModule } from '@angular/forms';
 import { CommentService } from '../comment.service';
+import Swal from 'sweetalert2';
 interface CustomJwtPayload {
   id: number;
   iat: number;
@@ -28,7 +29,7 @@ interface Comment {
 @Component({
   selector: 'app-news-detail',
   standalone: true,
-  imports: [CommonModule,ReactiveFormsModule],
+  imports: [CommonModule,ReactiveFormsModule,RouterLink],
   templateUrl: './news-detail.component.html',
   styleUrl: './news-detail.component.css',
 })
@@ -47,6 +48,7 @@ export class NewsDetailComponent {
   newsId: number=0;
   isUser:boolean=false;
   editingCommentId: number | null = null;
+  commentsCount:number=0;
 
 
   constructor(
@@ -81,6 +83,7 @@ export class NewsDetailComponent {
     }
     this.getLocalTokenInfo();
     this.loadComments(); 
+    console.log('commentsCount:', this.commentsCount);
     this.isUser=this.authService.isUser()
   }
   
@@ -159,38 +162,7 @@ export class NewsDetailComponent {
     this.editingCommentId = comment.id;
     this.commentForm.setValue({ comment: comment.body });
   }
-  // postComment(): void {
-  //   if (!this.isAuthenticated) {
-  //     console.error('User not authenticated');
-  //     return;
-  //   }
-  //   const commentBody = this.commentForm.get('comment')?.value;
-  //   if (!commentBody || commentBody.trim() === '') {
-  //     console.error('Comment body cannot be empty');
-  //     return; // Prevent submission of empty comments
-  //   }
   
-  //   if (!this.newsId) {
-  //     console.error('Article ID is missing');
-  //     return; // Asegúrate de que el ID del artículo no esté vacío
-  //   }
-  
-  //   const payload = {
-  //     body: commentBody,
-  //     userID: this.userGoogle.id || this.userInfo.id,
-  //     articleID: this.newsId.toString()
-  //   };
-  
-  //   this.commentService.postComment(payload).subscribe({
-  //     next: response => {
-  //       console.log('Comment posted', response);
-  //       this.commentForm.reset();
-  //       this.loadComments(); // Recargar los comentarios después de postear uno nuevo
-  //     },
-  //     error: error => console.error('Error posting comment', error)
-  //   });
-  // }
-
   submitComment(): void {
     if (!this.isAuthenticated) {
       console.error('User not authenticated');
@@ -236,8 +208,44 @@ export class NewsDetailComponent {
     this.commentService.getComments(this.newsId.toString()).subscribe({
       next: (comments: any) => {
         this.comments = comments;
+        this.commentsCount=comments.length;
       },
       error: (error) => console.error('Error loading comments', error)
+    });
+  }
+
+  deleteComment(commentId: number) {
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: "No podrás deshacer el comentario.",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, bórralo',
+      cancelButtonText:'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.commentService.deleteComment(commentId).subscribe({
+          next: (response) => {
+            console.log('Comment deleted', response);
+            Swal.fire(
+              'Borrado',
+              'Tu comentario ha sido borrado.',
+              'success'
+            );
+            this.loadComments(); 
+          },
+          error: (error) => {
+            console.error('Error deleting comment', error);
+            Swal.fire(
+              'Error!',
+              'Failed to delete the comment.',
+              'error'
+            );
+          }
+        });
+      }
     });
   }
 }

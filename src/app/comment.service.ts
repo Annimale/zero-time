@@ -36,7 +36,6 @@ export class CommentService {
   getComments(articleID: string): Observable<any> {
     return this.http.get(`${this.baseUrl}/api/getComments/${articleID}`);
   }
- 
 
   updateComment(
     commentId: number,
@@ -52,5 +51,16 @@ export class CommentService {
       commentData,
       { headers }
     );
+  }
+
+ 
+  deleteComment(commentId: number): Observable<any> {
+    const token = this.getToken();
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+    return this.http.delete(`${this.baseUrl}/api/deleteComment/${commentId}`, {
+      headers,
+    });
   }
 }
