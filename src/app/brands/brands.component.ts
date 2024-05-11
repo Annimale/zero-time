@@ -174,7 +174,7 @@ export class BrandsComponent {
       console.error('Error parsing images JSON', e);
     }
     //!FIXME
-    return 'src/assets/images/watches/default-image.webp'; // Imagen por defecto
+    return '../../assets/images/brandNoWatch.svg'; // Imagen por defecto
   }
   showNextImage(watch: any): void {
     // Verifica si es necesario parsear las imágenes desde JSON

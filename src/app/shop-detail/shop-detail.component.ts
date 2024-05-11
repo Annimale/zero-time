@@ -91,7 +91,7 @@ export class ShopDetailComponent {
                     return images.map(img => `http://localhost:3000/${img.replace(/\\\\/g, '/')}`);
                 } catch (e) {
                     console.error('Error parsing images JSON', e);
-                    return ['src/assets/images/watches/default-image.webp']; // Imagen por defecto si el parseo falla
+                    return ['../../assets/images/brandNoWatch.svg']; // Imagen por defecto si el parseo falla
                 }
             }
         } else if (Array.isArray(imageData)) {
@@ -101,7 +101,7 @@ export class ShopDetailComponent {
         } else {
             // Si imageData no es un string ni un array, registrar el error y tipo de dato
             console.error('Expected string or array for imageData but received:', typeof imageData, imageData);
-            return ['src/assets/images/watches/default-image.webp']; // Devolver imagen por defecto
+            return ['../../assets/images/brandNoWatch.svg']; // Devolver imagen por defecto
         }
     }
 

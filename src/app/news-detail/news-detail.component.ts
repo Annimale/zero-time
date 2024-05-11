@@ -8,6 +8,7 @@ import { HttpService } from '../http.service';
 import { jwtDecode } from 'jwt-decode';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CommentService } from '../comment.service';
+import { Location } from '@angular/common';
 import Swal from 'sweetalert2';
 interface CustomJwtPayload {
   id: number;
@@ -57,7 +58,8 @@ export class NewsDetailComponent {
     private http2: HttpClient,
     private authService: AuthService,
     private router: Router,
-    private commentService: CommentService
+    private commentService: CommentService,
+    private location:Location
   ) {}
   commentForm = new FormGroup({
     comment: new FormControl(''),
@@ -235,5 +237,8 @@ export class NewsDetailComponent {
         });
       }
     });
+  }
+  getCurrentUrl() {
+    return window!.location.href;
   }
 }

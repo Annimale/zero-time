@@ -90,7 +90,7 @@ export class ShopComponent {
             images = JSON.parse(imageJson);
         } catch (e) {
             console.error('Error parsing images JSON', e);
-            return 'src/assets/images/watches/default-image.webp'; // Imagen por defecto
+            return '../../assets/images/brandNoWatch.svg'; // Imagen por defecto
         }
 
         if (images && images.length > 0) {
@@ -99,7 +99,7 @@ export class ShopComponent {
             // console.log("Trying to load image:", imageUrl); // Imprime la URL intentada
             return imageUrl;
         } else {
-            return 'src/assets/images/watches/default-image.webp';
+            return '../../assets/images/brandNoWatch.svg';
         }
     }
 

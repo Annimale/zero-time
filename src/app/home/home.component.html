@@ -44,126 +44,29 @@
             <h2>Últimas adquisiciones</h2>
         </div>
         <div class=" grid grid-cols-4  mt-20 font-latoRegular gap-y-16 gap-20">
-            <div class="WATCHCARD">
+            <div class="WATCHCARD" *ngFor="let watch of watches">
                 <div class="IMG pb-6">
-                    <img src="https://hodinkee-shopify.imgix.net/s/files/1/0146/0732/files/U4S-C-H01.png?v=1690292044&auto=format&ar=4%3A5&fit=crop&fm=jpg&q=65&usm=8&ixlib=react-9.7.0&w=380"
+                    <img [src]="getCurrentImageUrl(watch)"
+                    (mouseover)="showNextImage(watch)"
+                    (mouseleave)="resetImage(watch)"
                         class="w-auto h-[525px] object-cover" alt="r1">
 
                 </div>
                 <div class=" TEXT ">
-                    <h3 class="font-latoBold uppercase">NOMOS GLASHUTTE</h3>
-                    <p class="capitalize">club campus endless blue with sapphire caseback and big black dial with
-                        diamond bessels</p>
+                    <h3 class="font-latoBold uppercase">{{ getBrandName(watch.brandID) }}</h3>
+                    <p class="capitalize">{{ watch.model }}</p>
                 </div>
                 <div class=" PRICE font-latoBold pt-3">
-                    {{ 5500 | europeNumber}}
+                    {{ watch.price | europeNumber}}
                 </div>
             </div>
-            <div class="WATCHCARD">
-                <div class="IMG pb-6">
-                    <img src="https://hodinkee-shopify.imgix.net/s/files/1/0146/0732/files/U4S-C-H01.png?v=1690292044&auto=format&ar=4%3A5&fit=crop&fm=jpg&q=65&usm=8&ixlib=react-9.7.0&w=380"
-                        class="w-auto h-[525px] object-cover" alt="r1">
-
-                </div>
-                <div class=" TEXT ">
-                    <h3 class="font-latoBold uppercase">NOMOS GLASHUTTE</h3>
-                    <p class="capitalize">club campus endless blue with sapphire caseback and big black dial with
-                        diamond bessels</p>
-                </div>
-                <div class=" PRICE font-latoBold pt-3">
-                    {{ 5500 | europeNumber}}
-                </div>
-            </div>
-            <div class="WATCHCARD">
-                <div class="IMG pb-6">
-                    <img src="https://hodinkee-shopify.imgix.net/s/files/1/0146/0732/files/U4S-C-H01.png?v=1690292044&auto=format&ar=4%3A5&fit=crop&fm=jpg&q=65&usm=8&ixlib=react-9.7.0&w=380"
-                        class="w-auto h-[525px] object-cover" alt="r1">
-
-                </div>
-                <div class=" TEXT ">
-                    <h3 class="font-latoBold uppercase">NOMOS GLASHUTTE</h3>
-                    <p class="capitalize">club campus endless blue with sapphire caseback and big black dial with
-                        diamond bessels</p>
-                </div>
-                <div class=" PRICE font-latoBold pt-3">
-                    {{ 5500 | europeNumber}}
-                </div>
-            </div>
-            <div class="WATCHCARD">
-                <div class="IMG pb-6">
-                    <img src="https://hodinkee-shopify.imgix.net/s/files/1/0146/0732/files/U4S-C-H01.png?v=1690292044&auto=format&ar=4%3A5&fit=crop&fm=jpg&q=65&usm=8&ixlib=react-9.7.0&w=380"
-                        class="w-auto h-[525px] object-cover" alt="r1">
-
-                </div>
-                <div class=" TEXT ">
-                    <h3 class="font-latoBold uppercase">NOMOS GLASHUTTE</h3>
-                    <p class="capitalize">club campus endless blue with sapphire caseback and big black dial with
-                        diamond bessels</p>
-                </div>
-                <div class=" PRICE font-latoBold pt-3">
-                    {{ 5500 | europeNumber}}
-                </div>
-            </div>
-            <div class="WATCHCARD">
-                <div class="IMG pb-6">
-                    <img src="https://hodinkee-shopify.imgix.net/s/files/1/0146/0732/files/U4S-C-H01.png?v=1690292044&auto=format&ar=4%3A5&fit=crop&fm=jpg&q=65&usm=8&ixlib=react-9.7.0&w=380"
-                        class="w-auto h-[525px] object-cover" alt="r1">
-
-                </div>
-                <div class=" TEXT ">
-                    <h3 class="font-latoBold uppercase">NOMOS GLASHUTTE</h3>
-                    <p class="capitalize">club campus endless blue with sapphire caseback and big black dial with
-                        diamond bessels</p>
-                </div>
-                <div class=" PRICE font-latoBold pt-3">
-                    {{ 5500 | europeNumber}}
-                </div>
-            </div>
-            <div class="WATCHCARD">
-                <div class="IMG pb-6">
-                    <img src="https://hodinkee-shopify.imgix.net/s/files/1/0146/0732/files/U4S-C-H01.png?v=1690292044&auto=format&ar=4%3A5&fit=crop&fm=jpg&q=65&usm=8&ixlib=react-9.7.0&w=380"
-                        class="w-auto h-[525px] object-cover" alt="r1">
-
-                </div>
-                <div class=" TEXT ">
-                    <h3 class="font-latoBold uppercase">NOMOS GLASHUTTE</h3>
-                    <p class="capitalize">club campus endless blue with sapphire caseback and big black dial with
-                        diamond bessels</p>
-                </div>
-                <div class=" PRICE font-latoBold pt-3">
-                    {{ 5500 | europeNumber}}
-                </div>
-            </div>
-            <div class="WATCHCARD">
-                <div class="IMG pb-6">
-                    <img src="https://hodinkee-shopify.imgix.net/s/files/1/0146/0732/files/U4S-C-H01.png?v=1690292044&auto=format&ar=4%3A5&fit=crop&fm=jpg&q=65&usm=8&ixlib=react-9.7.0&w=380"
-                        class="w-auto h-[525px] object-cover" alt="r1">
-
-                </div>
-                <div class=" TEXT ">
-                    <h3 class="font-latoBold uppercase">NOMOS GLASHUTTE</h3>
-                    <p class="capitalize">club campus endless blue with sapphire caseback and big black dial with
-                        diamond bessels</p>
-                </div>
-                <div class=" PRICE font-latoBold pt-3">
-                    {{ 5500 | europeNumber}}
-                </div>
-            </div>
-            <div class="WATCHCARD">
-                <div class="IMG pb-6">
-                    <img src="https://hodinkee-shopify.imgix.net/s/files/1/0146/0732/files/U4S-C-H01.png?v=1690292044&auto=format&ar=4%3A5&fit=crop&fm=jpg&q=65&usm=8&ixlib=react-9.7.0&w=380"
-                        class="w-auto h-[525px] object-cover" alt="r1">
-
-                </div>
-                <div class=" TEXT ">
-                    <h3 class="font-latoBold uppercase">NOMOS GLASHUTTE</h3>
-                    <p class="capitalize">club campus endless blue with sapphire caseback and big black dial with
-                        diamond bessels</p>
-                </div>
-                <div class=" PRICE font-latoBold pt-3">
-                    {{ 5500 | europeNumber}}
-                </div>
-            </div>
+            
+            
+            
+            
+            
+            
+            
             
 
         </div>
