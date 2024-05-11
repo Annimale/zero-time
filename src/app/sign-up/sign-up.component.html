@@ -100,6 +100,9 @@
                                 class="underline font-latoBold hover:text-gray-600">términos y condiciones</a> de
                             registro </span>
                     </label>
+                    <div class="text-red-400" *ngIf="registerForm.get('terms')?.errors?.['required'] && registerForm.get('terms')?.touched">
+                        Debes aceptar los términos y condiciones.
+                    </div>
                 </div>
                 <div class="LOGINBUTTON  ">
                     <button type="submit"

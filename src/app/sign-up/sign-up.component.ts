@@ -37,6 +37,8 @@ export class SignUpComponent implements OnInit {
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required, Validators.minLength(6)]),
       confirmPassword: new FormControl('', Validators.required),
+      terms: [false, Validators.requiredTrue]
+
     })
     // Suscribirse a los cambios de los campos de contraseña
     this.registerForm.get('password')?.valueChanges.subscribe(() => {
