@@ -49,7 +49,10 @@
       </h2>
     </div>
     <div class="grid grid-cols-4 gap-10 mt-20 gap-y-12">
-      <div class="CARD RELOJ" *ngFor="let watch of watches">
+      <div class="CARD RELOJ" *ngFor="let watch of watches"
+      (click)="navigateToWatchDetail(watch.id)"
+      class="cursor-pointer"
+      >
         <div class="IMAGEN pb-6">
           <img
             class="object-cover h-[467px] w-[373px]"

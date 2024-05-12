@@ -28,58 +28,7 @@ export class BrandsComponent {
     private watchService: WatchService
   ) {}
 
-  // ngOnInit(): void {
-  //   this.route.paramMap.subscribe((params) => {
-  //     const brandName = params.get('brandName');
-
-  //     if (brandName) {
-  //       this.brandService.getBrandByName(brandName).subscribe(
-  //         (data) => {
-  //           this.brandInfo = data;
-  //           this.brandName = data.name;
-  //           console.log('Brands received:', this.brands); // Verifica que los datos sean correctos
-  //           if (this.brandInfo && this.brandInfo.id) {
-  //             this.loadWatches(this.brandInfo.id);
-  //           }
-  //           console.log(this.brandInfo);
-  //         },
-  //         (error) => {
-  //           console.log(error);
-  //           this.router.navigate(['/not-found']);
-  //         }
-  //       );
-  //     } else {
-  //       console.error('Brand name is null');
-  //       this.router.navigate(['/not-found']);
-  //     }
-  //   });
-  //   this.brandService.getAllBrands().subscribe({
-  //     next: (data) => {
-  //       console.log('Brands loaded:', data);
-  //       this.brands = data;
-  //     },
-  //     error: (error) => {
-  //       console.error('Failed to load brands. Response:', error);
-  //       console.error('Error details:', error.error.text || error.error); // Attempting to capture non-JSON error message
-  //     },
-  //   });
-
-  //   this.route.paramMap.subscribe((params) => {
-  //     const brandId = Number(params.get('brandId'));
-  //     if (brandId) {
-  //       this.watchService.getWatchesByBrandId(brandId).subscribe(
-  //         (data) => {
-  //           this.watches = data;
-  //           console.log('Estos son los relojes de esta marca: ', this.watches);
-  //         },
-  //         (error) => {
-  //           console.error('Failed to load watches for brand:', error);
-  //           this.router.navigate(['/not-found']);
-  //         }
-  //       );
-  //     }
-  //   });
-  // }
+  
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       const brandName = params.get('brandName');
@@ -135,21 +84,9 @@ export class BrandsComponent {
     );
   }
 
-  // loadWatches(brandId: number): void {
-  //   this.watchService.getWatchesByBrandId(brandId).subscribe(
-  //     (data) => {
-  //       this.watches = data;
-  //       if (this.watches && this.watches.length > 0) {
-  //         this.setBrandCoverImage(this.watches[0]); // Establecer la imagen de portada después de que los relojes se hayan cargado
-  //       }
-  //       console.log('Watches for the brand:', this.watches);
-  //     },
-  //     (error) => {
-  //       console.error('Failed to load watches for brand:', error);
-  //       this.router.navigate(['/not-found']);
-  //     }
-  //   );
-  // }
+  navigateToWatchDetail(watchId: number) {
+    this.router.navigate(['/shop', watchId]);
+}
   getCurrentImageUrl(watch: any): string {
     if (!watch.currentImage && watch.images) {
       if (typeof watch.images === 'string') {

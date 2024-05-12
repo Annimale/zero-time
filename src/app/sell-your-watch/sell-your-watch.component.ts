@@ -50,18 +50,25 @@ export class SellYourWatchComponent {
   userLocalInfo: any = {};
   userGoogle: any = {};
   isUser: boolean = false;
-
+  currentYear = new Date().getFullYear();
+  minYear = 1000;
+  maxYear = this.currentYear;
   saleForm = new FormGroup({
     brandID: new FormControl('', [Validators.required]),
     model: new FormControl('', [Validators.required]),
     ref: new FormControl('', [Validators.required]),
     notes: new FormControl(''), // No es requerido
-    caseSize: new FormControl('', [Validators.required]),
+    caseSize: new FormControl('', [Validators.required, Validators.min(20)]),
     box: new FormControl(false),
     papers: new FormControl(false),
     condition: new FormControl('', [Validators.required]),
-    yearOfPurchase: new FormControl('', [Validators.required]),
-    images: new FormControl<FileList | null>(null), // Explicit type declaration
+    yearOfPurchase: new FormControl('', [
+      Validators.required,
+      Validators.min(this.minYear),
+      Validators.max(this.maxYear),
+      Validators.pattern(/^\d{4}$/),
+    ]),
+    images: new FormControl<FileList | null>(null, Validators.required),
     watchID: new FormControl(null),
   });
 
@@ -94,8 +101,6 @@ export class SellYourWatchComponent {
   }
 
   ngDoCheck(): void {
-    //Called every time that the input properties of a component or a directive are checked. Use it to extend change detection by performing a custom check.
-    //Add 'implements DoCheck' to the class.
     this.isUser = this.route.snapshot.data['isUser'];
   }
 

@@ -25,6 +25,8 @@
             <option [value]="brand.id">{{ brand.name }}</option>
           </ng-container>
         </select>
+        <div *ngIf="saleForm.get('brandID')?.invalid && saleForm.get('brandID')?.touched" class="text-red-500 text-sm mt-1">El campo marca es requerido</div>
+
       </div>
       <div class="relative z-0 w-full mb-5 group col-span-3">
         <input
@@ -41,6 +43,8 @@
           class="absolute duration-300 text-gray-500 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
           >Modelo</label
         >
+        <div *ngIf="saleForm.get('model')?.invalid && saleForm.get('model')?.touched" class="text-red-500  mt-1">El campo modelo es requerido</div>
+
       </div>
       <div class="relative z-0 w-full mb-5 group">
         <input
@@ -57,6 +61,8 @@
           class="absolute duration-300 text-gray-500 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
           >Nº Referencia</label
         >
+        <div *ngIf="saleForm.get('ref')?.invalid && saleForm.get('ref')?.touched" class="text-red-500  mt-1">El campo ref es requerido</div>
+
       </div>
       <div class="relative z-0 w-full mb-5 group col-span-4">
         <input
@@ -89,6 +95,8 @@
           class="absolute duration-300 text-gray-500 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
           >Tamaño caja (mm)</label
         >
+        <div *ngIf="saleForm.get('caseSize')?.invalid && saleForm.get('caseSize')?.touched" class="text-red-500 text-sm mt-1">El tamaño de la caja es requerido y no puede ser menor a 20mm</div>
+
       </div>
       <div class="PAPERS+BOX flex items-center space-x-8">
         <div class="PAPERS">
@@ -134,6 +142,8 @@
           <option value="used">Usado</option>
           <option value="worn">Desgastado</option>
         </select>
+        <div *ngIf="saleForm.get('condition')?.invalid && saleForm.get('condition')?.touched" class="text-red-500 text-sm mt-1">La condición es un campo requerido</div>
+
       </div>
 
       <div class="UPLOADFILES flex items-center col-span-2">
@@ -152,6 +162,8 @@
             multiple
             required
           />
+          <div *ngIf="saleForm.get('images')?.invalid && saleForm.get('images')?.touched" class="text-red-500 text-sm mt-1">Es requerido subir imágenes</div>
+
         </div>
       </div>
 

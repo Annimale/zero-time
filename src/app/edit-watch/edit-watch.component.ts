@@ -45,12 +45,12 @@ export class EditWatchComponent {
     private http2: HttpClient,
     private authService: AuthService,
     private route: ActivatedRoute
-  ) { }
+  ) {}
 
   watchEditForm = new FormGroup({
     brandID: new FormControl('', Validators.required),
     model: new FormControl('', Validators.required),
-    description: new FormControl(''),
+    description: new FormControl('', Validators.required),
     movement: new FormControl('', Validators.required),
     condition: new FormControl('', Validators.required),
     caseSize: new FormControl('', [Validators.required, Validators.min(1)]),
@@ -140,7 +140,11 @@ export class EditWatchComponent {
         },
       });
     } else {
-      Swal.fire('Error', 'Debes completar el formulario.', 'error');
+      Swal.fire(
+        'Formulario inválido',
+        'Por favor, rellena todos los campos obligtaorios.',
+        'error'
+      );
 
       console.error('El formulario no es válido');
     }

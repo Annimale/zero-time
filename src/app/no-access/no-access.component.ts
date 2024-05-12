@@ -1,4 +1,5 @@
-import { Component  } from '@angular/core';
+import { Component, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-no-access',
@@ -6,15 +7,19 @@ import { Component  } from '@angular/core';
   styleUrls: ['./no-access.component.css']
 })
 export class NoAccessComponent  {
-  private audio = new Audio('./assets/audios/pornhub-Intro-128-kbps.mp3');
+  private audio?: HTMLAudioElement;
 
   private audioPlayed = false; // Flag to control playback and prevent multiple triggers
 
-  constructor() {
-    this.audio.load();
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+    if (isPlatformBrowser(this.platformId)) {
+      this.audio = new Audio('./assets/audios/pornhub-Intro-128-kbps.mp3');
+      this.audio.load();
+    }
   }
+
   playAudio(): void {
-    if (!this.audioPlayed) {
+    if (this.audio && !this.audioPlayed) {
       this.audio.play().catch(error => {
         console.error('Error al reproducir audio:', error);
       });

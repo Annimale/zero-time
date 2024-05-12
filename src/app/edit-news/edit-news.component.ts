@@ -110,8 +110,8 @@ export class EditNewsComponent {
       });
     } else {
       Swal.fire(
-        'Invalid Form',
-        'Please complete all required fields.',
+        'Formulario inválido',
+        'Por favor, rellena todos los campos obligtaorios.',
         'error'
       );
     }

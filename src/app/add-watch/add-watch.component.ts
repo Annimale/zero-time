@@ -29,7 +29,6 @@ interface CustomJwtPayload {
   id: number,
   iat: number,
   exp: number,
-
 }
 
 @Component({
