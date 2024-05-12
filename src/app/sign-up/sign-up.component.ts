@@ -37,9 +37,11 @@ export class SignUpComponent implements OnInit {
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required, Validators.minLength(6)]),
       confirmPassword: new FormControl('', Validators.required),
-      terms: [false, Validators.requiredTrue]
+      terms: new FormControl(false, { validators: Validators.requiredTrue, updateOn: 'change' })
+    });
 
-    })
+
+   
     // Suscribirse a los cambios de los campos de contraseña
     this.registerForm.get('password')?.valueChanges.subscribe(() => {
       this.checkPasswords();
@@ -50,6 +52,10 @@ export class SignUpComponent implements OnInit {
 
   }
   onSubmit() {
+    Object.values(this.registerForm.controls).forEach(control => {
+      control.markAsTouched();
+    });
+
     // Verificar si las contraseñas coinciden
     if (this.registerForm.invalid || !this.passwordsMatch) {
       return;

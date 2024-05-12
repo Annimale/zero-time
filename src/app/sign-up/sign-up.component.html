@@ -91,7 +91,7 @@
                 </div>
                 <div class="ACCEPTTERMS pt-4">
                     <label class="inline-flex items-center mb-5 cursor-pointer">
-                        <input type="checkbox" value="" class="sr-only peer" required>
+                        <input type="checkbox" value="" class="sr-only peer" required formControlName="terms">
                         <div
                             class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none   rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:w-5 after:h-5 after:transition-all dark:border-gray-600 peer-checked:bg-gray-600">
                         </div>
@@ -100,9 +100,9 @@
                                 class="underline font-latoBold hover:text-gray-600">términos y condiciones</a> de
                             registro </span>
                     </label>
-                    <div class="text-red-400" *ngIf="registerForm.get('terms')?.errors?.['required'] && registerForm.get('terms')?.touched">
-                        Debes aceptar los términos y condiciones.
-                    </div>
+                    <div *ngIf="registerForm.get('terms')!.hasError('required') && registerForm.get('terms')!.touched"
+                    class="text-red-500">Es obligatorio aceptar los términos y condiciones.</div>
+ 
                 </div>
                 <div class="LOGINBUTTON  ">
                     <button type="submit"
