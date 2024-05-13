@@ -1,5 +1,33 @@
 <div class="container mx-auto font-latoRegular">
   <div class="grid grid-cols-4 font-latoRegular mx-auto space-x-12 pb-32">
+    <div
+    class="fixed inset-0 bg-gray-600 bg-opacity-50 z-50 flex justify-center items-center"
+    *ngIf="showModal"
+    (click)="closeModal($event)"
+  >
+    <button
+      class="p-2 px-4 mb-2 top-8 right-[25%] absolute bg-gray-50 text-black rounded hover:bg-gray-600 hover:text-white text-xl"
+      (click)="toggleModal()"
+    >
+      X
+    </button>
+    <!-- Modal Content -->
+    <div
+      class="bg-white p-5 rounded-lg shadow-lg max-w-3xl max-h-full overflow-auto relative"
+      (click)="$event.stopPropagation()"
+    >
+      <div class="relative overflow-hidden" style="cursor: zoom-in">
+        <img
+          #zoomImage
+          [src]="selectedImage"
+          alt="Zoomed Watch Image"
+          class="transition-transform duration-200 ease-in-out transform scale-100 object-contain w-full"
+          (mousemove)="adjustZoom($event)"
+          (mouseleave)="resetZoom()"
+        />
+      </div>
+    </div>
+  </div>
     <div class="EDIT col-span-2">
       <h1 class="font-prata text-5xl mb-12">Editar perfil</h1>
       <form [formGroup]="editForm" (ngSubmit)="onSubmit()" class="pb-18">
@@ -11,7 +39,7 @@
                 type="text"
                 name="floating_edit_name"
                 id="floating_edit_name"
-                class="block py-2.5 px-0 w-full border-0 bg-transparent border-b-2 border-gray-300 appearance-none peer focus:border-gray-600 focus:ring-0"
+                class="block py-2.5 px-0 w-full border-0 bg-transparent border-b-2 border-gray-300 appearance-none peer focus:border-gray-600"
                 placeholder=""
                 value="{{ userLocalInfo.name || userGoogle.name }}"
                 required
@@ -30,10 +58,10 @@
                 type="text"
                 name="floating_edit_lastName"
                 id="floating_edit_lastName"
-                class="block py-2.5 px-0 w-full border-0 bg-transparent border-b-2 border-gray-300 appearance-none peer focus:border-gray-600 focus:ring-0"
+                class="block py-2.5 px-0 w-full border-0 bg-transparent border-b-2 border-gray-300 appearance-none peer focus:border-gray-600"
                 placeholder=""
                 required
-                value="{{ userLocalInfo.lastName ||userGoogle.lastName}}"
+                value="{{ userLocalInfo.lastName || userGoogle.lastName }}"
               />
               <label
                 for="floating_edit_lastName"
@@ -49,7 +77,7 @@
                 type="email"
                 name="floating_edit_email"
                 id="floating_edit_email"
-                class="block py-2.5 px-0 w-full border-0 bg-transparent border-b-2 border-gray-300 appearance-none peer focus:border-gray-600 focus:ring-0"
+                class="block py-2.5 px-0 w-full border-0 bg-transparent border-b-2 border-gray-300 appearance-none peer focus:border-gray-600"
                 placeholder=""
                 required
                 value="{{ userLocalInfo.email || userGoogle.email }}"
@@ -68,7 +96,7 @@
                 type="password"
                 name="floating_edit_old_password"
                 id="floating_edit_old_password"
-                class="block py-2.5 px-0 w-full border-0 bg-transparent border-b-2 border-gray-300 appearance-none peer focus:border-gray-600 focus:ring-0"
+                class="block py-2.5 px-0 w-full border-0 bg-transparent border-b-2 border-gray-300 appearance-none peer focus:border-gray-600"
                 placeholder=""
                 required
               />
@@ -86,7 +114,7 @@
                 type="password"
                 name="floating_edit_new_password"
                 id="floating_edit_new_password"
-                class="block py-2.5 px-0 w-full border-0 bg-transparent border-b-2 border-gray-300 appearance-none peer focus:border-gray-600 focus:ring-0"
+                class="block py-2.5 px-0 w-full border-0 bg-transparent border-b-2 border-gray-300 appearance-none peer focus:border-gray-600"
                 placeholder=""
                 required
               />
@@ -100,9 +128,9 @@
 
           <div class="EDITBUTTON col-span-2 pt-10">
             <button
-            *ngIf="submitButton"
+              *ngIf="submitButton"
               type="submit"
-              class="text-gray-900 text-lg hover:text-white border border-gray-800 w-full hover:bg-gray-900  font-latoRegular rounded-lg px-5 py-2.5 text-center me-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800"
+              class="text-gray-900 text-lg hover:text-white border border-gray-800 w-full hover:bg-gray-900 font-latoRegular rounded-lg px-5 py-2.5 text-center me-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:ray-800"
             >
               Guardar cambios
             </button>
@@ -110,7 +138,10 @@
         </div>
       </form>
     </div>
-    <div *ngIf="userInfo?.role!=='admin'||userGoogle?.role !== 'admin'"class="border-l-2 border-gray-300 NOTIFICATIONS col-span-2">
+    <div
+      *ngIf="userInfo?.role !== 'admin' || userGoogle?.role !== 'admin'"
+      class="border-l-2 border-gray-300 NOTIFICATIONS col-span-2"
+    >
       <div class="ml-10 INFO">
         <h1 class="font-prata text-5xl">Notificaciones</h1>
         <div class="CONTENT pt-20 space-y-4">
@@ -157,293 +188,100 @@
     </div>
 
     <!-- COMPONENTE PARA ADMIN -->
-    <div *ngIf="userInfo?.role=='admin'||userGoogle?.role == 'admin'" class="border-l-2 border-gray-300 NOTIFICATIONS col-span-2">
+    <div
+      *ngIf="userInfo?.role == 'admin' || userGoogle?.role == 'admin'"
+      class="border-l-2 border-gray-300 NOTIFICATIONS col-span-2"
+    >
       <div class="ml-10 INFO">
         <h1 class="font-prata text-5xl">Solicitudes de venta</h1>
         <div class="CONTENT pt-20 space-y-4">
-          <div class="ACCMODIFIED border-b pb-10 border-gray-300">
-            <h2 class="text-lg font-latoBold">Pepe Torres</h2>
+          <div
+            class="ACCMODIFIED border-b pb-10 border-gray-300"
+            *ngFor="let sale of sales"
+          >
+            <h2 class="text-lg font-latoBold">{{ sale.user.name }}</h2>
             <div class="INFO mt-5 grid grid-cols-2">
               <div class="SALE grid grid-cols-4 gap-4">
                 <div class="BRAND">
                   <h3>Marca:</h3>
-                  <h3 class="font-latoBold">Rolex</h3>
+                  <h3 class="font-latoBold">{{ sale.brand.name }}</h3>
                 </div>
                 <div class="MODEL">
                   <h3>Modelo:</h3>
-                  <h3 class="font-latoBold">Daytona</h3>
+                  <h3 class="font-latoBold">{{ sale.model }}</h3>
                 </div>
                 <div class="CONDITION">
                   <h3>Condición:</h3>
-                  <h3 class="font-latoBold">Nuevo</h3>
+                  <h3 class="font-latoBold capitalize">{{ sale.condition }}</h3>
                 </div>
                 <div class="REF">
                   <h3>REF:</h3>
-                  <h3 class="font-latoBold">20943534</h3>
+                  <h3 class="font-latoBold">{{ sale.ref }}</h3>
                 </div>
                 <div class="BOX">
                   <h3>Caja:</h3>
-                  <h3 class="font-latoBold">Si</h3>
+                  <h3 class="font-latoBold">{{ sale.box ? "Sí" : "No" }}</h3>
                 </div>
                 <div class="PAPERS">
                   <h3>Papeles:</h3>
-                  <h3 class="font-latoBold">No</h3>
+                  <h3 class="font-latoBold">{{ sale.papers ? "Sí" : "No" }}</h3>
                 </div>
                 <div class="CASESIZE col-span-2">
                   <h3>Tamaño caja (mm):</h3>
-                  <h3 class="font-latoBold">38</h3>
+                  <h3 class="font-latoBold">{{ sale.caseSize }}</h3>
                 </div>
                 <div class="NOTES col-span-4">
                   <h3>Anotaciones:</h3>
                   <h3 class="font-latoBold">
-                    El reloj tiene un pequeño raspón en la parte de atrás de la
-                    caja.
+                    {{ sale.notes }}
                   </h3>
                 </div>
               </div>
               <div
                 class="IMAGES grid grid-cols-2 gap-2 w-52 mx-auto items-center"
               >
-                <img src="../../assets/images/watches/r5.webp" alt="reloj-5" />
-                <img src="../../assets/images/watches/r4.webp" alt="reloj-5" />
+                <img
+                  
+                  [src]="imageUrl"
+                  alt="reloj-5"
+                  *ngFor="let imageUrl of getImageUrl(sale)"
+                  (click)="openModal(imageUrl)"
 
-                <img src="../../assets/images/watches/r5.webp" alt="reloj-5" />
-                <img src="../../assets/images/watches/r5.webp" alt="reloj-5" />
+                />
               </div>
             </div>
-            <div class="OPTIONSALE mx-16 mt-8 flex-row flex justify-between">
+            <div class="OPTIONSALE mx-16 mt-8 flex-row flex justify-between" *ngIf="sale.status !== 'approved' && sale.status !== 'declined'">
               <button
                 type="button"
-                class="text-green-500 font-latoBold text-base hover:text-white border border-green-500 hover:bg-green-800 focus:ring-4 focus:outline-none rounded-lg px-5 py-2.5 text-center me-2 mb-2 dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:hover:bg-green-600 dark:focus:ring-green-800"
+                class="text-green-500 font-latoBold text-base hover:text-white border border-green-500 hover:bg-green-800 focus:outline-none rounded-lg px-5 py-2.5 text-center me-2 mb-2 dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:hover:bg-green-600 dark:reen-800"
+                (click)="approveSale(sale.id)"
+
               >
                 Aceptar
               </button>
               <button
                 type="button"
-                class="text-red-500 font-latoBold hover:text-white border border-red-500 hover:bg-red-800 focus:ring-4 focus:outline-none rounded-lg text-base px-5 py-2.5 text-center me-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900"
-              >
-                Rechazar
-              </button>
-            </div>
-            <h2 class="text-right mt-10">
-              <a href="" class="w-fit text-red-600 hover:font-latoBlack">
-                Eliminar mensaje
-              </a>
-            </h2>
-          </div>
-          <div class="ACCMODIFIED border-b pb-10 border-gray-300">
-            <h2 class="text-lg font-latoBold">Pepe Torres</h2>
-            <div class="INFO mt-5 grid grid-cols-2">
-              <div class="SALE grid grid-cols-4 gap-4">
-                <div class="BRAND">
-                  <h3>Marca:</h3>
-                  <h3 class="font-latoBold">Rolex</h3>
-                </div>
-                <div class="MODEL">
-                  <h3>Modelo:</h3>
-                  <h3 class="font-latoBold">Daytona</h3>
-                </div>
-                <div class="CONDITION">
-                  <h3>Condición:</h3>
-                  <h3 class="font-latoBold">Nuevo</h3>
-                </div>
-                <div class="REF">
-                  <h3>REF:</h3>
-                  <h3 class="font-latoBold">20943534</h3>
-                </div>
-                <div class="BOX">
-                  <h3>Caja:</h3>
-                  <h3 class="font-latoBold">Si</h3>
-                </div>
-                <div class="PAPERS">
-                  <h3>Papeles:</h3>
-                  <h3 class="font-latoBold">No</h3>
-                </div>
-                <div class="CASESIZE col-span-2">
-                  <h3>Tamaño caja (mm):</h3>
-                  <h3 class="font-latoBold">38</h3>
-                </div>
-                <div class="NOTES col-span-4">
-                  <h3>Anotaciones:</h3>
-                  <h3 class="font-latoBold">
-                    El reloj tiene un pequeño raspón en la parte de atrás de la
-                    caja.
-                  </h3>
-                </div>
-              </div>
-              <div
-                class="IMAGES grid grid-cols-2 gap-2 w-52 mx-auto items-center"
-              >
-                <img src="../../assets/images/watches/r5.webp" alt="reloj-5" />
-                <img src="../../assets/images/watches/r4.webp" alt="reloj-5" />
+                class="text-red-500 font-latoBold hover:text-white border border-red-500 hover:bg-red-800 focus:outline-none rounded-lg text-base px-5 py-2.5 text-center me-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:ed-900"
+                (click)="declineSale(sale.id)"
 
-                <img src="../../assets/images/watches/r5.webp" alt="reloj-5" />
-                <img src="../../assets/images/watches/r5.webp" alt="reloj-5" />
-              </div>
-            </div>
-            <div class="OPTIONSALE mx-16 mt-8 flex-row flex justify-between">
-              <button
-                type="button"
-                class="text-green-500 font-latoBold text-base hover:text-white border border-green-500 hover:bg-green-800 focus:ring-4 focus:outline-none rounded-lg px-5 py-2.5 text-center me-2 mb-2 dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:hover:bg-green-600 dark:focus:ring-green-800"
-              >
-                Aceptar
-              </button>
-              <button
-                type="button"
-                class="text-red-500 font-latoBold hover:text-white border border-red-500 hover:bg-red-800 focus:ring-4 focus:outline-none rounded-lg text-base px-5 py-2.5 text-center me-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900"
               >
                 Rechazar
               </button>
             </div>
+            <ng-container *ngIf="sale.status === 'approved'">
+              <p class="font-latoBold text-green-500">Venta Aprobada</p>
+            </ng-container>
+            <ng-container *ngIf="sale.status === 'declined'">
+              <p class="font-latoBold text-red-500">Venta Rechazada</p>
+            </ng-container>
             <h2 class="text-right mt-10">
-              <a href="" class="w-fit text-red-600 hover:font-latoBlack">
-                Eliminar mensaje
-              </a>
-            </h2>
-          </div>
-          <div class="ACCMODIFIED border-b pb-10 border-gray-300">
-            <h2 class="text-lg font-latoBold">Pepe Torres</h2>
-            <div class="INFO mt-5 grid grid-cols-2">
-              <div class="SALE grid grid-cols-4 gap-4">
-                <div class="BRAND">
-                  <h3>Marca:</h3>
-                  <h3 class="font-latoBold">Rolex</h3>
-                </div>
-                <div class="MODEL">
-                  <h3>Modelo:</h3>
-                  <h3 class="font-latoBold">Daytona</h3>
-                </div>
-                <div class="CONDITION">
-                  <h3>Condición:</h3>
-                  <h3 class="font-latoBold">Nuevo</h3>
-                </div>
-                <div class="REF">
-                  <h3>REF:</h3>
-                  <h3 class="font-latoBold">20943534</h3>
-                </div>
-                <div class="BOX">
-                  <h3>Caja:</h3>
-                  <h3 class="font-latoBold">Si</h3>
-                </div>
-                <div class="PAPERS">
-                  <h3>Papeles:</h3>
-                  <h3 class="font-latoBold">No</h3>
-                </div>
-                <div class="CASESIZE col-span-2">
-                  <h3>Tamaño caja (mm):</h3>
-                  <h3 class="font-latoBold">38</h3>
-                </div>
-                <div class="NOTES col-span-4">
-                  <h3>Anotaciones:</h3>
-                  <h3 class="font-latoBold">
-                    El reloj tiene un pequeño raspón en la parte de atrás de la
-                    caja.
-                  </h3>
-                </div>
-              </div>
-              <div
-                class="IMAGES grid grid-cols-2 gap-2 w-52 mx-auto items-center"
-              >
-                <img src="../../assets/images/watches/r5.webp" alt="reloj-5" />
-                <img src="../../assets/images/watches/r4.webp" alt="reloj-5" />
-
-                <img src="../../assets/images/watches/r5.webp" alt="reloj-5" />
-                <img src="../../assets/images/watches/r5.webp" alt="reloj-5" />
-              </div>
-            </div>
-            <div class="OPTIONSALE mx-16 mt-8 flex-row flex justify-between">
-              <button
-                type="button"
-                class="text-green-500 font-latoBold text-base hover:text-white border border-green-500 hover:bg-green-800 focus:ring-4 focus:outline-none rounded-lg px-5 py-2.5 text-center me-2 mb-2 dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:hover:bg-green-600 dark:focus:ring-green-800"
-              >
-                Aceptar
-              </button>
-              <button
-                type="button"
-                class="text-red-500 font-latoBold hover:text-white border border-red-500 hover:bg-red-800 focus:ring-4 focus:outline-none rounded-lg text-base px-5 py-2.5 text-center me-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900"
-              >
-                Rechazar
-              </button>
-            </div>
-            <h2 class="text-right mt-10">
-              <a href="" class="w-fit text-red-600 hover:font-latoBlack">
-                Eliminar mensaje
-              </a>
-            </h2>
-          </div>
-          <div class="ACCMODIFIED border-b pb-10 border-gray-300">
-            <h2 class="text-lg font-latoBold">Pepe Torres</h2>
-            <div class="INFO mt-5 grid grid-cols-2">
-              <div class="SALE grid grid-cols-4 gap-4">
-                <div class="BRAND">
-                  <h3>Marca:</h3>
-                  <h3 class="font-latoBold">Rolex</h3>
-                </div>
-                <div class="MODEL">
-                  <h3>Modelo:</h3>
-                  <h3 class="font-latoBold">Daytona</h3>
-                </div>
-                <div class="CONDITION">
-                  <h3>Condición:</h3>
-                  <h3 class="font-latoBold">Nuevo</h3>
-                </div>
-                <div class="REF">
-                  <h3>REF:</h3>
-                  <h3 class="font-latoBold">20943534</h3>
-                </div>
-                <div class="BOX">
-                  <h3>Caja:</h3>
-                  <h3 class="font-latoBold">Si</h3>
-                </div>
-                <div class="PAPERS">
-                  <h3>Papeles:</h3>
-                  <h3 class="font-latoBold">No</h3>
-                </div>
-                <div class="CASESIZE col-span-2">
-                  <h3>Tamaño caja (mm):</h3>
-                  <h3 class="font-latoBold">38</h3>
-                </div>
-                <div class="NOTES col-span-4">
-                  <h3>Anotaciones:</h3>
-                  <h3 class="font-latoBold">
-                    El reloj tiene un pequeño raspón en la parte de atrás de la
-                    caja.
-                  </h3>
-                </div>
-              </div>
-              <div
-                class="IMAGES grid grid-cols-2 gap-2 w-52 mx-auto items-center"
-              >
-                <img src="../../assets/images/watches/r5.webp" alt="reloj-5" />
-                <img src="../../assets/images/watches/r4.webp" alt="reloj-5" />
-
-                <img src="../../assets/images/watches/r5.webp" alt="reloj-5" />
-                <img src="../../assets/images/watches/r5.webp" alt="reloj-5" />
-              </div>
-            </div>
-            <div class="OPTIONSALE mx-16 mt-8 flex-row flex justify-between">
-              <button
-                type="button"
-                class="text-green-500 font-latoBold text-base hover:text-white border border-green-500 hover:bg-green-800 focus:ring-4 focus:outline-none rounded-lg px-5 py-2.5 text-center me-2 mb-2 dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:hover:bg-green-600 dark:focus:ring-green-800"
-              >
-                Aceptar
-              </button>
-              <button
-                type="button"
-                class="text-red-500 font-latoBold hover:text-white border border-red-500 hover:bg-red-800 focus:ring-4 focus:outline-none rounded-lg text-base px-5 py-2.5 text-center me-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900"
-              >
-                Rechazar
-              </button>
-            </div>
-            <h2 class="text-right mt-10">
-              <a href="" class="w-fit text-red-600 hover:font-latoBlack">
-                Eliminar mensaje
+              <a (click)="deleteSale(sale.id)" class="w-fit cursor-pointer text-red-600 hover:font-latoBlack">
+                Eliminar venta
               </a>
             </h2>
           </div>
         </div>
       </div>
     </div>
-
   </div>
 </div>

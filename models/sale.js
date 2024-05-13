@@ -54,7 +54,7 @@ const Sale = sequelize.define(
       type: DataTypes.BOOLEAN,
     },
     images: {
-      type: DataTypes.TEXT, // Puede ser TEXT si espera almacenar URLs o JSON si son varias imágenes
+      type: DataTypes.JSON, // Puede ser TEXT si espera almacenar URLs o JSON si son varias imágenes
       allowNull: false,
     },
     notes: {

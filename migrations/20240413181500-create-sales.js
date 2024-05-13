@@ -59,7 +59,7 @@ module.exports = {
         type: Sequelize.BOOLEAN,
       },
       images: {
-        type: Sequelize.TEXT,
+        type: Sequelize.JSON,
         allowNull: false,
       },
       notes: {

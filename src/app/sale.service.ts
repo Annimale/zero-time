@@ -32,4 +32,19 @@ export class SaleService {
     return this.http.post(`${this.baseUrl}/api/createSale`, saleData, options);
   }
 
+  getAllSales():Observable<any[]>{
+    return this.http.get<any>(`${this.baseUrl}/api/getAllSales`)
+  }
+  approveSale(saleId: number): Observable<any> {
+    return this.http.put(`${this.baseUrl}/api/approveSale/${saleId}`, null);
+  }
+
+  declineSale(saleId: number): Observable<any> {
+    return this.http.put(`${this.baseUrl}/api/declineSale/${saleId}`, null);
+  }
+  deleteSale(saleId:number):Observable<any>{
+    return this.http.delete(`${this.baseUrl}/api/deleteSale/${saleId}`);
+
+  }
+
 }

@@ -102,16 +102,16 @@
       </form>
     </div>
     <div class="border-l-2 border-gray-300 NOTIFICATIONS col-span-2">
-      <div class="ml-10 INFO">
+       <div class="ml-10 INFO">
         <h1 class="font-prata text-5xl">Solicitudes de venta</h1>
         <div class="CONTENT pt-20 space-y-4">
-          <div class="ACCMODIFIED border-b pb-10 border-gray-300">
-            <h2 class="text-lg font-latoBold">Pepe Torres</h2>
+          <div class="ACCMODIFIED border-b pb-10 border-gray-300" *ngFor="let sale of sales">
+            <h2 class="text-lg font-latoBold">{{sale.userID}}</h2>
             <div class="INFO mt-5 grid grid-cols-2">
               <div class="SALE grid grid-cols-4 gap-4">
                 <div class="BRAND">
                   <h3>Marca:</h3>
-                  <h3 class="font-latoBold">Rolex</h3>
+                  <h3 class="font-latoBold">{{sale.brandID}}</h3>
                 </div>
                 <div class="MODEL">
                   <h3>Modelo:</h3>

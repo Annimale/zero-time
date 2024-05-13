@@ -5,6 +5,12 @@ const sequelize = require("sequelize");
 const multer = require("multer");
 const path = require("path");
 const Sale = require('../models/sale');  
+const Brand = require('../models/brand');  
+const User = require('../models/user');  
+
+Sale.belongsTo(User,{foreignKey:"userID", as:"user"});
+Sale.belongsTo(Brand,{foreignKey:"brandID", as:"brand"});
+
 
 const cookieParser = require("cookie-parser");
 app.use(cookieParser());
@@ -108,5 +114,84 @@ router.post(
     }
   }
 );
+
+router.get('/api/getAllSales',async(req,res)=>{
+  try{
+    console.log('Obteniendo todas las sales');
+    const sales=await Sale.findAll({
+      include: [{
+        model:User,
+        as:'user',
+        attributes:["id","name"]
+      },
+      {
+        model:Brand,
+        as:'brand',
+        attributes:["id","name"]
+      }
+    ] 
+    });
+    console.log(sales);
+    res.json(sales)
+  }catch(error){
+    console.error('Error al procesar la peticion:',error);
+    res.status(500).json({error:'Internal server error'})
+  }
+})
+//Endpoint para aprobar la sale
+router.put("/api/approveSale/:saleId", async (req, res) => {
+  const { saleId } = req.params;
+
+  try {
+    const sale = await Sale.findByPk(saleId);
+    
+    if (!sale) {
+      return res.status(404).json({ message: "Venta no encontrada" });
+    }
+
+    sale.status = "approved"; // Cambiar el estado de la venta a "approved"
+    await sale.save();
+
+    res.status(200).json({ message: "Estado de la venta actualizado correctamente" });
+  } catch (error) {
+    console.error("Error al actualizar el estado de la venta:", error);
+    res.status(500).json({ message: "Error interno del servidor" });
+  }
+});
+//Endpoint para aprobar la sale
+router.put("/api/declineSale/:saleId", async (req, res) => {
+  const { saleId } = req.params;
+
+  try {
+    const sale = await Sale.findByPk(saleId);
+    
+    if (!sale) {
+      return res.status(404).json({ message: "Venta no encontrada" });
+    }
+
+    sale.status = "declined"; 
+    await sale.save();
+
+    res.status(200).json({ message: "Estado de la venta actualizado correctamente" });
+  } catch (error) {
+    console.error("Error al actualizar el estado de la venta:", error);
+    res.status(500).json({ message: "Error interno del servidor" });
+  }
+});
+
+router.delete('/api/deleteSale/:saleId',async (req,res)=>{
+  const {saleId}=req.params;
+  try {
+    const sale=await Sale.findByPk(saleId);
+    if(!sale){
+      return res.status(404).send({message:'Sale no encontrada'})
+    }
+    await sale.destroy()
+  } catch (error) {
+    res.status(500).send({ message: error.message || "Internal Server Error" });
+
+  }
+})
+
 
 module.exports = router;

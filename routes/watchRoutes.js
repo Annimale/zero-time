@@ -91,7 +91,7 @@ router.patch('/api/editWatch/:id', upload.array('images', 5), async (req, res) =
     res.status(500).send({ message: error.message || "Internal Server Error" });
   }
 });
-
+//!FIXME la ruta esta tendría que ser deleteWatch
 router.delete('/api/editWatch/:id', async (req, res) => {
   const { id } = req.params;
   try {
