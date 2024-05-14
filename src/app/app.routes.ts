@@ -28,6 +28,7 @@ import { AdminGuard } from './admin-guard.guard';
 import { UserGuard } from './user-guard.guard';
 import { isUserResolver } from './is-user.resolver';
 import { NoAuthGuard } from './noauth.service';
+import { UsersComponent } from './users/users.component';
 
 export const routes: Routes = [
   // Rutas comunes
@@ -44,6 +45,7 @@ export const routes: Routes = [
   { path: 'edit-watch/:id', component: EditWatchComponent, canActivate: [AdminGuard] },
   { path: 'edit-news/:id', component: EditNewsComponent, canActivate: [AdminGuard] },
   { path: 'admin-profile', component: AdminProfileComponent, canActivate: [AdminGuard] },
+  { path: 'users', component: UsersComponent, canActivate: [AdminGuard] },
 
   // Rutas comunes
   { path: 'profile', component: ProfileComponent, canActivate: [UserGuard] },

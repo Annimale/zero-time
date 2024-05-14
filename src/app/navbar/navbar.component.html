@@ -277,6 +277,12 @@
                     class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                     >Cuenta</a
                   >
+                  <a
+                    *ngIf="userGoogle?.role == 'admin' || userInfo?.role == 'admin'"
+                    routerLink="/users"
+                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                    >Listado users</a
+                  >
                 </li>
                 <li *ngIf="!isAuthenticated">
                   <a

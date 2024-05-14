@@ -44,7 +44,10 @@ export class SaleService {
   }
   deleteSale(saleId:number):Observable<any>{
     return this.http.delete(`${this.baseUrl}/api/deleteSale/${saleId}`);
-
+  }
+  getUserSales(userId: number): Observable<any[]> {
+    // Hacer la solicitud HTTP para obtener las ventas del usuario utilizando el ID proporcionado
+    return this.http.get<any[]>(`${this.baseUrl}/api/getUserSales/${userId}`);
   }
 
 }

@@ -21,98 +21,22 @@
           </div>
         </div>
       </div>
-      <div class="CARD border-b border-gray-300 pb-10">
+      <div
+        class="CARD border-b border-gray-300 pb-10"
+        *ngFor="let item of cartItems; let i = index"
+      >
         <div class="flex flex-row">
-          <img
-            width="200px"
-            height="200px"
-            src="https://shop.hodinkee.com/cdn/shop/files/G-SHOCKRef.6900-SubtractByEdSheeranForHodinkee_01_large.jpg?v=1695855729"
-            alt=""
-          />
+          <img width="200px" height="200px" [src]="item.imageUrl" alt="" />
           <div class="INFOCARD ml-10 flex flex-col space-y-2">
-            <h2>G-SHOCK Ref.6900 - Subtract By Ed Sheeran For Hodinkee</h2>
-            <h3 class="font-latoBold">{{ 185 | europeNumber }}</h3>
-            <h2 class="">
-              <a href="" class="w-fit text-red-600 hover:font-latoBlack">
-                Eliminar
-              </a>
-            </h2>
-          </div>
-        </div>
-      </div>
-      <div class="CARD border-b border-gray-300 pb-10">
-        <div class="flex flex-row">
-          <img
-            width="200px"
-            height="200px"
-            src="https://shop.hodinkee.com/cdn/shop/files/G-SHOCKRef.6900-SubtractByEdSheeranForHodinkee_01_large.jpg?v=1695855729"
-            alt=""
-          />
-          <div class="INFOCARD ml-10 flex flex-col space-y-2">
-            <h2>G-SHOCK Ref.6900 - Subtract By Ed Sheeran For Hodinkee</h2>
-            <h3 class="font-latoBold">{{ 185 | europeNumber }}</h3>
-            <h2 class="">
-              <a href="" class="w-fit text-red-600 hover:font-latoBlack">
-                Eliminar
-              </a>
-            </h2>
-          </div>
-        </div>
-      </div>
-      <div class="CARD border-b border-gray-300 pb-10">
-        <div class="flex flex-row">
-          <img
-            width="200px"
-            height="200px"
-            src="https://shop.hodinkee.com/cdn/shop/files/G-SHOCKRef.6900-SubtractByEdSheeranForHodinkee_01_large.jpg?v=1695855729"
-            alt=""
-          />
-          <div class="INFOCARD ml-10 flex flex-col space-y-2">
-            <h2>G-SHOCK Ref.6900 - Subtract By Ed Sheeran For Hodinkee</h2>
-            <h3 class="font-latoBold">{{ 185 | europeNumber }}</h3>
-            <h2 class="">
-              <a href="" class="w-fit text-red-600 hover:font-latoBlack">
-                Eliminar
-              </a>
-            </h2>
-          </div>
-        </div>
-      </div>
-      <div class="CARD border-b border-gray-300 pb-10">
-        <div class="flex flex-row">
-          <img
-            width="200px"
-            height="200px"
-            src="https://shop.hodinkee.com/cdn/shop/files/G-SHOCKRef.6900-SubtractByEdSheeranForHodinkee_01_large.jpg?v=1695855729"
-            alt=""
-          />
-          <div class="INFOCARD ml-10 flex flex-col space-y-2">
-            <h2>G-SHOCK Ref.6900 - Subtract By Ed Sheeran For Hodinkee</h2>
-            <h3 class="font-latoBold">{{ 185 | europeNumber }}</h3>
-            <h2 class="">
-              <a href="" class="w-fit text-red-600 hover:font-latoBlack">
-                Eliminar
-              </a>
-            </h2>
-          </div>
-        </div>
-      </div>
-      <div class="CARD border-b border-gray-300 pb-10">
-        <div class="flex flex-row">
-          <img
-            width="200px"
-            height="200px"
-            src="https://shop.hodinkee.com/cdn/shop/files/G-SHOCKRef.6900-SubtractByEdSheeranForHodinkee_01_large.jpg?v=1695855729"
-            alt=""
-          />
-          <div class="INFOCARD ml-10 flex flex-col space-y-2">
-            <h2>G-SHOCK Ref.6900 - Subtract By Ed Sheeran For Hodinkee</h2>
-            <h3 class="font-latoBold">{{ 185 | europeNumber }}</h3>
-            <h2 class="">
-              <a href="" class="w-fit text-red-600 hover:font-latoBlack">
-                Eliminar
-              </a>
-            </h2>
+            <h2>{{ item.name }}</h2>
+            <h3 class="font-latoBold">{{ item.price | europeNumber }}</h3>
+            <!-- Botón para eliminar el reloj del carrito -->
+            <button
+              (click)="removeItemFromCart(i)"
+              class="w-fit text-red-600 hover:font-latoBlack"
+            >
+              Eliminar
+            </button>
           </div>
         </div>
       </div>
@@ -138,7 +62,7 @@
       >
         <button
           type="submit"
-          class="text-gray-900 hover:text-white border border-gray-800 w-full hover:bg-gray-900  font-latoBlack rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 uppercase dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800"
+          class="text-gray-900 hover:text-white border border-gray-800 w-full hover:bg-gray-900 font-latoBlack rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 uppercase dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800"
         >
           Realizar pedido
         </button>

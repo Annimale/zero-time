@@ -1,33 +1,33 @@
 <div class="container mx-auto font-latoRegular">
   <div class="grid grid-cols-4 font-latoRegular mx-auto space-x-12 pb-32">
     <div
-    class="fixed inset-0 bg-gray-600 bg-opacity-50 z-50 flex justify-center items-center"
-    *ngIf="showModal"
-    (click)="closeModal($event)"
-  >
-    <button
-      class="p-2 px-4 mb-2 top-8 right-[25%] absolute bg-gray-50 text-black rounded hover:bg-gray-600 hover:text-white text-xl"
-      (click)="toggleModal()"
+      class="fixed inset-0 bg-gray-600 bg-opacity-50 z-50 flex justify-center items-center"
+      *ngIf="showModal"
+      (click)="closeModal($event)"
     >
-      X
-    </button>
-    <!-- Modal Content -->
-    <div
-      class="bg-white p-5 rounded-lg shadow-lg max-w-3xl max-h-full overflow-auto relative"
-      (click)="$event.stopPropagation()"
-    >
-      <div class="relative overflow-hidden" style="cursor: zoom-in">
-        <img
-          #zoomImage
-          [src]="selectedImage"
-          alt="Zoomed Watch Image"
-          class="transition-transform duration-200 ease-in-out transform scale-100 object-contain w-full"
-          (mousemove)="adjustZoom($event)"
-          (mouseleave)="resetZoom()"
-        />
+      <button
+        class="p-2 px-4 mb-2 top-8 right-[25%] absolute bg-gray-50 text-black rounded hover:bg-gray-600 hover:text-white text-xl"
+        (click)="toggleModal()"
+      >
+        X
+      </button>
+      <!-- Modal Content -->
+      <div
+        class="bg-white p-5 rounded-lg shadow-lg max-w-3xl max-h-full overflow-auto relative"
+        (click)="$event.stopPropagation()"
+      >
+        <div class="relative overflow-hidden" style="cursor: zoom-in">
+          <img
+            #zoomImage
+            [src]="selectedImage"
+            alt="Zoomed Watch Image"
+            class="transition-transform duration-200 ease-in-out transform scale-100 object-contain w-full"
+            (mousemove)="adjustZoom($event)"
+            (mouseleave)="resetZoom()"
+          />
+        </div>
       </div>
     </div>
-  </div>
     <div class="EDIT col-span-2">
       <h1 class="font-prata text-5xl mb-12">Editar perfil</h1>
       <form [formGroup]="editForm" (ngSubmit)="onSubmit()" class="pb-18">
@@ -145,44 +145,23 @@
       <div class="ml-10 INFO">
         <h1 class="font-prata text-5xl">Notificaciones</h1>
         <div class="CONTENT pt-20 space-y-4">
-          <div class="ACCMODIFIED border-b pb-10 border-gray-300">
-            <h2>Su cuenta ha sido modificada</h2>
-            <h2 class="text-right">
-              <a href="" class="w-fit text-red-600 hover:font-latoBlack">
-                Eliminar
-              </a>
-            </h2>
+          <div *ngIf="userSales.length > 0; else noNotifications">
+            <div
+              class="ACCMODIFIED border-b pb-10 border-gray-300"
+              *ngFor="let sale of userSales"
+            >
+              <h2>
+                Su venta del modelo:
+                <span class="font-latoBold">{{ sale.model }}</span>
+              </h2>
+              <h2>
+                está: <span class="font-latoBold">{{ sale.status }}</span>
+              </h2>
+            </div>
           </div>
-
-          <div class="ACCMODIFIED border-b pb-10 border-gray-300">
-            <h2>Su cuenta ha sido modificada</h2>
-            <h2 class="text-right">
-              <a href="" class="w-fit text-red-600 hover:font-latoBlack">
-                Eliminar
-              </a>
-            </h2>
-          </div>
-          <div class="ACCMODIFIED border-b pb-10 border-gray-300">
-            <h2>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Rem
-              laudantium quasi illum provident expedita inventore unde
-              asperiores reprehenderit, qui cumque fugit, obcaecati alias,
-              consectetur velit necessitatibus placeat. Vel, odio? Architecto.
-            </h2>
-            <h2 class="text-right">
-              <a href="" class="w-fit text-red-600 hover:font-latoBlack">
-                Eliminar
-              </a>
-            </h2>
-          </div>
-          <div class="ACCMODIFIED border-b pb-10 border-gray-300">
-            <h2>Su cuenta ha sido modificada</h2>
-            <h2 class="text-right">
-              <a href="" class="w-fit text-red-600 hover:font-latoBlack">
-                Eliminar
-              </a>
-            </h2>
-          </div>
+          <ng-template #noNotifications>
+            <h1 class="font-latoBold text-3xl">No tienes  nuevas notificaciones</h1>
+          </ng-template>
         </div>
       </div>
     </div>
@@ -241,21 +220,21 @@
                 class="IMAGES grid grid-cols-2 gap-2 w-52 mx-auto items-center"
               >
                 <img
-                  
                   [src]="imageUrl"
                   alt="reloj-5"
                   *ngFor="let imageUrl of getImageUrl(sale)"
                   (click)="openModal(imageUrl)"
-
                 />
               </div>
             </div>
-            <div class="OPTIONSALE mx-16 mt-8 flex-row flex justify-between" *ngIf="sale.status !== 'approved' && sale.status !== 'declined'">
+            <div
+              class="OPTIONSALE mx-16 mt-8 flex-row flex justify-between"
+              *ngIf="sale.status !== 'approved' && sale.status !== 'declined'"
+            >
               <button
                 type="button"
                 class="text-green-500 font-latoBold text-base hover:text-white border border-green-500 hover:bg-green-800 focus:outline-none rounded-lg px-5 py-2.5 text-center me-2 mb-2 dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:hover:bg-green-600 dark:reen-800"
                 (click)="approveSale(sale.id)"
-
               >
                 Aceptar
               </button>
@@ -263,7 +242,6 @@
                 type="button"
                 class="text-red-500 font-latoBold hover:text-white border border-red-500 hover:bg-red-800 focus:outline-none rounded-lg text-base px-5 py-2.5 text-center me-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:ed-900"
                 (click)="declineSale(sale.id)"
-
               >
                 Rechazar
               </button>
@@ -275,9 +253,12 @@
               <p class="font-latoBold text-red-500">Venta Rechazada</p>
             </ng-container>
             <h2 class="text-right mt-10">
-              <a (click)="deleteSale(sale.id)" class="w-fit cursor-pointer text-red-600 hover:font-latoBlack">
+              <button
+                (click)="deleteSale(sale.id)"
+                class="w-fit cursor-pointer text-red-600 hover:font-latoBlack border-none bg-transparent"
+              >
                 Eliminar venta
-              </a>
+              </button>
             </h2>
           </div>
         </div>

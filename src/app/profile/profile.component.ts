@@ -65,6 +65,7 @@ export class ProfileComponent {
   cookie!: string;
   userInfo: any;
   sales: any = [];
+  userSales: any = [];
   isAuthenticated: boolean = false;
   localToken: any;
   userLocalInfo: any = {};
@@ -117,6 +118,9 @@ export class ProfileComponent {
         this.sales = data;
       },
     });
+
+    
+    
   }
 
   getLocalUserData(id: any) {
@@ -184,6 +188,15 @@ export class ProfileComponent {
               console.log(userRes);
               this.userGoogle = userRes;
               console.log(this.userGoogle.role);
+              this.saleService.getUserSales(this.userInfo.id || this.userGoogle.id).subscribe({
+                next: (data) => {
+                  console.log('Ventas del usuario:', data);
+                  this.userSales = data;
+                },
+                error: (error) => {
+                  console.error('Error al obtener las ventas del usuario:', error);
+                }
+              });
             },
           });
       },
@@ -249,24 +262,22 @@ export class ProfileComponent {
     return this.convertToImageArray(sale.images);
   }
   convertToImageArray(imagePaths: string): string[] {
-    // Eliminar las comillas dobles al principio y al final de la cadena
-    const trimmedPaths = imagePaths.slice(1, -1);
-
-    // Reemplazar las barras dobles con una sola barra
+    // Primero, eliminamos los corchetes y posibles comillas dobles
+    const trimmedPaths = imagePaths.replace(/[\[\]"']/g, '');
+  
+    // Luego, reemplazamos las barras diagonales inversas dobles con una sola barra diagonal
     const normalizedPaths = trimmedPaths.replace(/\\\\/g, '/');
-
-    // Eliminar las comillas dobles adicionales si quedan después de la normalización
-    const finalPaths = normalizedPaths.replace(/"/g, '');
-
-    // Dividir las rutas en una matriz usando comas como delimitador
-    const pathsArray = finalPaths.split(',');
-
-    // Mapear cada ruta para agregar el prefijo localhost:3000 y eliminar espacios en blanco
-    const urls = pathsArray.map(
-      (path) => `http://localhost:3000/${path.trim()}`
-    );
+  
+    // Finalmente, dividimos las rutas en un array usando las comas como delimitador
+    const pathsArray = normalizedPaths.split(',');
+  
+    // Mapeamos cada ruta para agregar el prefijo localhost:3000 y eliminamos espacios en blanco
+    const urls = pathsArray.map((path) => `${this.baseUrl}${path.trim().replace(/\\/g, '')}`);
+    console.log(urls);
     return urls;
   }
+  
+   
   openModal(image: string) {
     this.selectedImage = image;
     this.showModal = true;
@@ -312,7 +323,7 @@ export class ProfileComponent {
         // Actualizar la lista de ventas después de la declinación
         this.updateSales();
         // Mostrar un mensaje de éxito
-        Swal.fire('Venta declinada', '', 'success');
+        Swal.fire('Venta rechazada', '', 'success');
       },
       error: (error) => {
         console.error('Error al declinar la venta', error);
@@ -330,22 +341,27 @@ export class ProfileComponent {
       },
       error: (error) => {
         console.error('Error al obtener las ventas', error);
-        // Manejar el error según sea necesario
       },
     });
   }
   deleteSale(saleId: number): void {
     this.saleService.deleteSale(saleId).subscribe({
       next: () => {
-        // Actualizar la lista de ventas después de la declinación
+        // Actualizar la lista de ventas después de la eliminación
         this.updateSales();
-        // Mostrar un mensaje de éxito
-        Swal.fire('Venta eliminada', '', 'success');
+       
+
       },
       error: (error) => {
-        console.error('Error al declinar la venta', error);
+        console.log('Error',error);
         Swal.fire('Error', 'Hubo un problema al borrar la venta', 'error');
       },
+      complete: () => {
+        // Mostrar mensaje de éxito después de completar la eliminación
+        Swal.fire('Venta eliminada', '', 'success');
+      }
     });
   }
+ 
+  
 }

@@ -1,30 +1,39 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable,of } from 'rxjs';
-import { catchError, tap,map } from 'rxjs/operators';
-
-
+import { Observable, Observer, of } from 'rxjs';
+import { catchError, tap, map } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class HttpService {
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getPayload(): Observable<any> {
-    return this.http.get('http://localhost:3000/user', { withCredentials: true })
+    return this.http.get('http://localhost:3000/user', {
+      withCredentials: true,
+    });
   }
 
-  getLocalUser(id:any): Observable<any>{
-    return this.http.get(`http://localhost:3000/localUser/${id}`)
+  getLocalUser(id: any): Observable<any> {
+    return this.http.get(`http://localhost:3000/localUser/${id}`);
   }
   updateUserProfile(userId: number, updateData: any): Observable<any> {
-    return this.http.put(`http://localhost:3000/updateUser/${userId}`, updateData);
+    return this.http.put(
+      `http://localhost:3000/updateUser/${userId}`,
+      updateData
+    );
   }
   verifyPassword(userId: number, password: string): Observable<any> {
-    return this.http.post(`http://localhost:3000/verify-password`, { userId, password });
+    return this.http.post(`http://localhost:3000/verify-password`, {
+      userId,
+      password,
+    });
   }
-  
-
+  getAllUsers(): Observable<any[]> {
+    return this.http.get<any[]>(`http://localhost:3000/getAllUsers`);
+  }
+  deleteUser(id: number): Observable<any> {
+    return this.http.delete(`http://localhost:3000/deleteUser/${id}`);
+  }
 }
