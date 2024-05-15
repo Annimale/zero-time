@@ -1,80 +1,71 @@
-<div class="container mx-auto font-latoRegular pb-60">
-  <div class="TEXT pb-32 space-y-4">
-    <h1 class="text-5xl font-prata text-center">Contáctanos</h1>
-    <h2 class="text-2xl text-gray-500 text-center">
+<div class="container mx-auto font-latoRegular pb-10 lg:pb-60">
+  <div class="TEXT pb-8 lg:pb-32 space-y-4">
+    <h1 class="text-3xl lg:text-5xl font-prata text-center">Contáctanos</h1>
+    <h2 class="text-lg lg:text-2xl text-gray-500 text-center">
       Si tienes alguna consulta general revisa nuestro
       <a routerLink="/faq" class="underline hover:font-latoBold">F.A.Q</a>
     </h2>
   </div>
-  <form action="" class="mx-64">
-    <div class="grid grid-cols-2 gap-x-8">
-      <div class="NAME">
-        <div class="relative z-0 w-full mb-5 group mt-6">
-          <input
-            type="text"
-            name="floating_contactUs_name"
-            id="floating_contactUs_name"
-            class="block py-2.5 px-0 w-full border-0 bg-transparent border-b-2 focus:border-gray-800 border-gray-300 appearance-none peer focus:outline-none focus:ring-0"
-            placeholder=""
-            required
-          />
-          <label
-            for="floating_contactUs_name"
-            class="absolute duration-300 text-gray-500 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-            >Nombre</label
-          >
-        </div>
+  <form action="" class="mx-4 sm:mx-8 md:mx-16 lg:mx-32 xl:mx-64">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6">
+      <div class="relative z-0 w-full mb-5 group">
+        <input
+          type="text"
+          name="floating_contactUs_name"
+          id="floating_contactUs_name"
+          class="block py-2.5 px-0 w-full border-0 bg-transparent border-b-2 focus:border-gray-800 border-gray-300 appearance-none peer focus:outline-none focus:ring-0"
+          placeholder=""
+          required
+        />
+        <label
+          for="floating_contactUs_name"
+          class="absolute duration-300 text-gray-500 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+          >Nombre</label
+        >
       </div>
-      <div class="LASTNAME">
-        <div class="relative z-0 w-full mb-5 group mt-6">
-          <input
-            type="text"
-            name="floating_contactUs_lastName"
-            id="floating_contactUs_lastName"
-            class="block py-2.5 px-0 w-full border-0 bg-transparent border-b-2 focus:border-gray-800 border-gray-300 appearance-none peer focus:outline-none focus:ring-0"
-            placeholder=""
-            required
-          />
-          <label
-            for="floating_contactUs_lastName"
-            class="absolute duration-300 text-gray-500 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-            >Apellidos</label
-          >
-        </div>
+      <div class="relative z-0 w-full mb-5 group">
+        <input
+          type="text"
+          name="floating_contactUs_lastName"
+          id="floating_contactUs_lastName"
+          class="block py-2.5 px-0 w-full border-0 bg-transparent border-b-2 focus:border-gray-800 border-gray-300 appearance-none peer focus:outline-none focus:ring-0"
+          placeholder=""
+          required
+        />
+        <label
+          for="floating_contactUs_lastName"
+          class="absolute duration-300 text-gray-500 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+          >Apellidos</label
+        >
       </div>
-      <div class="EMAIL">
-        <div class="relative z-0 w-full mb-5 group mt-6">
-          <input
-            type="email"
-            name="floating_contactUs_email"
-            id="floating_contactUs_email"
-            class="block py-2.5 px-0 w-full border-0 bg-transparent border-b-2 focus:border-gray-800 border-gray-300 appearance-none peer focus:outline-none focus:ring-0"
-            placeholder=""
-            required
-          />
-          <label
-            for="floating_contactUs_email"
-            class="absolute duration-300 text-gray-500 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-            >Correo electrónico</label
-          >
-        </div>
+      <div class="relative z-0 w-full mb-5 group">
+        <input
+          type="email"
+          name="floating_contactUs_email"
+          id="floating_contactUs_email"
+          class="block py-2.5 px-0 w-full border-0 bg-transparent border-b-2 focus:border-gray-800 border-gray-300 appearance-none peer focus:outline-none focus:ring-0"
+          placeholder=""
+          required
+        />
+        <label
+          for="floating_contactUs_email"
+          class="absolute duration-300 text-gray-500 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+          >Correo electrónico</label
+        >
       </div>
-      <div class="PHONE">
-        <div class="relative z-0 w-full mb-5 group mt-6">
-          <input
-            type="number"
-            name="floating_contactUs_phone"
-            id="floating_contactUs_phone"
-            class="block py-2.5 px-0 w-full border-0 bg-transparent border-b-2 focus:border-gray-800 border-gray-300 appearance-none peer focus:outline-none focus:ring-0"
-            placeholder=""
-            
-          />
-          <label
-            for="floating_contactUs_phone"
-            class="absolute duration-300 text-gray-500 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-            >Año de compra</label
-          >
-        </div>
+      <div class="relative z-0 w-full mb-5 group">
+        <input
+          type="number"
+          name="floating_contactUs_phone"
+          id="floating_contactUs_phone"
+          class="block py-2.5 px-0 w-full border-0 bg-transparent border-b-2 focus:border-gray-800 border-gray-300 appearance-none peer focus:outline-none focus:ring-0"
+          placeholder=""
+        />
+        <label
+          for="floating_contactUs_phone"
+          class="absolute duration-300 text-gray-500 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+          >Año de compra</label
+        >
       </div>
       <div class="HOWCANWE">
         <label for="underline_select" class="sr-only">Underline select</label>
@@ -107,7 +98,7 @@
     <div class="BUTTON flex flex-col items-center">
       <button
         type="submit"
-        class="text-gray-900 w-1/2 hover:text-white border border-gray-800 hover:bg-gray-900  font-latoBold uppercase rounded-lg px-5 py-2.5 text-center me-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800"
+        class="text-gray-900 w-full lg:w-1/2 hover:text-white border border-gray-800 hover:bg-gray-900  font-latoBold uppercase rounded-lg px-5 py-2.5 text-center me-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800"
       >
         Envíar mensaje
       </button>

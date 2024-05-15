@@ -1,37 +1,27 @@
-<div class="container mx-auto mb-64">
-  <div class="grid grid-cols-7">
-    <div class="FILTERS col-span-1 pt-10 pr-4">
+<div class="container mx-auto mb-8 lg:mb-64 px-6">
+  <div class="grid grid-cols-1 lg:grid-cols-7 lg:gap-8">
+    <div class="FILTERS lg:col-span-1 pt-10 lg:pr-4">
       <div class="flex flex-col space-y-8">
         <div class="CATEGORY space-y-4">
           <h2 class="font-latoBold">Categoría</h2>
-         
-          <div class="flex justify-between items-center">
-            <label class="cursor-pointer flex justify-between flex-grow">
-              In-Depth
-              <input type="checkbox" class="form-checkbox focus:ring-0 h-5 w-5 text-gray-600" (change)="updateCategoryFilter('in-depth', $event)" />
+          <div class="flex flex-col space-y-2">
+            <label class="cursor-pointer flex items-center">
+              <input type="checkbox" class="form-checkbox h-5 w-5 text-gray-600" (change)="updateCategoryFilter('in-depth', $event)" />
+              <span class="ml-2">In-Depth</span>
+            </label>
+            <label class="cursor-pointer flex items-center">
+              <input type="checkbox" class="form-checkbox h-5 w-5 text-gray-600" (change)="updateCategoryFilter('hands-on', $event)" />
+              <span class="ml-2">Hands-On</span>
+            </label>
+            <label class="cursor-pointer flex items-center">
+              <input type="checkbox" class="form-checkbox h-5 w-5 text-gray-600" (change)="updateCategoryFilter('one-to-watch', $event)" />
+              <span class="ml-2">One-To-Watch</span>
+            </label>
+            <label class="cursor-pointer flex items-center">
+              <input type="checkbox" class="form-checkbox h-5 w-5 text-gray-600" (change)="updateCategoryFilter('introducing', $event)" />
+              <span class="ml-2">Introducing</span>
             </label>
           </div>
-          <div class="flex justify-between items-center">
-            <label class="cursor-pointer flex justify-between flex-grow">
-              Hands-On
-              <input type="checkbox" class="form-checkbox focus:ring-0 h-5 w-5 text-gray-600" (change)="updateCategoryFilter('hands-on', $event)" />
-            </label>
-          </div>
-          
-          <div class="flex justify-between items-center">
-            <label class="cursor-pointer flex justify-between flex-grow">
-              One-To-Watch
-              <input type="checkbox" class="form-checkbox focus:ring-0 h-5 w-5 text-gray-600"(change)="updateCategoryFilter('one-to-watch', $event)" />
-            </label>
-          </div>
-          
-          <div class="flex justify-between items-center">
-            <label class="cursor-pointer flex justify-between flex-grow">
-              Introducing
-              <input type="checkbox" class="form-checkbox focus:ring-0 h-5 w-5 text-gray-600"(change)="updateCategoryFilter('introducing', $event)" />
-            </label>
-          </div>
-          
         </div>
         <div class="AUTOR">
           <h2 class="font-latoBold">Autor</h2>
@@ -59,28 +49,26 @@
         </div>
       </div>
     </div>
-    <div class="ARTICLES col-span-6">
+    <div class="ARTICLES lg:col-span-6">
       <div class="ARTICLE border-b border-gray-200" *ngFor="let news of filteredNews">
-        <div class="grid grid-cols-5 gap-2 p-10" (click)="navigateToNewsDetail(news.id)">
-          <div class="col-span-2">
-            <div class="capitalize text-3xl font-latoRegular mb-6">
-              <span class="CATEGORY+TITLE font-prata text-5xl pr-4"
-                >{{ news.category }}
-              </span>
+        <div class="grid grid-cols-1 lg:grid-cols-5 gap-2 p-6 lg:p-10 cursor-pointer" (click)="navigateToNewsDetail(news.id)">
+          <div class="col-span-1 lg:col-span-2">
+            <div class="capitalize text-xl lg:text-3xl font-latoRegular mb-4 lg:mb-6">
+              <span class="CATEGORY+TITLE font-prata text-4xl lg:text-5xl pr-4">{{ news.category }}</span>
               {{ news.title }}
             </div>
-            <div class="SUBTITLE font-latoRegular opacity-75">
+            <div class="SUBTITLE font-latoRegular opacity-75 text-sm lg:text-base">
               {{ news.subtitle }}
             </div>
           </div>
-          <div class="col-span-3">
+          <div class="col-span-1 lg:col-span-3">
             <img
-              class="h-72 object-cover w-full"
+              class="h-48 lg:h-72 object-cover w-full"
               [src]="getCoverImageUrl(news.coverImage)"
               alt="coverImage"
             />
           </div>
-          <div class="AUTHOR capitalize">
+          <div class="AUTHOR col-span-1 lg:col-span-5 capitalize text-sm lg:text-base">
             <h3 class="whitespace-nowrap">
               {{ news.author }} - {{ news.date | date : "dd/MM/yyyy" }}
             </h3>

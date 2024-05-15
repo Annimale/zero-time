@@ -1,6 +1,6 @@
 <div class="container mx-auto">
-  <div class="grid grid-cols-5 border-b border-gray-300 pt-20">
-    <div class="">
+  <div class="grid grid-cols-1 lg:grid-cols-5 border-b border-gray-300 pt-20">
+    <div class="lg:col-span-1 pl-6">
       <div class="FILTERS">
         <h1 class="font-latoRegular text-3xl pb-4">Marcas</h1>
         <ul class="overflow-y-auto h-80 space-y-4">
@@ -14,7 +14,7 @@
         </ul>
       </div>
     </div>
-    <div class="col-span-4 grid grid-cols-2">
+    <div class="lg:col-span-4 grid grid-cols-1 lg:grid-cols-2">
       <div class="TITLE + DESCRIPTION pl-4">
         <h1 class="font-prata text-5xl px-2 pb-6">{{ brandInfo.name }}</h1>
         <div class="border-b border-gray-300 mx-3"></div>
@@ -22,24 +22,17 @@
           <p>{{ brandInfo.description }}</p>
         </div>
       </div>
-      <div class="IMAGEN" *ngIf="watches.length > 0">
+      <div class="IMAGEN">
         <img
-          [src]="brandCoverImageUrl"
-          alt="img-branDDD"
-          class="w-[614px] h-[410px] object-contain"
-        />
-      </div>
-      <div class="IMAGEN" *ngIf="watches.length <= 0">
-        <img
-          src="../../assets/images/brandNoWatch.svg"
+          [src]="watches.length > 0 ? brandCoverImageUrl : '../../assets/images/brandNoWatch.svg'"
           alt="img-brand"
-          class="w-[614px] h-[410px] object-contain"
+          class="w-full h-auto object-contain lg:w-[614px] lg:h-[410px]"
         />
       </div>
     </div>
   </div>
 
-  <div class="mx-auto w-full p-8 px-20 pt-20" *ngIf="watches.length > 0">
+  <div class="mx-auto lg:w-full p-8 lg:px-20 pt-20" *ngIf="watches.length > 0">
     <div class="text-6xl font-latoRegular mx-auto">
       <h2 class="text-xl">
         Todos los relojes de:
@@ -48,10 +41,11 @@
         }}</span>
       </h2>
     </div>
-    <div class="grid grid-cols-4 gap-10 mt-20 gap-y-12">
-      <div class="CARD RELOJ" *ngFor="let watch of watches"
-      (click)="navigateToWatchDetail(watch.id)"
-      class="cursor-pointer"
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 mt-20 gap-y-12">
+      <div
+        class="CARD RELOJ cursor-pointer"
+        *ngFor="let watch of watches"
+        (click)="navigateToWatchDetail(watch.id)"
       >
         <div class="IMAGEN pb-6">
           <img
@@ -64,17 +58,13 @@
         </div>
         <div class="TEXTO CARD">
           <h3 class="uppercase font-latoBold">{{ brandName }}</h3>
-          <p class="capitalize">
-            {{ watch.model }}
-          </p>
+          <p class="capitalize">{{ watch.model }}</p>
         </div>
-        <div class="font-latoBold pt-3">
-          {{ watch.price | europeNumber }}
-        </div>
+        <div class="font-latoBold pt-3">{{ watch.price | europeNumber }}</div>
       </div>
     </div>
   </div>
-  <div class="container" *ngIf="watches.length <= 0" class="py-32">
+  <div class="container py-32" *ngIf="watches.length <= 0">
     <h1 class="text-center text-4xl">
       De momento no hay relojes en nuestra tienda de la marca
       <span class="font-prata">{{ brandName }}</span>

@@ -10,7 +10,7 @@
       (ngSubmit)="onSubmit()"
       class="mx-auto p-12 pb-32"
     >
-      <div class="FORM grid grid-cols-4 w-full gap-7 gap-x-10">
+      <div class="FORM grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 w-full gap-7 gap-x-10">
         <div class="BRANDID flex items-center mb-5">
           <label for="brandID" class="sr-only">Underline select</label>
           <select
@@ -194,21 +194,22 @@
           </div>
         </div>
       </div>
-      <div class="SUBMITBUTTON col-span-3 items-center justify-center flex pt-10">
+      <div class="SUBMITBUTTON col-span-1 sm:col-span-2 lg:col-span-2 items-center justify-center flex pt-10">
         <button
           type="submit"
-          class="text-gray-900 hover:text-white border w-1/4 border-gray-800 hover:bg-gray-900  font-latoBlack uppercase rounded-lg px-5 py-2.5 text-center me-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800"
+          class="text-xs md:text-sm lg:text-sm text-gray-900 hover:text-white border w-1/4 border-gray-800 hover:bg-gray-900 font-latoBlack uppercase rounded-lg px-3 py-2 text-center me-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800"
         >
           Editar reloj
         </button>
         <button
           type="button"
           (click)="deleteWatch()"
-          class="text-gray-900 hover:text-white border w-1/4 border-gray-800 hover:bg-gray-900  font-latoBlack uppercase rounded-lg px-5 py-2.5 text-center me-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800"
+          class="text-xs md:text-sm lg:text-sm text-gray-900 hover:text-white border w-1/4 border-gray-800 hover:bg-gray-900 font-latoBlack uppercase rounded-lg px-3 py-2 text-center me-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800"
         >
           Eliminar reloj
         </button>
       </div>
+      
     </form>
   </div>
   

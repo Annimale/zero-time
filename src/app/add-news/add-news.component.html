@@ -1,17 +1,17 @@
 <div class="container mx-auto">
-  <div class="ADDNEWS text-center py-10">
-    <h1 class="font-prata text-6xl pb-4">Añadir nueva noticia</h1>
-    <h2 class="font-latoRegular text-2xl text-gray-500">
+  <div class="ADDNEWS text-center py-5 lg:py-10">
+    <h1 class="font-prata text-3xl lg:text-6xl pb-2 lg:pb-4">Añadir nueva noticia</h1>
+    <h2 class="font-latoRegular text-lg lg:text-2xl text-gray-500">
       Rellena el siguiente formulario
     </h2>
   </div>
   <form
     [formGroup]="newsForm"
     (ngSubmit)="onSubmit()"
-    class="mx-auto p-12 pb-36"
+    class="mx-4 sm:mx-auto lg:mx-auto p-6 sm:p-12 lg:p-12 pb-20 lg:pb-36"
   >
-    <div class="FORM grid grid-cols-4 w-full gap-7 gap-x-10">
-      <div class="relative z-0 w-full mb-5 group col-span-2">
+    <div class="FORM grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 w-full gap-3 sm:gap-5 lg:gap-7 gap-x-5 lg:gap-x-10">
+      <div class="relative z-0 w-full mb-3 sm:mb-5 lg:mb-5 group col-span-2 lg:col-span-2">
         <input
           formControlName="title"
           type="text"
@@ -27,7 +27,7 @@
           >Título</label
         >
       </div>
-      <div class="relative z-0 w-full mb-5 group col-span-3">
+      <div class="relative z-0 w-full mb-3 sm:mb-5 lg:mb-5 group col-span-2 lg:col-span-2">
         <input
           formControlName="subtitle"
           type="text"
@@ -43,7 +43,7 @@
           >Subtítulo</label
         >
       </div>
-      <div class="relative z-0 w-full mb-5 group col-span-5">
+      <div class="relative z-0 w-full mb-3 sm:mb-5 lg:mb-5 group col-span-4 lg:col-span-5">
         <textarea
           formControlName="body"
           name="floating_body"
@@ -59,8 +59,8 @@
         >
       </div>
 
-      <div class="flex items-center pt-5">
-        <div class="relative z-0 w-full mb-5 group">
+      <div class="flex items-center col-span-4 sm:col-span-2 lg:col-span-1 pt-3 sm:pt-5 lg:pt-5">
+        <div class="relative z-0 w-full mb-3 sm:mb-5 lg:mb-5 group">
           <input
             formControlName="author"
             type="text"
@@ -78,7 +78,7 @@
         </div>
       </div>
 
-      <div class="CATEGORY flex items-center">
+      <div class="CATEGORY flex items-center col-span-4 sm:col-span-2 lg:col-span-1">
         <label for="floating_category" class="sr-only">Underline select</label>
         <select
           formControlName="category"
@@ -93,8 +93,8 @@
         </select>
       </div>
 
-      <div class="UPLOADFILES flex items-center col-span">
-        <div class="w-full items-center pb-6">
+      <div class="UPLOADFILES flex items-center col-span-4 sm:col-span-2 lg:col-span-1">
+        <div class="w-full items-center pb-3 sm:pb-6 lg:pb-6">
           <label
             class="block mb-2 font-latoRegular text-gray-900 dark:text-white"
             for="coverImage"
@@ -110,8 +110,8 @@
           />
         </div>
       </div>
-      <div class="UPLOADFILES flex items-center c">
-        <div class="w-full items-center pb-6">
+      <div class="UPLOADFILES flex items-center col-span-4 sm:col-span-2 lg:col-span-1">
+        <div class="w-full items-center pb-3 sm:pb-6 lg:pb-6">
           <label
             class="block mb-2 font-latoRegular text-gray-900 dark:text-white"
             for="secondaryImage"
@@ -128,10 +128,10 @@
         </div>
       </div>
     </div>
-    <div class="SUBMITBUTTON col-span-3 items-center justify-center flex pt-10">
+    <div class="SUBMITBUTTON col-span-4 sm:col-span-2 lg:col-span-3 items-center justify-center flex pt-3 sm:pt-5 lg:pt-10">
       <button
         type="submit"
-        class="text-gray-900 hover:text-white border w-1/4 border-gray-800 hover:bg-gray-900  font-latoBlack uppercase rounded-lg px-5 py-2.5 text-center me-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800"
+        class="text-gray-900 hover:text-white border w-full sm:w-1/4 lg:w-1/4 border-gray-800 hover:bg-gray-900  font-latoBlack uppercase rounded-lg px-5 py-2.5 text-center me-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800"
       >
         Añadir noticia
       </button>

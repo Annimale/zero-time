@@ -18,7 +18,7 @@ import { PolicyCookiesComponent } from './policy-cookies/policy-cookies.componen
 import { LoginComponent } from './login/login.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { CartComponent } from './cart/cart.component';
-import { AdminProfileComponent } from './admin-profile/admin-profile.component';
+// import { AdminProfileComponent } from './admin-profile/admin-profile.component';
 import { FaqComponent } from './faq/faq.component';
 import { ShopDetailComponent } from './shop-detail/shop-detail.component';
 import { EditWatchComponent } from './edit-watch/edit-watch.component';
@@ -44,7 +44,7 @@ export const routes: Routes = [
   { path: 'add-watch', component: AddWatchComponent, canActivate: [AdminGuard] },
   { path: 'edit-watch/:id', component: EditWatchComponent, canActivate: [AdminGuard] },
   { path: 'edit-news/:id', component: EditNewsComponent, canActivate: [AdminGuard] },
-  { path: 'admin-profile', component: AdminProfileComponent, canActivate: [AdminGuard] },
+  // { path: 'admin-profile', component: AdminProfileComponent, canActivate: [AdminGuard] },
   { path: 'users', component: UsersComponent, canActivate: [AdminGuard] },
 
   // Rutas comunes

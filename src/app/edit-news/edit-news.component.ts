@@ -11,7 +11,7 @@ import { WatchService } from '../watch.service';
 import { BrandService } from '../brand.service';
 import Swal from 'sweetalert2';
 import { HttpService } from '../http.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute,Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../auth.service';
 import { NewsService } from '../news.service';
@@ -38,7 +38,8 @@ export class EditNewsComponent {
     private http: HttpService,
     private http2: HttpClient,
     private authService: AuthService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router:Router
   ) {}
 
   files: File[] = [];
@@ -95,7 +96,7 @@ export class EditNewsComponent {
 
       this.newsService.updateNews(this.news.id, formData).subscribe({
         next: () => {
-          Swal.fire('Success', 'News updated successfully', 'success').then(
+          Swal.fire('Éxito', 'Noticia editada correctamente', 'success').then(
             (result) => {
               if (result.value) {
                 window.location.reload(); // Recargar la página
@@ -104,7 +105,7 @@ export class EditNewsComponent {
           );
         },
         error: (error) => {
-          Swal.fire('Error', 'Failed to update news', 'error');
+          Swal.fire('Error', 'Erro to update news', 'error');
           console.error('Error updating news:', error);
         },
       });
@@ -145,7 +146,7 @@ export class EditNewsComponent {
               'Eliminada',
               'La noticia se ha sido eliminado exitosamente.',
               'success'
-            ).then(() => window.location.reload());
+            ).then(() => this.router.navigate(['/news']));
           },
           error: () => {
             Swal.fire('Error', 'No se pudo eliminar la noticia.', 'error');

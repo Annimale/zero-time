@@ -1,16 +1,20 @@
-<div class="container mx-auto font-latoRegular pt-10">
-  <div class="grid grid-cols-6">
-    <div class="CART col-span-4 space-y-8">
-      <h1 class="font-prata pb-16 text-5xl">Carrito</h1>
-      <div class="CARD border-b border-gray-300 pb-10">
-        <div class="flex flex-row">
+<div class="container mx-auto font-latoRegular possibleSolution pt-6">
+  <div class="grid grid-cols-1 lg:grid-cols-6 gap-6 lg:gap-0">
+    <!-- Carrito -->
+    <div class="CART lg:col-span-4 space-y-8">
+      <h1 class="font-prata pb-8 px-4 lg:pb-16 text-4xl lg:text-5xl">
+        Carrito
+      </h1>
+      <div class="CARD border-b border-gray-300 pb-6 lg:pb-10">
+        <div class="flex flex-col lg:flex-row items-center">
           <img
             width="200px"
             height="200px"
             src="https://shop.hodinkee.com/cdn/shop/files/G-SHOCKRef.6900-SubtractByEdSheeranForHodinkee_01_large.jpg?v=1695855729"
             alt=""
+            class="mb-4 lg:mb-0 lg:mr-10"
           />
-          <div class="INFOCARD ml-10 flex flex-col space-y-2">
+          <div class="INFOCARD flex flex-col space-y-2">
             <h2>G-SHOCK Ref.6900 - Subtract By Ed Sheeran For Hodinkee</h2>
             <h3 class="font-latoBold">{{ 185 | europeNumber }}</h3>
             <h2 class="">
@@ -21,28 +25,11 @@
           </div>
         </div>
       </div>
-      <div
-        class="CARD border-b border-gray-300 pb-10"
-        *ngFor="let item of cartItems; let i = index"
-      >
-        <div class="flex flex-row">
-          <img width="200px" height="200px" [src]="item.imageUrl" alt="" />
-          <div class="INFOCARD ml-10 flex flex-col space-y-2">
-            <h2>{{ item.name }}</h2>
-            <h3 class="font-latoBold">{{ item.price | europeNumber }}</h3>
-            <!-- Botón para eliminar el reloj del carrito -->
-            <button
-              (click)="removeItemFromCart(i)"
-              class="w-fit text-red-600 hover:font-latoBlack"
-            >
-              Eliminar
-            </button>
-          </div>
-        </div>
-      </div>
+      <!-- Repetir este bloque para cada elemento del carrito -->
     </div>
-    <div class="SUMMARY flex flex-col col-span-2">
-      <h1 class="font-prata pb-20 text-5xl">Resumen</h1>
+    <!-- Resumen -->
+    <div class="SUMMARY lg:col-span-2 px-4">
+      <h1 class="font-prata pb-8 lg:pb-20 text-3xl lg:text-5xl">Resumen</h1>
       <div class="INFO space-y-4">
         <div class="SUBTOTAL flex flex-row justify-between">
           <h2>Subtotal</h2>
@@ -57,12 +44,10 @@
           <h2 class="">{{ 16270 | europeNumber }}</h2>
         </div>
       </div>
-      <div
-        class="SUBMITBUTTON col-span-3 items-center justify-center flex pt-10"
-      >
+      <div class="SUBMITBUTTON flex items-center justify-center pt-8 lg:pt-10">
         <button
           type="submit"
-          class="text-gray-900 hover:text-white border border-gray-800 w-full hover:bg-gray-900 font-latoBlack rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 uppercase dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800"
+          class="text-gray-900 hover:text-white border border-gray-800 w-full lg:w-auto hover:bg-gray-900 font-latoBlack rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 uppercase dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800"
         >
           Realizar pedido
         </button>
