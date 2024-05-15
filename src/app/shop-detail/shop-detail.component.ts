@@ -10,6 +10,7 @@ import { HttpService } from '../http.service';
 import { jwtDecode } from 'jwt-decode';
 import { Router } from '@angular/router';
 import { CartService } from '../cart.service';
+import Swal from 'sweetalert2';
 
 interface CustomJwtPayload {
   id: number;
@@ -115,9 +116,7 @@ export class ShopDetailComponent {
       return ['../../assets/images/brandNoWatch.svg']; // Devolver imagen por defecto
     }
   }
-  addToCart(): void {
-    this.cartService.addToCart(this.watch);
-  }
+ 
   openModal(image: string) {
     this.selectedImage = image;
     this.showModal = true;
@@ -200,4 +199,12 @@ export class ShopDetailComponent {
   navigateToEditWatch(watchId: number) {
     this.router.navigate(['/edit-watch', watchId]);
   }
+  addToCart(): void {
+    this.cartService.addToCart(this.watch);
+    Swal.fire({
+      title: '¡Reloj añadido!',
+      text: 'El reloj se ha añadido al carrito.',
+      icon: 'success',
+      confirmButtonText: 'OK'
+    });  }
 }

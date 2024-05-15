@@ -239,6 +239,9 @@ export class NewsDetailComponent {
     });
   }
   getCurrentUrl() {
-    return window!.location.href;
-  }
+    if (typeof window !== 'undefined') {
+      return window.location.href;
+    } else {
+      return '';
+    }  }
 }

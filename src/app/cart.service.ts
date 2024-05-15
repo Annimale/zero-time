@@ -11,14 +11,24 @@ export class CartService {
   constructor() { }
 
   addToCart(watch: any): void {
-    const currentItems = this.cartItemsSubject.getValue();
-    const updatedItems = [...currentItems, watch];
-    this.cartItemsSubject.next(updatedItems);
+    let cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
+    cartItems.push(watch);
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
   }
 
-  removeFromCart(watch: any): void {
-    const currentItems = this.cartItemsSubject.getValue();
-    const updatedItems = currentItems.filter(item => item.id !== watch.id);
-    this.cartItemsSubject.next(updatedItems);
+  getCartItems(): any[] {
+    return JSON.parse(localStorage.getItem('cartItems') || '[]');
+  }
+
+  clearCart(): void {
+    localStorage.removeItem('cartItems');
+  }
+
+  removeCartItem(index: number): void {
+    let cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
+    if (index >= 0 && index < cartItems.length) {
+      cartItems.splice(index, 1);
+      localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    }
   }
 }

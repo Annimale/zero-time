@@ -51,6 +51,7 @@ export class AuthService {
   logout() {
     localStorage.removeItem('token');
     this.cookieService.delete('token');
+    localStorage.removeItem('cartItems');
     window.location.href = 'http://localhost:3000/logout';
   }
   localTokenExists(): boolean {

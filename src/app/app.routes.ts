@@ -49,7 +49,7 @@ export const routes: Routes = [
 
   // Rutas comunes
   { path: 'profile', component: ProfileComponent, canActivate: [UserGuard] },
-  { path: 'cart', component: CartComponent },
+  { path: 'cart', component: CartComponent,resolve:{isUser:isUserResolver} },
   { path: 'insurance', component: InsuranceComponent },
   { path: 'sell-your-watch', component: SellYourWatchComponent, resolve:{isUser:isUserResolver}},
   { path: 'login', component: LoginComponent,canActivate: [NoAuthGuard] },
