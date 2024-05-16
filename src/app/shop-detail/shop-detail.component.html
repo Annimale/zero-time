@@ -1,5 +1,5 @@
 <div class="container mx-auto font-latoRegular">
-  <div class="grid grid-cols-2">
+  <div class=" mx-4 grid grid-cols-1 md:grid-cols-2 gap-4">
     <!-- Modal Overlay -->
     <div
       class="fixed inset-0 bg-gray-600 bg-opacity-50 z-50 flex justify-center items-center"
@@ -111,20 +111,20 @@
       </div>
       <div class="SPECS text-lg grid grid-cols-4 pb-12">
         <div class="CASESIZE flex flex-col space-y-2">
-          <h4 class="uppercase">tamaño caja</h4>
-          <h4 class="font-latoBold">{{ watch.caseSize }}mm</h4>
+          <h4 class="uppercase text-xs  lg:text-lg">tamaño caja</h4>
+          <h4 class="font-latoBold text-base lg:text-lg">{{ watch.caseSize }}mm</h4>
         </div>
         <div class="CASETHICKNESS flex flex-col space-y-2">
-          <h4 class="uppercase">grosor caja</h4>
-          <h4 class="font-latoBold">{{ watch.caseThickness }}mm</h4>
+          <h4 class="uppercase text-xs  lg:text-lg">grosor caja</h4>
+          <h4 class="font-latoBold text-base lg:text-lg">{{ watch.caseThickness }}mm</h4>
         </div>
         <div class="MOVEMENT flex flex-col space-y-2">
-          <h4 class="uppercase">movimiento</h4>
-          <h4 class="font-latoBold capitalize">{{ watch.movement }}</h4>
+          <h4 class="uppercase text-xs  lg:text-lg">movimiento</h4>
+          <h4 class="font-latoBold text-base lg:text-lg capitalize">{{ watch.movement }}</h4>
         </div>
         <div class="CONDITION flex flex-col space-y-2">
-          <h4 class="uppercase">condición</h4>
-          <h4 class="font-latoBold capitalize">{{ watch.condition }}</h4>
+          <h4 class="uppercase text-xs  lg:text-lg">condición</h4>
+          <h4 class="font-latoBold text-base lg:text-lg capitalize">{{ watch.condition }}</h4>
         </div>
       </div>
       <div class="DESCRIPTION text-xl pb-12">

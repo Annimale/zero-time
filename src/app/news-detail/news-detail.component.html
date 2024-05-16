@@ -9,10 +9,10 @@
         />
       </div>
     </div>
-    <div class="TEXTO mx-28">
-      <div class="capitalize text-5xl font-latoRegular mb-6">
+    <div class="TEXTO mx-4 lg:mx-28">
+      <div class="capitalize text-3xl lg:text-5xl font-latoRegular mb-6">
         <div class="flex flex-row items-baseline">
-          <span class="CATEGORY+TITLE font-prata text-7xl pr-4"
+          <span class="CATEGORY+TITLE font-prata text-4xl lg:text-7xl pr-4"
             >{{ news.category }}
           </span>
           {{ news.title }}
@@ -57,25 +57,24 @@
         </div>
       </div>
       <div
-        class="SUBTITLE font-latoRegular opacity-75 pb-5 text-2xl border-b border-gray-300"
+        class="SUBTITLE font-latoRegular opacity-75 pb-5 text-lg lg:text-2xl border-b border-gray-300"
       >
         {{ news.subtitle }}
       </div>
       <div class="container mx-auto border-b border-gray-300">
-        <div class="flex items-center justify-between py-4">
-          <!-- Left Side: Profile picture and name/date -->
+        <div class="flex flex-col lg:flex-row items-center justify-between py-4">
           <div class="flex items-center space-x-4">
             <div>
-              <p class="text-lg capitalize font-latoRegular">
+              <p class="text-base lg:text-lg capitalize font-latoRegular">
                 {{ news.author }}
               </p>
-              <p class="text-lg text-gray-600">
+              <p class="text-base lg:text-lg text-gray-600">
                 {{ news.date | date : "dd/MM/yyyy" }}
               </p>
             </div>
           </div>
 
-          <!-- Right Side: Social icons -->
+        
           <div class="flex items-center space-x-4">
             <a [href]="'https://www.facebook.com/sharer/sharer.php?u=' + getCurrentUrl()" class="text-gray-600 hover:text-gray-900">
               <svg
@@ -126,14 +125,14 @@
         </div>
       </div>
       <div
-        class="BODY font-latoRegular text-lg flex flex-row flex-wrap justify-between py-5 border-b border-gray-300"
+      class="BODY font-latoRegular text-base lg:text-lg flex flex-col lg:flex-row justify-between py-5 border-b border-gray-300"
       >
-        <div class="w-full md:w-1/2">
+        <div class="w-full lg:w-1/2">
           <p>
             {{ news.body }}
           </p>
         </div>
-        <div class="h-full md:w-1/2 pl-8 p-4">
+        <div class="h-full lg:w-1/2 pl-8 p-4">
           <img
             class="h-full object-contain"
             [src]="getImageUrl(news.secondaryImage)"
@@ -142,7 +141,7 @@
         </div>
       </div>
       <div class="COMENTARIOS py-10">
-        <h2 class="text-2xl font-bold">{{ commentsCount }} COMENTARIOS</h2>
+        <h2 class="text-xl lg:text-2xl font-bold">{{ commentsCount }} COMENTARIOS</h2>
       </div>
 
       <div class="pt-2">
