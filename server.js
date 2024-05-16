@@ -14,6 +14,10 @@ const Sale = require("./models/sale");
 const User = require("./models/user");
 const Brand = require("./models/brand");
 const Comment = require("./models/comment");
+const paypal = require('@paypal/checkout-server-sdk');
+
+const environment = new paypal.core.SandboxEnvironment('AfYtA5VDYnLth9ed2G8cGaN34oo4KZnM3LP9Y5Ufcc6_tWwhLpopsN6yByJmWMQC5fg0UPfFW7y_XLRr', 'EBWCXDz9VX2ae6-bcFDixWplohrkcDD5O4tQGIZqBK0tmdbZBe-ldf5bnUv0JbKAAEftdx91nq68WFVm');
+const client = new paypal.core.PayPalHttpClient(environment);
 
 console.log("User model:", User);
 console.log("Brand model:", Brand);
@@ -185,6 +189,59 @@ app.delete("/deleteUser/:id", async (req, res) => {
     res.status(500).json({ message: "Hubo un error al eliminar el usuario." });
   }
 });
+
+
+app.post('/checkout/paypal', async (req, res) => {
+  const orderItems = req.body.items; // Obtener los elementos del carrito desde el body de la solicitud
+  const totalAmount = req.body.amount; // Obtener el monto total desde el body de la solicitud
+  // Crear una orden en PayPal
+
+
+  console.log('Datos recibidos en la solicitud:');
+  console.log('Items del carrito:', orderItems);
+  console.log('Monto total:', totalAmount);
+
+
+  const itemTotal = orderItems.reduce((total, item) => {
+    return total + (parseFloat(item.unit_amount.value) * item.quantity);
+  }, 0).toFixed(2);
+  
+  const request = new paypal.orders.OrdersCreateRequest();
+  request.prefer("return=representation");
+  request.requestBody({
+    intent: 'CAPTURE',
+    purchase_units: [{
+      amount: {
+        currency_code: 'EUR',
+        value: totalAmount,
+        breakdown: {
+          item_total: {
+            currency_code: 'EUR',
+            value: itemTotal
+          }
+        }
+      },
+      items: orderItems.map(item => ({
+        name: item.name,
+        unit_amount: {
+          currency_code: item.unit_amount.currency_code,
+          value: item.unit_amount.value
+        },
+        quantity: item.quantity
+      }))
+    }]
+  });
+
+  try {
+    const response = await client.execute(request);
+    res.json({ orderId: response.result.id });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Error al procesar el pago con PayPal' });
+  }
+});
+
+
 
 app.use("/api/auth", authRoutes);
 app.use("/brands", brandRoutes);

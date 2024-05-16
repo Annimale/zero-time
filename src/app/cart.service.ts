@@ -17,8 +17,14 @@ export class CartService {
   }
 
   getCartItems(): any[] {
-    return JSON.parse(localStorage.getItem('cartItems') || '[]');
+    if (typeof localStorage !== 'undefined') {
+      return JSON.parse(localStorage.getItem('cartItems') || '[]');
+    } else {
+      console.error('localStorage is not available');
+      return [];
+    }
   }
+  
 
   clearCart(): void {
     localStorage.removeItem('cartItems');
@@ -31,4 +37,6 @@ export class CartService {
       localStorage.setItem('cartItems', JSON.stringify(cartItems));
     }
   }
+
+  
 }

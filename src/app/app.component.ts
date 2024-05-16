@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { withFetch } from '@angular/common/http';
 import Swal from 'sweetalert2';
 import { CookieService } from 'ngx-cookie-service';
+import { NgxStripeModule } from 'ngx-stripe';
 
 
 

@@ -7,6 +7,7 @@ import { provideClientHydration } from '@angular/platform-browser';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import {CookieService} from 'ngx-cookie-service';
+import { NgxStripeModule } from 'ngx-stripe';
 
 
 
@@ -30,6 +31,6 @@ export const appConfig: ApplicationConfig = {
           }
         ]
       } as SocialAuthServiceConfig,
-    }
+    },
   ]
 };

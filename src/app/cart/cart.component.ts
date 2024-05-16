@@ -16,6 +16,22 @@ interface CustomJwtPayload {
   exp: number;
 }
 
+interface CartItem {
+  id: number;
+  model: string;
+  caseSize: number;
+  caseThickness: number;
+  movement: string;
+  condition: string;
+  description: string;
+  price: number;
+  images: string[];
+  brandID: number;
+  userID: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
 @Component({
   selector: 'app-cart',
   standalone: true,
@@ -40,7 +56,7 @@ export class CartComponent {
     private route: ActivatedRoute,
     private http: HttpService,
     private http2: HttpClient,
-    private authService: AuthService,
+    private authService: AuthService
   ) {}
   ngOnInit(): void {
     this.cartItems = this.cartService.getCartItems();
@@ -56,7 +72,6 @@ export class CartComponent {
     this.isAuthenticated = this.authService.tokenExists();
     if (this.isAuthenticated) {
       this.getPayload();
-
     }
 
     this.getLocalTokenInfo();
@@ -136,5 +151,54 @@ export class CartComponent {
         console.error('Error al obtener datos del usuario', error);
       },
     });
+  }
+
+  realizarPedido() {
+    const cartItemsString = localStorage.getItem('cartItems');
+
+    if (!cartItemsString) {
+      console.error('No hay elementos en el carrito');
+      return;
+    }
+
+    // Parsear los elementos del carrito
+    const cartItems: CartItem[] = JSON.parse(cartItemsString);
+
+    // Calcular el monto total
+    const totalAmount = cartItems.reduce(
+      (total, item) => total + item.price,
+      0
+    );
+
+    const cartItemsWithDetails = cartItems.map((item: CartItem) => ({
+      name: item.model,
+      quantity: 1,
+      unit_amount: {
+        currency_code: 'USD', // Cambiar según la moneda utilizada
+        value: item.price.toFixed(2), // Redondear el precio a 2 decimales
+      },
+    }));
+    const itemTotal = {
+      currency_code: 'USD', // Cambiar según la moneda utilizada
+      value: totalAmount.toFixed(2), // Redondear el total a 2 decimales
+    };
+    console.log(cartItemsWithDetails)
+    // Enviar los datos a PayPal
+    this.http2
+      .post('http://localhost:3000/checkout/paypal', {
+        items: cartItemsWithDetails,
+        amount: totalAmount.toFixed(2) // Agrega el monto total como un parámetro
+          
+        
+      })
+      .subscribe(
+        (response: any) => {
+          window.location.href = `https://www.sandbox.paypal.com/checkoutnow?token=${response.orderId}`;
+        },
+        (error) => {
+          console.error(error);
+          // Manejar el error
+        }
+      );
   }
 }
