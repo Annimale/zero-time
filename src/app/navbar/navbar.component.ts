@@ -33,6 +33,8 @@ export class NavbarComponent {
   localName: string = '';
   userGoogle: any = {};
   isAdmin: boolean = false;
+  isNavbarCollapsed: boolean = false;
+  isBrandMenuOpen: boolean = false;
 
   constructor(
     private authService: AuthService,
@@ -135,7 +137,11 @@ export class NavbarComponent {
 
   toggleMenu() {
     console.log('Toggle menu clicked'); // Add this line
+    this.isNavbarCollapsed = !this.isNavbarCollapsed;
 
     this.isOpen = !this.isOpen;
   }
+  toggleBrandMenu() {
+  this.isBrandMenuOpen = !this.isBrandMenuOpen;
+}
 }

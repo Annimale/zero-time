@@ -74,53 +74,110 @@
               class="mt-2 transition-colors duration-300 transform lg:mt-0 lg:mx-4 hover:text-neutral-950 dark:hover:text-neutral-950"
               >Noticias</a
             >
-
-            <button
-              id="dropdownHoverButton"
-              data-dropdown-toggle="dropdownHover"
-              data-dropdown-trigger="hover"
-              class="text-gray-500 hover:text-neutral-950 px-5 py-2.5 text-center inline-flex items-center"
-              type="button"
-            >
-              Marcas
-              <svg
-                class="w-2.5 h-2.5 ms-3"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 10 6"
+            <div *ngIf="isNavbarCollapsed" class="BRANDS COLLAPSED">
+              <button
+                (click)="toggleBrandMenu()"
+                [ngClass]="{
+                  'text-gray-500 hover:text-neutral-950  text-center inline-flex items-center':
+                    !isNavbarCollapsed,
+                  'text-gray-500 hover:text-neutral-950   text-center inline-flex items-center':
+                    isNavbarCollapsed,
+                  
+                }"
+                id="dropdownHoverButton"
+                data-dropdown-toggle="dropdownHover"
+                data-dropdown-trigger="hover"
+                class="text-gray-500 hover:text-neutral-950  py-2.5 text-center inline-flex items-center"
+                type="button"
               >
-                <path
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="m1 1 4 4 4-4"
-                />
-              </svg>
-            </button>
-
-            <!-- Dropdown menu -->
-            <div
-              id="dropdownHover"
-              class="z-10 hidden bg-gray-50 divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
-            >
-              <ul
-                class="grid grid-cols-5 bg-gray-50 sm:grid-cols-2 md:grid-cols-3 gap-4 overflow-y-auto max-h-[500px] w-[800px]"
-                aria-labelledby="dropdownHoverButton"
-              >
-                <li
-                  *ngFor="let brand of brands"
-                  class="bg-gray-50 font-latoRegular"
+                Marcas
+                <svg
+                  class="w-2.5 h-2.5 ms-3"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 10 6"
                 >
-                  <a
-                    [routerLink]="['/brands', brand.name]"
-                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="m1 1 4 4 4-4"
+                  />
+                </svg>
+              </button>
+              <div
+                id="dropdownHover"
+                class="z-10 hidden bg-gray-50 divide-y divide-gray-100 rounded-lg shadow-lg w-44 dark:bg-gray-700"
+                [class.block]="isBrandMenuOpen"
+                [class.hidden]="!isBrandMenuOpen"
+              >
+                <ul
+                  class="bg-gray-50 sm:grid-cols-2 md:grid-cols-3 gap-4 overflow-y-auto max-h-[500px] w-[800px]"
+                  aria-labelledby="dropdownHoverButton"
+                >
+                  <li
+                    *ngFor="let brand of brands"
+                    class="bg-gray-50 font-latoRegular"
                   >
-                    {{ brand.name }}
-                  </a>
-                </li>
-              </ul>
+                    <a
+                      [routerLink]="['/brands', brand.name]"
+                      class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                    >
+                      {{ brand.name }}
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <!-- Dropdown menu -->
+            <div *ngIf="!isNavbarCollapsed" class="BRANDS !COLLAPSED">
+              <button
+                id="dropdownHoverButton"
+                data-dropdown-toggle="dropdownHover"
+                data-dropdown-trigger="hover"
+                class="text-gray-500 hover:text-neutral-950 px-5 py-2.5 text-center inline-flex items-center"
+                type="button"
+              >
+                Marcas
+                <svg
+                  class="w-2.5 h-2.5 ms-3"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 10 6"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="m1 1 4 4 4-4"
+                  />
+                </svg>
+              </button>
+              <div
+                id="dropdownHover"
+                class="z-10 hidden bg-gray-50 divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
+              >
+                <ul
+                  class="grid grid-cols-5 bg-gray-50 sm:grid-cols-2 md:grid-cols-3 gap-4 overflow-y-auto max-h-[500px] w-[800px]"
+                  aria-labelledby="dropdownHoverButton"
+                >
+                  <li
+                    *ngFor="let brand of brands"
+                    class="bg-gray-50 font-latoRegular"
+                  >
+                    <a
+                      [routerLink]="['/brands', brand.name]"
+                      class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                    >
+                      {{ brand.name }}
+                    </a>
+                  </li>
+                </ul>
+              </div>
             </div>
 
             <a
@@ -138,9 +195,18 @@
             >
               <a
                 routerLink="/sell-your-watch"
-                class="mt-2 transition-colors duration-300 transform lg:mt-0 lg:mx-4 whitespace-nowrap hover:text-neutral-950 dark:hover:text-gray-600"
+                class="mt-4 transition-colors duration-300 transform lg:mt-0 lg:mx-4 whitespace-nowrap hover:text-neutral-950 dark:hover:text-gray-600"
                 >Vende tu reloj</a
               >
+            </div>
+            <div
+              class="NO-USER+USER"
+              *ngIf="
+                !userGoogle ||
+                (userGoogle?.role !== 'admin' &&
+                  (!userInfo || userInfo?.role !== 'admin'))
+              "
+            >
               <a
                 routerLink="/insurance"
                 class="mt-2 transition-colors duration-300 transform lg:mt-0 lg:mx-4 whitespace-nowrap hover:text-neutral-950 dark:hover:text-gray-200"
@@ -278,7 +344,9 @@
                     >Cuenta</a
                   >
                   <a
-                    *ngIf="userGoogle?.role == 'admin' || userInfo?.role == 'admin'"
+                    *ngIf="
+                      userGoogle?.role == 'admin' || userInfo?.role == 'admin'
+                    "
                     routerLink="/users"
                     class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                     >Listado users</a

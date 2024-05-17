@@ -99,7 +99,10 @@ export class AddNewsComponent {
   
   resetFormAndFileInputs(): void {
     this.newsForm.reset(); // Esto resetea los otros campos del formulario
-
+    const categorySelect = document.getElementById(
+      'floating_category'
+    ) as HTMLSelectElement;
+    categorySelect.selectedIndex=0;
     // Ahora resetea manualmente los inputs de archivo
     if (this.coverImageInput && this.coverImageInput.nativeElement) {
       this.coverImageInput.nativeElement.value = '';
@@ -108,7 +111,7 @@ export class AddNewsComponent {
       this.secondaryImageInput.nativeElement.value = '';
     }
   }
-
+  
 
 }
 

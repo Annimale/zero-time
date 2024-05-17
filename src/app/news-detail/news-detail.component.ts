@@ -75,6 +75,8 @@ export class NewsDetailComponent {
       },
       error: (error) => {
         console.error('Error al obtener los detalles del artículo:', error);
+        this.router.navigate(['/not-found'])
+
       },
     });
 

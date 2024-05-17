@@ -128,7 +128,7 @@ export class EditNewsComponent {
   }
 
 
-  deleteWatch(): void {
+  deleteNews(): void {
     Swal.fire({
       title: '¿Estás seguro?',
       text: 'No podrás revertirlo',

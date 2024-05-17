@@ -26,6 +26,8 @@
       </div>
       <div class="relative z-0 w-full mb-5 group">
         <input
+        #fileInput
+
           formControlName="model"
           type="text"
           name="floating_model"
@@ -84,7 +86,7 @@
             class="hidden"
             multiple
             required
-            (change)="onFileSelect($event)"
+            (change)="onFileSelect($event); "
           />
         </label>
       </div>

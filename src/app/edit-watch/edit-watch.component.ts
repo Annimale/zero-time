@@ -124,7 +124,6 @@ export class EditWatchComponent {
             confirmButtonText: 'Ok',
           }).then((result) => {
             if (result.value) {
-              window.location.reload(); // Recargar la página
             }
           });
           console.log('Reloj editado con imágenes:', watch);

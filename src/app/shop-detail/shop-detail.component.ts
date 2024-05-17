@@ -62,6 +62,7 @@ export class ShopDetailComponent {
       },
       error: (error) => {
         console.error('Error al obtener los detalles del reloj:', error);
+        this.router.navigate(['/not-found'])
       },
     });
     this.brandService.getAllBrands().subscribe({

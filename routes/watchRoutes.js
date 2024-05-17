@@ -50,6 +50,7 @@ router.get('/api/getWatchById/:id', async (req, res) => {
     if (!watch) {
       // Si el reloj no se encuentra, envía un error 404
       return res.status(404).send({ message: 'Reloj no encontrado.' });
+      
     }
 
     // Si se encuentra el reloj, devuélvelo en la respuesta
