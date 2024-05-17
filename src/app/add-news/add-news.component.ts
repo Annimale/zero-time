@@ -4,6 +4,7 @@ import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angula
 import { NewsService } from '../news.service';
 import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2';
+import { TranslateModule } from '@ngx-translate/core';
 
 interface NewsFormValues {
   title: string;
@@ -17,7 +18,7 @@ interface NewsFormValues {
 @Component({
   selector: 'app-add-news',
   standalone: true,
-  imports: [RouterLink, ReactiveFormsModule, CommonModule],
+  imports: [RouterLink, ReactiveFormsModule, CommonModule,TranslateModule],
   templateUrl: './add-news.component.html',
   styleUrl: './add-news.component.css'
 })
