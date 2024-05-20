@@ -1,8 +1,8 @@
 <div class="container mx-auto">
   <div class="SELLYOURWATCH text-center py-10">
-    <h1 class="font-prata text-6xl pb-4">Añadir reloj</h1>
+    <h1 class="font-prata text-6xl pb-4">{{"addWatchTitle"|translate}}</h1>
     <h2 class="font-latoRegular text-2xl text-gray-500">
-      Rellena el siguiente formulario
+      {{"addWatchSubtitle"| translate}}
     </h2>
   </div>
   <form
@@ -18,7 +18,8 @@
           id="brandID"
           class="block py-2.5 px-0 w-full text-gray-500 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-300 peer"
         >
-          <option value="">Seleccione una marca</option>
+          <option value="">{{"addWatchBrandID"| translate}}
+          </option>
           <option *ngFor="let brand of brands" [value]="brand.id">
             {{ brand.name }}
           </option>
@@ -39,7 +40,7 @@
         <label
           for="floating_model"
           class="peer-focus:font-latoRegular absolute duration-300 text-gray-500 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-          >Modelo</label
+          >{{"addWatchWatchModel"| translate}}</label
         >
       </div>
 
@@ -67,8 +68,7 @@
               />
             </svg>
             <p class="mb-2 text-gray-500 dark:text-gray-400">
-              <span class="font-latoBold">Clica para subir </span> o arrastra y
-              suelta
+              <span class="font-latoBold">{{"addWatchImages1"|translate}} </span> {{"addWatchImages2"|translate}}
             </p>
 
             <div
@@ -103,7 +103,7 @@
         <label
           for="floating_description"
           class="peer-focus:font-latoRegular absolute duration-300 text-gray-500 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-          >Descripción</label
+          >{{"addWatchDescription"| translate}}</label
         >
       </div>
 
@@ -114,13 +114,13 @@
           id="movement"
           class="block py-2.5 px-0 w-full text-gray-500 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-300 peer"
         >
-          <option disabled selected value="">Movimiento</option>
-          <option value="quartz">Cuarzo</option>
-          <option value="automatic">Automático</option>
-          <option value="manual">Manual</option>
-          <option value="electronic">Electrónico</option>
-          <option value="spring-drive">Spring Drive</option>
-          <option value="electro-mechanical">Electro-mecánico</option>
+          <option disabled selected value="">{{"addWatchMovementLabel1"| translate}}</option>
+          <option value="quartz">{{"addWatchMovementLabel2"| translate}}</option>
+          <option value="automatic">{{"addWatchMovementLabel3"| translate}}</option>
+          <option value="manual">{{"addWatchMovementLabel4"| translate}}</option>
+          <option value="electronic">{{"addWatchMovementLabel5"| translate}}</option>
+          <option value="spring-drive">{{"addWatchMovementLabel6"| translate}}</option>
+          <option value="electro-mechanical">{{"addWatchMovementLabel7"| translate}}</option>
         </select>
       </div>
       <div class="condition flex items-center">
@@ -130,11 +130,11 @@
           id="condition"
           class="block py-2.5 px-0 w-full text-gray-500 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-300 peer"
         >
-          <option disabled selected value="">Condición</option>
-          <option value="new">Nuevo</option>
-          <option value="semi-used">Semi-usado</option>
-          <option value="used">Usado</option>
-          <option value="worn">Desgastado</option>
+          <option disabled selected value="">{{"addWatchConditionLabel1"| translate}}</option>
+          <option value="new">{{"addWatchConditionLabel2"| translate}}</option>
+          <option value="semi-used">{{"addWatchConditionLabel3"| translate}}</option>
+          <option value="used">{{"addWatchConditionLabel4"| translate}}</option>
+          <option value="worn">{{"addWatchConditionLabel5"| translate}}</option>
         </select>
       </div>
       <div class="grid grid-cols-3 col-span-2 gap-x-10">
@@ -151,7 +151,7 @@
           <label
             for="floating_case_size"
             class="peer-focus:font-latoRegular absolute duration-300 text-gray-500 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-            >Tamaño caja (mm)</label
+            >{{"addWatchCaseSize"| translate}}</label
           >
         </div>
         <div class="relative z-0 w-full mb-5 group mt-6 col-span-1">
@@ -167,7 +167,7 @@
           <label
             for="floating_case_thickness"
             class="peer-focus:font-latoRegular absolute duration-300 text-gray-500 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-            >Grosor caja (mm)</label
+            >{{"addWatchCaseWidth"| translate}}</label
           >
         </div>
         <div class="relative z-0 w-full mb-5 group mt-6 col-span-1">
@@ -183,7 +183,7 @@
           <label
             for="floating_price"
             class="peer-focus:font-latoRegular absolute duration-300 text-gray-500 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-            >Precio €</label
+            >{{"addWatchPrice"| translate}} €</label
           >
         </div>
       </div>
@@ -193,7 +193,7 @@
         type="submit"
         class="text-gray-900 hover:text-white border w-1/4 border-gray-800 hover:bg-gray-900  font-latoBlack uppercase rounded-lg px-5 py-2.5 text-center me-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800"
       >
-        Añadir reloj
+      {{"addWatchButton"| translate}}
       </button>
     </div>
   </form>

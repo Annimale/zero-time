@@ -212,11 +212,11 @@ app.post('/checkout/paypal', async (req, res) => {
     intent: 'CAPTURE',
     purchase_units: [{
       amount: {
-        currency_code: 'EUR',
+        currency_code: 'USD',
         value: totalAmount,
         breakdown: {
           item_total: {
-            currency_code: 'EUR',
+            currency_code: 'USD',
             value: itemTotal
           }
         }

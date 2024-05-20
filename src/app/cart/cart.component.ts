@@ -9,6 +9,7 @@ import { HttpService } from '../http.service';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../auth.service';
 import { jwtDecode } from 'jwt-decode';
+import { TranslateModule } from '@ngx-translate/core';
 
 interface CustomJwtPayload {
   id: number;
@@ -37,7 +38,7 @@ interface CartItem {
   standalone: true,
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.css',
-  imports: [EuropeNumberPipe, CommonModule, MatTooltipModule],
+  imports: [EuropeNumberPipe, CommonModule, MatTooltipModule,TranslateModule],
 })
 export class CartComponent {
   cartItems: any[] = []; // Lista de relojes en el carrito

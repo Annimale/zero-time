@@ -5,11 +5,12 @@ import { BrandService } from '../brand.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { WatchService } from '../watch.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-brands',
   standalone: true,
-  imports: [EuropeNumberPipe, CommonModule, RouterLink],
+  imports: [EuropeNumberPipe,TranslateModule, CommonModule, RouterLink],
   templateUrl: './brands.component.html',
   styleUrl: './brands.component.css',
 })

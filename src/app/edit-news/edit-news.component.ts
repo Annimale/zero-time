@@ -15,6 +15,7 @@ import { ActivatedRoute,Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../auth.service';
 import { NewsService } from '../news.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 interface NewsFormValues {
   title: string;
@@ -27,7 +28,7 @@ interface NewsFormValues {
 @Component({
   selector: 'app-edit-news',
   standalone: true,
-  imports: [RouterLink, ReactiveFormsModule, CommonModule],
+  imports: [RouterLink, ReactiveFormsModule, CommonModule,TranslateModule],
   templateUrl: './edit-news.component.html',
   styleUrl: './edit-news.component.css',
 })

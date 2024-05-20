@@ -14,6 +14,7 @@ import { HttpService } from '../http.service';
 import { jwtDecode } from 'jwt-decode';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../auth.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 interface WatchFormValues {
   brandID: number;
@@ -35,7 +36,7 @@ interface CustomJwtPayload {
 @Component({
   selector: 'app-add-watch',
   standalone: true,
-  imports: [RouterLink, ReactiveFormsModule, CommonModule],
+  imports: [RouterLink, ReactiveFormsModule, CommonModule,TranslateModule],
   templateUrl: './add-watch.component.html',
   styleUrl: './add-watch.component.css',
 })

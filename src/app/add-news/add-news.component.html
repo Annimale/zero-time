@@ -40,7 +40,7 @@
         <label
           for="floating_subtitle"
           class="peer-focus:font-latoRegular absolute duration-300 text-gray-500 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-          >Subtítulo</label
+          >{{"addNewsSubTitleLabel"| translate}}</label
         >
       </div>
       <div class="relative z-0 w-full mb-3 sm:mb-5 lg:mb-5 group col-span-4 lg:col-span-5">
@@ -55,7 +55,7 @@
         <label
           for="floating_body"
           class="peer-focus:font-latoRegular absolute duration-300 text-gray-500 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-          >Cuerpo</label
+          >{{"addNewsBodyLabel"| translate}}</label
         >
       </div>
 
@@ -73,7 +73,7 @@
           <label
             for="floating_author"
             class="peer-focus:font-latoRegular absolute duration-300 text-gray-500 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-            >Autor</label
+            >{{"addNewsAuthorLabel"| translate}}</label
           >
         </div>
       </div>
@@ -85,11 +85,11 @@
           id="floating_category"
           class="block py-2.5 px-0 w-full text-gray-500 bg-transparent border-0 border-b-2 border-gray-300 focus:border-gray-600 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 peer"
         >
-          <option disable selected value="">Categoría</option>
-          <option value="in-depth">En profundidad</option>
-          <option value="hands-on">Probando</option>
-          <option value="introducing">Presentando</option>
-          <option value="one-to-watch">A tener en cuenta</option>
+          <option disable selected value="">{{"addNewsCategoryLabel"| translate}}</option>
+          <option value="in-depth">{{"addNewsCategoryLabel1"| translate}}</option>
+          <option value="hands-on">{{"addNewsCategoryLabel2"| translate}}</option>
+          <option value="introducing">{{"addNewsCategoryLabel3"| translate}}</option>
+          <option value="one-to-watch">{{"addNewsCategoryLabel4"| translate}}</option>
         </select>
       </div>
 
@@ -98,7 +98,7 @@
           <label
             class="block mb-2 font-latoRegular text-gray-900 dark:text-white"
             for="coverImage"
-            >Foto portada
+            >{{"addNewsCoverPhotoLabel"| translate}}
           </label>
           <input
             #coverImageInput
@@ -115,7 +115,7 @@
           <label
             class="block mb-2 font-latoRegular text-gray-900 dark:text-white"
             for="secondaryImage"
-            >Foto cuerpo noticia</label
+            >{{"addNewsBodyPhotoLabel"| translate}}</label
           >
           <input
           #secondaryImageInput
@@ -133,7 +133,7 @@
         type="submit"
         class="text-gray-900 hover:text-white border w-full sm:w-1/4 lg:w-1/4 border-gray-800 hover:bg-gray-900  font-latoBlack uppercase rounded-lg px-5 py-2.5 text-center me-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800"
       >
-        Añadir noticia
+      {{"addNewsButton"| translate}}
       </button>
     </div>
   </form>
