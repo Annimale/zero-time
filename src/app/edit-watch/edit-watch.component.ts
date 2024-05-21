@@ -15,6 +15,8 @@ import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
+
 interface WatchFormValues {
   brandID: number;
   model: string;
@@ -28,7 +30,7 @@ interface WatchFormValues {
 @Component({
   selector: 'app-edit-watch',
   standalone: true,
-  imports: [RouterLink, ReactiveFormsModule, CommonModule],
+  imports: [RouterLink,TranslateModule, ReactiveFormsModule, CommonModule],
   templateUrl: './edit-watch.component.html',
   styleUrl: './edit-watch.component.css',
 })

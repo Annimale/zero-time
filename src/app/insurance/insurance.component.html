@@ -1,15 +1,22 @@
 <div class="container mx-auto pb-16 lg:pb-32">
   <div class="title-subtitle items-center flex flex-col pb-10">
-    <h1 class="font-prata text-4xl lg:text-7xl mb-8 lg:mb-20">Seguro Zero Time</h1>
-    <h2 class="text-2xl lg:text-3xl font-latoBold mb-4 lg:mb-6 text-center lg:text-left">
-      La manera mas rápida y segura de proteger los relojes que quieres.
+    <h1 class="font-prata text-4xl lg:text-7xl mb-8 lg:mb-20">
+      {{ "insuranceTitle" | translate }}
+    </h1>
+    <h2
+      class="text-2xl lg:text-3xl font-latoBold mb-4 lg:mb-6 text-center lg:text-left"
+    >
+      {{ "insuranceSubtitle" | translate }}
     </h2>
-    <h3 class="text-lg lg:text-xl text-gray-500 font-latoRegular text-center lg:text-left">
-      Hemos minimizado el papeleo y maximizado la protección, para que puedas
-      dejar de preocuparte por tus relojes y asi disfrutar de ellos.
+    <h3
+      class="text-lg lg:text-xl text-gray-500 font-latoRegular text-center lg:text-left"
+    >
+      {{ "insuranceSubSubtitle" | translate }}
     </h3>
   </div>
-  <div class="grid grid-cols-1 lg:grid-cols-4 items-center justify-center gap-12">
+  <div
+    class="grid grid-cols-1 lg:grid-cols-4 items-center justify-center gap-12"
+  >
     <div class="FAST mx-auto lg:block hidden">
       <svg
         width="185px"
@@ -175,79 +182,85 @@
       </svg>
     </div>
     <div class="FAST mx-auto flex items-center flex-col">
-      <h2 class="text-xl lg:text-2xl pb-2 lg:pb-4 uppercase font-latoBold">
-        Presupuestos instantáneos
+      <h2
+        class="text-xl lg:text-2xl pb-2 lg:pb-4 uppercase font-latoBold text-center"
+      >
+        {{ "insuranceInstantQuotes" | translate }}
       </h2>
-      <h3 class="text-base lg:text-lg font-latoRegular text-pretty text-center lg:text-left">
-        En la mayoría de las situaciones, recibirás un presupuesto adaptado
-        instantáneamente y tu póliza será activada de inmediato.
+      <h3
+        class="text-base lg:text-lg font-latoRegular text-pretty text-center lg:text-left"
+      >
+        {{ "insuranceInstantQuotesBody" | translate }}
       </h3>
     </div>
     <div class="WORLDWIDE mx-auto flex items-center flex-col">
-      <h2 class="text-xl lg:text-2xl pb-2 lg:pb-4 uppercase font-latoBold">Cobertura mundial</h2>
-      <h3 class="text-base lg:text-lg font-latoRegular text-pretty text-center lg:text-left">
-        Estés donde estés en el planeta Tierra, sus relojes o joyas están
-        protegidos. Descanse tranquilo y viaje seguro.
+      <h2
+        class="text-xl lg:text-2xl pb-2 lg:pb-4 uppercase font-latoBold text-center"
+      >
+        {{ "insuranceWorldwideCoverage" | translate }}
+      </h2>
+      <h3
+        class="text-base lg:text-lg font-latoRegular text-pretty text-center lg:text-left"
+      >
+        {{ "insuranceWorldwideCoverageBody" | translate }}
       </h3>
     </div>
     <div class="ZERO mx-auto flex items-center justify-center flex-col">
-      <h2 class="text-xl lg:text-2xl pb-2 lg:pb-4 uppercase font-latoBold">
-        Zero deducción instantánea
+      <h2
+        class="text-xl lg:text-2xl pb-2 lg:pb-4 uppercase font-latoBold text-center"
+      >
+        {{ "insuranceZeroDeduction" | translate }}
       </h2>
-      <h3 class="text-base lg:text-lg font-latoRegular text-pretty text-center lg:text-left">
-        Si sufre un siniestro y estás cubierto, no hay franquicia ni trucos. Sin
-        preocupaciones. Nunca te dejaremos desatendido.
+      <h3
+        class="text-base lg:text-lg font-latoRegular text-pretty text-center lg:text-left"
+      >
+        {{ "insuranceZeroDeductionBody" | translate }}
       </h3>
     </div>
     <div class="SECURE mx-auto flex items-center flex-col">
-      <h2 class="text-xl lg:text-2xl pb-2 lg:pb-4 uppercase font-latoBold">
-        Protección de inversión
+      <h2
+        class="text-xl lg:text-2xl pb-2 lg:pb-4 uppercase font-latoBold text-center"
+      >
+        {{ "insuranceInvestmentProtection" | translate }}
       </h2>
-      <h3 class="text-base lg:text-lg font-latoRegular text-pretty text-center lg:text-left">
-        Cada uno de tus relojes o joyas está cubierto hasta el 150% del valor
-        asegurado (hasta el valor total de la póliza).
+      <h3
+        class="text-base lg:text-lg font-latoRegular text-pretty text-center lg:text-left"
+      >
+      {{"insuranceInvestmentProtectionBody"|translate}}
       </h3>
     </div>
   </div>
   <div class="border-t border-gray-300 mt-16 lg:mt-32 font-latoRegular mx-auto">
     <div class="TEXT pt-10"></div>
     <h1 class="font-latoBold text-xl lg:text-3xl text-center">
-      Asegurar sus relojes o joyas, más facil que nunca.
+      {{"insuranceSection2Title"|translate}}
     </h1>
     <div class="grid grid-cols-1 lg:grid-cols-2 mx-4 lg:mx-44 pt-8 lg:pt-14">
-      <div class="INFO  flex flex-col space-y-9">
+      <div class="INFO flex flex-col space-y-9">
         <div class="t1">
-          <h2 class="font-latoBold text-xl">Configuración rápida</h2>
+          <h2 class="font-latoBold text-xl">{{"insuranceSection2QuickSetup"|translate}}</h2>
           <p>
-            Sólo tiene que hacer una foto de su reloj o joya, seguir nuestro
-            sencillo proceso de registro de cinco pasos y, si se aprueba, sus
-            relojes o joyas estarán asegurados en cuestión de minutos. Así de
-            fácil.
+            {{"insuranceSection2QuickSetupBody"|translate}}
           </p>
         </div>
         <div class="t2">
-          <h2 class="font-latoBold text-xl">Centro de reclamaciones 24/7</h2>
+          <h2 class="font-latoBold text-xl">{{"insuranceSection2ClaimsCenter"|translate}}</h2>
           <p>
-            Los imprevistos no se limitan al horario comercial. Siempre hay
-            alguien a una llamada de distancia si alguna vez necesita ayuda.
+            {{"insuranceSection2ClaimsCenterBody"|translate}}
           </p>
         </div>
 
         <div class="t3">
-          <h2 class="font-latoBold text-xl">Gestión sencilla de la póliza</h2>
+          <h2 class="font-latoBold text-xl">{{"insuranceSection2EasyPolicy"|translate}}</h2>
           <p>
-            Puede añadir o eliminar relojes o joyas en cualquier momento,
-            directamente desde su smartphone u ordenador. Su póliza es dinámica
-            para adaptarse a sus necesidades.
+            {{"insuranceSection2EasyPolicyBody"|translate}}
           </p>
         </div>
 
         <div class="t4">
-          <h2 class="font-latoBold text-xl">Línea de ayuda Zero Time</h2>
+          <h2 class="font-latoBold text-xl">{{"insuranceSection2ZeroTimeHelpline"|translate}}</h2>
           <p>
-            De lunes a viernes, contamos con un equipo dedicado a Zero Time para
-            ayudarle. Este es un seguro hecho por amantes de los relojes para
-            amantes de los relojes y las joyas.
+            {{"insuranceSection2ZeroTimeHelplineBody"|translate}}
           </p>
         </div>
       </div>

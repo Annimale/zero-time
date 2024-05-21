@@ -8,6 +8,7 @@ import { jwtDecode } from 'jwt-decode';
 import { HttpService } from '../http.service';
 import { HttpClient } from '@angular/common/http';
 import { BrandService } from '../brand.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 interface CustomJwtPayload {
   id: number;
@@ -18,7 +19,7 @@ interface CustomJwtPayload {
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [NgClass, CommonModule, RouterOutlet, RouterLink],
+  imports: [NgClass,TranslateModule, CommonModule, RouterOutlet, RouterLink],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css',
 })

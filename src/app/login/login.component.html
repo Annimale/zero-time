@@ -1,6 +1,6 @@
 <div class="container mx-auto pb-36">
   <div class="TITLE font-prata text-7xl text-center pb-28">
-    <h1>Inicia sesión</h1>
+    <h1>{{ "loginTitle" | translate }}</h1>
   </div>
   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <div class="grid grid-cols-2 mx-[30%] font-latoRegular">
@@ -18,7 +18,7 @@
           <label
             for="floating_login_email"
             class="peer-focus:font-latoRegular absolute duration-300 text-gray-500 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-            >Correo electrónico</label
+            >{{ "loginEmailLabel" | translate }}</label
           >
         </div>
       </div>
@@ -36,11 +36,11 @@
           <label
             for="floating_login_password"
             class="peer-focus:font-latoRegular absolute duration-300 text-gray-500 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-            >Contraseña</label
+            >{{ "loginPasswordLabel" | translate }}</label
           >
         </div>
       </div>
-      
+
       <div
         *ngIf="errorMessages"
         class="text-red-500 w-full col-span-2 text-center pb-2"
@@ -53,45 +53,45 @@
           type="submit"
           class="text-gray-900 text-lg hover:text-white border border-gray-800 w-full hover:bg-gray-900 rounded-lg px-5 py-2.5 text-center me-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800 font-latoBlack"
         >
-          Iniciar sesión
+        {{ "loginLoginButton" | translate }}
         </button>
       </div>
       <div class="GOOGLETEXT col-span-2 text-center py-4">
-        <h3 class="font-latoBold text-lg">O inicia sesión con</h3>
+        <h3 class="font-latoBold text-lg">{{"loginLoginGoogle"|translate}}</h3>
       </div>
-      
-        <div
+
+      <div
         class=""
-          id="g_id_onload"
-          data-client_id="603153535129-plb0i5pqros03qgdcqbbvm799qf8gsl6.apps.googleusercontent.com"
-          data-context="signin"
-          data-ux_mode="popup"
-          data-login_uri="http://localhost:3000/api/auth/login-with-google"
-          data-auto_prompt="false"
-        ></div>
+        id="g_id_onload"
+        data-client_id="603153535129-plb0i5pqros03qgdcqbbvm799qf8gsl6.apps.googleusercontent.com"
+        data-context="signin"
+        data-ux_mode="popup"
+        data-login_uri="http://localhost:3000/api/auth/login-with-google"
+        data-auto_prompt="false"
+      ></div>
 
-        <div
-        
-          class="g_id_signin col-span-2"
-          data-type="standard"
-          data-shape="rectangular"
-          data-theme="filled_black"
-          data-text="signin_with"
-          data-size="large"
-          data-logo_alignment="middle"
-          data-width="400px"
-        ></div>
-      
+      <div
+        class="g_id_signin col-span-2"
+        data-type="standard"
+        data-shape="rectangular"
+        data-theme="filled_black"
+        data-text="signin_with"
+        data-size="large"
+        data-logo_alignment="middle"
+        data-width="400px"
+      ></div>
 
-      <div class="NOLOGIN pt-5">
+      <div class="NOLOGIN pt-5 flex flex-row">
+        <div class="items-center text-center">
         <h3>
-          ¿No tienes cuenta?
+          {{ "loginDontHaveAccount" | translate }}
           <a
             routerLink="/sign-up"
             class="underline font-latoBold hover:text-gray-600"
-            >Regístrate</a
+            >{{ "loginDontHaveAccount2" | translate }}</a
           >
         </h3>
+        </div>
       </div>
     </div>
   </form>

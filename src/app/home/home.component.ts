@@ -6,6 +6,7 @@ import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 import { WatchService } from '../watch.service';
 import { BrandService } from '../brand.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 interface Watch {
   id: number;
@@ -25,7 +26,7 @@ interface Watch {
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, EuropeNumberPipe, RouterLink],
+  imports: [CommonModule,TranslateModule, EuropeNumberPipe, RouterLink],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })

@@ -17,6 +17,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { HttpService } from '../http.service';
 import { Location } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 
 type ErrorMessages = {
   [key: string]: string;
@@ -25,7 +26,7 @@ type ErrorMessages = {
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [RouterLink, CommonModule, ReactiveFormsModule],
+  imports: [RouterLink,TranslateModule, CommonModule, ReactiveFormsModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
