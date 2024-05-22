@@ -21,6 +21,7 @@ import { AuthService } from '../auth.service';
 import { HttpService } from '../http.service';
 import { jwtDecode } from 'jwt-decode';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { TranslateModule } from '@ngx-translate/core';
 
 interface CustomJwtPayload {
   id: number;
@@ -37,6 +38,7 @@ interface CustomJwtPayload {
     CommonModule,
     ReactiveFormsModule,
     MatTooltipModule,
+    TranslateModule
   ],
   templateUrl: './sell-your-watch.component.html',
   styleUrl: './sell-your-watch.component.css',

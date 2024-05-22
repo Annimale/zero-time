@@ -1,10 +1,13 @@
 import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
+  standalone:true,
   selector: 'app-no-access',
   templateUrl: './no-access.component.html',
-  styleUrls: ['./no-access.component.css']
+  styleUrls: ['./no-access.component.css'],
+  imports:[TranslateModule],
 })
 export class NoAccessComponent  {
   private audio?: HTMLAudioElement;

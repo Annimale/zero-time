@@ -20,6 +20,7 @@ import { HttpService } from '../http.service';
 import { HttpClient } from '@angular/common/http';
 import { SaleService } from '../sale.service';
 import { url } from 'inspector';
+import { TranslateModule } from '@ngx-translate/core';
 
 interface CustomJwtPayload {
   id: number;
@@ -56,7 +57,7 @@ interface Sale {
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [RouterLink, CommonModule, ReactiveFormsModule],
+  imports: [RouterLink, CommonModule, ReactiveFormsModule,TranslateModule],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css',
 })

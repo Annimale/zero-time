@@ -62,7 +62,9 @@
         {{ news.subtitle }}
       </div>
       <div class="container mx-auto border-b border-gray-300">
-        <div class="flex flex-col lg:flex-row items-center justify-between py-4">
+        <div
+          class="flex flex-col lg:flex-row items-center justify-between py-4"
+        >
           <div class="flex items-center space-x-4">
             <div>
               <p class="text-base lg:text-lg capitalize font-latoRegular">
@@ -74,9 +76,14 @@
             </div>
           </div>
 
-        
           <div class="flex items-center space-x-4">
-            <a [href]="'https://www.facebook.com/sharer/sharer.php?u=' + getCurrentUrl()" class="text-gray-600 hover:text-gray-900">
+            <a
+              [href]="
+                'https://www.facebook.com/sharer/sharer.php?u=' +
+                getCurrentUrl()
+              "
+              class="text-gray-600 hover:text-gray-900"
+            >
               <svg
                 width="25px"
                 height="25px"
@@ -107,7 +114,10 @@
                 </g>
               </svg>
             </a>
-            <a [href]="'https://twitter.com/intent/tweet?url=' + getCurrentUrl()" class="text-gray-600 hover:text-gray-900">
+            <a
+              [href]="'https://twitter.com/intent/tweet?url=' + getCurrentUrl()"
+              class="text-gray-600 hover:text-gray-900"
+            >
               <svg
                 fill="none"
                 height="25px"
@@ -125,7 +135,7 @@
         </div>
       </div>
       <div
-      class="BODY font-latoRegular text-base lg:text-lg flex flex-col lg:flex-row justify-between py-5 border-b border-gray-300"
+        class="BODY font-latoRegular text-base lg:text-lg flex flex-col lg:flex-row justify-between py-5 border-b border-gray-300"
       >
         <div class="w-full lg:w-1/2">
           <p>
@@ -141,15 +151,22 @@
         </div>
       </div>
       <div class="COMENTARIOS py-10">
-        <h2 class="text-xl lg:text-2xl font-bold">{{ commentsCount }} COMENTARIOS</h2>
+        <h2 class="text-xl lg:text-2xl font-bold">
+          {{ commentsCount }} {{ "newsDetailsCommentsTitle" | translate }}
+        </h2>
       </div>
 
       <div class="pt-2">
         <p class="mb-4" *ngIf="isUser === false">
-          Si deseas comentar en nuestras noticias
-          <a routerLink="/login" class="text-blue-600">inicia sesión</a> o
-          <a routerLink="/sign-up" class="text-blue-600">regístrate</a> y deja
-          un comentario.
+          {{ "newsDetailsComments1" | translate }}
+          <a routerLink="/login" class="text-blue-600">{{
+            "newsDetailsComments2" | translate
+          }}</a>
+          {{ "newsDetailsComments3" | translate }}
+          <a routerLink="/sign-up" class="text-blue-600">{{
+            "newsDetailsComments4" | translate
+          }}</a>
+          {{ "newsDetailsComments5" | translate }}
         </p>
 
         <div class="space-y-6">

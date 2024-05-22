@@ -3,48 +3,48 @@
     <div class="FILTERS lg:col-span-1 pt-10 lg:pr-4">
       <div class="flex flex-col space-y-8">
         <div class="CATEGORY space-y-4">
-          <h2 class="font-latoBold">Categoría</h2>
+          <h2 class="font-latoBold">{{"newsCategoryFilters"|translate}}</h2>
           <div class="flex flex-col space-y-2">
             <label class="cursor-pointer flex items-center">
               <input type="checkbox" class="form-checkbox h-5 w-5 text-gray-600" (change)="updateCategoryFilter('in-depth', $event)" />
-              <span class="ml-2">In-Depth</span>
+              <span class="ml-2">{{"newsCategoryFilters1"|translate}}</span>
             </label>
             <label class="cursor-pointer flex items-center">
               <input type="checkbox" class="form-checkbox h-5 w-5 text-gray-600" (change)="updateCategoryFilter('hands-on', $event)" />
-              <span class="ml-2">Hands-On</span>
+              <span class="ml-2">{{"newsCategoryFilters2"|translate}}</span>
             </label>
             <label class="cursor-pointer flex items-center">
               <input type="checkbox" class="form-checkbox h-5 w-5 text-gray-600" (change)="updateCategoryFilter('one-to-watch', $event)" />
-              <span class="ml-2">One-To-Watch</span>
+              <span class="ml-2">{{"newsCategoryFilters3"|translate}}</span>
             </label>
             <label class="cursor-pointer flex items-center">
               <input type="checkbox" class="form-checkbox h-5 w-5 text-gray-600" (change)="updateCategoryFilter('introducing', $event)" />
-              <span class="ml-2">Introducing</span>
+              <span class="ml-2">{{"newsCategoryFilters4"|translate}}</span>
             </label>
           </div>
         </div>
         <div class="AUTOR">
-          <h2 class="font-latoBold">Autor</h2>
+          <h2 class="font-latoBold">{{"newsAuthorFiltersLabel"|translate}}</h2>
           <input
             type="text"
-            placeholder="Author"
+            placeholder="Author ..."
             [(ngModel)]="filters.author" (ngModelChange)="updateAuthorFilter($event)"
             class="w-full p-2 border focus:ring-0 focus:border-gray-800 border-gray-300 rounded"
           />
         </div>
         <div class="mb-6 flex flex-col items-start space-y-4">
-          <h2 class="font-latoBold">Ordenar por fecha:</h2>
+          <h2 class="font-latoBold">{{"newsDateFiltersLabel"|translate}}</h2>
           <button
             class="border border-gray-600 px-4 py-2 w-full hover:bg-slate-900 hover:text-slate-100 rounded"
             (click)="updateSortOrder('newest')"
           >
-            Mas recientes
+          {{"newsDateFiltersNewest"|translate}}
           </button>
           <button
             class="border border-gray-600 px-4 py-2 w-full hover:bg-slate-900 hover:text-slate-100 rounded"
             (click)="updateSortOrder('oldest')"
           >
-            Mas antiguos
+          {{"newsDateFiltersOldest"|translate}}
           </button>
         </div>
       </div>

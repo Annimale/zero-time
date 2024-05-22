@@ -10,6 +10,8 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CommentService } from '../comment.service';
 import { Location } from '@angular/common';
 import Swal from 'sweetalert2';
+import { TranslateModule } from '@ngx-translate/core';
+
 interface CustomJwtPayload {
   id: number;
   iat: number;
@@ -30,7 +32,7 @@ interface Comment {
 @Component({
   selector: 'app-news-detail',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterLink],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink,TranslateModule],
   templateUrl: './news-detail.component.html',
   styleUrl: './news-detail.component.css',
 })

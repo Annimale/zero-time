@@ -1,6 +1,6 @@
 <div class="container mx-auto pb-20">
   <div class="TITLE font-prata text-7xl text-center pb-24">
-    <h1>Regístrate</h1>
+    <h1>{{ "signUpTitle" | translate }}</h1>
   </div>
   <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="pb-18">
     <div class="grid grid-cols-1 md:grid-cols-4 font-latoRegular mx-6 md:mx-32">
@@ -30,20 +30,20 @@
             <label
               for="floating_signUp_name"
               class="peer-focus:font-latoRegular absolute duration-300 text-gray-500 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-              >Nombre</label
+              >{{ "signUpNameLabel" | translate }}</label
             >
           </div>
           <div
             class="text-red-400"
             *ngIf="registerForm.get('name')?.errors?.['required'] && registerForm.get('name')?.touched"
           >
-            El nombre es requerido.
+          {{ "signUpNameLabelError" | translate }}
           </div>
           <div
             class="text-red-400"
             *ngIf="registerForm.get('name')?.errors?.['minlength'] && registerForm.get('name')?.touched"
           >
-            El nombre debe contener al menos 3 carácteres.
+          {{ "signUpNameLabelError1" | translate }}
           </div>
         </div>
         <div class="LASTNAME">
@@ -60,20 +60,20 @@
             <label
               for="floating_signUp_lastName"
               class="peer-focus:font-latoRegular absolute duration-300 text-gray-500 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-              >Apellidos</label
+              >{{ "signUpLastNameLabel" | translate }}</label
             >
           </div>
           <div
             class="text-red-400"
             *ngIf="registerForm.get('lastName')?.errors?.['required'] && registerForm.get('lastName')?.touched"
           >
-            El apellido es requerido.
+          {{ "signUpLastNameLabelError" | translate }}
           </div>
           <div
             class="text-red-400"
             *ngIf="registerForm.get('lastName')?.errors?.['minlength'] && registerForm.get('lastName')?.touched"
           >
-            El apellido debe contener al menos 3 carácteres.
+          {{ "signUpLastNameLabelError1" | translate }}
           </div>
         </div>
         <div class="EMAIL col-span-2">
@@ -90,20 +90,21 @@
             <label
               for="floating_signUp_email"
               class="peer-focus:font-latoRegular absolute duration-300 text-gray-500 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-              >Correo electrónico</label
             >
+              {{ "signUpEmailLabel" | translate }}
+            </label>
           </div>
           <div
             class="text-red-400"
             *ngIf="registerForm.get('email')?.errors?.['required'] && registerForm.get('email')?.touched"
           >
-            El correo electrónico es requerido.
+            {{ "signUpEmailLabelError" | translate }}
           </div>
           <div
             class="text-red-400"
             *ngIf="registerForm.get('email')?.errors?.['email'] && registerForm.get('email')?.touched"
           >
-            El correo electrónico debe tener un formato adecuado.
+            {{ "signUpEmailLabelError1" | translate }}
           </div>
           <div *ngIf="errorMessage" class="text-red-400">
             {{ errorMessage }}
@@ -123,23 +124,23 @@
             <label
               for="floating_signUp_password"
               class="peer-focus:font-latoRegular absolute duration-300 text-gray-500 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-              >Contraseña</label
+              >{{ "signUpPasswordLabel" | translate }}</label
             >
           </div>
           <div
             class="text-red-400"
             *ngIf="registerForm.get('password')?.errors?.['required'] && registerForm.get('password')?.touched"
           >
-            La contraseña es requerida.
+            {{ "signUpPasswordLabelError" | translate }}
           </div>
           <div
             class="text-red-400"
             *ngIf="registerForm.get('password')?.errors?.['minlength'] && registerForm.get('password')?.touched"
           >
-            La contraseña debe contener al menos 6 carácteres.
+            {{ "signUpPasswordLabelError1" | translate }}
           </div>
           <div class="text-red-400" *ngIf="!passwordsMatch">
-            Las contraseñas no coinciden.
+            {{ "signUpPasswordLabelError2" | translate }}
           </div>
         </div>
         <div class="REGISTERPASSWORD2">
@@ -155,12 +156,13 @@
             />
             <label
               for="floating_signUp_password2"
-              class="peer-focus:font-latoRegular  md:text-sm absolute duration-300 text-gray-500 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-              >Confirmar contraseña</label
+              class="peer-focus:font-latoRegular md:text-sm absolute duration-300 text-gray-500 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
             >
+              {{ "signUpRepeatPasswordLabel" | translate }}
+            </label>
           </div>
           <div class="text-red-400" *ngIf="!passwordsMatch">
-            Las contraseñas no coinciden.
+            {{ "signUpRepeatPasswordLabelError" | translate }}
           </div>
         </div>
         <div class="ACCEPTTERMS pt-4">
@@ -176,13 +178,13 @@
               class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:w-5 after:h-5 after:transition-all dark:border-gray-600 peer-checked:bg-gray-600"
             ></div>
             <span class="ms-3 font-medium text-gray-900 dark:text-gray-300"
-              >Acepto los
+              >{{ "signUpTermsConditionsLabel" | translate }}
               <a
                 routerLink="/terms-conditions"
                 class="underline font-latoBold hover:text-gray-600"
-                >términos y condiciones</a
+                >{{ "signUpTermsConditionsLabel1" | translate }}</a
               >
-              de registro
+              {{ "signUpTermsConditionsLabel2" | translate }}
             </span>
           </label>
           <div
@@ -192,7 +194,7 @@
             "
             class="text-red-500"
           >
-            Es obligatorio aceptar los términos y condiciones.
+            {{ "signUpTermsConditionsLabelError" | translate }}
           </div>
         </div>
         <div class="LOGINBUTTON">
@@ -200,16 +202,16 @@
             type="submit"
             class="text-gray-900 text-lg hover:text-white border border-gray-800 w-full hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-latoRegular rounded-lg px-5 py-2.5 text-center me-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800"
           >
-            Registrarse
+            {{ "signUpSignUpButton" | translate }}
           </button>
         </div>
         <div class="NOLOGIN pt-5 flex items-center flex-col col-span-2">
           <h3>
-            ¿Ya tienes cuenta?
+            {{ "signUpDoYouHaveAccount" | translate }}
             <a
               routerLink="/login"
               class="underline font-latoBold hover:text-gray-600"
-              >Inicia sesión</a
+              >{{ "signUpLogin" | translate }}</a
             >
           </h3>
         </div>

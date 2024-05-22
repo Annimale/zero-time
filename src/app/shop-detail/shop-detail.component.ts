@@ -11,6 +11,7 @@ import { jwtDecode } from 'jwt-decode';
 import { Router } from '@angular/router';
 import { CartService } from '../cart.service';
 import Swal from 'sweetalert2';
+import { TranslateModule } from '@ngx-translate/core';
 
 interface CustomJwtPayload {
   id: number;
@@ -22,7 +23,7 @@ interface CustomJwtPayload {
   standalone: true,
   templateUrl: './shop-detail.component.html',
   styleUrl: './shop-detail.component.css',
-  imports: [EuropeNumberPipe, CommonModule],
+  imports: [EuropeNumberPipe,TranslateModule, CommonModule],
 })
 export class ShopDetailComponent {
   watch: any = {};

@@ -1,45 +1,65 @@
 <div class="container mx-auto px-4 py-8 font-latoRegular text-pretty">
-    <h1 class="text-5xl text-center font-prata  my-10">Política de Privacidad</h1>
-    <p class="text-gray-700 mb-4 text-lg">
-      Bienvenido a Zero Time. Valoramos la privacidad de nuestros usuarios y nos comprometemos a proteger su información personal. En esta página, explicamos cómo tratamos la información que recopilamos cuando usted utiliza nuestro sitio web.
-    </p>
-  
-    <h2 class="text-xl font-latoBold mb-2">Información Recopilada</h2>
-    <p class="text-gray-700 mb-4 text-lg">
-      En Zero Time, recopilamos cierta información personal que usted nos proporciona voluntariamente al utilizar nuestro sitio web. Esta información puede incluir, entre otros, su nombre, dirección de correo electrónico, dirección postal, número de teléfono y preferencias de compra.
-    </p>
-    <p class="text-gray-700 mb-4 text-lg">
-      Además de la información que usted nos proporciona directamente, también podemos recopilar automáticamente ciertos datos cuando usted interactúa con nuestro sitio web. Estos datos pueden incluir su dirección IP, tipo de navegador, sistema operativo, páginas visitadas y la fecha y hora de su visita.
-    </p>
-  
-    <h2 class="text-xl font-latoBold mb-2">Uso de la Información</h2>
-    <p class="text-gray-700 mb-4 text-lg">
-      Utilizamos la información recopilada para diversos fines, que incluyen, entre otros:
-    </p>
-    <ul class="list-disc ml-8 text-gray-700 mb-4 text-lg">
-      <li>Personalizar su experiencia en nuestro sitio web y ofrecer contenido y productos relevantes.</li>
-      <li>Procesar sus pedidos y facilitar la entrega de productos.</li>
-      <li>Responder a sus consultas, preguntas o solicitudes de atención al cliente.</li>
-      <li>Enviarle comunicaciones relacionadas con su cuenta, como confirmaciones de pedido y actualizaciones de entrega.</li>
-      <li>Mejorar nuestro sitio web y servicios a través de análisis y estudios de mercado.</li>
-    </ul>
-    <p class="text-gray-700 mb-4 text-lg">
-      No compartiremos su información personal con terceros sin su consentimiento expreso, excepto cuando sea necesario para cumplir con la ley, proteger nuestros derechos o prestar servicios en nuestro nombre, como procesar pagos o enviar correos electrónicos.
-    </p>
-  
-    <h2 class="text-xl font-latoBold mb-2">Seguridad</h2>
-    <p class="text-gray-700 mb-4 text-lg">
-      Nos comprometemos a proteger la seguridad de su información personal y a tomar las medidas necesarias para evitar su uso indebido, pérdida o acceso no autorizado. Utilizamos tecnologías de seguridad estándar de la industria y procedimientos internos para proteger sus datos contra amenazas potenciales.
-    </p>
-  
-    <h2 class="text-xl font-latoBold mb-2">Cambios en la Política de Privacidad</h2>
-    <p class="text-gray-700 mb-4 text-lg">
-      Nos reservamos el derecho de actualizar o modificar nuestra política de privacidad en cualquier momento. Cualquier cambio en esta política se publicará en esta página junto con la fecha de revisión actualizada. Le recomendamos que revise esta página periódicamente para mantenerse informado sobre cómo protegemos su información.
-    </p>
-  
-    <h2 class="text-xl font-latoBold mb-2">Contacto</h2>
-    <p class="text-gray-700 mb-4 text-lg">
-      Si tiene alguna pregunta sobre nuestra política de privacidad o sobre cómo tratamos su información personal, no dude en contactarnos a través de <a href="mailto:zerotimeoclock@gmail.com" class="font-latoBold hover:font-latoBlack hover:underline" >zerotimeoclock&#64;gmail.com</a>. Estamos aquí para ayudarlo y responder a sus inquietudes.
-    </p>
-  </div>
-  
+  <h1 class="text-5xl text-center font-prata my-10">
+    {{ "privacyPolicyTitle" | translate }}
+  </h1>
+  <p class="text-gray-700 mb-4 text-lg">
+    {{ "privacyPolicySubtitle" | translate }}
+  </p>
+
+  <h2 class="text-xl font-latoBold mb-2">
+    {{ "privacyPolicyInfoTitle" | translate }}
+  </h2>
+  <p class="text-gray-700 mb-4 text-lg">
+    {{ "privacyPolicyInfoBody" | translate }}
+  </p>
+  <p class="text-gray-700 mb-4 text-lg">
+    {{ "privacyPolicyInfoBody1" | translate }}
+  </p>
+
+  <h2 class="text-xl font-latoBold mb-2">
+    {{ "privacyPolicyInfoUseTitle" | translate }}
+  </h2>
+  <p class="text-gray-700 mb-4 text-lg">
+    {{ "privacyPolicyInfoUseBody" | translate }}
+  </p>
+  <ul class="list-disc ml-8 text-gray-700 mb-4 text-lg">
+    <li>
+      {{ "privacyPolicyInfoUseBody1" | translate }}
+    </li>
+    <li>{{ "privacyPolicyInfoUseBody2" | translate }}</li>
+    <li>
+      {{"privacyPolicyInfoUseBody3"|translate}}
+    </li>
+    <li>
+      {{"privacyPolicyInfoUseBody4"|translate}}
+    </li>
+    <li>
+      {{"privacyPolicyInfoUseBody5"|translate}}
+    </li>
+  </ul>
+  <p class="text-gray-700 mb-4 text-lg">
+    {{"privacyPolicyInfoUseBody6"|translate}}
+  </p>
+
+  <h2 class="text-xl font-latoBold mb-2">{{"privacyPolicySecurityTitle"|translate}}</h2>
+  <p class="text-gray-700 mb-4 text-lg">
+    {{"privacyPolicySecurityBody"|translate}}
+  </p>
+
+  <h2 class="text-xl font-latoBold mb-2">
+    {{"privacyPolicyChangesTitle"|translate}}
+  </h2>
+  <p class="text-gray-700 mb-4 text-lg">
+    {{"privacyPolicyChangesBody"|translate}}
+  </p>
+
+  <h2 class="text-xl font-latoBold mb-2">{{"privacyPolicyContactTitle"|translate}}</h2>
+  <p class="text-gray-700 mb-4 text-lg">
+    {{"privacyPolicyContactBody"|translate}}
+    <a
+      href="mailto:zerotimeoclock@gmail.com"
+      class="font-latoBold hover:font-latoBlack hover:underline"
+      >zerotimeoclock&#64;gmail.com</a
+    >{{"privacyPolicyContactBody1"|translate}}
+  </p>
+</div>

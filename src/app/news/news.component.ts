@@ -4,12 +4,13 @@ import { RouterLink } from '@angular/router';
 import { NewsService } from '../news.service';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @Component({
   selector: 'app-news',
   standalone: true,
-  imports: [CommonModule, RouterLink, FormsModule],
+  imports: [CommonModule, RouterLink, FormsModule,TranslateModule],
   templateUrl: './news.component.html',
   styleUrl: './news.component.css'
 })
@@ -50,7 +51,7 @@ export class NewsComponent {
 
   applyFilters() {
     this.filteredNews = this.news.filter(newsItem => {
-      const categoryMatch = this.selectedCategories.size === 0 || Array.from(this.selectedCategories).every(cat => newsItem.category.includes(cat));
+      const categoryMatch = this.selectedCategories.size === 0 || Array.from(this.selectedCategories).some(cat => newsItem.category.includes(cat));
       const authorMatch = !this.filters.author || newsItem.author.toLowerCase().includes(this.filters.author.toLowerCase());
       return categoryMatch && authorMatch;
     });

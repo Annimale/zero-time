@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { WatchService } from '../watch.service';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 
@@ -29,7 +30,7 @@ interface Watch {
     standalone: true,
     templateUrl: './shop.component.html',
     styleUrl: './shop.component.css',
-    imports: [EuropeNumberPipe, CommonModule, FormsModule]
+    imports: [EuropeNumberPipe, CommonModule, FormsModule,TranslateModule]
 })
 
 

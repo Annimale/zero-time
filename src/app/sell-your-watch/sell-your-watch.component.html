@@ -1,10 +1,10 @@
 <div class="container mx-auto">
   <div class="SELLYOURWATCH text-center py-10">
     <h1 class="font-prata text-4xl lg:text-6xl pb-4">
-      ¿Interesado en vender un reloj con nosotros?
+      {{ "sellYourWatchTitle" | translate }}
     </h1>
     <h2 class="font-latoRegular text-lg lg:text-2xl text-gray-500">
-      Rellena el siguiente formulario
+      {{ "sellYourWatchSubtitle" | translate }}
     </h2>
   </div>
   <form
@@ -12,7 +12,9 @@
     (ngSubmit)="onSubmit()"
     class="mx-auto p-4 lg:p-12 pb-20 lg:pb-36"
   >
-    <div class="FORM grid grid-cols-1 lg:grid-cols-5 w-full gap-4 lg:gap-7 lg:gap-x-10 font-latoRegular">
+    <div
+      class="FORM grid grid-cols-1 lg:grid-cols-5 w-full gap-4 lg:gap-7 lg:gap-x-10 font-latoRegular"
+    >
       <div class="BRAND mb-4 lg:mb-5">
         <label for="underline_select" class="sr-only">Underline select</label>
         <select
@@ -20,13 +22,21 @@
           id="underline_select"
           class="block py-2.5 px-0 w-full text-gray-500 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-300 peer"
         >
-          <option value="" disabled selected>Seleccione una marca</option>
+          <option value="" disabled selected>
+            {{ "sellYourWatchBrandLabel" | translate }}
+          </option>
           <ng-container *ngFor="let brand of brands">
             <option [value]="brand.id">{{ brand.name }}</option>
           </ng-container>
         </select>
-        <div *ngIf="saleForm.get('brandID')?.invalid && saleForm.get('brandID')?.touched" class="text-red-500 text-sm mt-1">El campo marca es requerido</div>
-
+        <div
+          *ngIf="
+            saleForm.get('brandID')?.invalid && saleForm.get('brandID')?.touched
+          "
+          class="text-red-500 text-sm mt-1"
+        >
+          {{ "sellYourWatchBrandLabelError" | translate }}
+        </div>
       </div>
       <div class="relative z-0 w-full mb-4 lg:mb-5 group lg:col-span-3">
         <input
@@ -41,10 +51,16 @@
         <label
           for="floating_model"
           class="absolute duration-300 text-gray-500 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-          >Modelo</label
+          >{{ "sellYourWatchModelLabel" | translate }}</label
         >
-        <div *ngIf="saleForm.get('model')?.invalid && saleForm.get('model')?.touched" class="text-red-500  mt-1">El campo modelo es requerido</div>
-
+        <div
+          *ngIf="
+            saleForm.get('model')?.invalid && saleForm.get('model')?.touched
+          "
+          class="text-red-500 mt-1"
+        >
+          {{ "sellYourWatchModelLabelError" | translate }}
+        </div>
       </div>
       <div class="relative z-0 w-full mb-4 lg:mb-5 group">
         <input
@@ -59,10 +75,14 @@
         <label
           for="floating_ref"
           class="absolute duration-300 text-gray-500 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-          >Nº Referencia</label
+          >{{ "sellYourWatchREFLabel" | translate }}</label
         >
-        <div *ngIf="saleForm.get('ref')?.invalid && saleForm.get('ref')?.touched" class="text-red-500  mt-1">El campo ref es requerido</div>
-
+        <div
+          *ngIf="saleForm.get('ref')?.invalid && saleForm.get('ref')?.touched"
+          class="text-red-500 mt-1"
+        >
+          {{ "sellYourWatchREFLabelError" | translate }}
+        </div>
       </div>
       <div class="relative z-0 w-full mb-4 lg:mb-5 group lg:col-span-4">
         <input
@@ -76,7 +96,7 @@
         <label
           for="floating_comment"
           class="absolute duration-300 text-gray-500 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-          >Anotaciones (opcional)</label
+          >{{ "sellYourWatchNotesLabel" | translate }}</label
         >
       </div>
 
@@ -93,10 +113,17 @@
         <label
           for="floating_case_size"
           class="absolute duration-300 text-gray-500 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-          >Tamaño caja (mm)</label
+          >{{ "sellYourWatchCasesizeLabel" | translate }}</label
         >
-        <div *ngIf="saleForm.get('caseSize')?.invalid && saleForm.get('caseSize')?.touched" class="text-red-500 text-sm mt-1">El tamaño de la caja es requerido y no puede ser menor a 20mm</div>
-
+        <div
+          *ngIf="
+            saleForm.get('caseSize')?.invalid &&
+            saleForm.get('caseSize')?.touched
+          "
+          class="text-red-500 text-sm mt-1"
+        >
+          {{ "sellYourWatchCasesizeLabelError" | translate }}
+        </div>
       </div>
       <div class="PAPERS+BOX flex items-center space-x-4 lg:space-x-8">
         <div class="PAPERS">
@@ -110,7 +137,7 @@
           <label
             for="papers-checkbox"
             class="ms-2 font-medium text-gray-900 dark:text-gray-300"
-            >Papeles</label
+            >{{ "sellYourWatchPapersLabel" | translate }}</label
           >
         </div>
         <div class="BOX">
@@ -124,7 +151,7 @@
           <label
             for="box-checkbox"
             class="ms-2 font-medium text-gray-900 dark:text-gray-300"
-            >Caja</label
+            >{{ "sellYourWatchBoxLabel" | translate }}</label
           >
         </div>
       </div>
@@ -136,14 +163,27 @@
           id="underline_select"
           class="block py-2.5 px-0 w-full text-gray-500 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-300 peer"
         >
-          <option disabled value="" selected>Condición</option>
-          <option value="new">Nuevo</option>
-          <option value="semi-used">Semi-usado</option>
-          <option value="used">Usado</option>
-          <option value="worn">Desgastado</option>
+          <option disabled value="" selected>
+            {{ "sellYourWatchConditionLabel" | translate }}
+          </option>
+          <option value="new">
+            {{ "sellYourWatchCondition1" | translate }}
+          </option>
+          <option value="semi-used">
+            {{ "sellYourWatchCondition2" | translate }}
+          </option>
+          <option value="used">{{ "sellYourWatchCondition3" | translate }}</option>
+          <option value="worn">{{ "sellYourWatchCondition4" | translate }}</option>
         </select>
-        <div *ngIf="saleForm.get('condition')?.invalid && saleForm.get('condition')?.touched" class="text-red-500 text-sm mt-1">La condición es un campo requerido</div>
-
+        <div
+          *ngIf="
+            saleForm.get('condition')?.invalid &&
+            saleForm.get('condition')?.touched
+          "
+          class="text-red-500 text-sm mt-1"
+        >
+          {{ "sellYourWatchConditionLabelError" | translate }}
+        </div>
       </div>
 
       <div class="UPLOADFILES flex items-center col-span-1 lg:col-span-2">
@@ -151,7 +191,7 @@
           <label
             class="block mb-2 font-medium text-gray-900 dark:text-white"
             for="multiple_files"
-            >Sube tus fotos</label
+            >{{ "sellYourWatchPhotosLabel" | translate }}</label
           >
           <input
             #fileInput
@@ -162,8 +202,14 @@
             multiple
             required
           />
-          <div *ngIf="saleForm.get('images')?.invalid && saleForm.get('images')?.touched" class="text-red-500 text-sm mt-1">Es requerido subir imágenes</div>
-
+          <div
+            *ngIf="
+              saleForm.get('images')?.invalid && saleForm.get('images')?.touched
+            "
+            class="text-red-500 text-sm mt-1"
+          >
+            {{ "sellYourWatchPhotosLabelError" | translate }}
+          </div>
         </div>
       </div>
 
@@ -180,23 +226,22 @@
         <label
           for="floating_year"
           class="absolute duration-300 text-gray-500 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-          >Año de compra</label
+          >{{ "sellYourWatchYearOfPurchaseLabel" | translate }}</label
         >
       </div>
-      
-   
     </div>
-    <div class="SUBMITBUTTON col-span-1 lg:col-span-3 items-center justify-center flex pt-6 lg:pt-10 text-[10px] md:text-sm">
-      <button 
-      [matTooltip]="isUser ? '' : 'Si deseas vender tu reloj inicia sesión.'"
-      matTooltipPosition="below"
-      [disabled]="isUser === false"
-      type="submit"
-        class="text-gray-900 hover:text-white border w-1/4 border-gray-800 hover:bg-gray-900 focus:ring-0  align-middle  focus:outline-none font-latoBold uppercase rounded-lg px-5 py-2.5 text-center me-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800"
+    <div
+      class="SUBMITBUTTON col-span-1 lg:col-span-3 items-center justify-center flex pt-6 lg:pt-10 text-[10px] md:text-sm"
+    >
+      <button
+        [matTooltip]="isUser ? '' : 'Si deseas vender tu reloj inicia sesión.'"
+        matTooltipPosition="below"
+        [disabled]="isUser === false"
+        type="submit"
+        class="text-gray-900 hover:text-white border w-1/4 border-gray-800 hover:bg-gray-900 focus:ring-0 align-middle focus:outline-none font-latoBold uppercase rounded-lg px-5 py-2.5 text-center me-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800"
       >
-        Enviar formulario
+        {{ "sellYourWatchSendFormButton" | translate }}
       </button>
-      
     </div>
   </form>
 </div>
