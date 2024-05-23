@@ -79,7 +79,7 @@ export class LoginComponent {
       error: (error) => {
         console.error('Error de inicio de sesión', error);
         this.errorMessage =
-          this.errorMessages[error.error.message] || 'Error al iniciar sesión';
+          this.errorMessages[error.error.message] || 'Error al iniciar sesión, verifique su correo';
       },
     });
   }

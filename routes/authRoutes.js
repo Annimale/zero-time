@@ -106,6 +106,9 @@ router.post("/login", async (req, res) => {
     if (!user) {
       return res.status(404).json({ message: "Usuario no encontrado" });
     }
+    if (!user.isVerified) {
+      return res.status(403).json({ message: "Por favor, verifica tu correo electrónico antes de iniciar sesión" });
+    }
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       return res.status(400).json({ message: "Contraseña incorrecta" });
