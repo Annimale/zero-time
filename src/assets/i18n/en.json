@@ -318,7 +318,6 @@
   "shopFiltersBrandClear": "Clear",
   "shopFiltersPrice": "Price",
   
- 
   "shopDetailCasesize": "Case size",
   "shopDetailCasethickness": "Case thickness",
   "shopDetailMovement": "Movement",
@@ -380,12 +379,5 @@
   "usersCreationDate": "Creation date",
   "usersDelete": "Delete",
   "usersDeleteButton": "Delete"
-
-
-
-
-  
-
-    
 
 }
