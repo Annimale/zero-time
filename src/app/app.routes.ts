@@ -32,37 +32,37 @@ import { UsersComponent } from './users/users.component';
 
 export const routes: Routes = [
   // Rutas comunes
-  { path: 'home', component: HomeComponent },
-  { path: 'news', component: NewsComponent },
-  { path: 'news/:id', component: NewsDetailComponent },
-  { path: 'brands/:brandName', component: BrandsComponent },
-  { path: 'shop', component: ShopComponent },
-  { path: 'shop/:id', component: ShopDetailComponent },
+  { path: 'home', component: HomeComponent,title:'Zero Time - Home' },
+  { path: 'news', component: NewsComponent,title:'Zero Time - News' },
+  { path: 'news/:id', component: NewsDetailComponent,title:'Zero Time - News' },
+  { path: 'brands/:brandName', component: BrandsComponent,title:'Zero Time - Brands' },
+  { path: 'shop', component: ShopComponent,title:'Zero Time - Shop' },
+  { path: 'shop/:id', component: ShopDetailComponent,title:'Zero Time - Shop' },
 
   // Rutas que requieren autenticación de admin
-  { path: 'add-news', component: AddNewsComponent, canActivate: [AdminGuard] },
-  { path: 'add-watch', component: AddWatchComponent, canActivate: [AdminGuard] },
-  { path: 'edit-watch/:id', component: EditWatchComponent, canActivate: [AdminGuard] },
-  { path: 'edit-news/:id', component: EditNewsComponent, canActivate: [AdminGuard] },
+  { path: 'add-news', component: AddNewsComponent, canActivate: [AdminGuard],title:'Zero Time - Add news' },
+  { path: 'add-watch', component: AddWatchComponent, canActivate: [AdminGuard],title:'Zero Time - Add watch' },
+  { path: 'edit-watch/:id', component: EditWatchComponent, canActivate: [AdminGuard],title:'Zero Time - Edit watch' },
+  { path: 'edit-news/:id', component: EditNewsComponent, canActivate: [AdminGuard],title:'Zero Time - Edit news' },
   // { path: 'admin-profile', component: AdminProfileComponent, canActivate: [AdminGuard] },
-  { path: 'users', component: UsersComponent, canActivate: [AdminGuard] },
+  { path: 'users', component: UsersComponent, canActivate: [AdminGuard],title:'Zero Time - Users' },
 
   // Rutas comunes
-  { path: 'profile', component: ProfileComponent, canActivate: [UserGuard] },
-  { path: 'cart', component: CartComponent,resolve:{isUser:isUserResolver} },
-  { path: 'insurance', component: InsuranceComponent },
-  { path: 'sell-your-watch', component: SellYourWatchComponent, resolve:{isUser:isUserResolver}},
-  { path: 'login', component: LoginComponent,canActivate: [NoAuthGuard] },
-  { path: 'sign-up', component: SignUpComponent,canActivate: [NoAuthGuard] },
-  { path: 'faq', component: FaqComponent },
-  { path: 'no-access', component: NoAccessComponent },
+  { path: 'profile', component: ProfileComponent, canActivate: [UserGuard],title:'Zero Time - Profile' },
+  { path: 'cart', component: CartComponent,resolve:{isUser:isUserResolver},title:'Zero Time - Cart' },
+  { path: 'insurance', component: InsuranceComponent,title:'Zero Time - Insurance' },
+  { path: 'sell-your-watch', component: SellYourWatchComponent, resolve:{isUser:isUserResolver},title:'Zero Time - Sell your watch'},
+  { path: 'login', component: LoginComponent,canActivate: [NoAuthGuard],title:'Zero Time - Login' },
+  { path: 'sign-up', component: SignUpComponent,canActivate: [NoAuthGuard] ,title:'Zero Time - Sign up'},
+  { path: 'faq', component: FaqComponent,title:'Zero Time - FAQ' },
+  { path: 'no-access', component: NoAccessComponent ,title:'Zero Time - No access'},
 
   // Rutas del footer
-  { path: 'about-us', component: AboutUsComponent },
-  { path: 'privacy-policy', component: PrivacyPolicyComponent },
-  { path: 'terms-conditions', component: TermsConditionsComponent },
-  { path: 'contact-us', component: ContactUsComponent },
-  { path: 'policy-cookies', component: PolicyCookiesComponent },
+  { path: 'about-us', component: AboutUsComponent,title:'Zero Time - About us' },
+  { path: 'privacy-policy', component: PrivacyPolicyComponent,title:'Zero Time - Privacy policy' },
+  { path: 'terms-conditions', component: TermsConditionsComponent ,title:'Zero Time - Terms and conditions'},
+  { path: 'contact-us', component: ContactUsComponent,title:'Zero Time - Contact us' },
+  { path: 'policy-cookies', component: PolicyCookiesComponent,title:'Zero Time - Cookies policy' },
 
   // Otras rutas
   { path: '', redirectTo: '/home', pathMatch: 'full' },
