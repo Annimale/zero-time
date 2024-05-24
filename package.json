@@ -4,8 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "node server.js",  
-    "build": "ng build --prod --output-path dist",
-    "watch": "ng build --watch --configuration development",
+    "build": "ng build --configuration production",
+  "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:zero-time": "node dist/zero-time/server/server.mjs",
     "start:server": "node server/index.js",
