@@ -45,7 +45,13 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.get("/", (req, res) => {
   res.send("Servidor Express funcionando!");
 });
+// Middleware para servir archivos estáticos desde la carpeta dist
+app.use(express.static(path.join(__dirname, 'dist')));
 
+// Ruta catch-all para que Angular maneje el enrutamiento
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist/index.html'));
+});
 app.get("/user/:id", async (req, res) => {
   try {
     const userId = req.params.id;
