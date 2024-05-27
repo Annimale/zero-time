@@ -53,7 +53,7 @@ app.use(express.static(path.join(__dirname, 'dist')));
 app.get('*', (req, res) => {
   res.sendFile('./dist/zero-time/index.html');
 });
-
+//ASFJKASNJFNJAKSF
 
 
 app.get("/user/:id", async (req, res) => {
