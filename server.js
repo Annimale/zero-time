@@ -46,14 +46,14 @@ app.get("/", (req, res) => {
   res.send("Servidor Express funcionando2222!");
 });
 
-// Middleware para servir archivos estáticos desde la carpeta dist
-app.use(express.static(path.join(__dirname, 'dist')));
+// // Middleware para servir archivos estáticos desde la carpeta dist
+// app.use(express.static(path.join(__dirname, 'dist')));
 
-// Ruta catch-all para que Angular maneje el enrutamiento
-app.get('*', (req, res) => {
-  res.sendFile('./dist/zero-time/index.html');
-});
-//ASFJKASNJFNJAKSF
+// // Ruta catch-all para que Angular maneje el enrutamiento
+// app.get('*', (req, res) => {
+//   res.sendFile('./dist/zero-time/index.html');
+// });
+// //ASFJKASNJFNJAKSF
 
 
 app.get("/user/:id", async (req, res) => {
