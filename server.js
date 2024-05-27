@@ -51,7 +51,7 @@ app.use(express.static(path.join(__dirname, 'dist')));
 
 // Ruta catch-all para que Angular maneje el enrutamiento
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist/browser/index.html'));
+  res.sendFile(path.join(__dirname, 'dist/index.html'));
 });
 
 
