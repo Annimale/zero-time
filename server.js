@@ -43,7 +43,7 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // Rutas
 app.get("/", (req, res) => {
-  res.send("Servidor Express funcionando!");
+  res.send("Servidor Express funcionando2222!");
 });
 
 // Middleware para servir archivos estáticos desde la carpeta dist
@@ -251,6 +251,19 @@ app.post('/checkout/paypal', async (req, res) => {
   }
 });
 
+
+app.get("/check-db-connection", async (req, res) => {
+  try {
+    // Realiza una consulta básica a la base de datos para verificar la conexión
+    const result = await User.findOne(); // Reemplaza YourModel con el modelo de tu base de datos
+    // Devuelve una respuesta exitosa si la consulta se realizó correctamente
+    res.status(200).json({ message: "Conexión a la base de datos exitosa", data: result });
+  } catch (error) {
+    // Si hay un error, devuelve un mensaje de error
+    console.error("Error al conectar a la base de datos:", error);
+    res.status(500).json({ message: "Error al conectar a la base de datos", error: error });
+  }
+});
 
 
 app.use("/api/auth", authRoutes);
