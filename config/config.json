@@ -4,20 +4,20 @@
     "password": null,
     "database": "zero-time",
     "host": "127.0.0.1",
-    "dialect": "postgre"
+    "dialect": "mysql"
   },
   "test": {
     "username": "root",
     "password": null,
     "database": "zero-time",
     "host": "127.0.0.1",
-    "dialect": "postgre"
+    "dialect": "mysql"
   },
   "production": {
     "username": "root",
     "password": null,
     "database": "zero-time",
     "host": "127.0.0.1",
-    "dialect": "postgre"
+    "dialect": "mysql"
   }
 }
