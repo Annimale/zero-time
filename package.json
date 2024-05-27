@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "node server.js",  
+    "start": "node server.js",
     "build": "ng build --configuration production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
@@ -50,6 +50,7 @@
     "ngx-stripe": "^17.2.0",
     "node-mailjet": "^6.0.5",
     "nodemailer": "^6.9.13",
+    "pg": "^8.11.5",
     "rxjs": "~7.8.0",
     "sequelize": "^6.37.2",
     "stripe": "^15.6.0",
