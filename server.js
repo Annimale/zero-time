@@ -30,25 +30,25 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 // Aquí es donde configuramos CORS
-// app.use(
-//   cors({
-//     // Permite el acceso desde cualquier origen o especifica tu dominio, como 'http://localhost:4200'
-//     origin: "http://localhost:4200",
-//     methods: ["GET", "POST", "DELETE", "UPDATE", "PUT", "PATCH"],
-//     allowedHeaders: ["Content-Type", "Authorization"],
-//     credentials: true, // Permite el envío de cookies
-//   })
-// );
-
 app.use(
   cors({
     // Permite el acceso desde cualquier origen o especifica tu dominio, como 'http://localhost:4200'
-    origin: "https://zero-time.vercel.app",
+    origin: "http://localhost:4200",
     methods: ["GET", "POST", "DELETE", "UPDATE", "PUT", "PATCH"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true, // Permite el envío de cookies
   })
 );
+
+// app.use(
+//   cors({
+//     // Permite el acceso desde cualquier origen o especifica tu dominio, como 'http://localhost:4200'
+//     origin: "https://zero-time.vercel.app",
+//     methods: ["GET", "POST", "DELETE", "UPDATE", "PUT", "PATCH"],
+//     allowedHeaders: ["Content-Type", "Authorization"],
+//     credentials: true, // Permite el envío de cookies
+//   })
+// );
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // Rutas
