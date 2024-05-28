@@ -3,18 +3,18 @@
   "name": "zero-time",
   "builds": [
     {
-      "src": "dist/zero-time/**/*",
-      "use": "@vercel/static"
-    },
-    {
       "src": "server.js",
       "use": "@vercel/node"
+    },
+    {
+      "src": "dist/zero-time/**/*",
+      "use": "@vercel/static"
     }
   ],
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "/server.js"
+      "dest": "/api/$1"
     },
     {
       "src": "/(.*)",
