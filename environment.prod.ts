@@ -2,5 +2,5 @@
 // environment.prod.ts
 export const environment = {
   production: true,
-  apiUrl: '/api'
+  apiUrl: 'https://zero-time.vercel.app/api'
 };
