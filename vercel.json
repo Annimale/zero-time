@@ -1,15 +1,13 @@
 {
   "version": 2,
+  "name": "zero-time",
   "builds": [
     {
-      "src": "dist/**/*",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "dist"
-      }
+      "src": "dist/zero-time/**/*",
+      "use": "@vercel/static"
     },
     {
-      "src": "/server.js",
+      "src": "server.js",
       "use": "@vercel/node"
     }
   ],
@@ -20,7 +18,7 @@
     },
     {
       "src": "/(.*)",
-      "dest": "/server.html"
+      "dest": "/dist/zero-time/$1"
     }
   ]
 }

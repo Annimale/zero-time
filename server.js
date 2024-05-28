@@ -51,6 +51,12 @@ app.use(
 // );
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
+app.use(express.static(path.join(__dirname, 'dist/zero-time')));
+const apiRouter = require('./routes');
+app.use('/api', apiRouter);
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist/zero-time/index.html'));
+});
 // Rutas
 app.get("/", (req, res) => {
   res.send("Servidor Express funcionando2222!");
