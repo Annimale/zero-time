@@ -10,7 +10,8 @@
     "serve:ssr:zero-time": "node dist/zero-time/server/server.mjs",
     "start:server": "node server/index.js",
     "start:dev": "concurrently \"ng serve\" \"nodemon server/index.js\"",
-    "sequelize": "sequelize"
+    "sequelize": "sequelize",
+    "vercel-build":"ng build"
   },
   "private": true,
   "dependencies": {
