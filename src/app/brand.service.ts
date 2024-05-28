@@ -5,7 +5,8 @@ import { catchError, Observable, throwError } from 'rxjs';
   providedIn: 'root'
 })
 export class BrandService {
-  apiUrl:string='http://localhost:3000/brands'
+  // apiUrl:string='http://localhost:3000/brands'
+  apiUrl:string='environment.apiUrl'
   constructor(private http:HttpClient) { }
 
   getBrandByName(brandName: string): Observable<any> {
