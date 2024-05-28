@@ -2,10 +2,7 @@
   "version": 2,
   "name": "zero-time",
   "builds": [
-    {
-      "src": "server.js",
-      "use": "@vercel/node"
-    },
+  
     {
       "src": "dist/zero-time/**/*",
       "use": "@vercel/static"

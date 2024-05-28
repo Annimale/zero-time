@@ -1,3 +1,7 @@
 input[type="range"] {
-    filter:  saturate(0%);
-  }
+  filter: saturate(0%);
+}
+
+.possibleSolution {
+  min-height: calc(100vh - 180px)
+}
