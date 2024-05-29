@@ -186,6 +186,7 @@
                     *ngIf="isUser === true"
                   >
                     <svg
+                      class="cursor-pointer"
                       (click)="startEditing(comment)"
                       width="23px"
                       height="23px"
@@ -219,6 +220,7 @@
                       </g>
                     </svg>
                     <svg
+                      class="cursor-pointer"
                       (click)="deleteComment(comment.id)"
                       width="23px"
                       height="23px"
