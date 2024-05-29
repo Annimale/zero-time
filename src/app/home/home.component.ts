@@ -16,17 +16,18 @@ interface Watch {
   condition: string;
   createdAt: string;
   description: string;
-  images: string; // assuming this is a JSON string of an array
+  images: string;
   model: string;
   movement: string;
   price: number;
   updatedAt: string;
-  userID: number | null; // use null if userID can be null, otherwise just number
+  userID: number | null;
 }
+
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule,TranslateModule, EuropeNumberPipe, RouterLink],
+  imports: [CommonModule, TranslateModule, EuropeNumberPipe, RouterLink],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
@@ -42,26 +43,25 @@ export class HomeComponent {
   ) {}
 
   ngOnInit(): void {
-    //Add 'implements OnInit' to the class.
     this.isUser = this.authService.isUser();
     this.brandService.getAllBrands().subscribe({
       next: (data) => {
-        console.log('Brands loaded:', data);
+        //console.log('Brands loaded:', data);
         this.brands = data;
       },
       error: (error) => {
         console.error('Failed to load brands. Response:', error);
-        console.error('Error details:', error.error.text || error.error); // Attempting to capture non-JSON error message
+        console.error('Error details:', error.error.text || error.error);
       },
     });
     this.watchService.getAllWatches().subscribe({
       next: (data) => {
-        console.log('watches loaded:', data);
+        //console.log('watches loaded:', data);
         this.watches = data;
       },
       error: (error) => {
         console.error('Failed to load watches. Response:', error);
-        console.error('Error details:', error.error.text || error.error); // Attempting to capture non-JSON error message
+        console.error('Error details:', error.error.text || error.error);
       },
     });
   }
@@ -75,8 +75,8 @@ export class HomeComponent {
       if (typeof watch.images === 'string') {
         watch.images = JSON.parse(watch.images);
       }
-      watch.currentImage = watch.images[0]; // Establece la primera imagen por defecto
-      watch.currentImageIndex = 0; // Establece el índice inicial
+      watch.currentImage = watch.images[0];
+      watch.currentImageIndex = 0;
     }
     const imageUrl = `http://localhost:3000/${watch.currentImage.replace(
       /\\\\/g,
@@ -89,19 +89,18 @@ export class HomeComponent {
     this.router.navigate(['/shop', watchId]);
   }
   showNextImage(watch: any): void {
-    // Intenta parsear el JSON solo si es necesario
     if (typeof watch.images === 'string') {
       watch.images = JSON.parse(watch.images);
     }
 
     const currentIndex = watch.currentImageIndex ?? 0;
-    const nextIndex = (currentIndex + 1) % watch.images.length; // Ciclar las imágenes
-    watch.currentImageIndex = nextIndex; // Guarda el índice actual para uso futuro
-    watch.currentImage = watch.images[nextIndex]; // Actualiza la imagen actual
+    const nextIndex = (currentIndex + 1) % watch.images.length;
+    watch.currentImageIndex = nextIndex;
+    watch.currentImage = watch.images[nextIndex];
   }
 
   resetImage(watch: any): void {
-    watch.currentImage = null; // Reset a la imagen original
+    watch.currentImage = null;
   }
   getFirstImageUrl(imageJson: string): string {
     let images;
@@ -109,7 +108,7 @@ export class HomeComponent {
       images = JSON.parse(imageJson);
     } catch (e) {
       console.error('Error parsing images JSON', e);
-      return '../../assets/images/brandNoWatch.svg'; // Imagen por defecto
+      return '../../assets/images/brandNoWatch.svg';
     }
 
     if (images && images.length > 0) {
@@ -118,7 +117,6 @@ export class HomeComponent {
         /\\\\/g,
         '/'
       )}`;
-      // console.log("Trying to load image:", imageUrl); // Imprime la URL intentada
       return imageUrl;
     } else {
       return '../../assets/images/brandNoWatch.svg';

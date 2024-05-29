@@ -53,11 +53,13 @@
           type="submit"
           class="text-gray-900 text-lg hover:text-white border border-gray-800 w-full hover:bg-gray-900 rounded-lg px-5 py-2.5 text-center me-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800 font-latoBlack"
         >
-        {{ "loginLoginButton" | translate }}
+          {{ "loginLoginButton" | translate }}
         </button>
       </div>
       <div class="GOOGLETEXT col-span-2 text-center py-4">
-        <h3 class="font-latoBold text-lg">{{"loginLoginGoogle"|translate}}</h3>
+        <h3 class="font-latoBold text-lg">
+          {{ "loginLoginGoogle" | translate }}
+        </h3>
       </div>
 
       <div
@@ -83,14 +85,14 @@
 
       <div class="NOLOGIN pt-5 flex flex-row">
         <div class="items-center text-center">
-        <h3>
-          {{ "loginDontHaveAccount" | translate }}
-          <a
-            routerLink="/sign-up"
-            class="underline font-latoBold hover:text-gray-600"
-            >{{ "loginDontHaveAccount2" | translate }}</a
-          >
-        </h3>
+          <h3>
+            {{ "loginDontHaveAccount" | translate }}
+            <a
+              routerLink="/sign-up"
+              class="underline font-latoBold hover:text-gray-600"
+              >{{ "loginDontHaveAccount2" | translate }}</a
+            >
+          </h3>
         </div>
       </div>
     </div>

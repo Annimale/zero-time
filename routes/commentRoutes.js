@@ -4,13 +4,12 @@ const router = express.Router();
 const sequelize = require("sequelize");
 const multer = require("multer");
 const path = require("path");
-const User = require('../models/user');
-const Comment = require('../models/comment');
-const Article = require('../models/article');
+const User = require("../models/user");
+const Comment = require("../models/comment");
+const Article = require("../models/article");
 
-
-User.hasMany(Comment, { foreignKey: 'userID', as: 'comments' });
-Comment.belongsTo(User, { foreignKey: 'userID', as: 'user' });;
+User.hasMany(Comment, { foreignKey: "userID", as: "comments" });
+Comment.belongsTo(User, { foreignKey: "userID", as: "user" });
 
 const cookieParser = require("cookie-parser");
 app.use(cookieParser());
@@ -22,21 +21,21 @@ const authenticateToken = (req, res, next) => {
   const tokenFromCookie = req.cookies["token"];
   const token = tokenFromHeader || tokenFromCookie;
 
-  console.log("Token from Header:", tokenFromHeader); // Verifica el token recibido
-  console.log("Token from Cookie:", tokenFromCookie);
-  console.log("Token used for verification:", token);
+  //console.log("Token from Header:", tokenFromHeader);
+  //console.log("Token from Cookie:", tokenFromCookie);
+  //console.log("Token used for verification:", token);
 
   if (!token) {
-    console.log("No token provided");
+    //console.log("No token provided");
     return res.status(401).send({ message: "No token provided" });
   }
 
   jwt.verify(token, "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", (err, decoded) => {
     if (err) {
-      console.log("Error verifying token:", err);
+      //console.log("Error verifying token:", err);
       return res.status(403).send({ message: "Invalid token" });
     }
-    console.log("Token is valid, decoded:", decoded); // Observa qué se decodifica exactamente
+    //console.log("Token is valid, decoded:", decoded);
     req.user = decoded;
     next();
   });
@@ -74,7 +73,7 @@ router.get("/api/getComments/:articleId", async (req, res) => {
       include: [
         {
           model: User,
-          as: 'user',
+          as: "user",
           attributes: ["id", "name"],
         },
       ],
@@ -88,61 +87,74 @@ router.get("/api/getComments/:articleId", async (req, res) => {
   }
 });
 
-
 //ENDPOINT PARA EDITAR UN COMENTARIO
-router.put("/api/editComment/:commentId", authenticateToken, async (req, res) => {
-  const { body } = req.body;
-  const { commentId } = req.params;
-  const userID = req.user.id; // ID del usuario desde el token
-  console.log(`Intentando editar el comentario con ID: ${req.params.commentId}`);
+router.put(
+  "/api/editComment/:commentId",
+  authenticateToken,
+  async (req, res) => {
+    const { body } = req.body;
+    const { commentId } = req.params;
+    const userID = req.user.id; // ID del usuario desde el token
+    //console.log(`Intentando editar el comentario con ID: ${req.params.commentId}`);
 
-  try {
+    try {
       const comment = await Comment.findByPk(commentId);
       if (!comment) {
-          return res.status(404).json({ message: "Comment not found" });
+        return res.status(404).json({ message: "Comment not found" });
       }
 
-      // Verifica que el usuario que intenta editar el comentario es el dueño del comentario
       if (comment.userID !== userID) {
-          return res.status(403).json({ message: "Unauthorized to edit this comment" });
+        return res
+          .status(403)
+          .json({ message: "Unauthorized to edit this comment" });
       }
 
-      // Actualiza el comentario
       comment.body = body;
       await comment.save();
-      
-      res.status(200).json({ message: "Comment updated successfully", comment });
-  } catch (error) {
-      console.error("Error updating the comment", error);
-      res.status(500).json({ message: "Error updating the comment", error: error.message });
-  }
-});
 
+      res
+        .status(200)
+        .json({ message: "Comment updated successfully", comment });
+    } catch (error) {
+      console.error("Error updating the comment", error);
+      res
+        .status(500)
+        .json({ message: "Error updating the comment", error: error.message });
+    }
+  }
+);
 
 // ENDPOINT PARA BORRAR UN COMENTARIO
-router.delete("/api/deleteComment/:commentId", authenticateToken, async (req, res) => {
-  const { commentId } = req.params;
-  const userID = req.user.id; // ID del usuario desde el token
+router.delete(
+  "/api/deleteComment/:commentId",
+  authenticateToken,
+  async (req, res) => {
+    const { commentId } = req.params;
+    const userID = req.user.id; // ID del usuario desde el token
 
-  try {
-    const comment = await Comment.findByPk(commentId);
-    if (!comment) {
-      return res.status(404).json({ message: "Comment not found" });
+    try {
+      const comment = await Comment.findByPk(commentId);
+      if (!comment) {
+        return res.status(404).json({ message: "Comment not found" });
+      }
+
+      // Verifica que el usuario que intenta borrar el comentario es el dueño del comentario
+      if (comment.userID !== userID) {
+        return res
+          .status(403)
+          .json({ message: "Unauthorized to delete this comment" });
+      }
+
+      // Borrar el comentario
+      await comment.destroy();
+      res.status(200).json({ message: "Comment deleted successfully" });
+    } catch (error) {
+      console.error("Error deleting the comment", error);
+      res
+        .status(500)
+        .json({ message: "Error deleting the comment", error: error.message });
     }
-
-    // Verifica que el usuario que intenta borrar el comentario es el dueño del comentario
-    if (comment.userID !== userID) {
-      return res.status(403).json({ message: "Unauthorized to delete this comment" });
-    }
-
-    // Borrar el comentario
-    await comment.destroy();
-    res.status(200).json({ message: "Comment deleted successfully" });
-  } catch (error) {
-    console.error("Error deleting the comment", error);
-    res.status(500).json({ message: "Error deleting the comment", error: error.message });
   }
-});
-
+);
 
 module.exports = router;

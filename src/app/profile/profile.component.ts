@@ -1,4 +1,4 @@
-import { Component,ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import {
   FormGroup,
@@ -57,7 +57,7 @@ interface Sale {
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [RouterLink, CommonModule, ReactiveFormsModule,TranslateModule],
+  imports: [RouterLink, CommonModule, ReactiveFormsModule, TranslateModule],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css',
 })
@@ -115,23 +115,20 @@ export class ProfileComponent {
     this.checkCookieGoogle();
     this.saleService.getAllSales().subscribe({
       next: (data) => {
-        console.log('Sales:', data);
+        //console.log('Sales:', data);
         this.sales = data;
       },
     });
-
-    
-    
   }
 
   getLocalUserData(id: any) {
     this.http.getLocalUser(id).subscribe({
       next: (response) => {
-        console.log('Datos del usuario:', response);
+        //console.log('Datos del usuario:', response);
         this.userLocalInfo = response;
       },
       error: (error) => {
-        console.log('Error en getLocalUserData:', error);
+        //console.log('Error en getLocalUserData:', error);
       },
     });
   }
@@ -142,34 +139,32 @@ export class ProfileComponent {
       this.isAuthenticated = true;
       this.localToken = localStorage.getItem('token');
       const localInfo = jwtDecode(this.localToken) as CustomJwtPayload;
-      console.log(localInfo.id);
+      //console.log(localInfo.id);
 
       if (localInfo && localInfo.id) {
         this.getLocalUserData(localInfo.id);
       }
     } else {
-      console.log('De momento no hay localToken');
+      //console.log('De momento no hay localToken');
     }
   }
 
   checkCookieGoogle() {
     this.http.getPayload().subscribe(
       (res) => {
-        // Aquí manejas la respuesta. Asumimos que si res existe, entonces hay una cookie.
         if (res) {
-          console.log('Hay cookie de google');
+          //console.log('Hay cookie de google');
           this.editForm.get('name')?.disable();
           this.editForm.get('lastName')?.disable();
           this.editForm.get('oldPassword')?.disable();
           this.editForm.get('newPassword')?.disable();
           this.submitButton = false; //Hiddeamos el boton
         } else {
-          console.log('No hay cookie de google');
+          //console.log('No hay cookie de google');
         }
       },
       (err) => {
-        // Aquí manejas el caso de error, por ejemplo, si la solicitud falló
-        console.log('No hay cookie de google', err);
+        //console.log('No hay cookie de google', err);
       }
     );
   }
@@ -177,27 +172,32 @@ export class ProfileComponent {
   getPayload() {
     this.http.getPayload().subscribe({
       next: (res) => {
-        console.log('Datos del usuario:', res.user);
+        //console.log('Datos del usuario:', res.user);
         this.userInfo = jwtDecode(res.user);
-        console.log(this.userInfo.id);
+        //console.log(this.userInfo.id);
         this.isAuthenticated = true;
 
         this.http2
           .get<any>(`http://localhost:3000/user/${this.userInfo.id}`)
           .subscribe({
             next: (userRes) => {
-              console.log(userRes);
+              //console.log(userRes);
               this.userGoogle = userRes;
-              console.log(this.userGoogle.role);
-              this.saleService.getUserSales(this.userInfo.id || this.userGoogle.id).subscribe({
-                next: (data) => {
-                  console.log('Ventas del usuario:', data);
-                  this.userSales = data;
-                },
-                error: (error) => {
-                  console.error('Error al obtener las ventas del usuario:', error);
-                }
-              });
+              //console.log(this.userGoogle.role);
+              this.saleService
+                .getUserSales(this.userInfo.id || this.userGoogle.id)
+                .subscribe({
+                  next: (data) => {
+                    //console.log('Ventas del usuario:', data);
+                    this.userSales = data;
+                  },
+                  error: (error) => {
+                    console.error(
+                      'Error al obtener las ventas del usuario:',
+                      error
+                    );
+                  },
+                });
             },
           });
       },
@@ -208,9 +208,8 @@ export class ProfileComponent {
   }
 
   onSubmit() {
-    console.log('Whtas poppin');
+    //console.log('Whtas poppin');
     const formData = this.editForm.value;
-    // Verificar la contraseña actual
     this.http
       .verifyPassword(this.userLocalInfo.id, formData.oldPassword)
       .subscribe({
@@ -220,13 +219,13 @@ export class ProfileComponent {
               name: formData.name,
               lastName: formData.lastName,
 
-              newPassword: formData.newPassword, // Asegúrate de hashear esto en el servidor
+              newPassword: formData.newPassword,
             };
             this.http
               .updateUserProfile(this.userLocalInfo.id, updateData)
               .subscribe({
                 next: (response) => {
-                  console.log('Perfil actualizado con éxito', response);
+                  //console.log('Perfil actualizado con éxito', response);
                   Swal.fire(
                     'Éxito',
                     'Tu perfil ha sido actualizado correctamente.',
@@ -263,22 +262,19 @@ export class ProfileComponent {
     return this.convertToImageArray(sale.images);
   }
   convertToImageArray(imagePaths: string): string[] {
-    // Primero, eliminamos los corchetes y posibles comillas dobles
     const trimmedPaths = imagePaths.replace(/[\[\]"']/g, '');
-  
-    // Luego, reemplazamos las barras diagonales inversas dobles con una sola barra diagonal
+
     const normalizedPaths = trimmedPaths.replace(/\\\\/g, '/');
-  
-    // Finalmente, dividimos las rutas en un array usando las comas como delimitador
+
     const pathsArray = normalizedPaths.split(',');
-  
-    // Mapeamos cada ruta para agregar el prefijo localhost:3000 y eliminamos espacios en blanco
-    const urls = pathsArray.map((path) => `${this.baseUrl}${path.trim().replace(/\\/g, '')}`);
-    console.log(urls);
+
+    const urls = pathsArray.map(
+      (path) => `${this.baseUrl}${path.trim().replace(/\\/g, '')}`
+    );
+    //console.log(urls);
     return urls;
   }
-  
-   
+
   openModal(image: string) {
     this.selectedImage = image;
     this.showModal = true;
@@ -293,7 +289,7 @@ export class ProfileComponent {
     const x = ((event.clientX - rect.left) / rect.width) * 100;
     const y = ((event.clientY - rect.top) / rect.height) * 100;
     this.zoomImage.nativeElement.style.transformOrigin = `${x}% ${y}%`;
-    this.zoomImage.nativeElement.style.transform = 'scale(2)'; // Ajusta el nivel de zoom según sea necesario
+    this.zoomImage.nativeElement.style.transform = 'scale(2)';
   }
 
   resetZoom(): void {
@@ -307,9 +303,7 @@ export class ProfileComponent {
   approveSale(saleId: number): void {
     this.saleService.approveSale(saleId).subscribe({
       next: () => {
-        // Actualizar la lista de ventas después de la aprobación
         this.updateSales();
-        // Mostrar un mensaje de éxito
         Swal.fire('Venta aprobada', '', 'success');
       },
       error: (error) => {
@@ -321,9 +315,7 @@ export class ProfileComponent {
   declineSale(saleId: number): void {
     this.saleService.declineSale(saleId).subscribe({
       next: () => {
-        // Actualizar la lista de ventas después de la declinación
         this.updateSales();
-        // Mostrar un mensaje de éxito
         Swal.fire('Venta rechazada', '', 'success');
       },
       error: (error) => {
@@ -333,11 +325,10 @@ export class ProfileComponent {
     });
   }
 
-  // Método para actualizar la lista de ventas
   updateSales(): void {
     this.saleService.getAllSales().subscribe({
       next: (data) => {
-        console.log('Sales:', data);
+        //console.log('Sales:', data);
         this.sales = data;
       },
       error: (error) => {
@@ -348,21 +339,15 @@ export class ProfileComponent {
   deleteSale(saleId: number): void {
     this.saleService.deleteSale(saleId).subscribe({
       next: () => {
-        // Actualizar la lista de ventas después de la eliminación
         this.updateSales();
-       
-
       },
       error: (error) => {
-        console.log('Error',error);
+        //console.log('Error', error);
         Swal.fire('Error', 'Hubo un problema al borrar la venta', 'error');
       },
       complete: () => {
-        // Mostrar mensaje de éxito después de completar la eliminación
         Swal.fire('Venta eliminada', '', 'success');
-      }
+      },
     });
   }
- 
-  
 }

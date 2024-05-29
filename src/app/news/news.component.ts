@@ -6,13 +6,12 @@ import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 
-
 @Component({
   selector: 'app-news',
   standalone: true,
-  imports: [CommonModule, RouterLink, FormsModule,TranslateModule],
+  imports: [CommonModule, RouterLink, FormsModule, TranslateModule],
   templateUrl: './news.component.html',
-  styleUrl: './news.component.css'
+  styleUrl: './news.component.css',
 })
 export class NewsComponent {
   currentDate = new Date();
@@ -22,37 +21,40 @@ export class NewsComponent {
   filters = {
     categories: new Set<string>(),
     author: '',
-    sortByDate: 'newest'
+    sortByDate: 'newest',
   };
   selectedCategories = new Set<string>();
   isChecked = false;
 
-
-  constructor(
-    private newsService: NewsService,
-    private router: Router
-  ) { }
-
+  constructor(private newsService: NewsService, private router: Router) {}
 
   ngOnInit(): void {
     this.newsService.getAllNews().subscribe({
       next: (data) => {
-        console.log('News loaded:', data);
+        //console.log('News loaded:', data);
         this.news = data;
-        this.filteredNews = data; // Initialize filtered news with all news initially
+        this.filteredNews = data;
         this.applyFilters();
-
-      }, error: (error) => {
-        console.error("Failed to load news. Response:", error);
-        console.error("Error details:", error.error.text || error.error);  // Attempting to capture non-JSON error message
-      }
+      },
+      error: (error) => {
+        console.error('Failed to load news. Response:', error);
+        console.error('Error details:', error.error.text || error.error);
+      },
     });
   }
 
   applyFilters() {
-    this.filteredNews = this.news.filter(newsItem => {
-      const categoryMatch = this.selectedCategories.size === 0 || Array.from(this.selectedCategories).some(cat => newsItem.category.includes(cat));
-      const authorMatch = !this.filters.author || newsItem.author.toLowerCase().includes(this.filters.author.toLowerCase());
+    this.filteredNews = this.news.filter((newsItem) => {
+      const categoryMatch =
+        this.selectedCategories.size === 0 ||
+        Array.from(this.selectedCategories).some((cat) =>
+          newsItem.category.includes(cat)
+        );
+      const authorMatch =
+        !this.filters.author ||
+        newsItem.author
+          .toLowerCase()
+          .includes(this.filters.author.toLowerCase());
       return categoryMatch && authorMatch;
     });
     this.sortNews();
@@ -60,13 +62,15 @@ export class NewsComponent {
 
   sortNews() {
     if (this.filters.sortByDate === 'newest') {
-      this.filteredNews.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+      this.filteredNews.sort(
+        (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+      );
     } else {
-      this.filteredNews.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+      this.filteredNews.sort(
+        (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+      );
     }
   }
-
-
 
   updateCategoryFilter(category: string, event: any): void {
     const isChecked = event.target?.checked;
@@ -78,10 +82,6 @@ export class NewsComponent {
     this.applyFilters();
   }
 
-
-
-
-
   updateAuthorFilter(author: string) {
     this.filters.author = author;
     this.applyFilters();
@@ -92,13 +92,10 @@ export class NewsComponent {
     this.applyFilters();
   }
 
-
   getCoverImageUrl(coverImagePath: string): string {
     if (!coverImagePath) {
-      // Si no hay una ruta de imagen, devuelve una imagen por defecto
       return 'src/assets/images/default-image.webp';
     }
-    // Reemplaza las barras invertidas con barras normales si es necesario
     const imageUrl = `${this.baseUrl}${coverImagePath.replace(/\\/g, '/')}`;
     return imageUrl;
   }
@@ -106,4 +103,3 @@ export class NewsComponent {
     this.router.navigate(['/news', newsId]);
   }
 }
-

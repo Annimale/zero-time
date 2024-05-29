@@ -23,12 +23,12 @@ router.get("/api/brands/:brandName", async (req, res) => {
 //! Endpoint para devolver todas las marcas que tenga
 router.get("/api/brands", async (req, res) => {
   try {
-    console.log('Cogiendo brands');
+    //console.log('Cogiendo brands');
     const brands = await Brand.findAll();
-    console.log(brands);
+    //console.log(brands);
     res.json(brands);
   } catch (error) {
-    res.status(500).json({error:error.message});
+    res.status(500).json({ error: error.message });
   }
 });
 module.exports = router;

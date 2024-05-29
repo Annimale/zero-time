@@ -14,9 +14,12 @@ const Sale = require("./models/sale");
 const User = require("./models/user");
 const Brand = require("./models/brand");
 const Comment = require("./models/comment");
-const paypal = require('@paypal/checkout-server-sdk');
+const paypal = require("@paypal/checkout-server-sdk");
 
-const environment = new paypal.core.SandboxEnvironment('AfYtA5VDYnLth9ed2G8cGaN34oo4KZnM3LP9Y5Ufcc6_tWwhLpopsN6yByJmWMQC5fg0UPfFW7y_XLRr', 'EBWCXDz9VX2ae6-bcFDixWplohrkcDD5O4tQGIZqBK0tmdbZBe-ldf5bnUv0JbKAAEftdx91nq68WFVm');
+const environment = new paypal.core.SandboxEnvironment(
+  "AfYtA5VDYnLth9ed2G8cGaN34oo4KZnM3LP9Y5Ufcc6_tWwhLpopsN6yByJmWMQC5fg0UPfFW7y_XLRr",
+  "EBWCXDz9VX2ae6-bcFDixWplohrkcDD5O4tQGIZqBK0tmdbZBe-ldf5bnUv0JbKAAEftdx91nq68WFVm"
+);
 const client = new paypal.core.PayPalHttpClient(environment);
 
 console.log("User model:", User);
@@ -33,7 +36,7 @@ app.use(cookieParser());
 app.use(
   cors({
     // Permite el acceso desde cualquier origen o especifica tu dominio, como 'http://localhost:4200'
-    origin: "*",
+    origin: "http://localhost:4200",
     methods: ["GET", "POST", "DELETE", "UPDATE", "PUT", "PATCH"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true, // Permite el envío de cookies
@@ -51,19 +54,10 @@ app.use(
 // );
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
-app.use(express.static(path.join(__dirname, 'dist/zero-time')));
-const apiRouter = require('./routes');
-app.use('/api', apiRouter);
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist/zero-time/index.html'));
-});
 // Rutas
 app.get("/", (req, res) => {
   res.send("Servidor Express funcionando2222!");
 });
-
-
-
 
 app.get("/user/:id", async (req, res) => {
   try {
@@ -76,7 +70,7 @@ app.get("/user/:id", async (req, res) => {
       return res.status(404).send({ message: "Usuario no encontrado" });
     }
 
-    res.send(foundUser); // Envía el nombre del usuario como respuesta
+    res.send(foundUser);
   } catch (error) {
     console.error(error);
     res.status(500).send({ message: "Error al obtener datos del usuario" });
@@ -209,46 +203,47 @@ app.delete("/deleteUser/:id", async (req, res) => {
   }
 });
 
-
-app.post('/checkout/paypal', async (req, res) => {
+app.post("/checkout/paypal", async (req, res) => {
   const orderItems = req.body.items; // Obtener los elementos del carrito desde el body de la solicitud
   const totalAmount = req.body.amount; // Obtener el monto total desde el body de la solicitud
   // Crear una orden en PayPal
 
+  console.log("Datos recibidos en la solicitud:");
+  console.log("Items del carrito:", orderItems);
+  console.log("Monto total:", totalAmount);
 
-  console.log('Datos recibidos en la solicitud:');
-  console.log('Items del carrito:', orderItems);
-  console.log('Monto total:', totalAmount);
+  const itemTotal = orderItems
+    .reduce((total, item) => {
+      return total + parseFloat(item.unit_amount.value) * item.quantity;
+    }, 0)
+    .toFixed(2);
 
-
-  const itemTotal = orderItems.reduce((total, item) => {
-    return total + (parseFloat(item.unit_amount.value) * item.quantity);
-  }, 0).toFixed(2);
-  
   const request = new paypal.orders.OrdersCreateRequest();
   request.prefer("return=representation");
   request.requestBody({
-    intent: 'CAPTURE',
-    purchase_units: [{
-      amount: {
-        currency_code: 'USD',
-        value: totalAmount,
-        breakdown: {
-          item_total: {
-            currency_code: 'USD',
-            value: itemTotal
-          }
-        }
-      },
-      items: orderItems.map(item => ({
-        name: item.name,
-        unit_amount: {
-          currency_code: item.unit_amount.currency_code,
-          value: item.unit_amount.value
+    intent: "CAPTURE",
+    purchase_units: [
+      {
+        amount: {
+          currency_code: "USD",
+          value: totalAmount,
+          breakdown: {
+            item_total: {
+              currency_code: "USD",
+              value: itemTotal,
+            },
+          },
         },
-        quantity: item.quantity
-      }))
-    }]
+        items: orderItems.map((item) => ({
+          name: item.name,
+          unit_amount: {
+            currency_code: item.unit_amount.currency_code,
+            value: item.unit_amount.value,
+          },
+          quantity: item.quantity,
+        })),
+      },
+    ],
   });
 
   try {
@@ -256,24 +251,9 @@ app.post('/checkout/paypal', async (req, res) => {
     res.json({ orderId: response.result.id });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Error al procesar el pago con PayPal' });
+    res.status(500).json({ error: "Error al procesar el pago con PayPal" });
   }
 });
-
-
-app.get("/check-db-connection", async (req, res) => {
-  try {
-    // Realiza una consulta básica a la base de datos para verificar la conexión
-    const result = await User.findOne(); // Reemplaza YourModel con el modelo de tu base de datos
-    // Devuelve una respuesta exitosa si la consulta se realizó correctamente
-    res.status(200).json({ message: "Conexión a la base de datos exitosa", data: result });
-  } catch (error) {
-    // Si hay un error, devuelve un mensaje de error
-    console.error("Error al conectar a la base de datos:", error);
-    res.status(500).json({ message: "Error al conectar a la base de datos", error: error });
-  }
-});
-
 
 app.use("/api/auth", authRoutes);
 app.use("/brands", brandRoutes);

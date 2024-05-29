@@ -19,7 +19,7 @@ interface CustomJwtPayload {
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [NgClass,TranslateModule, CommonModule, RouterOutlet, RouterLink],
+  imports: [NgClass, TranslateModule, CommonModule, RouterOutlet, RouterLink],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css',
 })
@@ -49,7 +49,7 @@ export class NavbarComponent {
     if (this.isAuthenticated) {
       this.getPayload();
       this.isAdmin = this.authService.isAdmin();
-      console.log('El user es:', this.isAdmin);
+      //console.log('El user es:', this.isAdmin);
     }
     this.brandService.getAllBrands().subscribe({
       next: (data) => {
@@ -61,17 +61,17 @@ export class NavbarComponent {
     });
     this.getLocalTokenInfo();
     this.isAdmin = this.authService.isAdmin();
-    console.log('El localStorage token tiene de role admin:',this.isAdmin);
+    //console.log('El localStorage token tiene de role admin:',this.isAdmin);
   }
 
   getLocalUserData(id: any) {
     this.http.getLocalUser(id).subscribe({
       next: (response) => {
-        console.log('Datos del usuario:', response);
+        //console.log('Datos del usuario:', response);
         this.localName = response.name;
       },
       error: (error) => {
-        console.log('Error en getLocalUserData:', error);
+        //console.log('Error en getLocalUserData:', error);
       },
     });
   }
@@ -82,29 +82,29 @@ export class NavbarComponent {
       this.isAuthenticated = true;
       this.localToken = localStorage.getItem('token');
       const localInfo = jwtDecode(this.localToken) as CustomJwtPayload;
-      console.log(localInfo.id);
+      //console.log(localInfo.id);
 
       if (localInfo && localInfo.id) {
         this.getLocalUserData(localInfo.id);
       }
     } else {
-      console.log('De momento no hay localToken');
+      //console.log('De momento no hay localToken');
     }
   }
 
   getPayload() {
     this.http.getPayload().subscribe({
       next: (res) => {
-        console.log('Datos del usuario:', res.user);
+        //console.log('Datos del usuario:', res.user);
         this.userInfo = jwtDecode(res.user);
-        console.log(this.userInfo.id);
+        //console.log(this.userInfo.id);
         this.isAuthenticated = true;
 
         this.http2
           .get<any>(`http://localhost:3000/user/${this.userInfo.id}`)
           .subscribe({
             next: (userRes) => {
-              console.log(userRes);
+              //console.log(userRes);
               this.userGoogle = userRes;
             },
           });
@@ -137,12 +137,12 @@ export class NavbarComponent {
   }
 
   toggleMenu() {
-    console.log('Toggle menu clicked'); // Add this line
+    //console.log('Toggle menu clicked');
     this.isNavbarCollapsed = !this.isNavbarCollapsed;
 
     this.isOpen = !this.isOpen;
   }
   toggleBrandMenu() {
-  this.isBrandMenuOpen = !this.isBrandMenuOpen;
-}
+    this.isBrandMenuOpen = !this.isBrandMenuOpen;
+  }
 }

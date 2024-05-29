@@ -6,8 +6,6 @@ import { TranslateModule } from '@ngx-translate/core';
   standalone: true,
   imports: [TranslateModule],
   templateUrl: './policy-cookies.component.html',
-  styleUrl: './policy-cookies.component.css'
+  styleUrl: './policy-cookies.component.css',
 })
-export class PolicyCookiesComponent {
-
-}
+export class PolicyCookiesComponent {}

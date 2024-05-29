@@ -3,7 +3,9 @@
     <h1>{{ "signUpTitle" | translate }}</h1>
   </div>
   <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="pb-18">
-    <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 font-latoRegular mx-6 md:mx-2">
+    <div
+      class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 font-latoRegular mx-6 md:mx-2"
+    >
       <div class="VIDEO md:col-span-1 lg:col-span-1 hidden lg:block">
         <video
           height="546px"
@@ -37,13 +39,13 @@
             class="text-red-400"
             *ngIf="registerForm.get('name')?.errors?.['required'] && registerForm.get('name')?.touched"
           >
-          {{ "signUpNameLabelError" | translate }}
+            {{ "signUpNameLabelError" | translate }}
           </div>
           <div
             class="text-red-400"
             *ngIf="registerForm.get('name')?.errors?.['minlength'] && registerForm.get('name')?.touched"
           >
-          {{ "signUpNameLabelError1" | translate }}
+            {{ "signUpNameLabelError1" | translate }}
           </div>
         </div>
         <div class="LASTNAME">
@@ -67,13 +69,13 @@
             class="text-red-400"
             *ngIf="registerForm.get('lastName')?.errors?.['required'] && registerForm.get('lastName')?.touched"
           >
-          {{ "signUpLastNameLabelError" | translate }}
+            {{ "signUpLastNameLabelError" | translate }}
           </div>
           <div
             class="text-red-400"
             *ngIf="registerForm.get('lastName')?.errors?.['minlength'] && registerForm.get('lastName')?.touched"
           >
-          {{ "signUpLastNameLabelError1" | translate }}
+            {{ "signUpLastNameLabelError1" | translate }}
           </div>
         </div>
         <div class="EMAIL col-span-2">

@@ -42,9 +42,9 @@ const authenticateToken = (req, res, next) => {
 
   const token = tokenFromHeader || tokenFromCookie;
 
-  console.log("Token from Header:", tokenFromHeader);
-  console.log("Token from Cookie:", tokenFromCookie);
-  console.log("Token used for verification:", token);
+  //console.log("Token from Header:", tokenFromHeader);
+  //console.log("Token from Cookie:", tokenFromCookie);
+  //console.log("Token used for verification:", token);
 
   if (!token) return res.status(401).send({ message: "No token provided" });
 
@@ -79,7 +79,7 @@ router.post(
       yearOfPurchase,
       watchID,
     } = req.body;
-    console.log("User:", req.user); // Check if user info is available
+    //console.log("User:", req.user);
     if (!req.user) {
       return res.status(401).json({ message: "User not authenticated" });
     }
@@ -116,7 +116,7 @@ router.post(
 
 router.get("/api/getAllSales", async (req, res) => {
   try {
-    console.log("Obteniendo todas las sales");
+    //console.log("Obteniendo todas las sales");
     const sales = await Sale.findAll({
       include: [
         {
@@ -131,7 +131,7 @@ router.get("/api/getAllSales", async (req, res) => {
         },
       ],
     });
-    console.log(sales);
+    //console.log(sales);
     res.json(sales);
   } catch (error) {
     console.error("Error al procesar la peticion:", error);
@@ -149,7 +149,7 @@ router.put("/api/approveSale/:saleId", async (req, res) => {
       return res.status(404).json({ message: "Venta no encontrada" });
     }
 
-    sale.status = "approved"; // Cambiar el estado de la venta a "approved"
+    sale.status = "approved";
     await sale.save();
 
     res
@@ -160,6 +160,7 @@ router.put("/api/approveSale/:saleId", async (req, res) => {
     res.status(500).json({ message: "Error interno del servidor" });
   }
 });
+
 //Endpoint para aprobar la sale
 router.put("/api/declineSale/:saleId", async (req, res) => {
   const { saleId } = req.params;
@@ -192,21 +193,18 @@ router.delete("/api/deleteSale/:saleId", async (req, res) => {
     }
     await sale.destroy();
     return res.status(200).send({ message: "Sale borrada" });
-
   } catch (error) {
     console.error("Error al eliminar la venta", error);
-    res
-      .status(500)
-      .send({
-        message:
-          error.message || "Error interno del servidor al eliminar la venta",
-      });
+    res.status(500).send({
+      message:
+        error.message || "Error interno del servidor al eliminar la venta",
+    });
   }
 });
 
 router.get("/api/getUserSales/:userId", async (req, res) => {
   try {
-    const userId = req.params.userId; // Obtiene el ID del usuario desde los parámetros de la URL
+    const userId = req.params.userId;
     const userSales = await Sale.findAll({
       where: { userID: userId }, // Filtra las ventas por el ID del usuario
       include: [
@@ -228,8 +226,5 @@ router.get("/api/getUserSales/:userId", async (req, res) => {
     res.status(500).json({ error: "Error interno del servidor" });
   }
 });
-
-
-
 
 module.exports = router;

@@ -3,9 +3,12 @@
     <!-- Carrito -->
     <div class="CART lg:col-span-4 space-y-8">
       <h1 class="font-prata pb-8 px-4 lg:pb-16 text-4xl lg:text-5xl">
-        {{"cartCart"|translate}}
+        {{ "cartCart" | translate }}
       </h1>
-      <div class="CARD border-b border-gray-300 pb-6 lg:pb-10" *ngFor="let item of cartItems; let i = index">
+      <div
+        class="CARD border-b border-gray-300 pb-6 lg:pb-10"
+        *ngFor="let item of cartItems; let i = index"
+      >
         <div class="flex flex-col lg:flex-row items-center">
           <img
             width="200px"
@@ -15,41 +18,48 @@
             class="mb-4 lg:mb-0 lg:mr-10"
           />
           <div class="INFOCARD flex flex-col space-y-2">
-            <h2>{{getBrandName(item.brandID)}} - {{item.model}}</h2>
+            <h2>{{ getBrandName(item.brandID) }} - {{ item.model }}</h2>
             <h3 class="font-latoBold">{{ item.price | europeNumber }}</h3>
-            <button class="w-fit text-red-600 hover:font-latoBlack" (click)="removeCartItem(i)">
-              {{"cartDeleteWatch"| translate}}
+            <button
+              class="w-fit text-red-600 hover:font-latoBlack"
+              (click)="removeCartItem(i)"
+            >
+              {{ "cartDeleteWatch" | translate }}
             </button>
           </div>
         </div>
       </div>
     </div>
     <div class="SUMMARY lg:col-span-2 px-4">
-      <h1 class="font-prata pb-8 lg:pb-20 text-3xl lg:text-5xl">{{"cartSummary"|translate}}</h1>
+      <h1 class="font-prata pb-8 lg:pb-20 text-3xl lg:text-5xl">
+        {{ "cartSummary" | translate }}
+      </h1>
       <div class="INFO space-y-4">
         <div class="SUBTOTAL flex flex-row justify-between">
           <h2>Subtotal</h2>
-          <h2 class="">{{ subtotal  | europeNumber }}</h2>
+          <h2 class="">{{ subtotal | europeNumber }}</h2>
         </div>
         <div class="SHIPPING flex flex-row justify-between">
-          <h2>{{"cartShipping"| translate}}</h2>
-          <h2 class="">{{"cartShippingPrice"| translate}}</h2>
+          <h2>{{ "cartShipping" | translate }}</h2>
+          <h2 class="">{{ "cartShippingPrice" | translate }}</h2>
         </div>
         <div class="ESTIMATEDTOTAL flex flex-row justify-between font-latoBold">
-          <h2>{{"cartEstimatedTotal"| translate}}</h2>
-          <h2 class="">{{ subtotal  | europeNumber }}</h2>
+          <h2>{{ "cartEstimatedTotal" | translate }}</h2>
+          <h2 class="">{{ subtotal | europeNumber }}</h2>
         </div>
       </div>
       <div class="SUBMITBUTTON flex items-center justify-center pt-8 lg:pt-10">
         <button
-        (click)="realizarPedido()"
-        [matTooltip]="isUser ? '' : 'Si deseas comprar un reloj inicia sesión.'"
-        matTooltipPosition="below"
-        [disabled]="isUser === false"
+          (click)="realizarPedido()"
+          [matTooltip]="
+            isUser ? '' : 'Si deseas comprar un reloj inicia sesión.'
+          "
+          matTooltipPosition="below"
+          [disabled]="isUser === false"
           type="submit"
           class="text-gray-900 hover:text-white border border-gray-800 w-full lg:w-auto hover:bg-gray-900 font-latoBlack rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 uppercase dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800"
         >
-        {{"cartPurchaseOrder"| translate}}
+          {{ "cartPurchaseOrder" | translate }}
         </button>
       </div>
     </div>

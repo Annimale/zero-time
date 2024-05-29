@@ -6,8 +6,6 @@ import { TranslateModule } from '@ngx-translate/core';
   standalone: true,
   imports: [TranslateModule],
   templateUrl: './insurance.component.html',
-  styleUrl: './insurance.component.css'
+  styleUrl: './insurance.component.css',
 })
-export class InsuranceComponent {
-
-}
+export class InsuranceComponent {}

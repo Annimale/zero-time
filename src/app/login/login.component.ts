@@ -26,7 +26,7 @@ type ErrorMessages = {
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [RouterLink,TranslateModule, CommonModule, ReactiveFormsModule],
+  imports: [RouterLink, TranslateModule, CommonModule, ReactiveFormsModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
@@ -34,13 +34,12 @@ export class LoginComponent {
   loginForm!: FormGroup;
   errorMessage: string = '';
   userInfo!: any;
-  
+
   errorMessages: ErrorMessages = {
     'Usuario no encontrado':
       'El correo electrónico proporcionado no está registrado',
     'Contraseña incorrecta': 'La contraseña ingresada es incorrecta',
     'Formulario incompleto': 'Debes rellenar el formulario',
-
   };
 
   constructor(
@@ -68,18 +67,17 @@ export class LoginComponent {
     }
     this.authService.login(this.loginForm.value).subscribe({
       next: (response) => {
-        console.log('Inicio de sesión exitoso', response);
-        // Aquí puedes guardar el token en el localStorage y redirigir al usuario
+        //console.log('Inicio de sesión exitoso', response);
         localStorage.setItem('token', response.token);
         this.router.navigateByUrl('/home').then(() => {
-          // Una vez completada la redirección, recarga la página
           window.location.reload();
         });
       },
       error: (error) => {
         console.error('Error de inicio de sesión', error);
         this.errorMessage =
-          this.errorMessages[error.error.message] || 'Error al iniciar sesión, verifique su correo';
+          this.errorMessages[error.error.message] ||
+          'Error al iniciar sesión, verifique su correo';
       },
     });
   }

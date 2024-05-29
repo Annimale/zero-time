@@ -38,7 +38,7 @@ interface CustomJwtPayload {
     CommonModule,
     ReactiveFormsModule,
     MatTooltipModule,
-    TranslateModule
+    TranslateModule,
   ],
   templateUrl: './sell-your-watch.component.html',
   styleUrl: './sell-your-watch.component.css',
@@ -124,14 +124,14 @@ export class SellYourWatchComponent {
 
       this.saleService.createSale(formData).subscribe(
         (response) => {
-          console.log('Venta creada con éxito', response);
+          //console.log('Venta creada con éxito', response);
           Swal.fire({
             title: 'Enviada',
             text: 'Su venta ha sido enviada exitosamente.',
             icon: 'success',
             confirmButtonText: 'Ok',
           });
-          this.saleForm.reset(); // Resetear el formulario tras la creación exitosa
+          this.saleForm.reset();
         },
         (error) => {
           console.error('Error al crear la venta', error);
@@ -166,11 +166,11 @@ export class SellYourWatchComponent {
   getLocalUserData(id: any) {
     this.http.getLocalUser(id).subscribe({
       next: (response) => {
-        console.log('Datos del usuario:', response);
+        //console.log('Datos del usuario:', response);
         this.userLocalInfo = response;
       },
       error: (error) => {
-        console.log('Error en getLocalUserData:', error);
+        //console.log('Error en getLocalUserData:', error);
       },
     });
   }
@@ -180,31 +180,31 @@ export class SellYourWatchComponent {
       this.isAuthenticated = true;
       this.localToken = localStorage.getItem('token');
       const localInfo = jwtDecode(this.localToken) as CustomJwtPayload;
-      console.log(localInfo.id);
+      //console.log(localInfo.id);
 
       if (localInfo && localInfo.id) {
         this.getLocalUserData(localInfo.id);
       }
     } else {
-      console.log('De momento no hay localToken');
+      //console.log('De momento no hay localToken');
     }
   }
 
   getPayload() {
     this.http.getPayload().subscribe({
       next: (res) => {
-        console.log('Datos del usuario:', res.user);
+        //console.log('Datos del usuario:', res.user);
         this.userInfo = jwtDecode(res.user);
-        console.log(this.userInfo.id);
+        //console.log(this.userInfo.id);
         this.isAuthenticated = true;
 
         this.http2
           .get<any>(`http://localhost:3000/user/${this.userInfo.id}`)
           .subscribe({
             next: (userRes) => {
-              console.log(userRes);
+              //console.log(userRes);
               this.userGoogle = userRes;
-              console.log(this.userGoogle.role);
+              //console.log(this.userGoogle.role);
             },
           });
       },

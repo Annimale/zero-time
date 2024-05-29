@@ -288,7 +288,9 @@
             <div
               class="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700"
             >
-              <label for="comment" class="sr-only">Your comment</label>
+              <label for="comment" class="sr-only">{{
+                "newsDetailsComments6" | translate
+              }}</label>
               <textarea
                 id="comment"
                 rows="6"
@@ -302,11 +304,9 @@
               type="submit"
               class="inline-flex items-center py-2.5 px-4 text-center text-gray-900 bg-gray-300 rounded-lg focus:ring-4 hover:bg-primary-800"
             >
-              Post comment
+              {{ "newsDetailsComments7" | translate }}
             </button>
           </form>
-
-          <!-- Replicate the block above for each comment -->
         </div>
       </div>
     </div>

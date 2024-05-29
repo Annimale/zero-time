@@ -11,7 +11,7 @@ import { WatchService } from '../watch.service';
 import { BrandService } from '../brand.service';
 import Swal from 'sweetalert2';
 import { HttpService } from '../http.service';
-import { ActivatedRoute,Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../auth.service';
 import { NewsService } from '../news.service';
@@ -28,7 +28,7 @@ interface NewsFormValues {
 @Component({
   selector: 'app-edit-news',
   standalone: true,
-  imports: [RouterLink, ReactiveFormsModule, CommonModule,TranslateModule],
+  imports: [RouterLink, ReactiveFormsModule, CommonModule, TranslateModule],
   templateUrl: './edit-news.component.html',
   styleUrl: './edit-news.component.css',
 })
@@ -40,7 +40,7 @@ export class EditNewsComponent {
     private http2: HttpClient,
     private authService: AuthService,
     private route: ActivatedRoute,
-    private router:Router
+    private router: Router
   ) {}
 
   files: File[] = [];
@@ -62,7 +62,7 @@ export class EditNewsComponent {
 
     this.newsService.getNewsById(newsID).subscribe({
       next: (news) => {
-        console.log('News actual', news);
+        //console.log('News actual', news);
         this.fillForm(news);
         this.news = news;
       },
@@ -88,7 +88,7 @@ export class EditNewsComponent {
           (key === 'coverImage' || key === 'secondaryImage') &&
           control?.value
         ) {
-          const fileInput = control.value[0]; // Access the first file
+          const fileInput = control.value[0];
           if (fileInput) formData.append(key, fileInput, fileInput.name);
         } else if (control?.value) {
           formData.append(key, control.value.toString());
@@ -100,7 +100,7 @@ export class EditNewsComponent {
           Swal.fire('Éxito', 'Noticia editada correctamente', 'success').then(
             (result) => {
               if (result.value) {
-                window.location.reload(); // Recargar la página
+                window.location.reload();
               }
             }
           );
@@ -127,7 +127,6 @@ export class EditNewsComponent {
       });
     }
   }
-
 
   deleteNews(): void {
     Swal.fire({

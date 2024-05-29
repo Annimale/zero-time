@@ -17,8 +17,6 @@ export class AuthService {
   );
   isAuthenticated = this.isAuthenticatedSubject.asObservable();
 
- 
-
   constructor(
     private http: HttpClient,
     private cookieService: CookieService,
@@ -66,38 +64,38 @@ export class AuthService {
       const token =
         this.cookieService.get('token') || localStorage.getItem('token');
       if (!token) {
-        console.log('No ha conseguido el token');
+        //console.log('No ha conseguido el token');
         return false;
       }
       try {
         const decoded: any = jwtDecode(token);
-        console.log('Token decoded', decoded);
+        //console.log('Token decoded', decoded);
         return decoded.role && decoded.role === 'admin'; // Verifica que el role exista y sea 'admin'.
       } catch (error) {
         console.error('Error decoding token', error);
         return false;
       }
-    }else{
-       // En el servidor, no podemos acceder a localStorage
-       console.log('LocalStorage no está disponible en el servidor');
-       return false;
+    } else {
+      // En el servidor, no podemos acceder a localStorage
+      //console.log('LocalStorage no está disponible en el servidor');
+      return false;
     }
   }
-  
+
   isUser(): boolean {
     if (isPlatformBrowser(this.platformId)) {
       const token =
         this.cookieService.get('token') || localStorage.getItem('token');
       if (!token) {
-        console.log('No hay token de user');
+        //console.log('No hay token de user');
         return false;
       } else {
-        console.log('El user no es guest por lo que tiene token');
+        //console.log('El user no es guest por lo que tiene token');
         return true;
       }
     } else {
       // En el servidor, no podemos acceder a localStorage
-      console.log('LocalStorage no está disponible en el servidor');
+      //console.log('LocalStorage no está disponible en el servidor');
       return false;
     }
   }

@@ -36,7 +36,7 @@ interface CustomJwtPayload {
 @Component({
   selector: 'app-add-watch',
   standalone: true,
-  imports: [RouterLink, ReactiveFormsModule, CommonModule,TranslateModule],
+  imports: [RouterLink, ReactiveFormsModule, CommonModule, TranslateModule],
   templateUrl: './add-watch.component.html',
   styleUrl: './add-watch.component.css',
 })
@@ -77,12 +77,12 @@ export class AddWatchComponent {
   ngOnInit(): void {
     this.brandService.getAllBrands().subscribe({
       next: (data) => {
-        console.log('Brands loaded:', data);
+        //console.log('Brands loaded:', data);
         this.brands = data;
       },
       error: (error) => {
         console.error('Failed to load brands. Response:', error);
-        console.error('Error details:', error.error.text || error.error); // Attempting to capture non-JSON error message
+        console.error('Error details:', error.error.text || error.error);
       },
     });
 
@@ -130,10 +130,8 @@ export class AddWatchComponent {
           }).then((result) => {
             this.watchForm.reset();
             this.setDefaultSelectValue();
-            
-           
           });
-          console.log('Reloj añadido con imágenes:', watch);
+          //console.log('Reloj añadido con imágenes:', watch);
         },
         error: (error) => {
           Swal.fire({
@@ -160,21 +158,19 @@ export class AddWatchComponent {
     let fileList: FileList | null = element.files;
     if (fileList) {
       this.files = Array.from(fileList);
-      // Puedes añadir lógica aquí para mostrar las miniaturas de las imágenes
     }
   }
 
   //Lógica para coger info users
-
   //Cogemos token local
   getLocalUserData(id: any) {
     this.http.getLocalUser(id).subscribe({
       next: (response) => {
-        console.log('Datos del usuario:', response);
+        //console.log('Datos del usuario:', response);
         this.userLocalInfo = response;
       },
       error: (error) => {
-        console.log('Error en getLocalUserData:', error);
+        //console.log('Error en getLocalUserData:', error);
       },
     });
   }
@@ -184,31 +180,31 @@ export class AddWatchComponent {
       this.isAuthenticated = true;
       this.localToken = localStorage.getItem('token');
       const localInfo = jwtDecode(this.localToken) as CustomJwtPayload;
-      console.log(localInfo.id);
+      //console.log(localInfo.id);
 
       if (localInfo && localInfo.id) {
         this.getLocalUserData(localInfo.id);
       }
     } else {
-      console.log('De momento no hay localToken');
+      //console.log('De momento no hay localToken');
     }
   }
 
   getPayload() {
     this.http.getPayload().subscribe({
       next: (res) => {
-        console.log('Datos del usuario:', res.user);
+        //console.log('Datos del usuario:', res.user);
         this.userInfo = jwtDecode(res.user);
-        console.log(this.userInfo.id);
+        //console.log(this.userInfo.id);
         this.isAuthenticated = true;
 
         this.http2
           .get<any>(`http://localhost:3000/user/${this.userInfo.id}`)
           .subscribe({
             next: (userRes) => {
-              console.log(userRes);
+              //console.log(userRes);
               this.userGoogle = userRes;
-              console.log(this.userGoogle.role);
+              //console.log(this.userGoogle.role);
             },
           });
       },
@@ -219,7 +215,6 @@ export class AddWatchComponent {
   }
 
   setDefaultSelectValue(): void {
-    // Obtiene el elemento del campo de selección
     const movementSelect = document.getElementById(
       'movement'
     ) as HTMLSelectElement;
@@ -227,16 +222,12 @@ export class AddWatchComponent {
     const conditionSelect = document.getElementById(
       'condition'
     ) as HTMLSelectElement;
-   
 
-    // Establece el valor predeterminado deseado (en este caso, el primer valor)
     movementSelect.selectedIndex = 0;
     brandSelect.selectedIndex = 0;
     conditionSelect.selectedIndex = 0;
     if (this.fileInput) {
       this.fileInput.nativeElement.value = '';
     }
-
   }
-  
 }

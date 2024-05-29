@@ -1,8 +1,10 @@
 <div class="container mx-auto">
   <div class="ADDNEWS text-center py-5 lg:py-10">
-    <h1 class="font-prata text-3xl lg:text-6xl pb-2 lg:pb-4">{{"addNewsTitle"|translate}}</h1>
+    <h1 class="font-prata text-3xl lg:text-6xl pb-2 lg:pb-4">
+      {{ "addNewsTitle" | translate }}
+    </h1>
     <h2 class="font-latoRegular text-lg lg:text-2xl text-gray-500">
-      {{"addNewsSubtitle"|translate}}
+      {{ "addNewsSubtitle" | translate }}
     </h2>
   </div>
   <form
@@ -10,8 +12,12 @@
     (ngSubmit)="onSubmit()"
     class="mx-4 sm:mx-auto lg:mx-auto p-6 sm:p-12 lg:p-12 pb-20 lg:pb-36"
   >
-    <div class="FORM grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 w-full gap-3 sm:gap-5 lg:gap-7 gap-x-5 lg:gap-x-10">
-      <div class="relative z-0 w-full mb-3 sm:mb-5 lg:mb-5 group col-span-2 lg:col-span-2">
+    <div
+      class="FORM grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 w-full gap-3 sm:gap-5 lg:gap-7 gap-x-5 lg:gap-x-10"
+    >
+      <div
+        class="relative z-0 w-full mb-3 sm:mb-5 lg:mb-5 group col-span-2 lg:col-span-2"
+      >
         <input
           formControlName="title"
           type="text"
@@ -24,10 +30,12 @@
         <label
           for="floating_title"
           class="peer-focus:font-latoRegular absolute duration-300 text-gray-500 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-          >{{"addNewsTitleLabel"| translate}}</label
+          >{{ "addNewsTitleLabel" | translate }}</label
         >
       </div>
-      <div class="relative z-0 w-full mb-3 sm:mb-5 lg:mb-5 group col-span-2 lg:col-span-2">
+      <div
+        class="relative z-0 w-full mb-3 sm:mb-5 lg:mb-5 group col-span-2 lg:col-span-2"
+      >
         <input
           formControlName="subtitle"
           type="text"
@@ -40,10 +48,12 @@
         <label
           for="floating_subtitle"
           class="peer-focus:font-latoRegular absolute duration-300 text-gray-500 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-          >{{"addNewsSubTitleLabel"| translate}}</label
+          >{{ "addNewsSubTitleLabel" | translate }}</label
         >
       </div>
-      <div class="relative z-0 w-full mb-3 sm:mb-5 lg:mb-5 group col-span-4 lg:col-span-5">
+      <div
+        class="relative z-0 w-full mb-3 sm:mb-5 lg:mb-5 group col-span-4 lg:col-span-5"
+      >
         <textarea
           formControlName="body"
           name="floating_body"
@@ -55,11 +65,13 @@
         <label
           for="floating_body"
           class="peer-focus:font-latoRegular absolute duration-300 text-gray-500 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-          >{{"addNewsBodyLabel"| translate}}</label
+          >{{ "addNewsBodyLabel" | translate }}</label
         >
       </div>
 
-      <div class="flex items-center col-span-4 sm:col-span-2 lg:col-span-1 pt-3 sm:pt-5 lg:pt-5">
+      <div
+        class="flex items-center col-span-4 sm:col-span-2 lg:col-span-1 pt-3 sm:pt-5 lg:pt-5"
+      >
         <div class="relative z-0 w-full mb-3 sm:mb-5 lg:mb-5 group">
           <input
             formControlName="author"
@@ -73,32 +85,46 @@
           <label
             for="floating_author"
             class="peer-focus:font-latoRegular absolute duration-300 text-gray-500 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-            >{{"addNewsAuthorLabel"| translate}}</label
+            >{{ "addNewsAuthorLabel" | translate }}</label
           >
         </div>
       </div>
 
-      <div class="CATEGORY flex items-center col-span-4 sm:col-span-2 lg:col-span-1">
+      <div
+        class="CATEGORY flex items-center col-span-4 sm:col-span-2 lg:col-span-1"
+      >
         <label for="floating_category" class="sr-only">Underline select</label>
         <select
           formControlName="category"
           id="floating_category"
           class="block py-2.5 px-0 w-full text-gray-500 bg-transparent border-0 border-b-2 border-gray-300 focus:border-gray-600 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 peer"
         >
-          <option disable selected value="">{{"addNewsCategoryLabel"| translate}}</option>
-          <option value="in-depth">{{"addNewsCategoryLabel1"| translate}}</option>
-          <option value="hands-on">{{"addNewsCategoryLabel2"| translate}}</option>
-          <option value="introducing">{{"addNewsCategoryLabel3"| translate}}</option>
-          <option value="one-to-watch">{{"addNewsCategoryLabel4"| translate}}</option>
+          <option disable selected value="">
+            {{ "addNewsCategoryLabel" | translate }}
+          </option>
+          <option value="in-depth">
+            {{ "addNewsCategoryLabel1" | translate }}
+          </option>
+          <option value="hands-on">
+            {{ "addNewsCategoryLabel2" | translate }}
+          </option>
+          <option value="introducing">
+            {{ "addNewsCategoryLabel3" | translate }}
+          </option>
+          <option value="one-to-watch">
+            {{ "addNewsCategoryLabel4" | translate }}
+          </option>
         </select>
       </div>
 
-      <div class="UPLOADFILES flex items-center col-span-4 sm:col-span-2 lg:col-span-1">
+      <div
+        class="UPLOADFILES flex items-center col-span-4 sm:col-span-2 lg:col-span-1"
+      >
         <div class="w-full items-center pb-3 sm:pb-6 lg:pb-6">
           <label
             class="block mb-2 font-latoRegular text-gray-900 dark:text-white"
             for="coverImage"
-            >{{"addNewsCoverPhotoLabel"| translate}}
+            >{{ "addNewsCoverPhotoLabel" | translate }}
           </label>
           <input
             #coverImageInput
@@ -110,15 +136,17 @@
           />
         </div>
       </div>
-      <div class="UPLOADFILES flex items-center col-span-4 sm:col-span-2 lg:col-span-1">
+      <div
+        class="UPLOADFILES flex items-center col-span-4 sm:col-span-2 lg:col-span-1"
+      >
         <div class="w-full items-center pb-3 sm:pb-6 lg:pb-6">
           <label
             class="block mb-2 font-latoRegular text-gray-900 dark:text-white"
             for="secondaryImage"
-            >{{"addNewsBodyPhotoLabel"| translate}}</label
+            >{{ "addNewsBodyPhotoLabel" | translate }}</label
           >
           <input
-          #secondaryImageInput
+            #secondaryImageInput
             class="block w-full text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
             id="secondaryImage"
             type="file"
@@ -128,12 +156,14 @@
         </div>
       </div>
     </div>
-    <div class="SUBMITBUTTON col-span-4 sm:col-span-2 lg:col-span-3 items-center justify-center flex pt-3 sm:pt-5 lg:pt-10">
+    <div
+      class="SUBMITBUTTON col-span-4 sm:col-span-2 lg:col-span-3 items-center justify-center flex pt-3 sm:pt-5 lg:pt-10"
+    >
       <button
         type="submit"
-        class="text-gray-900 hover:text-white border w-full sm:w-1/4 lg:w-1/4 border-gray-800 hover:bg-gray-900  font-latoBlack uppercase rounded-lg px-5 py-2.5 text-center me-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800"
+        class="text-gray-900 hover:text-white border w-full sm:w-1/4 lg:w-1/4 border-gray-800 hover:bg-gray-900 font-latoBlack uppercase rounded-lg px-5 py-2.5 text-center me-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800"
       >
-      {{"addNewsButton"| translate}}
+        {{ "addNewsButton" | translate }}
       </button>
     </div>
   </form>

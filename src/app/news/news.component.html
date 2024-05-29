@@ -3,61 +3,95 @@
     <div class="FILTERS lg:col-span-1 pt-10 lg:pr-4">
       <div class="flex flex-col space-y-8">
         <div class="CATEGORY space-y-4">
-          <h2 class="font-latoBold">{{"newsCategoryFilters"|translate}}</h2>
+          <h2 class="font-latoBold">{{ "newsCategoryFilters" | translate }}</h2>
           <div class="flex flex-col space-y-2">
             <label class="cursor-pointer flex items-center">
-              <input type="checkbox" class="form-checkbox h-5 w-5 text-gray-600" (change)="updateCategoryFilter('in-depth', $event)" />
-              <span class="ml-2">{{"newsCategoryFilters1"|translate}}</span>
+              <input
+                type="checkbox"
+                class="form-checkbox h-5 w-5 text-gray-600"
+                (change)="updateCategoryFilter('in-depth', $event)"
+              />
+              <span class="ml-2">{{ "newsCategoryFilters1" | translate }}</span>
             </label>
             <label class="cursor-pointer flex items-center">
-              <input type="checkbox" class="form-checkbox h-5 w-5 text-gray-600" (change)="updateCategoryFilter('hands-on', $event)" />
-              <span class="ml-2">{{"newsCategoryFilters2"|translate}}</span>
+              <input
+                type="checkbox"
+                class="form-checkbox h-5 w-5 text-gray-600"
+                (change)="updateCategoryFilter('hands-on', $event)"
+              />
+              <span class="ml-2">{{ "newsCategoryFilters2" | translate }}</span>
             </label>
             <label class="cursor-pointer flex items-center">
-              <input type="checkbox" class="form-checkbox h-5 w-5 text-gray-600" (change)="updateCategoryFilter('one-to-watch', $event)" />
-              <span class="ml-2">{{"newsCategoryFilters3"|translate}}</span>
+              <input
+                type="checkbox"
+                class="form-checkbox h-5 w-5 text-gray-600"
+                (change)="updateCategoryFilter('one-to-watch', $event)"
+              />
+              <span class="ml-2">{{ "newsCategoryFilters3" | translate }}</span>
             </label>
             <label class="cursor-pointer flex items-center">
-              <input type="checkbox" class="form-checkbox h-5 w-5 text-gray-600" (change)="updateCategoryFilter('introducing', $event)" />
-              <span class="ml-2">{{"newsCategoryFilters4"|translate}}</span>
+              <input
+                type="checkbox"
+                class="form-checkbox h-5 w-5 text-gray-600"
+                (change)="updateCategoryFilter('introducing', $event)"
+              />
+              <span class="ml-2">{{ "newsCategoryFilters4" | translate }}</span>
             </label>
           </div>
         </div>
         <div class="AUTOR">
-          <h2 class="font-latoBold">{{"newsAuthorFiltersLabel"|translate}}</h2>
+          <h2 class="font-latoBold">
+            {{ "newsAuthorFiltersLabel" | translate }}
+          </h2>
           <input
             type="text"
             placeholder="Author ..."
-            [(ngModel)]="filters.author" (ngModelChange)="updateAuthorFilter($event)"
+            [(ngModel)]="filters.author"
+            (ngModelChange)="updateAuthorFilter($event)"
             class="w-full p-2 border focus:ring-0 focus:border-gray-800 border-gray-300 rounded"
           />
         </div>
         <div class="mb-6 flex flex-col items-start space-y-4">
-          <h2 class="font-latoBold">{{"newsDateFiltersLabel"|translate}}</h2>
+          <h2 class="font-latoBold">
+            {{ "newsDateFiltersLabel" | translate }}
+          </h2>
           <button
             class="border border-gray-600 px-4 py-2 w-full hover:bg-slate-900 hover:text-slate-100 rounded"
             (click)="updateSortOrder('newest')"
           >
-          {{"newsDateFiltersNewest"|translate}}
+            {{ "newsDateFiltersNewest" | translate }}
           </button>
           <button
             class="border border-gray-600 px-4 py-2 w-full hover:bg-slate-900 hover:text-slate-100 rounded"
             (click)="updateSortOrder('oldest')"
           >
-          {{"newsDateFiltersOldest"|translate}}
+            {{ "newsDateFiltersOldest" | translate }}
           </button>
         </div>
       </div>
     </div>
     <div class="ARTICLES lg:col-span-6">
-      <div class="ARTICLE border-b border-gray-200" *ngFor="let news of filteredNews">
-        <div class="grid grid-cols-1 lg:grid-cols-5 gap-2 p-6 lg:p-10 cursor-pointer" (click)="navigateToNewsDetail(news.id)">
+      <div
+        class="ARTICLE border-b border-gray-200"
+        *ngFor="let news of filteredNews"
+      >
+        <div
+          class="grid grid-cols-1 lg:grid-cols-5 gap-2 p-6 lg:p-10 cursor-pointer"
+          (click)="navigateToNewsDetail(news.id)"
+        >
           <div class="col-span-1 lg:col-span-2">
-            <div class="capitalize text-xl lg:text-3xl font-latoRegular mb-4 lg:mb-6">
-              <span class="CATEGORY+TITLE font-prata text-4xl lg:text-5xl pr-4">{{ news.category }}</span>
+            <div
+              class="capitalize text-xl lg:text-3xl font-latoRegular mb-4 lg:mb-6"
+            >
+              <span
+                class="CATEGORY+TITLE font-prata text-4xl lg:text-5xl pr-4"
+                >{{ news.category }}</span
+              >
               {{ news.title }}
             </div>
-            <div class="SUBTITLE font-latoRegular opacity-75 text-sm lg:text-base">
+            <div
+              class="SUBTITLE font-latoRegular opacity-75 text-sm lg:text-base"
+            >
               {{ news.subtitle }}
             </div>
           </div>
@@ -68,7 +102,9 @@
               alt="coverImage"
             />
           </div>
-          <div class="AUTHOR col-span-1 lg:col-span-5 capitalize text-sm lg:text-base">
+          <div
+            class="AUTHOR col-span-1 lg:col-span-5 capitalize text-sm lg:text-base"
+          >
             <h3 class="whitespace-nowrap">
               {{ news.author }} - {{ news.date | date : "dd/MM/yyyy" }}
             </h3>

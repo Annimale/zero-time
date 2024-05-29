@@ -30,7 +30,7 @@ interface WatchFormValues {
 @Component({
   selector: 'app-edit-watch',
   standalone: true,
-  imports: [RouterLink,TranslateModule, ReactiveFormsModule, CommonModule],
+  imports: [RouterLink, TranslateModule, ReactiveFormsModule, CommonModule],
   templateUrl: './edit-watch.component.html',
   styleUrl: './edit-watch.component.css',
 })
@@ -67,18 +67,18 @@ export class EditWatchComponent {
 
     this.brandService.getAllBrands().subscribe({
       next: (data) => {
-        console.log('Brands loaded:', data);
+        //console.log('Brands loaded:', data);
         this.brands = data;
       },
       error: (error) => {
         console.error('Failed to load brands. Response:', error);
-        console.error('Error details:', error.error.text || error.error); // Attempting to capture non-JSON error message
+        console.error('Error details:', error.error.text || error.error);
       },
     });
 
     this.watchService.getWatchById(watchID).subscribe({
       next: (watch) => {
-        console.log('Reloj actual', watch);
+        //console.log('Reloj actual', watch);
         this.watch = watch;
         this.fillForm(watch);
       },
@@ -128,7 +128,7 @@ export class EditWatchComponent {
             if (result.value) {
             }
           });
-          console.log('Reloj editado con imágenes:', watch);
+          //console.log('Reloj editado con imágenes:', watch);
         },
         error: (error) => {
           Swal.fire({

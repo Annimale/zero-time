@@ -32,7 +32,7 @@ interface Comment {
 @Component({
   selector: 'app-news-detail',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterLink,TranslateModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink, TranslateModule],
   templateUrl: './news-detail.component.html',
   styleUrl: './news-detail.component.css',
 })
@@ -61,24 +61,23 @@ export class NewsDetailComponent {
     private authService: AuthService,
     private router: Router,
     private commentService: CommentService,
-    private location:Location
+    private location: Location
   ) {}
   commentForm = new FormGroup({
     comment: new FormControl(''),
   });
   ngOnInit(): void {
-    this.newsId = +this.route.snapshot.params['id']; // Convertir de string a number
-    console.log('Article ID: ', this.newsId); // Verifica que estás recibiendo el ID correcto
+    this.newsId = +this.route.snapshot.params['id'];
+    //console.log('Article ID: ', this.newsId);
 
     this.newsService.getNewsById(this.newsId).subscribe({
       next: (data) => {
-        console.log('Initial data loaded', data);
+        //console.log('Initial data loaded', data);
         this.news = data;
       },
       error: (error) => {
         console.error('Error al obtener los detalles del artículo:', error);
-        this.router.navigate(['/not-found'])
-
+        this.router.navigate(['/not-found']);
       },
     });
 
@@ -88,13 +87,12 @@ export class NewsDetailComponent {
     }
     this.getLocalTokenInfo();
     this.loadComments();
-    console.log('commentsCount:', this.commentsCount);
+    //console.log('commentsCount:', this.commentsCount);
     this.isUser = this.authService.isUser();
   }
 
   getImageUrl(imagePath: string): string {
     if (!imagePath) {
-      // Si no hay una ruta de imagen, devuelve una imagen por defecto
       return 'src/assets/images/default-image.webp';
     }
     const imageUrl = `${this.baseUrl}${imagePath.replace(/\\/g, '/')}`;
@@ -106,11 +104,11 @@ export class NewsDetailComponent {
   getLocalUserData(id: any) {
     this.http.getLocalUser(id).subscribe({
       next: (response) => {
-        console.log('Datos del usuario:', response);
+        //console.log('Datos del usuario:', response);
         this.userLocalInfo = response;
       },
       error: (error) => {
-        console.log('Error en getLocalUserData:', error);
+        //console.log('Error en getLocalUserData:', error);
       },
     });
   }
@@ -120,31 +118,31 @@ export class NewsDetailComponent {
       this.isAuthenticated = true;
       this.localToken = localStorage.getItem('token');
       const localInfo = jwtDecode(this.localToken) as CustomJwtPayload;
-      console.log(localInfo.id);
+      //console.log(localInfo.id);
 
       if (localInfo && localInfo.id) {
         this.getLocalUserData(localInfo.id);
       }
     } else {
-      console.log('De momento no hay localToken');
+      //console.log('De momento no hay localToken');
     }
   }
 
   getPayload() {
     this.http.getPayload().subscribe({
       next: (res) => {
-        console.log('Datos del usuario:', res.user);
+        //console.log('Datos del usuario:', res.user);
         this.userInfo = jwtDecode(res.user);
-        console.log(this.userInfo.id);
+        //console.log(this.userInfo.id);
         this.isAuthenticated = true;
 
         this.http2
           .get<any>(`http://localhost:3000/user/${this.userInfo.id}`)
           .subscribe({
             next: (userRes) => {
-              console.log(userRes);
+              //console.log(userRes);
               this.userGoogle = userRes;
-              console.log(this.userGoogle.role);
+              //console.log(this.userGoogle.role);
             },
           });
       },
@@ -173,30 +171,28 @@ export class NewsDetailComponent {
     const commentBody = this.commentForm.get('comment')?.value;
     if (!commentBody || commentBody.trim() === '') {
       console.error('Comment body cannot be empty');
-      return; // Prevent submission of empty comments
+      return;
     }
 
     if (this.editingCommentId) {
-      // Update existing comment
       this.commentService
         .updateComment(this.editingCommentId, { body: commentBody })
         .subscribe({
           next: (response) => {
-            console.log('Comment updated', response);
-            this.loadComments(); // Reload comments after updating
+            //console.log('Comment updated', response);
+            this.loadComments();
           },
           error: (error) => console.error('Error updating comment', error),
         });
     } else {
-      // Post new comment
       const payload = {
         body: commentBody,
         articleID: this.newsId.toString(),
       };
       this.commentService.postComment(payload).subscribe({
         next: (response) => {
-          console.log('Comment posted', response);
-          this.loadComments(); // Reload comments after posting a new one
+          //console.log('Comment posted', response);
+          this.loadComments();
         },
         error: (error) => console.error('Error posting comment', error),
       });
@@ -230,7 +226,7 @@ export class NewsDetailComponent {
       if (result.isConfirmed) {
         this.commentService.deleteComment(commentId).subscribe({
           next: (response) => {
-            console.log('Comment deleted', response);
+            //console.log('Comment deleted', response);
             Swal.fire('Borrado', 'Tu comentario ha sido borrado.', 'success');
             this.loadComments();
           },
@@ -247,5 +243,6 @@ export class NewsDetailComponent {
       return window.location.href;
     } else {
       return '';
-    }  }
+    }
+  }
 }

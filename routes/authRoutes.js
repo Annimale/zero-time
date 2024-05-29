@@ -4,10 +4,10 @@ const express = require("express");
 const app = express();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const User = require("../models/user"); // Asegúrate de ajustar la ruta según tu estructura de proyecto
+const User = require("../models/user");
 const { OAuth2Client } = require("google-auth-library");
 const { error } = require("console");
-// const CLIENT_ID = "407408718192.apps.googleusercontent.com";//POSTMAN
+
 const CLIENT_ID =
   "603153535129-plb0i5pqros03qgdcqbbvm799qf8gsl6.apps.googleusercontent.com"; //REAL GOOGLE
 const { v4: uuidv4 } = require("uuid");
@@ -70,7 +70,7 @@ router.post("/sign-up", async (req, res) => {
 
     request
       .then((result) => {
-        console.log(result.body);
+        //console.log(result.body);
         return res.status(201).json({
           message: "Usuario creado exitosamente y correo enviado",
           newUser: {
@@ -107,16 +107,17 @@ router.post("/login", async (req, res) => {
       return res.status(404).json({ message: "Usuario no encontrado" });
     }
     if (!user.isVerified) {
-      return res.status(403).json({ message: "Por favor, verifica tu correo electrónico antes de iniciar sesión" });
+      return res.status(403).json({
+        message:
+          "Por favor, verifica tu correo electrónico antes de iniciar sesión",
+      });
     }
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       return res.status(400).json({ message: "Contraseña incorrecta" });
     }
     const token = jwt.sign(
-      { id: user.id,
-        role:user.role
-       },
+      { id: user.id, role: user.role },
       "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",
       { expiresIn: "1h" }
     );
@@ -142,23 +143,23 @@ router.get("/verify/:token", async (req, res) => {
 });
 
 router.post("/login-with-google", async (req, res) => {
-  console.log(req.body); // Agrega esto para depurar
+  //console.log(req.body);
 
   try {
     const { credential } = req.body;
-    console.log("credential recibido:", credential);
+    //console.log("credential recibido:", credential);
 
     if (!credential) {
-      console.log(error);
+      //console.log(error);
       return res.status(400).send("credential no proporcionado");
     }
     const ticket = await client.verifyIdToken({
       idToken: credential,
-      audience: CLIENT_ID, // Asegúrate de reemplazar esto con tu Client ID real
+      audience: CLIENT_ID,
     });
 
     const payload = ticket.getPayload();
-    console.log("Payload recibido:", payload);
+    //console.log("Payload recibido:", payload);
 
     if (!payload.email) {
       return res.status(400).json({
@@ -170,11 +171,10 @@ router.post("/login-with-google", async (req, res) => {
     // Si el usuario no existe, créalo sin una contraseña específica
     if (!user) {
       user = await User.create({
-        name: payload.given_name, // Asumiendo que quieres el nombre dado
-        lastName: payload.family_name, // Asumiendo que quieres el apellido
+        name: payload.given_name,
+        lastName: payload.family_name,
         email: payload.email,
-        password: "", // Podrías optar por no establecer una contraseña o usar un valor placeholder
-        // Considera añadir lógica para manejar roles si es necesario
+        password: "",
       });
     }
 
@@ -185,9 +185,8 @@ router.post("/login-with-google", async (req, res) => {
         expiresIn: "1h",
       }
     );
-    console.log("userToken recibido:", userToken);
+    //console.log("userToken recibido:", userToken);
     res.cookie("token", userToken, { httpOnly: false, secure: false });
-    // res.json(payload);
     res.redirect(`http://localhost:4200/home`);
 
     // res.json({name:user.given_name})

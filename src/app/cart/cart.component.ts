@@ -38,7 +38,7 @@ interface CartItem {
   standalone: true,
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.css',
-  imports: [EuropeNumberPipe, CommonModule, MatTooltipModule,TranslateModule],
+  imports: [EuropeNumberPipe, CommonModule, MatTooltipModule, TranslateModule],
 })
 export class CartComponent {
   cartItems: any[] = []; // Lista de relojes en el carrito
@@ -67,7 +67,7 @@ export class CartComponent {
       },
       error: (error) => {
         console.error('Failed to load brands. Response:', error);
-        console.error('Error details:', error.error.text || error.error); // Attempting to capture non-JSON error message
+        console.error('Error details:', error.error.text || error.error);
       },
     });
     this.isAuthenticated = this.authService.tokenExists();
@@ -88,7 +88,6 @@ export class CartComponent {
   removeCartItem(index: number): void {
     // Eliminar el reloj del carrito
     this.cartService.removeCartItem(index);
-
     // Actualizar la lista de relojes en el componente
     this.cartItems = this.cartService.getCartItems();
     this.calculateSubtotal();
@@ -106,11 +105,11 @@ export class CartComponent {
   getLocalUserData(id: any) {
     this.http.getLocalUser(id).subscribe({
       next: (response) => {
-        console.log('Datos del usuario:', response);
+        //console.log('Datos del usuario:', response);
         this.userLocalInfo = response;
       },
       error: (error) => {
-        console.log('Error en getLocalUserData:', error);
+        //console.log('Error en getLocalUserData:', error);
       },
     });
   }
@@ -120,31 +119,31 @@ export class CartComponent {
       this.isAuthenticated = true;
       this.localToken = localStorage.getItem('token');
       const localInfo = jwtDecode(this.localToken) as CustomJwtPayload;
-      console.log(localInfo.id);
+      //console.log(localInfo.id);
 
       if (localInfo && localInfo.id) {
         this.getLocalUserData(localInfo.id);
       }
     } else {
-      console.log('De momento no hay localToken');
+      //console.log('De momento no hay localToken');
     }
   }
 
   getPayload() {
     this.http.getPayload().subscribe({
       next: (res) => {
-        console.log('Datos del usuario:', res.user);
+        //console.log('Datos del usuario:', res.user);
         this.userInfo = jwtDecode(res.user);
-        console.log(this.userInfo.id);
+        //console.log(this.userInfo.id);
         this.isAuthenticated = true;
 
         this.http2
           .get<any>(`http://localhost:3000/user/${this.userInfo.id}`)
           .subscribe({
             next: (userRes) => {
-              console.log(userRes);
+              //console.log(userRes);
               this.userGoogle = userRes;
-              console.log(this.userGoogle.role);
+              //console.log(this.userGoogle.role);
             },
           });
       },
@@ -161,10 +160,8 @@ export class CartComponent {
       console.error('No hay elementos en el carrito');
       return;
     }
-
     // Parsear los elementos del carrito
     const cartItems: CartItem[] = JSON.parse(cartItemsString);
-
     // Calcular el monto total
     const totalAmount = cartItems.reduce(
       (total, item) => total + item.price,
@@ -183,14 +180,12 @@ export class CartComponent {
       currency_code: 'USD', // Cambiar según la moneda utilizada
       value: totalAmount.toFixed(2), // Redondear el total a 2 decimales
     };
-    console.log(cartItemsWithDetails)
+    //console.log(cartItemsWithDetails)
     // Enviar los datos a PayPal
     this.http2
       .post('http://localhost:3000/checkout/paypal', {
         items: cartItemsWithDetails,
-        amount: totalAmount.toFixed(2) // Agrega el monto total como un parámetro
-          
-        
+        amount: totalAmount.toFixed(2), // Agrega el monto total como un parámetro
       })
       .subscribe(
         (response: any) => {
@@ -198,7 +193,6 @@ export class CartComponent {
         },
         (error) => {
           console.error(error);
-          // Manejar el error
         }
       );
   }

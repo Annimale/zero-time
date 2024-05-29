@@ -1,213 +1,240 @@
 <div class="container mx-auto">
-    <div class="SELLYOURWATCH text-center py-10">
-      <h1 class="font-prata text-6xl pb-4">{{"editWatchTitle"|translate}}</h1>
-      <h2 class="font-latoRegular text-2xl text-gray-500">
-        {{"editWatchSubtitle"|translate}}      </h2>
-    </div>
-    <form
-      [formGroup]="watchEditForm"
-      (ngSubmit)="onSubmit()"
-      class="mx-auto p-12 pb-32"
+  <div class="SELLYOURWATCH text-center py-10">
+    <h1 class="font-prata text-6xl pb-4">{{ "editWatchTitle" | translate }}</h1>
+    <h2 class="font-latoRegular text-2xl text-gray-500">
+      {{ "editWatchSubtitle" | translate }}
+    </h2>
+  </div>
+  <form
+    [formGroup]="watchEditForm"
+    (ngSubmit)="onSubmit()"
+    class="mx-auto p-12 pb-32"
+  >
+    <div
+      class="FORM grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 w-full gap-7 gap-x-10"
     >
-      <div class="FORM grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 w-full gap-7 gap-x-10">
-        <div class="BRANDID flex items-center mb-5">
-          <label for="brandID" class="sr-only">Underline select</label>
-          <select
-            formControlName="brandID"
-            id="brandID"
-            class="block py-2.5 px-0 w-full text-gray-500 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-300 peer"
-          >
-            <option value="">{{"editWatchBrandID"|translate}}</option>
-            <option *ngFor="let brand of brands" [value]="brand.id">
-              {{ brand.name }}
-            </option>
-          </select>
-        </div>
-        <div class="relative z-0 w-full mb-5 group">
+      <div class="BRANDID flex items-center mb-5">
+        <label for="brandID" class="sr-only">Underline select</label>
+        <select
+          formControlName="brandID"
+          id="brandID"
+          class="block py-2.5 px-0 w-full text-gray-500 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-300 peer"
+        >
+          <option value="">{{ "editWatchBrandID" | translate }}</option>
+          <option *ngFor="let brand of brands" [value]="brand.id">
+            {{ brand.name }}
+          </option>
+        </select>
+      </div>
+      <div class="relative z-0 w-full mb-5 group">
+        <input
+          formControlName="model"
+          type="text"
+          name="floating_model"
+          id="floating_model"
+          class="block py-2.5 px-0 w-full border-0 bg-transparent border-b-2 border-gray-300 focus:border-gray-600 appearance-none peer focus:outline-none focus:ring-0"
+          placeholder=""
+          required
+        />
+        <label
+          for="floating_model"
+          class="peer-focus:font-latoRegular absolute duration-300 text-gray-500 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+          >{{ "editWatchWatchModel" | translate }}</label
+        >
+      </div>
+
+      <div
+        class="flex items-center justify-center w-full col-span-2 row-span-4"
+      >
+        <label
+          for="dropzone-file"
+          class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 focus:border-gray-600 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
+        >
+          <div class="flex flex-col items-center justify-center pt-5 pb-6">
+            <svg
+              class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 20 16"
+            >
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
+              />
+            </svg>
+            <p class="mb-2 text-gray-500 dark:text-gray-400">
+              <span class="font-latoBold"
+                >{{ "editWatchImages1" | translate }}
+              </span>
+              {{ "editWatchImages2" | translate }}
+            </p>
+
+            <div
+              *ngIf="files.length > 0"
+              class="text-xs text-gray-500 dark:text-gray-400 mx-16"
+            >
+              <div *ngFor="let file of files" class="file-info">
+                {{ file.name }}
+              </div>
+            </div>
+            <ul>
+              <li *ngFor="let imageName of watchImages">
+                {{ imageName }}
+              </li>
+            </ul>
+          </div>
           <input
-            formControlName="model"
-            type="text"
-            name="floating_model"
-            id="floating_model"
+            id="dropzone-file"
+            (change)="onFileSelect($event)"
+            type="file"
+            class="hidden"
+            multiple
+            required
+          />
+        </label>
+      </div>
+
+      <div class="relative z-0 w-full mb-5 group col-span-2">
+        <input
+          formControlName="description"
+          type="text"
+          name="floating_description"
+          id="floating_description"
+          class="block py-2.5 px-0 w-full border-0 bg-transparent border-b-2 border-gray-300 focus:border-gray-600 appearance-none peer focus:outline-none focus:ring-0"
+          placeholder=""
+        />
+        <label
+          for="floating_description"
+          class="peer-focus:font-latoRegular absolute duration-300 text-gray-500 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+          >{{ "editWatchDescription" | translate }}</label
+        >
+      </div>
+
+      <div class="MOVEMENT flex items-center">
+        <label for="movement" class="sr-only">Underline select</label>
+        <select
+          formControlName="movement"
+          id="movement"
+          class="block py-2.5 px-0 w-full text-gray-500 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-300 peer"
+        >
+          <option disabled selected value="">
+            {{ "editWatchMovementLabel1" | translate }}
+          </option>
+          <option value="quartz">
+            {{ "editWatchMovementLabel2" | translate }}
+          </option>
+          <option value="automatic">
+            {{ "editWatchMovementLabel3" | translate }}
+          </option>
+          <option value="manual">
+            {{ "editWatchMovementLabel4" | translate }}
+          </option>
+          <option value="electronic">
+            {{ "editWatchMovementLabel5" | translate }}
+          </option>
+          <option value="spring-drive">
+            {{ "editWatchMovementLabel6" | translate }}
+          </option>
+          <option value="electro-mechanical">
+            {{ "editWatchMovementLabel7" | translate }}
+          </option>
+        </select>
+      </div>
+      <div class="condition flex items-center">
+        <label for="condition" class="sr-only">Underline select</label>
+        <select
+          formControlName="condition"
+          id="condition"
+          class="block py-2.5 px-0 w-full text-gray-500 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-300 peer"
+        >
+          <option disabled selected value="">
+            {{ "editWatchConditionLabel1" | translate }}
+          </option>
+          <option value="new">
+            {{ "editWatchConditionLabel2" | translate }}
+          </option>
+          <option value="semi-used">
+            {{ "editWatchConditionLabel3" | translate }}
+          </option>
+          <option value="used">
+            {{ "editWatchConditionLabel4" | translate }}
+          </option>
+          <option value="worn">
+            {{ "editWatchConditionLabel5" | translate }}
+          </option>
+        </select>
+      </div>
+      <div class="grid grid-cols-3 col-span-2 gap-x-10">
+        <div class="relative z-0 w-full mb-5 group mt-6 col-span-1">
+          <input
+            formControlName="caseSize"
+            type="number"
+            name="floating_case_size"
+            id="floating_case_size"
             class="block py-2.5 px-0 w-full border-0 bg-transparent border-b-2 border-gray-300 focus:border-gray-600 appearance-none peer focus:outline-none focus:ring-0"
             placeholder=""
             required
           />
           <label
-            for="floating_model"
+            for="floating_case_size"
             class="peer-focus:font-latoRegular absolute duration-300 text-gray-500 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-            >{{"editWatchWatchModel"|translate}}</label
+            >{{ "editWatchCaseSize" | translate }}</label
           >
         </div>
-  
-        <div
-          class="flex items-center justify-center w-full col-span-2 row-span-4"
-        >
-          <label
-            for="dropzone-file"
-            class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 focus:border-gray-600 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
-          >
-            <div class="flex flex-col items-center justify-center pt-5 pb-6">
-              <svg
-                class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 20 16"
-              >
-                <path
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
-                />
-              </svg>
-              <p class="mb-2 text-gray-500 dark:text-gray-400">
-                <span class="font-latoBold">{{"editWatchImages1"|translate}} </span> {{"editWatchImages2"|translate}}
-              </p>
-  
-              <div
-                *ngIf="files.length > 0"
-                class="text-xs text-gray-500 dark:text-gray-400 mx-16"
-              >
-                <div *ngFor="let file of files" class="file-info">
-                  {{ file.name }}
-                </div>
-              </div>
-              <ul>
-                <li *ngFor="let imageName of watchImages">
-                  {{ imageName }}
-                </li>
-              </ul>
-              
-            </div>
-            <input
-            id="dropzone-file"
-            (change)="onFileSelect($event)"
-              type="file"
-              class="hidden"
-              multiple
-              required
-            />
-          </label>
-        </div>
-
-        
-  
-        <div class="relative z-0 w-full mb-5 group col-span-2">
+        <div class="relative z-0 w-full mb-5 group mt-6 col-span-1">
           <input
-            formControlName="description"
-            type="text"
-            name="floating_description"
-            id="floating_description"
+            formControlName="caseThickness"
+            type="number"
+            name="floating_case_thickness"
+            id="floating_case_thickness"
             class="block py-2.5 px-0 w-full border-0 bg-transparent border-b-2 border-gray-300 focus:border-gray-600 appearance-none peer focus:outline-none focus:ring-0"
             placeholder=""
+            required
           />
           <label
-            for="floating_description"
+            for="floating_case_thickness"
             class="peer-focus:font-latoRegular absolute duration-300 text-gray-500 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-            >{{"editWatchDescription"|translate}}</label
+            >{{ "editWatchCaseWidth" | translate }}</label
           >
         </div>
-  
-        <div class="MOVEMENT flex items-center">
-          <label for="movement" class="sr-only">Underline select</label>
-          <select
-            formControlName="movement"
-            id="movement"
-            class="block py-2.5 px-0 w-full text-gray-500 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-300 peer"
+        <div class="relative z-0 w-full mb-5 group mt-6 col-span-1">
+          <input
+            formControlName="price"
+            type="number"
+            name="floating_price"
+            id="floating_price"
+            class="block py-2.5 px-0 w-full border-0 bg-transparent border-b-2 border-gray-300 focus:border-gray-600 appearance-none peer focus:outline-none focus:ring-0"
+            placeholder=""
+            required
+          />
+          <label
+            for="floating_price"
+            class="peer-focus:font-latoRegular absolute duration-300 text-gray-500 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+            >{{ "editWatchPrice" | translate }} €</label
           >
-            <option disabled selected value="">{{"editWatchMovementLabel1"|translate}}</option>
-            <option value="quartz">{{"editWatchMovementLabel2"|translate}}</option>
-            <option value="automatic">{{"editWatchMovementLabel3"|translate}}</option>
-            <option value="manual">{{"editWatchMovementLabel4"|translate}}</option>
-            <option value="electronic">{{"editWatchMovementLabel5"|translate}}</option>
-            <option value="spring-drive">{{"editWatchMovementLabel6"|translate}} </option>
-            <option value="electro-mechanical">{{"editWatchMovementLabel7"|translate}}</option>
-          </select>
-        </div>
-        <div class="condition flex items-center">
-          <label for="condition" class="sr-only">Underline select</label>
-          <select
-            formControlName="condition"
-            id="condition"
-            class="block py-2.5 px-0 w-full text-gray-500 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-300 peer"
-          >
-            <option disabled selected value="">{{"editWatchConditionLabel1"|translate}}</option>
-            <option value="new">{{"editWatchConditionLabel2"|translate}}</option>
-            <option value="semi-used">{{"editWatchConditionLabel3"|translate}}</option>
-            <option value="used">{{"editWatchConditionLabel4"|translate}}</option>
-            <option value="worn">{{"editWatchConditionLabel5"|translate}}</option>
-          </select>
-        </div>
-        <div class="grid grid-cols-3 col-span-2 gap-x-10">
-          <div class="relative z-0 w-full mb-5 group mt-6 col-span-1">
-            <input
-              formControlName="caseSize"
-              type="number"
-              name="floating_case_size"
-              id="floating_case_size"
-              class="block py-2.5 px-0 w-full border-0 bg-transparent border-b-2 border-gray-300 focus:border-gray-600 appearance-none peer focus:outline-none focus:ring-0"
-              placeholder=""
-              required
-            />
-            <label
-              for="floating_case_size"
-              class="peer-focus:font-latoRegular absolute duration-300 text-gray-500 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-              >{{"editWatchCaseSize"|translate}}</label
-            >
-          </div>
-          <div class="relative z-0 w-full mb-5 group mt-6 col-span-1">
-            <input
-              formControlName="caseThickness"
-              type="number"
-              name="floating_case_thickness"
-              id="floating_case_thickness"
-              class="block py-2.5 px-0 w-full border-0 bg-transparent border-b-2 border-gray-300 focus:border-gray-600 appearance-none peer focus:outline-none focus:ring-0"
-              placeholder=""
-              required
-            />
-            <label
-              for="floating_case_thickness"
-              class="peer-focus:font-latoRegular absolute duration-300 text-gray-500 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-              >{{"editWatchCaseWidth"|translate}}</label
-            >
-          </div>
-          <div class="relative z-0 w-full mb-5 group mt-6 col-span-1">
-            <input
-              formControlName="price"
-              type="number"
-              name="floating_price"
-              id="floating_price"
-              class="block py-2.5 px-0 w-full border-0 bg-transparent border-b-2 border-gray-300 focus:border-gray-600 appearance-none peer focus:outline-none focus:ring-0"
-              placeholder=""
-              required
-            />
-            <label
-              for="floating_price"
-              class="peer-focus:font-latoRegular absolute duration-300 text-gray-500 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-              >{{"editWatchPrice"|translate}} €</label
-            >
-          </div>
         </div>
       </div>
-      <div class="SUBMITBUTTON col-span-1 sm:col-span-2 lg:col-span-2 items-center justify-center flex pt-10">
-        <button
-          type="submit"
-          class="text-xs md:text-sm lg:text-sm text-gray-900 hover:text-white border w-1/4 border-gray-800 hover:bg-gray-900 font-latoBlack uppercase rounded-lg px-3 py-2 text-center me-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800"
-        >
-        {{"editWatchEditButton"|translate}}
-        </button>
-        <button
-          type="button"
-          (click)="deleteWatch()"
-          class="text-xs md:text-sm lg:text-sm text-gray-900 hover:text-white border w-1/4 border-gray-800 hover:bg-gray-900 font-latoBlack uppercase rounded-lg px-3 py-2 text-center me-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800"
-        >
-        {{"editWatchDeleteButton"|translate}}
-        </button>
-      </div>
-      
-    </form>
-  </div>
-  
+    </div>
+    <div
+      class="SUBMITBUTTON col-span-1 sm:col-span-2 lg:col-span-2 items-center justify-center flex pt-10"
+    >
+      <button
+        type="submit"
+        class="text-xs md:text-sm lg:text-sm text-gray-900 hover:text-white border w-1/4 border-gray-800 hover:bg-gray-900 font-latoBlack uppercase rounded-lg px-3 py-2 text-center me-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800"
+      >
+        {{ "editWatchEditButton" | translate }}
+      </button>
+      <button
+        type="button"
+        (click)="deleteWatch()"
+        class="text-xs md:text-sm lg:text-sm text-gray-900 hover:text-white border w-1/4 border-gray-800 hover:bg-gray-900 font-latoBlack uppercase rounded-lg px-3 py-2 text-center me-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800"
+      >
+        {{ "editWatchDeleteButton" | translate }}
+      </button>
+    </div>
+  </form>
+</div>

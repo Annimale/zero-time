@@ -14,7 +14,7 @@ export class CommentService {
     // First try to get the token from localStorage
     let token =
       localStorage.getItem('token') || this.cookieService.get('token');
-    console.log('GetToken:', token);
+    //console.log('GetToken:', token);
 
     return token;
   }
@@ -53,7 +53,6 @@ export class CommentService {
     );
   }
 
- 
   deleteComment(commentId: number): Observable<any> {
     const token = this.getToken();
     const headers = new HttpHeaders({

@@ -3,16 +3,16 @@ import { isPlatformBrowser } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
-  standalone:true,
+  standalone: true,
   selector: 'app-no-access',
   templateUrl: './no-access.component.html',
   styleUrls: ['./no-access.component.css'],
-  imports:[TranslateModule],
+  imports: [TranslateModule],
 })
-export class NoAccessComponent  {
+export class NoAccessComponent {
   private audio?: HTMLAudioElement;
 
-  private audioPlayed = false; // Flag to control playback and prevent multiple triggers
+  private audioPlayed = false; 
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {
     if (isPlatformBrowser(this.platformId)) {
@@ -23,10 +23,10 @@ export class NoAccessComponent  {
 
   playAudio(): void {
     if (this.audio && !this.audioPlayed) {
-      this.audio.play().catch(error => {
+      this.audio.play().catch((error) => {
         console.error('Error al reproducir audio:', error);
       });
-      this.audioPlayed = true; // Set the flag to true after attempting to play the audio
+      this.audioPlayed = true; 
     }
   }
 }

@@ -10,7 +10,7 @@ import { TranslateModule } from '@ngx-translate/core';
 @Component({
   selector: 'app-brands',
   standalone: true,
-  imports: [EuropeNumberPipe,TranslateModule, CommonModule, RouterLink],
+  imports: [EuropeNumberPipe, TranslateModule, CommonModule, RouterLink],
   templateUrl: './brands.component.html',
   styleUrl: './brands.component.css',
 })
@@ -20,7 +20,7 @@ export class BrandsComponent {
   watches: any[] = [];
   baseUrl: string = 'http://localhost:3000/';
   brandName: string = '';
-  brandCoverImageUrl: string = ''; // URL para la imagen de portada de la marca
+  brandCoverImageUrl: string = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -29,11 +29,10 @@ export class BrandsComponent {
     private watchService: WatchService
   ) {}
 
-  
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       const brandName = params.get('brandName');
-      console.log(`Brand name from URL: ${brandName}`); // Asegúrate de que esto muestra los cambios correctamente
+      //console.log(`Brand name from URL: ${brandName}`);
 
       if (brandName) {
         this.loadBrand(brandName);
@@ -63,7 +62,7 @@ export class BrandsComponent {
         }
       },
       (error) => {
-        console.log(error);
+        //console.log(error);
         this.router.navigate(['/not-found']);
       }
     );
@@ -87,7 +86,7 @@ export class BrandsComponent {
 
   navigateToWatchDetail(watchId: number) {
     this.router.navigate(['/shop', watchId]);
-}
+  }
   getCurrentImageUrl(watch: any): string {
     if (!watch.currentImage && watch.images) {
       if (typeof watch.images === 'string') {
@@ -134,7 +133,7 @@ export class BrandsComponent {
 
   setBrandCoverImage(watch: any): void {
     let images = watch.images;
-  
+
     // Intentar parsear si images es una cadena que parece un JSON
     if (typeof images === 'string') {
       try {
@@ -144,16 +143,15 @@ export class BrandsComponent {
         images = []; // En caso de error, usar un array vacío
       }
     }
-  
-    console.log('Normalized watch images:', images);
+
+    //console.log('Normalized watch images:', images);
     if (images.length > 0) {
       const imagePath = images[0].replace(/\\\\/g, '/').replace(/\\/g, '/');
       this.brandCoverImageUrl = `http://localhost:3000/${imagePath}`;
-      console.log('Attempting to load image at:', this.brandCoverImageUrl);
+      //console.log('Attempting to load image at:', this.brandCoverImageUrl);
     } else {
       this.brandCoverImageUrl = '../../assets/images/brandNoWatch.svg';
-      console.log('No images available, setting default image.');
+      //console.log('No images available, setting default image.');
     }
   }
-  
 }

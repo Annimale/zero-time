@@ -2,7 +2,9 @@
   <div class="grid grid-cols-1 lg:grid-cols-5 border-b border-gray-300 pt-20">
     <div class="lg:col-span-1 pl-6">
       <div class="FILTERS">
-        <h1 class="font-latoRegular text-3xl pb-4">{{"brandsBrands"|translate}}</h1>
+        <h1 class="font-latoRegular text-3xl pb-4">
+          {{ "brandsBrands" | translate }}
+        </h1>
         <ul class="overflow-y-auto h-80 space-y-4">
           <li class="my-2" *ngFor="let brand of brands">
             <a
@@ -24,7 +26,11 @@
       </div>
       <div class="IMAGEN">
         <img
-          [src]="watches.length > 0 ? brandCoverImageUrl : '../../assets/images/brandNoWatch.svg'"
+          [src]="
+            watches.length > 0
+              ? brandCoverImageUrl
+              : '../../assets/images/brandNoWatch.svg'
+          "
           alt="img-brand"
           class="w-full h-auto object-contain lg:w-[614px] lg:h-[410px]"
         />
@@ -35,13 +41,15 @@
   <div class="mx-auto lg:w-full p-8 lg:px-20 pt-20" *ngIf="watches.length > 0">
     <div class="text-6xl font-latoRegular mx-auto">
       <h2 class="text-xl">
-        {{"brandsAllWatches"|translate}}
+        {{ "brandsAllWatches" | translate }}
         <span class="font-prata text-3xl text-right inline-block ml-6">{{
           brandInfo.name
         }}</span>
       </h2>
     </div>
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 mt-20 gap-y-12">
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 mt-20 gap-y-12"
+    >
       <div
         class="CARD RELOJ cursor-pointer"
         *ngFor="let watch of watches"
@@ -66,7 +74,7 @@
   </div>
   <div class="container py-32" *ngIf="watches.length <= 0">
     <h1 class="text-center text-4xl">
-      {{"brandsNoWatches"|translate}}
+      {{ "brandsNoWatches" | translate }}
       <span class="font-prata">{{ brandName }}</span>
     </h1>
   </div>

@@ -23,7 +23,7 @@ interface CustomJwtPayload {
   standalone: true,
   templateUrl: './shop-detail.component.html',
   styleUrl: './shop-detail.component.css',
-  imports: [EuropeNumberPipe,TranslateModule, CommonModule],
+  imports: [EuropeNumberPipe, TranslateModule, CommonModule],
 })
 export class ShopDetailComponent {
   watch: any = {};
@@ -48,32 +48,31 @@ export class ShopDetailComponent {
     private authService: AuthService,
     private router: Router,
     private cartService: CartService
-
   ) {}
 
   ngOnInit(): void {
     const watchId = this.route.snapshot.params['id'];
-    console.log(watchId);
+    //console.log(watchId);
     this.watchService.getWatchById(watchId).subscribe({
       next: (data) => {
-        console.log('Initial data loaded', data);
+        //console.log('Initial data loaded', data);
         this.watch = data;
         this.watch.images = this.parseImageUrls(this.watch.images);
-        console.log('Images after parsing', this.watch.images);
+        //console.log('Images after parsing', this.watch.images);
       },
       error: (error) => {
         console.error('Error al obtener los detalles del reloj:', error);
-        this.router.navigate(['/not-found'])
+        this.router.navigate(['/not-found']);
       },
     });
     this.brandService.getAllBrands().subscribe({
       next: (data) => {
-        console.log('Brands loaded:', data);
+        //console.log('Brands loaded:', data);
         this.brands = data;
       },
       error: (error) => {
         console.error('Failed to load brands. Response:', error);
-        console.error('Error details:', error.error.text || error.error); // Attempting to capture non-JSON error message
+        console.error('Error details:', error.error.text || error.error);
       },
     });
     this.isAuthenticated = this.authService.tokenExists();
@@ -101,7 +100,7 @@ export class ShopDetailComponent {
           );
         } catch (e) {
           console.error('Error parsing images JSON', e);
-          return ['../../assets/images/brandNoWatch.svg']; // Imagen por defecto si el parseo falla
+          return ['../../assets/images/brandNoWatch.svg'];
         }
       }
     } else if (Array.isArray(imageData)) {
@@ -115,10 +114,10 @@ export class ShopDetailComponent {
         typeof imageData,
         imageData
       );
-      return ['../../assets/images/brandNoWatch.svg']; // Devolver imagen por defecto
+      return ['../../assets/images/brandNoWatch.svg'];
     }
   }
- 
+
   openModal(image: string) {
     this.selectedImage = image;
     this.showModal = true;
@@ -133,7 +132,7 @@ export class ShopDetailComponent {
     const x = ((event.clientX - rect.left) / rect.width) * 100;
     const y = ((event.clientY - rect.top) / rect.height) * 100;
     this.zoomImage.nativeElement.style.transformOrigin = `${x}% ${y}%`;
-    this.zoomImage.nativeElement.style.transform = 'scale(2)'; // Ajusta el nivel de zoom según sea necesario
+    this.zoomImage.nativeElement.style.transform = 'scale(2)';
   }
 
   resetZoom(): void {
@@ -150,11 +149,11 @@ export class ShopDetailComponent {
   getLocalUserData(id: any) {
     this.http.getLocalUser(id).subscribe({
       next: (response) => {
-        console.log('Datos del usuario:', response);
+        //console.log('Datos del usuario:', response);
         this.userLocalInfo = response;
       },
       error: (error) => {
-        console.log('Error en getLocalUserData:', error);
+        //console.log('Error en getLocalUserData:', error);
       },
     });
   }
@@ -164,31 +163,31 @@ export class ShopDetailComponent {
       this.isAuthenticated = true;
       this.localToken = localStorage.getItem('token');
       const localInfo = jwtDecode(this.localToken) as CustomJwtPayload;
-      console.log(localInfo.id);
+      //console.log(localInfo.id);
 
       if (localInfo && localInfo.id) {
         this.getLocalUserData(localInfo.id);
       }
     } else {
-      console.log('De momento no hay localToken');
+      //console.log('De momento no hay localToken');
     }
   }
 
   getPayload() {
     this.http.getPayload().subscribe({
       next: (res) => {
-        console.log('Datos del usuario:', res.user);
+        //console.log('Datos del usuario:', res.user);
         this.userInfo = jwtDecode(res.user);
-        console.log(this.userInfo.id);
+        //console.log(this.userInfo.id);
         this.isAuthenticated = true;
 
         this.http2
           .get<any>(`http://localhost:3000/user/${this.userInfo.id}`)
           .subscribe({
             next: (userRes) => {
-              console.log(userRes);
+              //console.log(userRes);
               this.userGoogle = userRes;
-              console.log(this.userGoogle.role);
+              //console.log(this.userGoogle.role);
             },
           });
       },
@@ -207,6 +206,7 @@ export class ShopDetailComponent {
       title: '¡Reloj añadido!',
       text: 'El reloj se ha añadido al carrito.',
       icon: 'success',
-      confirmButtonText: 'OK'
-    });  }
+      confirmButtonText: 'OK',
+    });
+  }
 }
