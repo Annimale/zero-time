@@ -6,7 +6,7 @@ const User = sequelize.define("User", {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
-    autoIncrement: true, // Esto hará que se genere automáticamente el ID
+    autoIncrement: true, 
   },
   name: {
     type: DataTypes.STRING,
@@ -34,7 +34,7 @@ const User = sequelize.define("User", {
   },
   role: {
     type: DataTypes.ENUM("admin", "user"),
-    defaultValue: "user", // Valor por defecto es 'user'
+    defaultValue: "user", 
   },
 },{
   timestamps: true,
