@@ -86,7 +86,8 @@ router.patch(
     }
   }
 );
-//!FIXME la ruta esta tendría que ser deleteWatch
+
+
 router.delete("/api/editWatch/:id", async (req, res) => {
   const { id } = req.params;
   try {
