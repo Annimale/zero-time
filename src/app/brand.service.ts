@@ -6,7 +6,6 @@ import { catchError, Observable, throwError } from 'rxjs';
 })
 export class BrandService {
   apiUrl:string='http://localhost:3000/brands'
-  // apiUrl:string='environment.apiUrl'
   constructor(private http:HttpClient) { }
 
   getBrandByName(brandName: string): Observable<any> {
@@ -20,10 +19,9 @@ export class BrandService {
   private handleError(error: HttpErrorResponse) {
     let errorMessage = 'Unknown error!';
     if (error.error instanceof ErrorEvent) {
-      // Client-side errors
       errorMessage = `Error: ${error.error.message}`;
     } else {
-      // Server-side errors
+     
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
     console.error(errorMessage);

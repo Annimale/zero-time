@@ -6,7 +6,7 @@ import { Observable } from 'rxjs'
   providedIn: 'root'
 })
 export class WatchService {
-  private baseUrl = 'http://localhost:3000/watches'; // Ajusta esto según sea necesario
+  private baseUrl = 'http://localhost:3000/watches'; 
 
   constructor(private http:HttpClient) { }
 

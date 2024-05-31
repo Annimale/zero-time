@@ -18,7 +18,6 @@ import { PolicyCookiesComponent } from './policy-cookies/policy-cookies.componen
 import { LoginComponent } from './login/login.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { CartComponent } from './cart/cart.component';
-// import { AdminProfileComponent } from './admin-profile/admin-profile.component';
 import { FaqComponent } from './faq/faq.component';
 import { ShopDetailComponent } from './shop-detail/shop-detail.component';
 import { EditWatchComponent } from './edit-watch/edit-watch.component';
