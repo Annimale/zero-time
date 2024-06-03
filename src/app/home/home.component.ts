@@ -32,6 +32,7 @@ interface Watch {
   styleUrl: './home.component.css',
 })
 export class HomeComponent {
+  isLoading: boolean=false;
   isUser: any;
   brands: any[] = [];
   watches: any;
@@ -43,21 +44,26 @@ export class HomeComponent {
   ) {}
 
   ngOnInit(): void {
+    this.isLoading = true;
     this.isUser = this.authService.isUser();
+
     this.brandService.getAllBrands().subscribe({
       next: (data) => {
         //console.log('Brands loaded:', data);
         this.brands = data;
+        this.isLoading = false;
       },
       error: (error) => {
         console.error('Failed to load brands. Response:', error);
         console.error('Error details:', error.error.text || error.error);
       },
     });
+
     this.watchService.getAllWatches().subscribe({
       next: (data) => {
         //console.log('watches loaded:', data);
         this.watches = data;
+        this.isLoading = false;
       },
       error: (error) => {
         console.error('Failed to load watches. Response:', error);
@@ -65,6 +71,7 @@ export class HomeComponent {
       },
     });
   }
+
   getBrandName(brandID: number): string {
     const brand = this.brands.find((brand) => brand.id === brandID);
     return brand ? brand.name : 'Unknown Brand';
