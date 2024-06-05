@@ -34,9 +34,7 @@ router.post("/sign-up", async (req, res) => {
       password: hashedPassword,
       verificationToken,
     });
-
     const verifyUrl = `http://localhost:3000/api/auth/verify/${verificationToken}`;
-
     const request = mailjet.post("send", { version: "v3.1" }).request({
       Messages: [
         {
@@ -65,7 +63,6 @@ router.post("/sign-up", async (req, res) => {
         },
       ],
     });
-
     request
       .then((result) => {
         //console.log(result.body);
@@ -133,7 +130,7 @@ router.get("/verify/:token", async (req, res) => {
     return res.status(404).send("Usuario no encontrado o token ya utilizado.");
   }
 
-  user.verificationToken = null; // Limpiar el token pues ya se usó
+  user.verificationToken = null; // Limpiar el token 
   user.isVerified = true; // Marcar el usuario como verificado
   await user.save();
 
@@ -141,31 +138,24 @@ router.get("/verify/:token", async (req, res) => {
 });
 
 router.post("/login-with-google", async (req, res) => {
-  //console.log(req.body);
-
   try {
     const { credential } = req.body;
-    //console.log("credential recibido:", credential);
 
     if (!credential) {
-      //console.log(error);
       return res.status(400).send("credential no proporcionado");
     }
     const ticket = await client.verifyIdToken({
       idToken: credential,
       audience: CLIENT_ID,
     });
-
     const payload = ticket.getPayload();
     //console.log("Payload recibido:", payload);
-
     if (!payload.email) {
       return res.status(400).json({
         message: "No se pudo obtener el email del credential de Google",
       });
     }
     let user = await User.findOne({ where: { email: payload.email } });
-
     // Si el usuario no existe, créalo sin una contraseña específica
     if (!user) {
       user = await User.create({
@@ -186,11 +176,6 @@ router.post("/login-with-google", async (req, res) => {
     //console.log("userToken recibido:", userToken);
     res.cookie("token", userToken, { httpOnly: false, secure: false });
     res.redirect(`http://localhost:4200/home`);
-
-    // res.json({name:user.given_name})
-    // res.redirect("http://localhost:4200/home"); //CON ESTO PODEMOS REDIRIGIR
-    //res.json({ credential: userToken });//CON ESTO ENVIAMOS EL TOKEN AL CLIENTE
-    // res.redirect(`http://localhost:4200/home?token=${userToken}`);
   } catch (error) {
     console.error("Error al verificar el credential de Google:", error);
     res.status(500).json({ message: "Error al iniciar sesión con Google" });

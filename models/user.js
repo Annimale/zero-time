@@ -1,8 +1,6 @@
 const { Sequelize, Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/database");
-
 const User = sequelize.define("User", {
-  // Define los atributos del modelo
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -39,8 +37,6 @@ const User = sequelize.define("User", {
 },{
   timestamps: true,
 });
-
-
 User.associate = function (models) {
   User.hasMany(models.Watch, {
     foreignKey: "userID",

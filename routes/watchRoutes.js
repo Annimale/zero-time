@@ -66,9 +66,7 @@ router.patch(
       if (!watch) {
         return res.status(404).send({ message: "Reloj no encontrado." });
       }
-
       const { images, ...updateData } = req.body;
-
       if (req.files && req.files.length > 0) {
         updateData.images = req.files.map((file) => file.path);
       } else if (!req.body.images) {
@@ -86,8 +84,6 @@ router.patch(
     }
   }
 );
-
-
 router.delete("/api/editWatch/:id", async (req, res) => {
   const { id } = req.params;
   try {
@@ -102,7 +98,6 @@ router.delete("/api/editWatch/:id", async (req, res) => {
     res.status(500).send({ message: error.message || "Internal Server Error" });
   }
 });
-
 //ENDPOINT PARA CONSEGUIR LOS RELOJES RELACIONADOS CON ESA BRANDID
 router.get("/api/brands/:brandId/watches", async (req, res) => {
   try {
@@ -110,7 +105,6 @@ router.get("/api/brands/:brandId/watches", async (req, res) => {
     const watches = await Watch.findAll({
       where: { brandID: brandId },
     });
-
     res.json(watches);
   } catch (error) {
     console.error("Error fetching watches:", error);
